@@ -50,7 +50,7 @@
                 <select id="book" name="book" class="drop" onchange="javascript:location.href = this.value;">
                   {% for book in ntBooks %}
                   <option 
-                    value="http://localhost:8080/nt/{{ book.name }}/01"
+                    value="/nt/{{ book.name }}/01"
                     {% if bookName == book.name %}selected{% endif %}
                   >{{ book.name }}</option>
                   {% endfor %}
@@ -63,11 +63,11 @@
                     {% assign range = (1..num) %}
                     {% for n in range %} 
                       {% if n <= 9 %}
-                        <option value="http://localhost:8080/nt/{{ the_book.name }}/0{{ n }}"
+                        <option value="/nt/{{ the_book.name }}/0{{ n }}"
                           {% if n == bookChapter %}selected{% endif %}
                         >0{{ n }}</option>
                       {% else %}
-                        <option value="http://localhost:8080/nt/{{ the_book.name }}/{{ n }}"
+                        <option value="/nt/{{ the_book.name }}/{{ n }}"
                           {% if n == bookChapter %}selected{% endif %}
                         >{{ n }}</option>
                       {% endif %}
