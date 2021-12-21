@@ -1,14 +1,11 @@
 body {
-  font: 1.05em Trebuchet, Arial, Helvetica, sans-serif;
+  font: 1.05em Georgia, 'Times New Roman', Times, serif;
   margin: 0;
   line-height: 1.35em;
   color: #001320;
-  BACKGROUND-COLOR: #fdfeff;
+  background-color: #fdfeff;
   text-align: justify;
-  /* background-image: url(/cssbk2.gif); */
-  background-repeat: repeat-x;
-  background-attachment: fixed;
-} 
+}
 a:link,
 a:visited,
 a:active {
@@ -19,9 +16,194 @@ a:hover {
   text-decoration: none;
   color: #99D6FF;
 }
+table table:first-child {
+  display: none;
+}
+
+/* REUSABLE CLASSES */
+
+.d-flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
 .center {
   text-align: center;
 }
+
+/* ELEMENT CLASSES */
+
+.app-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background-color: #7B0005;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+}
+  .app-bar h1 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+.toolbar {
+  position: fixed;
+  top: 48px;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background-color: #EBEBEB;
+  z-index: 1000;
+}
+select.drop {
+  padding: 6px;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+button.square {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(123, 0, 5, 1);
+  color: white;
+  cursor: pointer;
+}
+  .no_strongs #strongBt,
+  .no_translit #translitBt,
+  .no_greek #greekBt,
+  .no_grammar #gramBt {
+    background-color: rgb(123, 0, 5, 0.3);
+  }
+.main-content {
+  margin-top: 110px;
+}
+
+/* STRUCTURE */
+
+.maintable {
+  width: 100%;
+}
+#movebox {
+  text-align: center;
+}
+#topheading {
+  width: 100%;
+  text-align: center;
+  font: 1.7em Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #552200;
+}
+
+/* INTERLINEAR */
+
+#movebox2 {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 20px;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #7B0000;
+  text-align: center;
+}
+  #movebox2 a {
+    padding: 4px;
+    border-radius: 50px;
+    color: #00A7FF;
+    opacity: 0.3;
+  }
+    #movebox2 a:hover {
+      background-color: #E5E5E5;
+      opacity: 1;
+    }
+.vheading {
+  width: 100%;
+  margin-bottom: 10px;
+  padding-left: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #7B0000;
+  text-align: center;
+}
+.title {
+  display: inline-block;
+  padding-bottom: 20px;
+  font-size: 17px;
+  line-height: 44px;
+  font-weight: bold;
+  color: black;
+}
+.num {
+  font-size: 11px;
+  color: #7B0000;
+  line-height: 14px;
+  margin-top: 0px;
+  margin-left: 2px;
+  margin-right: 2px;
+  vertical-align: text-top;
+}
+.refmain {
+  font-size: 15px;
+  color: #7B0000;
+  line-height: 21px;
+  line-height: 8px;
+  font-weight: 700;
+}
+.strongs {
+  font-size: 15px;
+  color: #0092f2;
+  line-height: 26px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+}
+.pos a {
+  font-size: 13px;
+  color: #0092f2;
+  line-height: 16px;
+  font-family: Arial, Helvetica, Sans-serif;
+}
+.greek {
+  font-size: 21px;
+  color: #7B0000;
+  line-height: 32px;
+  font-family: Cardo, GentiumAlt, Galilee Unicode Gk, Galatia SIL, Palatino Linotype, Arial, Helvetica, Sans-serif;
+}
+.punct {
+  font-size: 20px;
+  color: #7B0000;
+  line-height: 1;
+  font-family: Ariel Black, Arial, Helvetica, Sans-serif;
+  Font-weight: 700;
+  text-decoration: none; 
+  text-align: justify
+}
+.eng {
+  font-size: 17px;
+  color: #606060;
+  font-style: italic;
+  line-height: 26px;
+}
+.translit a {
+  font-family: Arial, Helvetica, Sans-serif;
+  font-size: 15px;
+  color: #aaa;
+  line-height: 26px;
+  font-style: italic;
+}
+.strongsnt a {
+  font-size: 12px;
+  color: #707070;
+  line-height: 28px;
+  font-family: Arial, Helvetica, Sans-serif;
+}
+
+/* *** */
+
 .versiontext {
   font-weight: 700;
   color: #0092f2;
@@ -36,10 +218,7 @@ a:hover {
 .crossverse {
   font-weight: 700;
 }
-.maintable {
-  width: 87%;
-  max-width: 1000px;
-}
+
 #topverse {
   padding-top: 6px;
   padding-bottom: 2px;
@@ -67,16 +246,7 @@ a:hover {
   box-shadow: 1px 1px 1px #e8f5ff;
   z-index: 1;
 }
-/*
-#fx3
-{
-	position:fixed; top: 32px; left: 0px; width: 100%; z-index:1;
-}
-#fx4
-{
-	position:fixed;top:32px; left: 0px; width: 100%; height: 53px; background-color:#0082d9;
-	box-shadow: 2px 2px 2px #0066aa;  z-index:1;
- }   */
+
 #blnk {
   height: 40px;
 }
@@ -91,29 +261,12 @@ a:hover {
   padding-top: 9px;
   padding-bottom: 9px;
   float: left;
-  BACKGROUND-COLOR: #fdfeff;
+  background-color: #fdfeff;
   height: auto;
   border-top-right-radius: 22px;
   border-top-left-radius: 22px;
 }
 /*-------------------------------------------------*/
-#movebox {
-  text-align: center;
-}
-#topheading {
-  width: 100%;
-  text-align: center;
-  font: 1.7em Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  color: #552200;
-}
-#movebox2 {
-  width: 100%;
-  text-align: center;
-  font: 1.7em Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  color: #552200;
-}
 /*-------------------------------------------------*/
 #leftbox {
   float: left;
@@ -143,19 +296,7 @@ a:hover {
   padding-bottom: 0px;
   text-align: justify;
 }
-.vheading {
-  text-align: left;
-  background-color: #fff0e6;
-  width: 95%;
-  text-align: center;
-  margin-bottom: 10px;
-  padding-left: 8px;
-  font: 1.1em Verdana, Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  color: #552200;
-  border-top-right-radius: 12px;
-  border-top-left-radius: 12px;
-}
+
 .vheading2 {
   text-align: left;
   background-color: #fff0e6;
@@ -224,15 +365,15 @@ a:hover {
 }
 /*-------------------------------------------------*/
 .encheading {
-  COLOR: #552200;
+  color: #552200;
   font-weight: 700;
 }
 .encycheading {
-  COLOR: #552200;
+  color: #552200;
   font-weight: 700;
 }
 .adbk {
-  BACKGROUND-COLOR: #e6f3ff;
+  background-color: #e6f3ff;
 }
 .vtext {
   color: #ff6600;
@@ -242,22 +383,22 @@ a:hover {
 }
 .hdg {
   font-weight: 700;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
 }
 .hdg1 {
   font-weight: 700;
   margin-top: 0px;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
 }
 .hdg2 {
   font-weight: 700;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
 }
 .tskverse {
   margin-left: 15px;
@@ -278,743 +419,658 @@ a:hover {
   margin-top: 12px;
   margin-bottom: 12px;
 }
-.greek {
-  FONT: 1.3em Cardo, GentiumAlt, Galilee Unicode Gk, Galatia SIL, Palatino Linotype, Arial, Helvetica, Sans-serif;
-  font-family: 'Cardo', serif;
-  COLOR: #001320;
-  line-height: 1.4em;
-  TEXT-DECORATION: none;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  TEXT-Align: left;
-}
+
 .tophdg {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 13px;
-  LINE-HEIGHT: 18px;
-  COLOR: #0066aa;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  color: #0066aa;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
 }
 .hdg {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 13px;
-  LINE-HEIGHT: 48px;
-  COLOR: #0066aa;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 48px;
+  color: #0066aa;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
 }
 .greek .maintitle {
-  FONT-SIZE: 19px;
+  font-size: 19px;
   font-weight: 700;
-  COLOR: #552200;
-  LINE-HEIGHT: 26px;
-  FONT-FAMILY: Cardo, GentiumAlt, Galilee Unicode Gk, Galatia SIL, Palatino Linotype, Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  color: #552200;
+  line-height: 26px;
+  font-family: Cardo, GentiumAlt, Galilee Unicode Gk, Galatia SIL, Palatino Linotype, Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .sourceheading {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 18px;
-  COLOR: #001320;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: #001320;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
 }
 .lexheading {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 17px;
+  font-weight: 700;
+  font-size: 17px;
 }
 .textheading {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 17px;
+  font-weight: 700;
+  font-size: 17px;
 }
 .reom {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 17px;
+  font-weight: 700;
+  font-size: 17px;
 }
 .emphasized {
-  FONT-WEIGHT: 700;
-  COLOR: #552200;
-  FONT-STYLE: Italic;
-  FONT-SIZE: 17px;
+  font-weight: 700;
+  color: #552200;
+  font-style: Italic;
+  font-size: 17px;
 }
 .nonheading {
-  FONT-WEIGHT: 700;
-  FONT-STYLE: Italic;
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 18px;
-  COLOR: #0066aa;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-style: Italic;
+  font-size: 15px;
+  line-height: 18px;
+  color: #0066aa;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
 }
 .ltext2 {
-  FONT-WEIGHT: bold;
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 17px;
-  COLOR: #001320;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 17px;
+  color: #001320;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
   Color: none
 }
 .xtext {
-  FONT-SIZE: 15px;
-  FONT-STYLE: italic;
-  COLOR: #0066AA;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  font-style: italic;
+  color: #0066AA;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .x2text {
-  FONT-SIZE: 15px;
-  COLOR: #001320;
-  LINE-HEIGHT: 17px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #001320;
+  line-height: 17px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .x3text {
-  FONT-SIZE: 15px;
-  COLOR: #001320;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #001320;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .comtext {
-  FONT-SIZE: 15px;
-  FONT-STYLE: normal;
-  COLOR: #001320;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  font-style: normal;
+  color: #001320;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .redtext {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 18px;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  line-height: 18px;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .toptext {
-  FONT-SIZE: 15px;
-  FONT-WEIGHT: 500;
-  LINE-HEIGHT: 18px;
-  COLOR: #0066AA;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #0066AA;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .encheading {
-  FONT-SIZE: 15px;
-  FONT-WEIGHT: 700;
-  LINE-HEIGHT: 19px;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 19px;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .redheading {
-  FONT-SIZE: 15px;
-  BACKGROUND-COLOR: #ffecdf;
+  font-size: 15px;
+  background-color: #ffecdf;
   background-image: url(orange5.gif);
-  LINE-HEIGHT: 20px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  line-height: 20px;
+  font-weight: bold;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .encycheading {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 20px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #552200;
   padding-top: 5px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .toptitle2 {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 20px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #552200;
   padding-top: 5px;
   padding-bottom: 10px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .redheading2 {
-  FONT-SIZE: 15px;
-  BACKGROUND-COLOR: #ffffff;
-  LINE-HEIGHT: 20px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  background-color: #ffffff;
+  line-height: 20px;
+  font-weight: bold;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .redheading3 {
-  FONT-SIZE: 16px;
-  LINE-HEIGHT: 33px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 16px;
+  line-height: 33px;
+  font-weight: bold;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .btext2 {
-  FONT-SIZE: 15px;
-  COLOR: #001320;
-  LINE-HEIGHT: 24px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #001320;
+  line-height: 24px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .boldtext {
-  FONT-SIZE: 15px;
-  FONT-WEIGHT: 700;
-  COLOR: #001320;
-  LINE-HEIGHT: 24px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 15px;
+  font-weight: 700;
+  color: #001320;
+  line-height: 24px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .sectionheading {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 15px;
-  FONT-WEIGHT: bold;
+  font-size: 15px;
+  line-height: 15px;
+  font-weight: bold;
   FONT-Style: italic;
-  COLOR: #001320;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  color: #001320;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .btext {
-  FONT-SIZE: 19px;
-  COLOR: #001320;
-  LINE-HEIGHT: 27px;
-  FONT-FAMILY: Cardo, GentiumAlt, Galilee Unicode Gk, Galatia SIL, Palatino Linotype, Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 19px;
+  color: #001320;
+  line-height: 27px;
+  font-family: Cardo, GentiumAlt, Galilee Unicode Gk, Galatia SIL, Palatino Linotype, Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
-.eng {
-  FONT-SIZE: 15px;
-  COLOR: #d55500;
-  LINE-HEIGHT: 26px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-}
-.translit {
-  FONT-SIZE: 15px;
-  COLOR: #0066aa;
-  LINE-HEIGHT: 26px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-}
+
 .ital {
-  FONT-SIZE: 15px;
-  COLOR: #d55500;
-  LINE-HEIGHT: 26px;
-  FONT-STYLE: italic;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-size: 15px;
+  color: #d55500;
+  line-height: 26px;
+  font-style: italic;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
 }
 .spc {
-  FONT-SIZE: 12px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
+  font-size: 12px;
+  font-family: Arial, Helvetica, Sans-serif;
 }
 .spc2 {
-  FONT-SIZE: 35px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
+  font-size: 35px;
+  font-family: Arial, Helvetica, Sans-serif;
 }
 .spc3 {
-  FONT-SIZE: 35px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
+  font-size: 35px;
+  font-family: Arial, Helvetica, Sans-serif;
 }
 .spc4 {
-  FONT-SIZE: 35px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
+  font-size: 35px;
+  font-family: Arial, Helvetica, Sans-serif;
 }
 .spc5 {
-  FONT-SIZE: 35px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
+  font-size: 35px;
+  font-family: Arial, Helvetica, Sans-serif;
 }
 .smcap {
-  FONT-SIZE: 13px;
-  COLOR: #d55500;
-  LINE-HEIGHT: 26px;
+  font-size: 13px;
+  color: #d55500;
+  line-height: 26px;
   text-transform: uppercase;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
-.num {
-  FONT-SIZE: 11px;
-  COLOR: #552200;
-  LINE-HEIGHT: 14px;
-  margin-top: 0px;
-  margin-left: 2px;
-  margin-right: 2px;
-  vertical-align: text-top;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-}
-.strongs {
-  FONT-SIZE: 15px;
-  COLOR: #0092f2;
-  LINE-HEIGHT: 26px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-}
-.strongsnt {
-  FONT-SIZE: 15px;
-  COLOR: #0092f2;
-  LINE-HEIGHT: 28px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-}
-.pos {
-  FONT-SIZE: 15px;
-  COLOR: #0092f2;
-  LINE-HEIGHT: 16px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-}
+
 .translit2 {
-  FONT-SIZE: 15px;
-  COLOR: #001320;
-  LINE-HEIGHT: 14px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #001320;
+  line-height: 14px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .interlin {
-  FONT-SIZE: 11px;
-  COLOR: #ff6600;
-  LINE-HEIGHT: 26px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 11px;
+  color: #ff6600;
+  line-height: 26px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .vul {
-  FONT-SIZE: 15px;
-  COLOR: #001320;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #001320;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .rtext {
-  FONT-SIZE: 12px;
-  COLOR: #001320;
-  LINE-HEIGHT: 15px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 12px;
+  color: #001320;
+  line-height: 15px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
-.refmain {
-  FONT-SIZE: 15px;
-  COLOR: #9b3e00;
-  LINE-HEIGHT: 21px;
-  LINE-HEIGHT: 8px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  FONT-WEIGHT: 700;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
-}
+
 .refheb {
-  FONT-SIZE: 15px;
-  COLOR: #9b3e00;
-  LINE-HEIGHT: 21px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  FONT-WEIGHT: 700;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #9b3e00;
+  line-height: 21px;
+  font-family: Arial, Helvetica, Sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: justify
 }
 .reftop {
-  FONT-SIZE: 15px;
-  COLOR: #ffffff;
-  LINE-HEIGHT: 14px;
-  LINE-HEIGHT: 8px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  FONT-WEIGHT: 700;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 14px;
+  line-height: 8px;
+  font-family: Arial, Helvetica, Sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: justify
 }
 .reftop2 {
-  FONT-SIZE: 15px;
-  COLOR: #ffffff;
-  LINE-HEIGHT: 16px;
-  LINE-HEIGHT: 8px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  FONT-WEIGHT: 700;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 16px;
+  line-height: 8px;
+  font-family: Arial, Helvetica, Sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: justify
 }
 .reftop3 {
-  FONT-SIZE: 15px;
-  COLOR: #ffffff;
-  LINE-HEIGHT: 8px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  FONT-WEIGHT: 700;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 8px;
+  font-family: Arial, Helvetica, Sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: justify
 }
 .refbot {
-  FONT-SIZE: 15px;
-  COLOR: #ffffff;
-  /*   LINE-HEIGHT: 21px;*/
-  LINE-HEIGHT: 8px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  FONT-WEIGHT: 700;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #ffffff;
+  /*   line-height: 21px;*/
+  line-height: 8px;
+  font-family: Arial, Helvetica, Sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: justify
 }
 .reftrans {
-  FONT-SIZE: 15px;
-  COLOR: #ffffff;
-  /*  LINE-HEIGHT: 21px;*/
-  LINE-HEIGHT: 8px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  FONT-WEIGHT: 700;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #ffffff;
+  /*  line-height: 21px;*/
+  line-height: 8px;
+  font-family: Arial, Helvetica, Sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: justify
 }
 .strongstext {
-  FONT-SIZE: 15px;
-  COLOR: #001320;
-  LINE-HEIGHT: 21px;
-  FONT-WEIGHT: 700;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #001320;
+  line-height: 21px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .kjtext {
-  FONT-SIZE: 16px;
-  COLOR: #001320;
-  LINE-HEIGHT: 20px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 16px;
+  color: #001320;
+  line-height: 20px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .latintext {
-  FONT-SIZE: 16px;
-  COLOR: #001320;
-  LINE-HEIGHT: 20px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 16px;
+  color: #001320;
+  line-height: 20px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .aratext {
-  FONT-SIZE: 20px;
-  COLOR: #001320;
-  LINE-HEIGHT: 27px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 20px;
+  color: #001320;
+  line-height: 27px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .aramaic {
-  FONT-SIZE: 20px;
-  COLOR: #001320;
-  LINE-HEIGHT: 27px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 20px;
+  color: #001320;
+  line-height: 27px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
-.greek {
-  FONT-SIZE: 21px;
-  COLOR: #001320;
-  LINE-HEIGHT: 32px;
-  FONT-FAMILY: Cardo, GentiumAlt, Galilee Unicode Gk, Galatia SIL, Palatino Linotype, Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
-}
-.punct {
-  FONT-SIZE: 20px;
-  COLOR: #9b3e00;
-  LINE-HEIGHT: 1;
-  FONT-FAMILY: Ariel Black, Arial, Helvetica, Sans-serif;
-  Font-weight: 700;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
-}
+
 .cverse {
-  FONT-SIZE: 15px;
-  FONT-STYLE: italic;
-  COLOR: #0066aa;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 15px;
+  font-style: italic;
+  color: #0066aa;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .cverse2 {
-  FONT-SIZE: 15px;
-  FONT-STYLE: italic;
-  COLOR: #0066aa;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 15px;
+  font-style: italic;
+  color: #0066aa;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .itext {
-  FONT-SIZE: 14px;
-  COLOR: #001320;
-  LINE-HEIGHT: 21px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 14px;
+  color: #001320;
+  line-height: 21px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .botlink {
-  FONT-SIZE: 14px;
-  FONT-WEIGHT: bold;
-  LINE-HEIGHT: 21px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 21px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .smallcaps {
-  FONT-SIZE: 12px;
-  COLOR: #001320;
-  LINE-HEIGHT: 21px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: justify
+  font-size: 12px;
+  color: #001320;
+  line-height: 21px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: justify
 }
 .whiteheading {
-  FONT-SIZE: 13px;
-  LINE-HEIGHT: 13px;
-  FONT-WEIGHT: Bold;
-  COLOR: #ffffff;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; 
-  TEXT-Align: center
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: Bold;
+  color: #ffffff;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; 
+  text-align: center
 }
 .medblue {
-  BACKGROUND-COLOR: #0082d9;
+  background-color: #0082d9;
 }
 .mainbk2 {
-  BACKGROUND-COLOR: #b9e3ff;
+  background-color: #b9e3ff;
 }
 .mainbk {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
 }
 .bluebk {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
 }
 .darkbk {
-  BACKGROUND-COLOR: #99d6ff;
+  background-color: #99d6ff;
 }
 .bluebk2 {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
   background-image: url(bk5.gif);
   background-repeat: no-repeat;
 }
 .bluebk3 {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
   /*   background-image: url(tablebk3.gif); */
-  TEXT-Align: justify
+  text-align: justify
 }
 .bluebk3a {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
   /*    background-image: url(topline3d.gif); */
   background-repeat: no-repeat;
 }
 .bluebk4 {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
   background-image: url(bk5r.gif);
   background-repeat: no-repeat;
   background-position: right top;
-  /*     BACKGROUND-COLOR: #bbe0ff; */
+  /*     background-color: #bbe0ff; */
 }
 .orange {
-  FONT-SIZE: 15px;
-  BACKGROUND-COLOR: #ffecdf;
-  LINE-HEIGHT: 20px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
+  font-size: 15px;
+  background-color: #ffecdf;
+  line-height: 20px;
+  font-weight: bold;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
   background-image: url(orange1.gif);
-  TEXT-DECORATION: none
+  text-decoration: none
 }
 .orange2 {
-  FONT-SIZE: 15px;
-  BACKGROUND-COLOR: #ffffff;
-  LINE-HEIGHT: 20px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
+  font-size: 15px;
+  background-color: #ffffff;
+  line-height: 20px;
+  font-weight: bold;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
   background-image: url(orange4.gif);
-  TEXT-DECORATION: none
+  text-decoration: none
 }
 .rtbk {
-  BACKGROUND-COLOR: #bbe0ff;
+  background-color: #bbe0ff;
   background-image: url(bk6.gif);
 }
 .tablebk {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
 }
 .chpabk {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
   background-image: url(chpbk.jpg);
 }
 .topbk {
-  BACKGROUND-COLOR: #ffffff;
+  background-color: #ffffff;
 }
 .smalltext {
-  FONT-SIZE: 13px;
-  LINE-HEIGHT: 19px;
-  COLOR: #001320;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none; TEXT-Align: justify
+  font-size: 13px;
+  line-height: 19px;
+  color: #001320;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none; text-align: justify
 }
 .ltext {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 11px;
-  LINE-HEIGHT: 15px;
-  COLOR: #000000;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 15px;
+  color: #000000;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
 }
 .titletext {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 13px;
-  LINE-HEIGHT: 18px;
-  COLOR: #000000;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
 }
 .crossref {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 11px;
-  LINE-HEIGHT: 17px;
-  COLOR: #000000;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 17px;
+  color: #000000;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
 }
 .versiontext {
-  FONT-WEIGHT: 700;
-  FONT-SIZE: 12px;
-  LINE-HEIGHT: 18px;
-  COLOR: #000000;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000000;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
 }
 .ltext2 {
-  FONT-WEIGHT: bold;
-  FONT-SIZE: 14px;
-  LINE-HEIGHT: 17px;
-  COLOR: #000000;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
   VERTICAL-ALIGN: top;
   Color: none
 }
 .xtext {
-  FONT-SIZE: 15px;
-  FONT-STYLE: italic;
-  COLOR: #0066AA;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  font-style: italic;
+  color: #0066AA;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .x2text {
-  FONT-SIZE: 14px;
-  COLOR: #001320;
-  LINE-HEIGHT: 17px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 14px;
+  color: #001320;
+  line-height: 17px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .x3text {
-  FONT-SIZE: 15px;
-  COLOR: #001320;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 15px;
+  color: #001320;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .comtext {
-  FONT-SIZE: 12px;
-  FONT-STYLE: normal;
-  COLOR: #001320;
-  LINE-HEIGHT: 19px;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none;
-  TEXT-Align: justify
+  font-size: 12px;
+  font-style: normal;
+  color: #001320;
+  line-height: 19px;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none;
+  text-align: justify
 }
 .redtext {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 18px;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  line-height: 18px;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .redheading {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 20px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
-.title {
-  FONT-SIZE: 16px;
-  LINE-HEIGHT: 44px;
-  FONT-WEIGHT: bold;
-  FONT-Style: italic;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
-}
+
 .reftext {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 29px;
-  FONT-WEIGHT: bold;
-  COLOR: #552200;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  line-height: 29px;
+  font-weight: bold;
+  color: #552200;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .sectionheading {
-  FONT-SIZE: 14px;
-  LINE-HEIGHT: 14px;
-  FONT-WEIGHT: bold;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: bold;
   FONT-Style: italic;
-  COLOR: #001320;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  color: #001320;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .psalmheading {
-  FONT-SIZE: 14px;
-  LINE-HEIGHT: 14px;
-  FONT-WEIGHT: bold;
-  COLOR: #001320;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: bold;
+  color: #001320;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .ref {
-  FONT-SIZE: 15px;
-  LINE-HEIGHT: 22px;
-  FONT-WEIGHT: bold;
-  COLOR: #0099ff;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: bold;
+  color: #0099ff;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .copyrighttext {
-  FONT-SIZE: 9px;
-  LINE-HEIGHT: 9px;
-  COLOR: #001320;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 9px;
+  line-height: 9px;
+  color: #001320;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .versiontext {
-  FONT-SIZE: 12px;
-  LINE-HEIGHT: 20px;
-  COLOR: #0099ff;
-  FONT-FAMILY: Arial, Helvetica, Sans-serif;
-  TEXT-DECORATION: none
+  font-size: 12px;
+  line-height: 20px;
+  color: #0099ff;
+  font-family: Arial, Helvetica, Sans-serif;
+  text-decoration: none
 }
 .tablefloat {
   float: right;
