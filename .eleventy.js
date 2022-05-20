@@ -1,10 +1,13 @@
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy('css')
+
+  eleventyConfig.addPassthroughCopy('src/css')
+  
   return {
-    passthroughFileCopy: true,
     dir: {
+      input: "src",
       output: "docs"
-    }
+    },
+    passthroughFileCopy: true
   }
 
   pathPrefix: "/nt-interlinear/"
