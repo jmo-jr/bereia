@@ -7,10 +7,10 @@ title: Bíblia de Estudo Interlinear
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ title }}</title>
-  <meta name="description" content="Quero ver...">
+  <meta name="description" content="Página do capítulo do livro escolhido">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="{{ './css/style.css' }}">
+  <link rel="stylesheet" href="{{ '../../../css/style.css' }}">
   <style>
     .ui-tooltip {
       padding: 4px 8px;
@@ -35,67 +35,65 @@ title: Bíblia de Estudo Interlinear
       <h1><a href="/">Bíblia de Estudo Interlinear</a></h1>
     </header>
 
-    {% if bookName != undefined %}
-      <div class="toolbar">
-        <div class="content">
+    <div class="toolbar">
+      <div class="content">
 
-          <div class="d-flex justify-between">
+        <div class="d-flex justify-between">
 
-            <div class="input-group">
+          <div class="input-group">
 
-              <form>
-                <select id="book" name="book" class="drop" onchange="javascript:location.href = this.value;">
-                  {% for book in ntBooks %}
-                  <option 
-                    value="/nt/{{ book.name }}/01/"
-                    {% if bookName == book.name %}selected{% endif %}
-                  >{{ book.name }}</option>
-                  {% endfor %}
-                </select>
-
-                <select name="chapter" class="drop" onchange="javascript:location.href = this.value;">
-
-                {% for the_book in ntBooks %}
-                  {% if the_book.name == bookName %}
-                    {% assign num = the_book.chapters %}
-                    {% assign range = (1..num) %}
-                    {% for n in range %} 
-                      {% if n <= 9 %}
-
-                        <option value="/nt/{{ the_book.name }}/0{{ n }}/"
-                          {% if n == bookChapter %}selected{% endif %}
-                        >0{{ n }}</option>
-
-                      {% else %}
-
-                        <option value="/nt/{{ the_book.name }}/{{ n }}/"
-                          {% if n == bookChapter %}selected{% endif %}
-                        >{{ n }}</option>
-
-                      {% endif %}
-                    {% endfor %}
-
-                  {% endif %}
+            <form>
+              <select id="book" name="book" class="drop" onchange="javascript:location.href = this.value;">
+                {% for book in ntBooks %}
+                <option 
+                  value="/nt/{{ book.name }}/01/"
+                  {% if bookName == book.name %}selected{% endif %}
+                >{{ book.name }}</option>
                 {% endfor %}
+              </select>
 
-                </select>
+              <select name="chapter" class="drop" onchange="javascript:location.href = this.value;">
 
-              </form>
+              {% for the_book in ntBooks %}
+                {% if the_book.name == bookName %}
+                  {% assign num = the_book.chapters %}
+                  {% assign range = (1..num) %}
+                  {% for n in range %} 
+                    {% if n <= 9 %}
 
-            </div>
+                      <option value="/nt/{{ the_book.name }}/0{{ n }}/"
+                        {% if n == bookChapter %}selected{% endif %}
+                      >0{{ n }}</option>
 
-            <div class="button-group">
-              <button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
-              <button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
-              <button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
-              <button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
-            </div>
+                    {% else %}
+
+                      <option value="/nt/{{ the_book.name }}/{{ n }}/"
+                        {% if n == bookChapter %}selected{% endif %}
+                      >{{ n }}</option>
+
+                    {% endif %}
+                  {% endfor %}
+
+                {% endif %}
+              {% endfor %}
+
+              </select>
+
+            </form>
 
           </div>
 
+          <div class="button-group">
+            <button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
+            <button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
+            <button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
+            <button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
+          </div>
+
         </div>
+
       </div>
-    {% endif %}
+    </div>
 
     <main class="main-content">
       <div class="content">
