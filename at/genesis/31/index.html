@@ -1,4 +1,265 @@
+<!DOCTYPE html>
+<html land="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bíblia de Estudo Interlinear</title>
+  <meta name="description" content="Página do capítulo do livro escolhido">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <style>
+    .ui-tooltip {
+      padding: 4px 8px;
+      background-color: lightyellow;
+      font-size: 14px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( document ).tooltip();
+    } );
+  </script>
+</head>
 
+<body>
+
+  <div id="app" class="wrapper">
+
+    <header class="app-bar">
+      <h1><a href="/">Bíblia de Estudo Interlinear</a></h1>
+    </header>
+
+    <div class="toolbar">
+      <div class="content">
+
+        <div class="d-flex justify-between">
+
+          <div class="input-group">
+
+            <form>
+              <select id="book" name="book" class="drop" onchange="javascript:location.href = this.value;">
+                
+                <option 
+                  value="/nt/Mateus/01/"
+                  
+                >Mateus</option>
+                
+                <option 
+                  value="/nt/Marcos/01/"
+                  
+                >Marcos</option>
+                
+                <option 
+                  value="/nt/Lucas/01/"
+                  
+                >Lucas</option>
+                
+                <option 
+                  value="/nt/João/01/"
+                  
+                >João</option>
+                
+                <option 
+                  value="/nt/Atos/01/"
+                  
+                >Atos</option>
+                
+                <option 
+                  value="/nt/Romanos/01/"
+                  
+                >Romanos</option>
+                
+                <option 
+                  value="/nt/1 Coríntios/01/"
+                  
+                >1 Coríntios</option>
+                
+                <option 
+                  value="/nt/2 Coríntios/01/"
+                  
+                >2 Coríntios</option>
+                
+                <option 
+                  value="/nt/Gálatas/01/"
+                  
+                >Gálatas</option>
+                
+                <option 
+                  value="/nt/Efésios/01/"
+                  
+                >Efésios</option>
+                
+                <option 
+                  value="/nt/Filipenses/01/"
+                  
+                >Filipenses</option>
+                
+                <option 
+                  value="/nt/Colossenses/01/"
+                  
+                >Colossenses</option>
+                
+                <option 
+                  value="/nt/1 Tessalonicenses/01/"
+                  
+                >1 Tessalonicenses</option>
+                
+                <option 
+                  value="/nt/2 Tessalonicenses/01/"
+                  
+                >2 Tessalonicenses</option>
+                
+                <option 
+                  value="/nt/1 Timóteo/01/"
+                  
+                >1 Timóteo</option>
+                
+                <option 
+                  value="/nt/2 Timóteo/01/"
+                  
+                >2 Timóteo</option>
+                
+                <option 
+                  value="/nt/Tito/01/"
+                  
+                >Tito</option>
+                
+                <option 
+                  value="/nt/Filemon/01/"
+                  
+                >Filemon</option>
+                
+                <option 
+                  value="/nt/Hebreus/01/"
+                  
+                >Hebreus</option>
+                
+                <option 
+                  value="/nt/Tiago/01/"
+                  
+                >Tiago</option>
+                
+                <option 
+                  value="/nt/1 Pedro/01/"
+                  
+                >1 Pedro</option>
+                
+                <option 
+                  value="/nt/2 Pedro/01/"
+                  
+                >2 Pedro</option>
+                
+                <option 
+                  value="/nt/1 João/01/"
+                  
+                >1 João</option>
+                
+                <option 
+                  value="/nt/2 João/01/"
+                  
+                >2 João</option>
+                
+                <option 
+                  value="/nt/3 João/01/"
+                  
+                >3 João</option>
+                
+                <option 
+                  value="/nt/Judas/01/"
+                  
+                >Judas</option>
+                
+                <option 
+                  value="/nt/Apocalipse/01/"
+                  
+                >Apocalipse</option>
+                
+              </select>
+
+              <select name="chapter" class="drop" onchange="javascript:location.href = this.value;">
+
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+
+              </select>
+
+            </form>
+
+          </div>
+
+          <div class="button-group">
+            <button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
+            <button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
+            <button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
+            <button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <main class="main-content">
+      <div class="content">
+
+        
+          
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
 <!-- Mirrored from biblehub.com/interlinear/apostolic/genesis/31.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 14:53:21 GMT -->
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1"><title>ΓΕΝΕΣΙΣ 31 Apostolic Bible Polyglot</title><link rel="stylesheet" href="https://biblehub.com/newint.css" type="text/css" media="Screen" /><link rel="stylesheet" href="https://biblehub.com/interlinear/apostolic/spec.css" type="text/css" media="Screen" /><link rel="stylesheet" href="https://biblehub.com/print.css" type="text/css" media="Print" /></head><body><div id="fx"><table width="100%" border="0" cellspacing="0" cellpadding="0" id="fx2"><tr><td><iframe width="100%" height="30" scrolling="no" src="https://biblehub.com/interlinear/apostolic/cmenus/genesis/31.htm" align="left" frameborder="0"></iframe></td></tr></table></div><div id="blnk"></div><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="maintable"><tr><td><div id="fx5"><table width="100%" border="0" cellspacing="0" cellpadding="0" id="fx6"><tr><td><iframe width="100%" height="245" scrolling="no" src="http://biblehu.com/bmgrkheb//genesis/31-1.htm" frameborder="0"></iframe></td></tr></table></div></td></tr></table></div><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="maintable3"><tr><td><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" id="announce"><tr><td><div id="l1"><div id="breadcrumbs"><a href="http://biblehub.com/">Bible</a> > <a href="https://biblehub.com/interlinear/apostolic/">ABP</a> > Genesis 31</div><div id="anc"><iframe src="https://biblehub.com/anc.htm" width="100%" height="27" scrolling="no" frameborder="0"></iframe></div><div id="anc2"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td><iframe src="https://biblehub.com/anc2.htm" width="100%" height="27" scrolling="no" frameborder="0"></iframe></td></tr></table></div></div></td></tr></table><div id="movebox2"><table border="0" align="center" cellpadding="0" cellspacing="0"><tr><td><div id="topheading"><a href="30.html" title="Genesis 30">&#9668;</a> Genesis 31 <a href="32.html" title="Genesis 32">&#9658;</a></div></td></tr></table></div><div align="center" class="maintable2"><table border="0" cellspacing="0" cellpadding="0" align="center"><tr><td><div id="leftbox"><div class="padleft"><div class="vheading"><table width="100%"><tr><td width="99%" valign="top">Apostolic Bible Polyglot</td><td width="1%" valign="top"><a href="https://biblehub.com/sepd/genesis/31.htm" style="color:#552200" title="Swete's Septuagint"></a></td><td width="1%" valign="top"><a href="https://biblehub.com/interlinear/study/genesis/31.htm" style="color:#552200" title="Hebrew Study Bible">&nbsp;STU&nbsp;&#9662;&nbsp;</a></tr></table></div><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td align="center"><div class="hdg">Jacó's Flight from Laban</div></td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td><table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">31:1&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/191.htm" title="to hear, listen">191</a></span><br><span class="refmain">31:1&nbsp;&nbsp;&nbsp;</span><span class="greek">ήκουσε</span><br><span class="refbot">31:1&nbsp;&nbsp;&nbsp;</span><span class="eng">[<span class="num">3</span>heard<span class="num">&nbsp;</span></span></td></tr></table>
@@ -1120,4 +1381,31 @@
 <table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">τον</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
 <table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5117.htm" title="a place">5117</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">τόπον&nbsp;αυτού</span><br><span class="eng">his&nbsp;place.<span class="num">&nbsp;</span></span></td></tr></table></td></tr></table><hr size="1" color="DDEEFF"><div id="botbox"><div class="padbot"><div align="center">Copyright 1996 by Charles Van der Pool. Download PDFs or purchase the printed edition at <a href="http://apostolicbible.com/">ApostolicBible.com</a>.<span class="p"><br /><br /></span></div></div></div></div></td></tr></table></div><div id="left"><a href="30.html" onmouseover='lft.src="https://biblehub.com/leftgif.png"' onmouseout='lft.src="https://biblehub.com/left.png"' title="Genesis 30"><img src="https://biblehub.com/left.png" name="lft" border="0" alt="Genesis 30" /></a></div><div id="right"><a href="32.html" onmouseover='rght.src="https://biblehub.com/rightgif.png"' onmouseout='rght.src="https://biblehub.com/right.png"' title="Genesis 32"><img src="https://biblehub.com/right.png" name="rght" border="0" alt="Genesis 32" /></a></div><div id="botleft"><a href="#" onmouseover='botleft.src="https://biblehub.com/botleftgif.png"' onmouseout='botleft.src="https://biblehub.com/botleft.png"' title="Top of Page"><img src="https://biblehub.com/botleft.png" name="botleft" border="0" alt="Top of Page" /></a></div><div id="botright"><a href="#" onmouseover='botright.src="https://biblehub.com/botrightgif.png"' onmouseout='botright.src="https://biblehub.com/botright.png"' title="Top of Page"><img src="https://biblehub.com/botright.png" name="botright" border="0" alt="Top of Page" /></a></div><div id="bot"><iframe width="100%" height="1500" scrolling="no" src="https://biblehub.com/botmenubhchapnoad.htm" frameborder="0"></iframe></div></td></tr></table></div></body>
 <!-- Mirrored from biblehub.com/interlinear/apostolic/genesis/31.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 14:53:21 GMT -->
+</html>
+        
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    var page = document.getElementById("app");
+
+    function toggleStrongs() {
+      page.classList.toggle("no_strongs");
+    }
+    function toggleTranslit() {
+      page.classList.toggle("no_translit");
+    }
+    function toggleGreek() {
+      page.classList.toggle("no_greek");
+    }
+    function toggleGrammar() {
+      page.classList.toggle("no_grammar");
+    }
+  </script>
+
+</body>
 </html>
