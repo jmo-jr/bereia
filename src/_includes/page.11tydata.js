@@ -1,5 +1,5 @@
 module.exports = {
   currentBook: {
-    book: data => data.book
+    livro: data => data.livro
   }
 };
