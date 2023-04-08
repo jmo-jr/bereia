@@ -9,8 +9,9 @@ module.exports = function(eleventyConfig) {
       input: "src",
       output: "docs"
     },
-    passthroughFileCopy: true
+    passthroughFileCopy: true,
+    pathPrefix: "/nt-interlinear"
   }
 
-  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin)
 }
