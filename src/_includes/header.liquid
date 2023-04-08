@@ -9,7 +9,7 @@
           <select id="livro" name="livro" class="drop" onchange="javascript:location.href = this.value;">
             {% for livro in ntBooks %}
             <option 
-              value="/nt/{{ livro.name }}/01"
+              value="{{ '/nt/' + livro.name + '/01' | htmlBaseUrl }}"
               {% if bookName == livro.name %}selected{% endif %}
             >{{ livro.name }}</option>
             {% endfor %}
