@@ -6,16 +6,16 @@
       <div class="input-group">
 
         <form>
-          <select id="livro" name="livro" class="drop" onchange="javascript:location.href = this.value;">
+          <select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
             {% for livro in ntBooks %}
             <option 
-              value="{{ '/nt/' + livro.name + '/01' | htmlBaseUrl }}"
+              value="/nt-interlinear/nt/{{ livro.name }}/01"
               {% if bookName == livro.name %}selected{% endif %}
             >{{ livro.name }}</option>
             {% endfor %}
           </select>
 
-          <select name="chapter" class="drop" onchange="javascript:location.href = this.value;">
+          <select name="chapter" class="drop" onchange="location.href = this.value;">
 
           {% for the_book in ntBooks %}
             {% if the_book.name == bookName %}
@@ -24,13 +24,13 @@
               {% for n in range %} 
                 {% if n <= 9 %}
 
-                  <option value="/nt/{{ the_book.name }}/0{{ n }}"
+                  <option value="/nt-interlinear/nt/{{ the_book.name }}/0{{ n }}"
                     {% if n == bookChapter %}selected{% endif %}
                   >0{{ n }}</option>
 
                 {% else %}
 
-                  <option value="/nt/{{ the_book.name }}/{{ n }}"
+                  <option value="/nt-interlinear/nt/{{ the_book.name }}/{{ n }}"
                     {% if n == bookChapter %}selected{% endif %}
                   >{{ n }}</option>
 
