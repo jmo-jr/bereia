@@ -1,3 +1,5 @@
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+
 module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('src/css')
@@ -10,4 +12,5 @@ module.exports = function(eleventyConfig) {
     passthroughFileCopy: true
   }
 
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 }
