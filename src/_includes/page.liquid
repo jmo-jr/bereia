@@ -45,9 +45,8 @@ title: Bíblia de Estudo Interlinear
             <form>
               <select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
                 {% for livro in ntBooks %}
-                {% assign nomeLivro = livro.name | prepend: '/nt/' | append: '/01/' %}
                 <option 
-                  value="{{ nomeLivro | url }}"
+                  value="{{ livro.permalink | url }}01"
                   {% if bookName == livro.name %}selected{% endif %}
                 >{{ livro.name }}</option>
                 {% endfor %}
@@ -62,13 +61,13 @@ title: Bíblia de Estudo Interlinear
                   {% for n in range %} 
                     {% if n <= 9 %}
 
-                      <option value="/nt/{{ the_book.name }}/0{{ n }}/"
+                      <option value="{{ livro.permalink | url }}0{{ n }}/"
                         {% if n == bookChapter %}selected{% endif %}
                       >0{{ n }}</option>
 
                     {% else %}
 
-                      <option value="/nt/{{ the_book.name }}/{{ n }}/"
+                      <option value="{{ livro.permalink | url }}{{ n }}/"
                         {% if n == bookChapter %}selected{% endif %}
                       >{{ n }}</option>
 
