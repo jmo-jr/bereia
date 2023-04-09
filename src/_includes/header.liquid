@@ -9,6 +9,7 @@
           <select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
             {% for livro in ntBooks %}
             <option 
+              data-book="{{ bookName }}" 
               value="/nt-interlinear/nt/{{ livro.name }}/01"
               {% if bookName == livro.name %}selected{% endif %}
             >{{ livro.name }}</option>

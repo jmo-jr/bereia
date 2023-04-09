@@ -43,10 +43,11 @@ title: Bíblia de Estudo Interlinear
           <div class="input-group">
 
             <form>
-              <select id="livro" name="livro" class="drop" onchange="javascript:location.href = this.value;">
+              <select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
                 {% for livro in ntBooks %}
+                {% assign nomeLivro = livro.name | prepend: '/nt/' | append: '/01/' %}
                 <option 
-                  value="/nt/{{ livro.name }}/01/"
+                  value="{{ nomeLivro | url }}"
                   {% if bookName == livro.name %}selected{% endif %}
                 >{{ livro.name }}</option>
                 {% endfor %}
