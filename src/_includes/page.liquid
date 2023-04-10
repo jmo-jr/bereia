@@ -52,7 +52,7 @@ title: Bíblia de Estudo Interlinear
                 {% endfor %}
               </select>
 
-              <select name="chapter" class="drop" onchange="javascript:location.href = this.value;">
+              <select name="chapter" class="drop" onchange="location.href = this.value;">
 
               {% for the_book in ntBooks %}
                 {% if the_book.name == bookName %}
@@ -61,15 +61,21 @@ title: Bíblia de Estudo Interlinear
                   {% for n in range %} 
                     {% if n <= 9 %}
 
-                      <option value="{{ livro.permalink | url }}0{{ n }}/"
+                      <option 
+                        value="{{ the_book.permalink | url }}0{{ n }}"
                         {% if n == bookChapter %}selected{% endif %}
-                      >0{{ n }}</option>
+                      >
+                        0{{ n }}
+                      </option>
 
                     {% else %}
 
-                      <option value="{{ livro.permalink | url }}{{ n }}/"
+                      <option 
+                        value="{{ the_book.permalink | url }}{{ n }}"
                         {% if n == bookChapter %}selected{% endif %}
-                      >{{ n }}</option>
+                      >
+                        {{ n }}
+                      </option>
 
                     {% endif %}
                   {% endfor %}
