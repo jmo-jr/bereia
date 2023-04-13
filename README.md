@@ -11,4 +11,4 @@ Run: npx @11ty/eleventy
 Serve: npx @11ty/eleventy --serve 
 
 Regex para pesquisa de expressões: 
-\b[\w\s\[\]]+
+\b[\w\s\[\],-]+
