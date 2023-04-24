@@ -1,14 +1,17 @@
-# Novo Testamento Interlinear Grego-Português 
+# Bíblia Interlinear Grego-Português 
 
-Baseado no texto da Família 35
+Baseado no **Texto Majoritário**, com destaque para a *Família 35*
 
-Projeto baseado em 11ty
+## Projeto baseado em 11ty
 
-Compile: eleventy
+**Compile:** `eleventy`
 
-Run: npx @11ty/eleventy
+**Run:** `npx @11ty/eleventy`
 
-Serve: npx @11ty/eleventy --serve 
+**Serve:** `npx @11ty/eleventy --serve`
 
-Regex para pesquisa de expressões: 
-\b[\w\s\[\],-]+
+## Regex para pesquisa de expressões:
+
+Caracteres especiais devem ser acrescentados após a vírgula
+
+> \b[\w\s\[\],]+
