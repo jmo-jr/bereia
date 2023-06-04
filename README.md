@@ -18,11 +18,11 @@ Caracteres especiais devem ser acrescentados após a vírgula
 
 ## Auxílios para tradução:
 
-ē, ō
+Glifos: ē, ō
 
 - Aoristo Indicativo = Pretérito Perfeito Simples
 - Dativo = ao, pela, vos, lhes
 - Vocativo = Mestre!
 - Genitivo = do
+- Nominativo = A pesoa ...
 - Acusativo = ... a coisa
-- Nominativo = O tal ...
