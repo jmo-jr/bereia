@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html land="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bíblia de Estudo Interlinear</title>
+  <meta name="description" content="Página do capítulo do livro escolhido">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <style>
+    .ui-tooltip {
+      padding: 4px 8px;
+      background-color: lightyellow;
+      font-size: 14px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( document ).tooltip();
+    } );
+  </script>
+</head>
+
+<body>
+
+  <div id="app" class="wrapper">
+
+    <header class="app-bar">
+      <h1><a href="/">Bíblia de Estudo Interlinear</a></h1>
+    </header>
+
+    <div class="toolbar">
+      <div class="content">
+
+        <div class="d-flex justify-between">
+
+          <div class="input-group">
+
+            <form>
+              <select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
+                
+                <option 
+                  value="/nt-interlinear/nt/mateus/01"
+                  
+                >Mateus</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/marcos/01"
+                  
+                >Marcos</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/lucas/01"
+                  
+                >Lucas</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/joao/01"
+                  
+                >João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/atos/01"
+                  
+                >Atos</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/romanos/01"
+                  
+                >Romanos</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_corintios/01"
+                  
+                >1 Coríntios</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_corintios/01"
+                  
+                >2 Coríntios</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/galatas/01"
+                  
+                >Gálatas</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/efesios/01"
+                  
+                >Efésios</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/filipenses/01"
+                  
+                >Filipenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/colossenses/01"
+                  
+                >Colossenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_tessalonicenses/01"
+                  
+                >1 Tessalonicenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_tessalonicenses/01"
+                  
+                >2 Tessalonicenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_timoteo/01"
+                  
+                >1 Timóteo</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_timoteo/01"
+                  
+                >2 Timóteo</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/tito/01"
+                  
+                >Tito</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/filemon/01"
+                  
+                >Filemon</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/hebreus/01"
+                  
+                >Hebreus</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/tiago/01"
+                  
+                >Tiago</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_pedro/01"
+                  
+                >1 Pedro</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_pedro/01"
+                  
+                >2 Pedro</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_joao/01"
+                  
+                >1 João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_joao/01"
+                  
+                >2 João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/3_joao/01"
+                  
+                >3 João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/judas/01"
+                  
+                >Judas</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/apocalipse/01"
+                  
+                >Apocalipse</option>
+                
+              </select>
+
+              <select name="chapter" class="drop" onchange="location.href = this.value;">
+
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+
+              </select>
+
+            </form>
+
+          </div>
+
+          <div class="button-group">
+            <button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
+            <button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
+            <button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
+            <button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <main class="main-content">
+      <div class="content">
+
+        
+          
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Mirrored from biblehub.com/interlinear/apostolic/job/14.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:41:53 GMT -->
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1"><title>ΙΩΒ 14 Apostolic Bible Polyglot</title><link rel="stylesheet" href="https://biblehub.com/newint.css" type="text/css" media="Screen" /><link rel="stylesheet" href="https://biblehub.com/interlinear/apostolic/spec.css" type="text/css" media="Screen" /><link rel="stylesheet" href="https://biblehub.com/print.css" type="text/css" media="Print" /></head><body><div id="fx"><table width="100%" border="0" cellspacing="0" cellpadding="0" id="fx2"><tr><td><iframe width="100%" height="30" scrolling="no" src="https://biblehub.com/interlinear/apostolic/cmenus/job/14.htm" align="left" frameborder="0"></iframe></td></tr></table></div><div id="blnk"></div><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="maintable"><tr><td><div id="fx5"><table width="100%" border="0" cellspacing="0" cellpadding="0" id="fx6"><tr><td><iframe width="100%" height="245" scrolling="no" src="http://biblehu.com/bmgrkheb//job/14-1.htm" frameborder="0"></iframe></td></tr></table></div></td></tr></table></div><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="maintable3"><tr><td><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" id="announce"><tr><td><div id="l1"><div id="breadcrumbs"><a href="http://biblehub.com/">Bible</a> > <a href="https://biblehub.com/interlinear/apostolic/">ABP</a> > Job 14</div><div id="anc"><iframe src="https://biblehub.com/anc.htm" width="100%" height="27" scrolling="no" frameborder="0"></iframe></div><div id="anc2"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td><iframe src="https://biblehub.com/anc2.htm" width="100%" height="27" scrolling="no" frameborder="0"></iframe></td></tr></table></div></div></td></tr></table><div id="movebox2"><table border="0" align="center" cellpadding="0" cellspacing="0"><tr><td><div id="topheading"><a href="13.html" title="Job 13">&#9668;</a> Job 14 <a href="15.html" title="Job 15">&#9658;</a></div></td></tr></table></div><div align="center" class="maintable2"><table border="0" cellspacing="0" cellpadding="0" align="center"><tr><td><div id="leftbox"><div class="padleft"><div class="vheading"><table width="100%"><tr><td width="99%" valign="top">Apostolic Bible Polyglot</td><td width="1%" valign="top"><a href="https://biblehub.com/sepd/job/14.htm" style="color:#552200" title="Swete's Septuagint"></a></td><td width="1%" valign="top"><a href="https://biblehub.com/interlinear/study/job/14.htm" style="color:#552200" title="Hebrew Study Bible">&nbsp;STU&nbsp;&#9662;&nbsp;</a></tr></table></div><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td align="center"><div class="hdg">Life Is Short and Full de Wrath</div></td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td><table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:1&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/1027.htm" title="For a mortal">1027.1</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a></span><br><span class="refmain">14:1&nbsp;&nbsp;&nbsp;</span><span class="greek">βροτός&nbsp;γαρ</span><br><span class="refbot">14:1&nbsp;&nbsp;&nbsp;</span><span class="eng">For&nbsp;a&nbsp;mortal<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1084.htm" title="begotten, born">1084</a></span><br><span class="greek">γεννητός</span><br><span class="eng">born<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1135.htm" title="a woman">1135</a></span><br><span class="greek">γυναικός</span><br><span class="eng">of&nbsp;a&nbsp;woman<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3639.htm" title="is short-lived">3639.2</a></span><br><span class="greek">ολιγόβιος</span><br><span class="eng">is&nbsp;short-lived<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4134.htm" title="full">4134</a></span><br><span class="greek">πλήρης</span><br><span class="eng">full<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3709.htm" title="impulse, wrath">3709</a></span><br><span class="greek">οργής</span><br><span class="eng">of&nbsp;wrath.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:2&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/2228.htm" title="or, than">2228</a></span><br><span class="refmain">14:2&nbsp;&nbsp;&nbsp;</span><span class="greek">η</span><br><span class="refbot">14:2&nbsp;&nbsp;&nbsp;</span><span class="eng">Or<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5618.htm" title="just as, even as">5618</a></span><br><span class="greek">ώσπερ</span><br><span class="eng">as<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/438.htm" title="a flower">438</a></span><br><span class="greek">άνθος</span><br><span class="eng"><span class="ital">the</span>&nbsp;flower<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/435.htm" title="blooming">435.2</a></span><br><span class="greek">ανθήσαν</span><br><span class="eng">blooming<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1601.htm" title="to leap out">1601</a></span><br><span class="greek">εξέπεσεν</span><br><span class="eng">he&nbsp;falls&nbsp;off;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/590.htm" title="and he runs away">590.2</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="greek">απέδρα&nbsp;δε</span><br><span class="eng">and&nbsp;he&nbsp;runs&nbsp;away<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5618.htm" title="just as, even as">5618</a></span><br><span class="greek">ώσπερ</span><br><span class="eng">as<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4639.htm" title="shadow">4639</a></span><br><span class="greek">σκιά</span><br><span class="eng">a&nbsp;shadow,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3766.htm" title="in no way">3766.2</a></span><br><span class="greek">ου&nbsp;μη</span><br><span class="eng">in&nbsp;no&nbsp;way<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2476.htm" title="to make to stand, to stand">2476</a></span><br><span class="greek">στη</span><br><span class="eng">stands.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:3&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/3780.htm" title="not, not at all">3780</a></span><br><span class="refmain">14:3&nbsp;&nbsp;&nbsp;</span><span class="greek">ουχί</span><br><span class="refbot">14:3&nbsp;&nbsp;&nbsp;</span><span class="eng">Have&nbsp;you&nbsp;not<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">also<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3778.htm" title="this">3778</a><a href="http://strongsnumbers.com/greek/3056.htm" title="a palavra (as embodying an idea), a statement, a speech">-3056</a></span><br><span class="greek">τούτου&nbsp;λόγον</span><br><span class="eng">[<span class="num">2</span>an&nbsp;account&nbsp;of&nbsp;this&nbsp;one<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4160.htm" title="to make, do">4160</a></span><br><span class="greek">εποιήσω</span><br><span class="eng"><span class="num">1</span>made],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3778.htm" title="this">3778</a><a href="http://strongsnumbers.com/greek/4160.htm" title="to make, do">-4160</a></span><br><span class="greek">τούτον&nbsp;εποίησας</span><br><span class="eng">made&nbsp;this&nbsp;one<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1525.htm" title="to go in (to), enter">1525</a></span><br><span class="greek">εισελθείν</span><br><span class="eng">to&nbsp;enter<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1799.htm" title="in sight of, before">1799</a></span><br><span class="greek">ενώπιόν</span><br><span class="eng">before<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">σου</span><br><span class="eng">you<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1722.htm" title="in, on, at, by, with">1722</a></span><br><span class="greek">εν</span><br><span class="eng">em<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2917.htm" title="a judgment">2917</a></span><br><span class="greek">κρίματι</span><br><span class="eng">judgment?<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:4&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/5100.htm" title="a certain one, someone, anyone">5100</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a></span><br><span class="refmain">14:4&nbsp;&nbsp;&nbsp;</span><span class="greek">τις&nbsp;γαρ</span><br><span class="refbot">14:4&nbsp;&nbsp;&nbsp;</span><span class="eng">For&nbsp;who<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2513.htm" title="clean (adjective)">2513</a><a href="http://strongsnumbers.com/greek/1510.htm" title="will be clean">-1510.8.3</a></span><br><span class="greek">καθαρός&nbsp;έσται</span><br><span class="eng">will&nbsp;be&nbsp;clean<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/575.htm" title="from, away from">575</a></span><br><span class="greek">από</span><br><span class="eng">from<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4509.htm" title="filth">4509</a></span><br><span class="greek">ρύπου</span><br><span class="eng">filth?<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/235.htm" title="otherwise, on the other hand, but">235</a></span><br><span class="greek">αλλ'</span><br><span class="eng">but<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3762.htm" title="no one, none">3762</a></span><br><span class="greek">ουδείς</span><br><span class="eng">no&nbsp;one;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:5&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/1437.htm" title="if">1437</a></span><br><span class="refmain">14:5&nbsp;&nbsp;&nbsp;</span><span class="greek">εάν</span><br><span class="refbot">14:5&nbsp;&nbsp;&nbsp;</span><span class="eng">if<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">even<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1520.htm" title="one">1520</a></span><br><span class="greek">μία</span><br><span class="eng">[<span class="num">2</span>&nbsp;<span class="ital">be</span>&nbsp;one<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2250.htm" title="day">2250</a></span><br><span class="greek">ημέρα</span><br><span class="eng"><span class="num">3</span>dia<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">ο</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/979.htm" title="life, living">979</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">βίος&nbsp;αυτού</span><br><span class="eng"><span class="num">1</span>his&nbsp;existence]<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1909.htm" title="on, upon">1909</a></span><br><span class="greek">επί</span><br><span class="eng">upon<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">της</span><br><span class="eng">the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1093.htm" title="the earth, land">1093</a></span><br><span class="greek">γης</span><br><span class="eng">earth,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/705.htm" title="are counted">705.1</a></span><br><span class="greek">αριθμητοί</span><br><span class="eng">[<span class="num">3</span>are&nbsp;counted<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">1161</a></span><br><span class="greek">δε</span><br><span class="eng"><span class="num">1</span>and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3376.htm" title="a month">3376</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">μήνες&nbsp;αυτού</span><br><span class="eng"><span class="num">2</span>his&nbsp;months]<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3844.htm" title="from beside, by the side of, by, beside">3844</a></span><br><span class="greek">παρά</span><br><span class="eng">by<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">σοι</span><br><span class="eng">you.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1519.htm" title="to or into (indicating the point reached or entered, de place, time, fig. purpose, result)">1519</a></span><br><span class="greek">εις</span><br><span class="eng">[<span class="num">2</span>for<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5550.htm" title="time">5550</a></span><br><span class="greek">χρόνον</span><br><span class="eng"><span class="num">3</span>a&nbsp;time<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5087.htm" title="to place, lay, set">5087</a></span><br><span class="greek">έθου</span><br><span class="eng"><span class="num">1</span>You&nbsp;appointed&nbsp;<span class="ital">him</span>],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3766.htm" title="in no way">3766.2</a></span><br><span class="greek">ου&nbsp;μη</span><br><span class="eng">in&nbsp;no&nbsp;way<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5233.htm" title="to step over, transgress">5233</a></span><br><span class="greek">υπερβή</span><br><span class="eng">shall&nbsp;he&nbsp;pass&nbsp;beyond.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:6&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/868.htm" title="to lead away, to depart from">868</a></span><br><span class="refmain">14:6&nbsp;&nbsp;&nbsp;</span><span class="greek">απόστα</span><br><span class="refbot">14:6&nbsp;&nbsp;&nbsp;</span><span class="eng">Separate<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/575.htm" title="from, away from">575</a></span><br><span class="greek">απ'</span><br><span class="eng">from<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">αυτού</span><br><span class="eng">him!<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2443.htm" title="in order that, that, so that">2443</a></span><br><span class="greek">ίνα</span><br><span class="eng">that<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2270.htm" title="to be still, be silent">2270</a></span><br><span class="greek">ησυχάση</span><br><span class="eng">he&nbsp;should&nbsp;be&nbsp;still,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2106.htm" title="to think well of, i.e. to be well-pleased">2106</a></span><br><span class="greek">ευδοκήσει</span><br><span class="eng">he&nbsp;shall&nbsp;think&nbsp;well&nbsp;of<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">τον</span><br><span class="eng">the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/979.htm" title="life, living">979</a></span><br><span class="greek">βίον</span><br><span class="eng">existence<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5618.htm" title="just as, even as">5618</a></span><br><span class="greek">ώσπερ</span><br><span class="eng">as<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">ο</span><br><span class="eng">the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3411.htm" title="hired, a hired servo">3411</a></span><br><span class="greek">μισθωτός</span><br><span class="eng">hireling.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:7&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/1510.htm" title="For taqui is">1510.2.3</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a></span><br><span class="refmain">14:7&nbsp;&nbsp;&nbsp;</span><span class="greek">έστι&nbsp;γαρ</span><br><span class="refbot">14:7&nbsp;&nbsp;&nbsp;</span><span class="eng">For&nbsp;taqui&nbsp;is<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1186.htm" title="a tree">1186</a></span><br><span class="greek">δένδρω</span><br><span class="eng">[<span class="num">2</span>for&nbsp;a&nbsp;tree<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1680.htm" title="expectation, hope">1680</a></span><br><span class="greek">ελπίς</span><br><span class="eng"><span class="num">1</span>hope];<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1437.htm" title="if">1437</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a></span><br><span class="greek">εάν&nbsp;γαρ</span><br><span class="eng">for&nbsp;if<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1581.htm" title="to cut off, cut down, cut out, fig. to frustrate">1581</a></span><br><span class="greek">εκκοπή</span><br><span class="eng">it&nbsp;should&nbsp;be&nbsp;cut&nbsp;down,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2089.htm" title="still, yet">2089</a></span><br><span class="greek">έτι</span><br><span class="eng">still<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1880.htm" title="it will bloom again,">1880.2</a></span><br><span class="greek">επανθήσει</span><br><span class="eng">it&nbsp;will&nbsp;bloom&nbsp;again,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">ο</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4466.htm" title="its tender branch">4466.1</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">ράδαμνος&nbsp;αυτού</span><br><span class="eng">its&nbsp;tender&nbsp;branch<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3766.htm" title="in no way">3766.2</a></span><br><span class="greek">ου&nbsp;μη</span><br><span class="eng">in&nbsp;no&nbsp;way<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1587.htm" title="to leave out, leave off, by impl. to cease">1587</a></span><br><span class="greek">εκλείπη</span><br><span class="eng">shall&nbsp;fail;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:8&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/1437.htm" title="if">1437</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a></span><br><span class="refmain">14:8&nbsp;&nbsp;&nbsp;</span><span class="greek">εάν&nbsp;γαρ</span><br><span class="refbot">14:8&nbsp;&nbsp;&nbsp;</span><span class="eng">for&nbsp;if<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1095.htm" title="to grow old">1095</a></span><br><span class="greek">γηράση</span><br><span class="eng">[<span class="num">2</span>should&nbsp;grow&nbsp;old<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1722.htm" title="in, on, at, by, with">1722</a></span><br><span class="greek">εν</span><br><span class="eng"><span class="num">3</span>em<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1093.htm" title="the earth, land">1093</a></span><br><span class="greek">γη</span><br><span class="eng"><span class="num">4</span>&nbsp;<span class="ital">the</span>&nbsp;earth<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">η</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4491.htm" title="a root">4491</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">ρίζα&nbsp;αυτού</span><br><span class="eng"><span class="num">1</span>its&nbsp;root],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1722.htm" title="in, on, at, by, with">1722</a></span><br><span class="greek">εν</span><br><span class="eng">[<span class="num">4</span>em<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">1161</a></span><br><span class="greek">δε</span><br><span class="eng"><span class="num">1</span>and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4073.htm" title="a (large mass of) rock">4073</a></span><br><span class="greek">πέτρα</span><br><span class="eng"><span class="num">5</span>&nbsp;<span class="ital">the</span>&nbsp;rock<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5053.htm" title="to complete, to come to an end, hence to die">5053</a></span><br><span class="greek">τελευτήση</span><br><span class="eng"><span class="num">3</span>should&nbsp;come&nbsp;to&nbsp;an&nbsp;end<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">το</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4723.htm" title="its trunk;">4723.1</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">στέλεχος&nbsp;αυτού</span><br><span class="eng"><span class="num">2</span>its&nbsp;trunk];<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:9&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/575.htm" title="from, away from">575</a></span><br><span class="refmain">14:9&nbsp;&nbsp;&nbsp;</span><span class="greek">από</span><br><span class="refbot">14:9&nbsp;&nbsp;&nbsp;</span><span class="eng">from<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3744.htm" title="a smell">3744</a></span><br><span class="greek">οσμής</span><br><span class="eng"><span class="ital">the</span>&nbsp;scent<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5204.htm" title="water">5204</a></span><br><span class="greek">ύδατος</span><br><span class="eng">of&nbsp;water<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/435.htm" title="it shall bloom,">435.2</a></span><br><span class="greek">ανθήσει</span><br><span class="eng">it&nbsp;shall&nbsp;bloom,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4160.htm" title="to make, do">4160</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="greek">ποιήσει&nbsp;δε</span><br><span class="eng">and&nbsp;shall&nbsp;produce<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2326.htm" title="harvest">2326</a></span><br><span class="greek">θερισμόν</span><br><span class="eng">a&nbsp;harvest<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5618.htm" title="just as, even as">5618</a></span><br><span class="greek">ώσπερ</span><br><span class="eng">as&nbsp;if<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3504.htm" title="newly planted">3504</a></span><br><span class="greek">νεόφυτον</span><br><span class="eng">newly&nbsp;planted.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:10&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/435.htm" title="a man">435</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="refmain">14:10&nbsp;&nbsp;&nbsp;</span><span class="greek">ανήρ&nbsp;δε</span><br><span class="refbot">14:10&nbsp;&nbsp;&nbsp;</span><span class="eng">But&nbsp;a&nbsp;man<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5053.htm" title="to complete, to come to an end, hence to die">5053</a></span><br><span class="greek">τελευτήσας</span><br><span class="eng">coming&nbsp;to&nbsp;an&nbsp;end<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3634.htm" title="is undone;">3634.2</a></span><br><span class="greek">ώχετο</span><br><span class="eng">is&nbsp;undone;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4098.htm" title="to fall">4098</a></span><br><span class="greek">πεσών</span><br><span class="eng">[<span class="num">3</span>falling<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">1161</a></span><br><span class="greek">δε</span><br><span class="eng"><span class="num">1</span>and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1027.htm" title="a mortal">1027.1</a></span><br><span class="greek">βροτός</span><br><span class="eng"><span class="num">2</span>a&nbsp;mortal]<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3765.htm" title="no longer, no more">3765</a><a href="http://strongsnumbers.com/greek/1510.htm" title="is no longer.">-1510.2.3</a></span><br><span class="greek">ουκ&nbsp;έτι&nbsp;εστί</span><br><span class="eng">is&nbsp;no&nbsp;longer.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:11&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/5550.htm" title="time">5550</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a></span><br><span class="refmain">14:11&nbsp;&nbsp;&nbsp;</span><span class="greek">χρόνω&nbsp;γαρ</span><br><span class="refbot">14:11&nbsp;&nbsp;&nbsp;</span><span class="eng">For&nbsp;in&nbsp;time<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4681.htm" title="is depleted">4681.1</a></span><br><span class="greek">σπανίζεται</span><br><span class="eng">[<span class="num">2</span>is&nbsp;depleted<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2281.htm" title="the sea">2281</a></span><br><span class="greek">θάλασσα</span><br><span class="eng"><span class="num">1</span>a&nbsp;sea],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4215.htm" title="a river">4215</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="greek">ποταμός&nbsp;δε</span><br><span class="eng">and&nbsp;a&nbsp;river<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2049.htm" title="to desolate">2049</a></span><br><span class="greek">ερημωθείς</span><br><span class="eng">being&nbsp;made&nbsp;desolate<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3583.htm" title="to dry up, waste away">3583</a></span><br><span class="greek">εξηράνθη</span><br><span class="eng">is&nbsp;dried&nbsp;up.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:12&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/444.htm" title="a man, human, mankind">444</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="refmain">14:12&nbsp;&nbsp;&nbsp;</span><span class="greek">άνθρωπος&nbsp;δε</span><br><span class="refbot">14:12&nbsp;&nbsp;&nbsp;</span><span class="eng">But&nbsp;man<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2837.htm" title="sleep, fall asleep, die">2837</a></span><br><span class="greek">κοιμηθείς</span><br><span class="eng">going&nbsp;to&nbsp;sleep<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3756.htm" title="not, no">3756</a><a href="http://strongsnumbers.com/greek/3375.htm" title="certainly">-3375</a></span><br><span class="greek">ου&nbsp;μην</span><br><span class="eng">shall&nbsp;certainly&nbsp;not<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/450.htm" title="to raise up, to rise">450</a></span><br><span class="greek">αναστή</span><br><span class="eng">rise&nbsp;up,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2193.htm" title="till, until">2193</a></span><br><span class="greek">έως</span><br><span class="eng">until<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/302.htm" title="usually untranslatable, but generally denoting supposition, wish, possibility or uncertainty">302</a></span><br><span class="greek">αν</span><br><span class="eng">whenever<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">ο</span><br><span class="eng">the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3772.htm" title="heaven">3772</a></span><br><span class="greek">ουρανός</span><br><span class="eng">heaven<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3766.htm" title="in no way">3766.2</a></span><br><span class="greek">ου&nbsp;μη</span><br><span class="eng">in&nbsp;no&nbsp;way<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4949.htm" title="shall be sewn together,">4949.1</a></span><br><span class="greek">συρραφή</span><br><span class="eng">shall&nbsp;be&nbsp;sewn&nbsp;together,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3756.htm" title="not, no">3756</a><a href="http://strongsnumbers.com/greek/1852.htm" title="to awaken out de sleep">-1852</a></span><br><span class="greek">ουκ&nbsp;εξυπνισθήσονται</span><br><span class="eng">they&nbsp;shall&nbsp;not&nbsp;wake&nbsp;up<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1537.htm" title="from, from out of">1537</a></span><br><span class="greek">εξ</span><br><span class="eng">from<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5258.htm" title="sleep">5258</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">ύπνου&nbsp;αυτών</span><br><span class="eng">their&nbsp;sleep.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:13&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/1487.htm" title="forasmuch as, if, that">1487</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a><a href="http://strongsnumbers.com/greek/3784.htm" title="to owe">-3784</a></span><br><span class="refmain">14:13&nbsp;&nbsp;&nbsp;</span><span class="greek">ει&nbsp;γαρ&nbsp;όφελον</span><br><span class="refbot">14:13&nbsp;&nbsp;&nbsp;</span><span class="eng">For&nbsp;ought<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1722.htm" title="in, on, at, by, with">1722</a></span><br><span class="greek">εν</span><br><span class="eng">em<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/86.htm" title="Hades, the abode de departed espíritos">86</a></span><br><span class="greek">άδη</span><br><span class="eng">Hades<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a><a href="http://strongsnumbers.com/greek/5442.htm" title="to guard, watch">-5442</a></span><br><span class="greek">με&nbsp;εφύλαξας</span><br><span class="eng">you&nbsp;guarded&nbsp;me,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2928.htm" title="to hide">2928</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="greek">έκρυψας&nbsp;δε</span><br><span class="eng">and&nbsp;hid<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">με</span><br><span class="eng">me<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2193.htm" title="till, until">2193</a></span><br><span class="greek">έως</span><br><span class="eng">until<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/302.htm" title="usually untranslatable, but generally denoting supposition, wish, possibility or uncertainty">302</a></span><br><span class="greek">αν</span><br><span class="eng">whenever<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3973.htm" title="to make to cease, hinder">3973</a></span><br><span class="greek">παύσηταί</span><br><span class="eng">[<span class="num">3</span>should&nbsp;cease<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">σου</span><br><span class="eng"><span class="num">1</span>your<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">η</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3709.htm" title="impulse, wrath">3709</a></span><br><span class="greek">οργή</span><br><span class="eng"><span class="num">2</span>anger];<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5021.htm" title="to draw up in order, arrange">5021</a></span><br><span class="greek">τάξη</span><br><span class="eng">should&nbsp;have&nbsp;ordered<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">μοι</span><br><span class="eng">for&nbsp;me<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5550.htm" title="time">5550</a></span><br><span class="greek">χρόνον</span><br><span class="eng">a&nbsp;time<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1722.htm" title="in, on, at, by, with">1722</a></span><br><span class="greek">εν</span><br><span class="eng">em<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3739.htm" title="usually rel. who, which, that, also demonstrative this, that">3739</a></span><br><span class="greek">ω</span><br><span class="eng">which<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3417.htm" title="remembrance, mention">3417</a></span><br><span class="greek">μνείαν</span><br><span class="eng">[<span class="num">2</span>mention<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">μου</span><br><span class="eng"><span class="num">3</span>of&nbsp;me<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4160.htm" title="to make, do">4160</a></span><br><span class="greek">ποιήση</span><br><span class="eng"><span class="num">1</span>you&nbsp;shall&nbsp;make].<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:14&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/1437.htm" title="if">1437</a><a href="http://strongsnumbers.com/greek/1063.htm" title="for, indeed (a conjunc. used to express cause, explanation, inference or continuation)">-1063</a></span><br><span class="refmain">14:14&nbsp;&nbsp;&nbsp;</span><span class="greek">εάν&nbsp;γαρ</span><br><span class="refbot">14:14&nbsp;&nbsp;&nbsp;</span><span class="eng">For&nbsp;if<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/599.htm" title="to die">599</a></span><br><span class="greek">αποθάνη</span><br><span class="eng">[<span class="num">2</span>should&nbsp;die<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/444.htm" title="a man, human, mankind">444</a></span><br><span class="greek">άνθρωπος</span><br><span class="eng"><span class="num">1</span>a&nbsp;man],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2198.htm" title="to live">2198</a></span><br><span class="greek">ζήσεται</span><br><span class="eng">shall&nbsp;he&nbsp;live&nbsp;<span class="ital">again</span><span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4931.htm" title="to complete, accomplish">4931</a></span><br><span class="greek">συντελέσας</span><br><span class="eng">having&nbsp;completed<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">τας</span><br><span class="eng">the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2250.htm" title="day">2250</a></span><br><span class="greek">ημέρας</span><br><span class="eng">days<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">του</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/979.htm" title="life, living">979</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">βίου&nbsp;αυτού</span><br><span class="eng">of&nbsp;his&nbsp;existence?<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5278.htm" title="to stay behind, to await, endure">5278</a></span><br><span class="greek">υπομενώ</span><br><span class="eng">I&nbsp;shall&nbsp;wait<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2193.htm" title="till, until">2193</a></span><br><span class="greek">έως</span><br><span class="eng">until<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3825.htm" title="back (of place), again (of time), further">3825</a></span><br><span class="greek">πάλιν</span><br><span class="eng">[<span class="num">2</span>again<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1096.htm" title="to come into being, to happen, to become">1096</a></span><br><span class="greek">γένωμαι</span><br><span class="eng"><span class="num">1</span>I&nbsp;should&nbsp;exist].<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:15&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/1534.htm" title="then, next, taquifore (an adv. denoting sequence)">1534</a></span><br><span class="refmain">14:15&nbsp;&nbsp;&nbsp;</span><span class="greek">είτα</span><br><span class="refbot">14:15&nbsp;&nbsp;&nbsp;</span><span class="eng">Then<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2564.htm" title="to call">2564</a></span><br><span class="greek">καλέσεις</span><br><span class="eng">you&nbsp;shall&nbsp;call,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="greek">εγώ&nbsp;δε</span><br><span class="eng">and&nbsp;I<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a><a href="http://strongsnumbers.com/greek/5219.htm" title="to listen, attend to">-5219</a></span><br><span class="greek">σοι&nbsp;υπακούσομαι</span><br><span class="eng">will&nbsp;hearken&nbsp;to&nbsp;you;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="greek">τα&nbsp;δε</span><br><span class="eng">but&nbsp;the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2041.htm" title="work">2041</a></span><br><span class="greek">έργα</span><br><span class="eng">works<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">των</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5495.htm" title="the hand">5495</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">χειρών&nbsp;σου</span><br><span class="eng">of&nbsp;your&nbsp;hands<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3361.htm" title="not, that...not, lest (used for qualified negation)">3361</a></span><br><span class="greek">μη</span><br><span class="eng">do&nbsp;not<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/638.htm" title="undo.">638.1</a></span><br><span class="greek">αποποιού</span><br><span class="eng">undo.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:16&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/705.htm" title="to number">705</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="refmain">14:16&nbsp;&nbsp;&nbsp;</span><span class="greek">ηρίθμησας&nbsp;δε</span><br><span class="refbot">14:16&nbsp;&nbsp;&nbsp;</span><span class="eng">But&nbsp;you&nbsp;counted<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">μου</span><br><span class="eng">meu/minha<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">τα</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2006.htm" title="practices,">2006.1</a></span><br><span class="greek">επιτηδεύματα</span><br><span class="eng">practices,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3766.htm" title="in no way">3766.2</a></span><br><span class="greek">ου&nbsp;μη</span><br><span class="eng">in&nbsp;no&nbsp;way<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3928.htm" title="to pass by, to come to">3928</a></span><br><span class="greek">παρέλθη</span><br><span class="eng">shall&nbsp;taqui&nbsp;go&nbsp;by<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">σε</span><br><span class="eng">you<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3762.htm" title="no one, none">3762</a></span><br><span class="greek">ουδέν</span><br><span class="eng">even&nbsp;one<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">των</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/266.htm" title="a sin, failure">266</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">αμαρτιών&nbsp;μου</span><br><span class="eng">of&nbsp;my&nbsp;sins.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:17&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/4972.htm" title="to seal">4972</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="refmain">14:17&nbsp;&nbsp;&nbsp;</span><span class="greek">εσφράγισας&nbsp;δε</span><br><span class="refbot">14:17&nbsp;&nbsp;&nbsp;</span><span class="eng">And&nbsp;you&nbsp;set&nbsp;a&nbsp;seal&nbsp;upon<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">μου</span><br><span class="eng">meu/minha<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">τας</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/458.htm" title="lawlessness">458</a></span><br><span class="greek">ανομίας</span><br><span class="eng">lawless&nbsp;deeds<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1722.htm" title="in, on, at, by, with">1722</a></span><br><span class="greek">εν</span><br><span class="eng">em<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/905.htm" title="a purse">905</a></span><br><span class="greek">βαλαντίω</span><br><span class="eng">a&nbsp;bag,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1977.htm" title="and marked">1977.4</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="greek">επεσημήνω&nbsp;δε</span><br><span class="eng">and&nbsp;marked<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1536.htm" title="he that, if a man, whether any, whosoever. ">1536</a></span><br><span class="greek">είτι</span><br><span class="eng">if&nbsp;in&nbsp;anything<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/210.htm" title="unwilling">210</a></span><br><span class="greek">άκων</span><br><span class="eng">[<span class="num">2</span>unwillingly<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3845.htm" title="to go by the side of, to go past">3845</a></span><br><span class="greek">παρέβην</span><br><span class="eng"><span class="num">1</span>I&nbsp;violated].<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:18&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="refmain">14:18&nbsp;&nbsp;&nbsp;</span><span class="greek">και</span><br><span class="refbot">14:18&nbsp;&nbsp;&nbsp;</span><span class="eng">And<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4133.htm" title="yet, except">4133</a></span><br><span class="greek">πλην</span><br><span class="eng">moreover<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3735.htm" title="a mountain">3735</a></span><br><span class="greek">όρος</span><br><span class="eng">a&nbsp;mountain<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4098.htm" title="to fall">4098</a></span><br><span class="greek">πίπτον</span><br><span class="eng">falling<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1276.htm" title="shall fall into ruin,">1276.3</a></span><br><span class="greek">διαπεσείται</span><br><span class="eng">shall&nbsp;fall&nbsp;into&nbsp;ruin,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4073.htm" title="a (large mass of) rock">4073</a></span><br><span class="greek">πέτρα</span><br><span class="eng">a&nbsp;rock<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3822.htm" title="to make or declare old">3822</a></span><br><span class="greek">παλαιωθήσεται</span><br><span class="eng">shall&nbsp;be&nbsp;<span class="ital">worn</span>&nbsp;old<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1537.htm" title="from, from out of">1537</a></span><br><span class="greek">εκ</span><br><span class="eng">from&nbsp;out&nbsp;of<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">του</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5117.htm" title="a place">5117</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">τόπου&nbsp;αυτής</span><br><span class="eng">its&nbsp;place.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:19&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/3037.htm" title="a stone">3037</a></span><br><span class="refmain">14:19&nbsp;&nbsp;&nbsp;</span><span class="greek">λίθους</span><br><span class="refbot">14:19&nbsp;&nbsp;&nbsp;</span><span class="eng">[<span class="num">3</span>stones&nbsp;<span class="ital">smooth</span><span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3001.htm" title="ground">3001.2</a></span><br><span class="greek">ελέαναν</span><br><span class="eng"><span class="num">2</span>ground<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5204.htm" title="water">5204</a></span><br><span class="greek">ύδατα</span><br><span class="eng"><span class="num">1</span>água],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2626.htm" title="to inundate">2626</a></span><br><span class="greek">κατέκλυσεν</span><br><span class="eng">[<span class="num">2</span>flooded<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5204.htm" title="water">5204</a></span><br><span class="greek">ύδατα</span><br><span class="eng"><span class="num">1</span>água]<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5298.htm" title="the steeps">5298.2</a></span><br><span class="greek">ύπτια</span><br><span class="eng"><span class="ital">the</span>&nbsp;steeps<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">του</span><br><span class="eng">of&nbsp;the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5560.htm" title="embankment">5560.1</a></span><br><span class="greek">χώματος</span><br><span class="eng">embankment<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">της</span><br><span class="eng">of&nbsp;the<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1093.htm" title="the earth, land">1093</a></span><br><span class="greek">γης</span><br><span class="eng">earth;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5281.htm" title="a remaining behind, a patient enduring">5281</a></span><br><span class="greek">υπομονήν</span><br><span class="eng">[<span class="num">2</span>&nbsp;<span class="ital">the</span>&nbsp;endurance<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/444.htm" title="a man, human, mankind">444</a></span><br><span class="greek">ανθρώπου</span><br><span class="eng"><span class="num">3</span>of&nbsp;man<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/622.htm" title="to destroy, destroy utterly">622</a></span><br><span class="greek">απώλεσας</span><br><span class="eng"><span class="num">1</span>you&nbsp;destroyed].<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:20&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/5605.htm" title="You thrust him through">5605.2</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="refmain">14:20&nbsp;&nbsp;&nbsp;</span><span class="greek">ώσας&nbsp;αυτόν</span><br><span class="refbot">14:20&nbsp;&nbsp;&nbsp;</span><span class="eng">You&nbsp;thrust&nbsp;him&nbsp;through<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1519.htm" title="to or into (indicating the point reached or entered, de place, time, fig. purpose, result)">1519</a></span><br><span class="greek">εις</span><br><span class="eng">unto<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5056.htm" title="an end, a toll">5056</a></span><br><span class="greek">τέλος</span><br><span class="eng"><span class="ital">the</span>&nbsp;end,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3634.htm" title="he is undone;">3634.2</a></span><br><span class="greek">ώχετο</span><br><span class="eng">he&nbsp;is&nbsp;undone;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2186.htm" title="to set upon, set up, to stand upon, be present">2186</a></span><br><span class="greek">επέστησας</span><br><span class="eng">you&nbsp;set<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">1473</a></span><br><span class="greek">αυτώ</span><br><span class="eng">[<span class="num">2</span>&nbsp;<span class="ital">against</span>&nbsp;him<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">το</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4383.htm" title="the face">4383</a></span><br><span class="greek">πρόσωπον</span><br><span class="eng"><span class="num">1</span>&nbsp;<span class="ital">your</span>&nbsp;face],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/2532.htm" title="and, even, also">2532</a></span><br><span class="greek">και</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1821.htm" title="to send forth or away">1821</a></span><br><span class="greek">εξαπέστειλας</span><br><span class="eng">send&nbsp;<span class="ital">him</span>&nbsp;out.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:21&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/4183.htm" title="much, many">4183</a><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">-1161</a></span><br><span class="refmain">14:21&nbsp;&nbsp;&nbsp;</span><span class="greek">πολλών&nbsp;δε</span><br><span class="refbot">14:21&nbsp;&nbsp;&nbsp;</span><span class="eng">And&nbsp;<span class="ital">though&nbsp;taqui&nbsp;are</span>&nbsp;many<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1096.htm" title="to come into being, to happen, to become">1096</a></span><br><span class="greek">γενομένων</span><br><span class="eng">[<span class="num">2</span>being&nbsp;born<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">των</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5207.htm" title="a son">5207</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">υιών&nbsp;αυτού</span><br><span class="eng"><span class="num">1</span>of&nbsp;his&nbsp;sons],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3756.htm" title="not, no">3756</a><a href="http://strongsnumbers.com/greek/1492.htm" title="be aware, behold, consider, perceive">-1492</a></span><br><span class="greek">ουκ&nbsp;οίδεν</span><br><span class="eng">he&nbsp;knows&nbsp;it&nbsp;not;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1437.htm" title="if">1437</a></span><br><span class="greek">εάν</span><br><span class="eng">if<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5037.htm" title="and (denotes addition or connection)">5037</a></span><br><span class="greek">τε</span><br><span class="eng">also<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3641.htm" title="few, little, small">3641</a></span><br><span class="greek">ολίγοι</span><br><span class="eng">[<span class="num">2</span>poucos<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1096.htm" title="to come into being, to happen, to become">1096</a></span><br><span class="greek">γένωνται</span><br><span class="eng"><span class="num">1</span>they&nbsp;become],<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3756.htm" title="not, no">3756</a><a href="http://strongsnumbers.com/greek/1987.htm" title="to know, to understand">-1987</a></span><br><span class="greek">ουκ&nbsp;επίσταται</span><br><span class="eng">he&nbsp;knows&nbsp;not.<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="reftop">14:22&nbsp;&nbsp;&nbsp;</span><span class="strongs"><a href="http://strongsnumbers.com/greek/237.htm" title="But">237.1</a></span><br><span class="refmain">14:22&nbsp;&nbsp;&nbsp;</span><span class="greek">αλλ'&nbsp;η</span><br><span class="refbot">14:22&nbsp;&nbsp;&nbsp;</span><span class="eng">But<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">αι</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/4561.htm" title="flesh">4561</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">σάρκες&nbsp;αυτού</span><br><span class="eng">his&nbsp;flesh<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/217.htm" title="aches,">217.1</a></span><br><span class="greek">ήλγησαν</span><br><span class="eng">aches,<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3588.htm" title="the">3588</a></span><br><span class="greek">η</span><br><span class="eng">&nbsp;<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/1161.htm" title="but, and, now, (a connective or adversative particle)">1161</a></span><br><span class="greek">δε</span><br><span class="eng">and<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/5590.htm" title="breath, the soul">5590</a><a href="http://strongsnumbers.com/greek/1473.htm" title="I (only expressed when emphatic)">-1473</a></span><br><span class="greek">ψυχή&nbsp;αυτού</span><br><span class="eng">his&nbsp;soul<span class="num">&nbsp;</span></span></td></tr></table>
+<table class="tablefloat"><tr><td height="95" valign="middle"><span class="strongs"><a href="http://strongsnumbers.com/greek/3996.htm" title="to mourn, lament">3996</a></span><br><span class="greek">επένθησεν</span><br><span class="eng">mourns.<span class="num">&nbsp;</span></span></td></tr></table></td></tr></table><hr size="1" color="DDEEFF"><div id="botbox"><div class="padbot"><div align="center">Copyright 1996 by Charles Van der Pool. Download PDFs or purchase the printed edition at <a href="http://apostolicbible.com/">ApostolicBible.com</a>.<span class="p"><br /><br /></span></div></div></div></div></td></tr></table></div><div id="left"><a href="13.html" onmouseover='lft.src="https://biblehub.com/leftgif.png"' onmouseout='lft.src="https://biblehub.com/left.png"' title="Job 13"><img src="https://biblehub.com/left.png" name="lft" border="0" alt="Job 13" /></a></div><div id="right"><a href="15.html" onmouseover='rght.src="https://biblehub.com/rightgif.png"' onmouseout='rght.src="https://biblehub.com/right.png"' title="Job 15"><img src="https://biblehub.com/right.png" name="rght" border="0" alt="Job 15" /></a></div><div id="botleft"><a href="#" onmouseover='botleft.src="https://biblehub.com/botleftgif.png"' onmouseout='botleft.src="https://biblehub.com/botleft.png"' title="Top de Page"><img src="https://biblehub.com/botleft.png" name="botleft" border="0" alt="Top de Page" /></a></div><div id="botright"><a href="#" onmouseover='botright.src="https://biblehub.com/botrightgif.png"' onmouseout='botright.src="https://biblehub.com/botright.png"' title="Top de Page"><img src="https://biblehub.com/botright.png" name="botright" border="0" alt="Top de Page" /></a></div><div id="bot"><iframe width="100%" height="1500" scrolling="no" src="https://biblehub.com/botmenubhchapnoad.htm" frameborder="0"></iframe></div></td></tr></table></div></body>
+<!-- Mirrored from biblehub.com/interlinear/apostolic/job/14.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:41:53 GMT -->
+</html>
+        
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    var page = document.getElementById("app");
+
+    function toggleStrongs() {
+      page.classList.toggle("no_strongs");
+    }
+    function toggleTranslit() {
+      page.classList.toggle("no_translit");
+    }
+    function toggleGreek() {
+      page.classList.toggle("no_greek");
+    }
+    function toggleGrammar() {
+      page.classList.toggle("no_grammar");
+    }
+  </script>
+
+</body>
+</html>
