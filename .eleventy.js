@@ -21,6 +21,6 @@ module.exports = function(eleventyConfig) {
       output: "docs"
     },
     passthroughFileCopy: true,
-    pathPrefix: "/nt-interlinear"
+    pathPrefix: "/nt-interlinear/"
   }
 }
