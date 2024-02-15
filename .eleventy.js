@@ -4,8 +4,8 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('src/css');
 
-  //eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
-  //{s
+  // eleventyConfig.addPlugin(EleventyHtmlBasePlugin,
+  // {
   //   baseHref: eleventyConfig.pathPrefix,
   //   extensions: "html",
   //   filters: {
