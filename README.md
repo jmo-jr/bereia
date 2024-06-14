@@ -26,3 +26,12 @@ Glifos: ē, ō
 - Genitivo = do
 - Nominativo = A pesoa ...
 - Acusativo = ... a coisa
+
+## Templates para páginas
+---
+bookName: ""
+bookChapter: 0
+---
+{% render '../../_includes/pageHeader', bookName: bookName, bookChapter: bookChapter %}
+
+{% render '../../_includes/sideNav', bookName; bookName, bookChapter: bookChapter%}
