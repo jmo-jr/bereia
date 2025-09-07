@@ -1,26 +1,19 @@
-//const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('src/css');
 
-  // eleventyConfig.addPlugin(EleventyHtmlBasePlugin,
-  // {
-  //   baseHref: eleventyConfig.pathPrefix,
-  //   extensions: "html",
-  //   filters: {
-  //     base: "htmlBaseUrl",
-  //     html: "transformWithHtmlBase",
-  //     pathPrefix: "addPathPrefixToUrl",
-  //   },
-  // });
-  
+  // Habilita o plugin que adiciona utilitários para URLs com pathPrefix
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
   return {
+    // ajuste para o prefixo do site hospedado (terminar com "/")
+    pathPrefix: "/nt-interlinear/",
     dir: {
       input: "src",
-      output: "docs"
-    },
-    passthroughFileCopy: true,
-    pathPrefix: "/nt-interlinear/"
-  }
-}
+      includes: "_includes",
+      output: "_site"
+    }
+  };
+};
