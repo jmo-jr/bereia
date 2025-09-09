@@ -1,9 +1,11 @@
-<div class="center">
-  <div id="movebox2">
-    <a href="/nt/{{ bookName | downcase }}/{% if bookChapter <= 9 %}0{% endif %}{{ bookChapter | minus: 1 }}"
-      title="{{ bookName }} {{ bookChapter | minus: 1 }}">◄</a>
-    <span>{{bookName}} {{bookChapter}}</span>
-    <a href="/nt/{{ bookName | downcase }}/{% if bookChapter <= 9 %}0{% endif %}{{ bookChapter | plus: 1 }}"
-      title="{{ bookName }} {{ bookChapter | plus: 1 }}">►</a>
-  </div>
+<div id="movebox2">
+
+	<a href="{{ '/nt/' | url }}{{ bookName | downcase }}/{% if bookChapter > 1 %}{% if bookChapter <= 9 %}0{% endif %}{{ bookChapter | minus: 1 }}{% else %}01/#{% endif %}"
+		title="{{ bookName }} {{ bookChapter | minus: 1 }}">◄</a>
+
+	<span>{{bookName}} {{bookChapter}}</span>
+
+	<a href="{{ '/nt/' | url }}{{ bookName | downcase }}/{% if bookChapter <= 9 %}0{% endif %}{{ bookChapter | plus: 1 }}"
+		title="{{ bookName }} {{ bookChapter | plus: 1 }}">►</a>
+
 </div>

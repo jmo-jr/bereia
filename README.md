@@ -20,12 +20,14 @@ Caracteres especiais devem ser acrescentados após a vírgula
 
 Glifos: ē, ō
 
-- Aoristo Indicativo = Pretérito Perfeito Simples
-- Dativo = ao, pela, vos, lhes
+- Aoristo Indicativo = Pretérito Perfeito Simples (eles foram)
+- Dativo = (indireto) a, para; (instrumento) com, por meio de; (lugar) em, sobre
 - Vocativo = Mestre!
 - Genitivo = do
 - Nominativo = A pesoa ...
 - Acusativo = ... a coisa
+- Particípio passivo = tendo visto, tendo sido visto
+- Particípio ativo = Gerúndio (vendo)
 
 ## Templates para páginas
 ---
