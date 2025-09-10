@@ -3,6 +3,7 @@
 module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('src/css');
+  eleventyConfig.addPassthroughCopy('src/img');
 
   // Habilita o plugin que adiciona utilitários para URLs com pathPrefix
   //eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
