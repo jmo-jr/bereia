@@ -1,0 +1,3423 @@
+<!DOCTYPE html>
+<html land="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bíblia de Estudo Interlinear</title>
+	<base href="">
+  <meta name="description" content="Página do capítulo do livro escolhido">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/nt-interlinear/img/favicon.png">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/nt-interlinear/css/style.css">
+  <style>
+    .ui-tooltip {
+      padding: 4px 8px;
+      background-color: lightyellow;
+      font-size: 14px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( document ).tooltip();
+    } );
+  </script>
+</head>
+
+<body>
+
+  <div id="app" class="wrapper">
+
+    <header class="app-bar">
+      <h1><a href="/nt-interlinear/">Bíblia de Estudo Interlinear</a></h1>
+    </header>
+
+    <div class="toolbar">
+      <div class="content">
+
+        <div class="d-flex justify-between">
+
+          <div class="input-group">
+
+            <form>
+              <select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
+                
+                <option 
+                  value="/nt-interlinear/nt/mateus/01"
+                  
+                >Mateus</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/marcos/01"
+                  
+                >Marcos</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/lucas/01"
+                  
+                >Lucas</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/joao/01"
+                  
+                >João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/atos/01"
+                  
+                >Atos</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/romanos/01"
+                  
+                >Romanos</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_corintios/01"
+                  
+                >1 Coríntios</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_corintios/01"
+                  
+                >2 Coríntios</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/galatas/01"
+                  
+                >Gálatas</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/efesios/01"
+                  
+                >Efésios</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/filipenses/01"
+                  
+                >Filipenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/colossenses/01"
+                  
+                >Colossenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_tessalonicenses/01"
+                  
+                >1 Tessalonicenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_tessalonicenses/01"
+                  
+                >2 Tessalonicenses</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_timoteo/01"
+                  
+                >1 Timóteo</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_timoteo/01"
+                  
+                >2 Timóteo</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/tito/01"
+                  
+                >Tito</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/filemon/01"
+                  
+                >Filemon</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/hebreus/01"
+                  
+                >Hebreus</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/tiago/01"
+                  
+                >Tiago</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_pedro/01"
+                  
+                >1 Pedro</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_pedro/01"
+                  
+                >2 Pedro</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/1_joao/01"
+                  
+                >1 João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/2_joao/01"
+                  
+                >2 João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/3_joao/01"
+                  
+                >3 João</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/judas/01"
+                  
+                >Judas</option>
+                
+                <option 
+                  value="/nt-interlinear/nt/apocalipse/01"
+                  
+                >Apocalipse</option>
+                
+              </select>
+
+              <select name="chapter" class="drop" onchange="location.href = this.value;">
+
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+
+              </select>
+
+            </form>
+
+          </div>
+
+          <div class="button-group">
+            <button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
+            <button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
+            <button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
+            <button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <main class="main-content">
+      <div class="content">
+
+        
+          <div class="center">
+<div id="leftbox">
+<div class="padleft">
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td class="center">
+<div class="vheading">ΠΡΟΣ ΚΟΡΙΝΘΙΟΥΣ Α΄ 2 Interlinear</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td class="center"><span class="title">Mensagem de Paulo, o, a ESP</span></td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc">   </span></td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle">
+<span class="reftop3">1   </span>
+<span class="pos">
+<a href="/greek/2504.htm" title="Strong's Greek 2504: tamb₂m aim, tamboxidil I">2504</a></span><br/><span class="reftrans">1   </span>
+<span class="translit">
+<a href="#" onclick="event.preventDefault()" title="Kag 46 de 76.">Kagō</a></span><br/><span class="refmain">1   </span>
+<span class="greek">Κἀγὼ</span><span class="punct">  ,</span><br/><span class="refbot">1   </span><span class="eng">e, tambidimensionalmente I</span><br/><span class="reftop2">1   </span><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - 1ª Pessoa Singular - Comparativo">PPro-S1C</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2064.htm" title="Strong's Greek 2064: vir, ir">2064</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="elth9: vindo -- ocorrência 44 de 50.">elthōn</a></span><br/><span class="greek">ἐλθὼν</span><br/><span class="eng">vindo</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Particípio Ativo - Nominativo Masculino Singular">V-APA-NMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4314.htm" title="Strong's Greek 4314: para, em dire3, com">4314</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="prós: para, em direi Elimo a, com -- ocorrência 529 de 703.">pros</a></span><br/><span class="greek">πρὸς</span><br/><span class="eng">para</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4771.htm" title="Grego de Strong 4771: tu, voc">4771</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hymas: cov189 de 438.">hymas</a></span><br/><span class="greek">ὑμᾶς</span><span class="punct">  ,</span><br/><span class="eng">você</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Acusativo 2ª Pessoa Plural">PPro-A2P</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/80.htm" title="Strong's Greek 80 (em inglês)">80</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="adelphoi: irm30 de 145.">adelphoi</a></span><br/><span class="greek">ἀδελφοί</span><span class="punct">  ,</span><br/><span class="eng">irmãos</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Vocativo Masculino Plural">S-VMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2064.htm" title="Strong's Greek 2064: vir, ir">2064</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="intesthon: eles vieram -- ocorrência 59 de 63.">ēlthon</a></span><br/><span class="greek">ἦλθον</span><br/><span class="eng">veio</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 1ª Pessoa Singular">V-AIA-1S</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ou: N9O -- ocorrência 436 de 699.">ou</a></span><br/><span class="greek">οὐ</span><br/><span class="eng">n</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2596.htm" title="Strong's Greek 2596: (g) de encontro a, abaixo de, atravi9s de, (A) contra, entre, de acordo com, por meio de">2596</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kath': sobre, contra, entre, de acordo com, com,... -- Ocorrência 38 de 61.">kath'</a></span><br/><span class="greek">καθ'</span><br/><span class="eng">de acordo com</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5247.htm" title="Strong's Greek 5247: excelência">5247</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hiperoch9: excelência-ocorrência 1 de 1.">hyperochēn</a></span><br/><span class="greek">ὑπεροχὴν</span><br/><span class="eng">excelência</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Feminino Singular">S-AFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3056.htm" title="Strong's Greek 3056: palavras, razões, motivos">3056</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="logou: da palavra, em Razi-ocorrência 15 de 27.">logou</a></span><br/><span class="greek">λόγου</span><span class="punct">  ,</span><br/><span class="eng">de
+												palavra</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2228.htm" title="Grego de Strong 2228: ou, do que">2228</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="princípioou, do que -- ocorrência 225 de 346.">ē</a></span><br/><span class="greek">ἢ</span><br/><span class="eng">ou</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Partícula">Prtcl</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4678.htm" title="Strong's Greek 4678: sabedoria">4678</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="sophias: sabedoria-ocorrência 4 de 12.">sophias</a></span><br/><span class="greek">σοφίας</span><span class="punct">  ,</span><br/><span class="eng">sabedoria</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Feminino Singular">S-GFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2605.htm" title="Strong's Greek 2605: anúncio preciso">2605</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="katangell7n: precisamente anunciando-ocorrência 1 de 1.">katangellōn</a></span><br/><span class="greek">καταγγέλλων</span><br/><span class="eng">proclamando</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Particípio Ativo - Nominativo Masculino Singular">V-PPA-NMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4771.htm" title="Grego de Strong 4771: tu, voc">4771</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hymin: a V9 -- ocorrência 400 de 610.">hymin</a></span><br/><span class="greek">ὑμῖν</span><br/><span class="eng">para COV</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Dativo 2ª Pessoa Plural">PPro-D2P</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="para: o / a [que] -- ocorrência 1063 de 1714.">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">o</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Singular">Art-ANS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3466.htm" title="Strong's Greek 3466: testemunho">3466</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="mistério: testemunho-ocorrência 3 de 17.">mystērion</a></span><br/><span class="greek">μυστήριον</span><br/><span class="eng">testemunho</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Neutro Singular">S-ANS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="tou : do -- ocorrência 1562 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">–</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="theou: de Deus -- ocorrência 329 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><span class="punct">  .</span><br/><span class="eng">de
+												Deus</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle">
+<span class="reftop3">2   </span>
+<span class="pos">
+<a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="reftrans">2   </span>
+<span class="translit">
+<a href="#" onclick="event.preventDefault()" title="ou: N9O -- ocorrência 437 de 699.">ou</a></span><br/><span class="refmain">2   </span>
+<span class="greek">οὐ</span><br/><span class="refbot">2   </span>
+<span class="eng">nada</span><br/><span class="reftop2">2   </span>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1063.htm" title="Strong's Greek 1063: pois, de fato">1063</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="gar: pois , de fato -- ocorrência 586 de 1046.">gar</a></span><br/><span class="greek">γὰρ</span><br/><span class="eng">pois</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2919.htm" title="Grego de Strong 2919: julgar, decidir">2919</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ekrina: eu decidi-ocorrência 2 de 3.">ekrina</a></span><br/><span class="greek">ἔκρινά</span><br/><span class="eng">Eu decidi</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 1ª Pessoa Singular">V-AIA-1S</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5100.htm" title="Strong's Greek 5100: algu@m, qualquer um, algo">5100</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ti: algu@m, algo, qualquer um -- ocorrência 59 de 95.">ti</a></span><br/><span class="greek">τι</span><br/><span class="eng">qualquer coisa</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Interrogativo/Indefinido - Acusativo Neutro Singular">IPro-ANS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1492.htm" title="Grego de Strong 1492: saber, recordar">1492</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="eidenai: saber-ocorrência 4 de 11.">eidenai</a></span><br/><span class="greek">εἰδέναι</span><br/><span class="eng">para saber</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Infinitivo Active">V-RNA</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Pt: em, com, por -- ocorrência 1506 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">entre</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4771.htm" title="Grego de Strong 4771: tu, voc">4771</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hymin: a V9S -- ocorrência 401 de 610.">hymin</a></span><br/><span class="greek">ὑμῖν</span><span class="punct">  ,</span><br/><span class="eng">você</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Dativo 2ª Pessoa Plural">PPro-D2P</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1487.htm" title="Grego de Strong 1487: se">1487</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Ei : se -- ocorrência 280 de 508.">ei</a></span><br/><span class="greek">εἰ</span><br/><span class="eng">se </span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3361.htm" title="Grego de Strong 3361: n">3361</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="M9: N9O -- ocorrência 630 de 1061.">mē</a></span><br/><span class="greek">μὴ</span><br/><span class="eng">n</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2424.htm" title="Grego de Strong 2424: Jesus">2424</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="I princípiosoun: Jesus-ocorrência 104 de 129.">Iēsoun</a></span><br/><span class="greek">Ἰησοῦν</span><br/><span class="eng">Jesus</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Masculino Singular">S-AMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5547.htm" title="Grego de Strong 5547: ungido, Cristo, Messias">5547</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Christon: o Cristo-ocorrência 34 de 67.">Christon</a></span><br/><span class="greek">Χριστὸν</span><span class="punct">  ,</span><br/><span class="eng">Cristo</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Masculino Singular">S-AMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kai: e, tamb₂ -- ocorrência 6022 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3778.htm" title="Grego de Strong 3778: isto, este">3778</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="touton: este, isto -- ocorrência 55 de 61.">touton</a></span><br/><span class="greek">τοῦτον</span><br/><span class="eng">a ele</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Demonstrativo - Acusativo Masculino Singular">DPro-AMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4717.htm" title="Grego de Strong 4717: crucificado">4717</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="estaur9menon: crucificado-ocorrência 4 de 4.">estaurōmenon</a></span><br/><span class="greek">ἐσταυρωμένον</span><span class="punct">  .</span><br/><span class="eng">crucificado</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Particípio Média ou Passiva - Acusativo Masculino Singular">V-RPM/P-AMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle">
+<span class="reftop3">3   </span>
+<span class="pos">
+<a href="/greek/2504.htm" title="Strong's Greek 2504: tamb₂m aim, tamboxidil I">2504</a></span><br/><span class="reftrans">3   </span>
+<span class="translit">
+<a href="#" onclick="event.preventDefault()" title="kag 47 de 76.">kagō</a></span><br/><span class="refmain">3   </span>
+<span class="greek">κἀγὼ</span><span class="punct">  ,</span><br/><span class="refbot">3   </span><span class="eng">e, tambidimensionalmente I</span><br/><span class="reftop2">3   </span><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - 1ª Pessoa Singular - Comparativo">PPro-S1C</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Pt: em, com, por -- ocorrência 1507 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/769.htm" title="Grego de Strong 769: fraqueza">769</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="astheneia: fraqueza-ocorrência 4 de 6.">astheneia</a></span><br/><span class="greek">ἀσθενείᾳ</span><span class="punct">  ,</span><br/><span class="eng">fraqueza</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Feminino Singular">S-DFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kai: e, tamb₂m -- ocorrência 6023 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Pt: em, com, por -- ocorrência 1508 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5401.htm" title="Strong's Greek 5401: temor, medo">5401</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="fob4: tema-ocorrência 3 de 10.">phobō</a></span><br/><span class="greek">φόβῳ</span><span class="punct">  ,</span><br/><span class="eng">tema</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Masculino Singular">S-DMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kai: e, tamb₂m -- ocorrência 6024 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Pt: em, com, por -- ocorrência 1509 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5156.htm" title="Grego de Strong 5156: tremendo">5156</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="trêmulo-ocorrência 1 de 1.">tromō</a></span><br/><span class="greek">τρόμῳ</span><br/><span class="eng">tremor</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Masculino Singular">S-DMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4183.htm" title="Strong's Greek 4183: muito, mais">4183</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="enquete: muito , mais -- ocorrência 12 de 20.">pollō</a></span><br/><span class="greek">πολλῷ</span><span class="punct">  ,</span><br/><span class="eng">muito</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Dativo Masculino Singular">Adj-DMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1096.htm" title="Grego de Strong 1096: vir a ser, nascer, tornar - se, ocorrer ">1096</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="egenom7: tornou - se-ocorrência 4 de 12.">egenomēn</a></span><br/><span class="greek">ἐγενόμην</span><br/><span class="eng">foi</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Média - 1ª Pessoa Singular">V-AIM-1S</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4314.htm" title="Strong's Greek 4314: para, em dire3, com">4314</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="prós: para, em direi Elimo a, com -- ocorrência 530 de 703.">pros</a></span><br/><span class="greek">πρὸς</span><br/><span class="eng">com</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4771.htm" title="Grego de Strong 4771: tu, voc">4771</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hymas: cov190 de 438.">hymas</a></span><br/><span class="greek">ὑμᾶς</span><span class="punct">  .</span><br/><span class="eng">você</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Acusativo 2ª Pessoa Plural">PPro-A2P</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle">
+<span class="reftop3">4   </span><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="reftrans">4   </span>
+<span class="translit">
+<a href="/greek/2532.htm" title="kai: e, tamb₂m -- ocorrência 6025 de 9079.">kai</a></span><br/><span class="refmain">4   </span>
+<span class="greek">καὶ</span><br/>
+<span class="refbot">4   </span>
+<span class="eng">e</span><br/><span class="reftop2">4   </span>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit">
+<a href="/greek/3588.htm" title="ho: o [que] -- ocorrência 2165 de 2965.">ho</a></span><br/><span class="greek">ὁ</span><br/><span class="eng">o</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Masculino Singular">Art-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3056.htm" title="Strong's Greek 3056: palavras, razões, motivos">3056</a></span><br/><span class="translit">
+<a href="/greek/3056.htm" title="logótipos: mensagem-ocorrência 38 de 69.">logos</a></span><br/><span class="greek">λόγος</span><br/><span class="eng">mensagem</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Masculino Singular">S-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1473.htm" title="Strong's Greek 1473: UE, n">1473</a></span><br/><span class="translit">
+<a href="/greek/1473.htm" title="mou: meu, minha -- ocorrência 406 de 567.">mou</a></span><br/><span class="greek">μου</span><span class="punct">  ,</span><br/>
+<span class="eng">meu</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">PPro-G1S</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit">
+<a href="/greek/2532.htm" title="kai: e, tamb₂m -- ocorrência 6026 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit">
+<a href="/greek/3588.htm" title="para: o / a [que] -- ocorrência 1064 de 1714.">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">o</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Neutro Singular">Art-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2782.htm" title="Grego de Strong 2782: anúncio">2782</a></span><br/><span class="translit">
+<a href="/greek/2782.htm" title="krishygma: prenúncio-ocorrência 5 de 7.">kērygma</a></span><br/><span class="greek">κήρυγμά</span><br/><span class="eng">pregação</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Neutro Singular">S-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1473.htm" title="Strong's Greek 1473: UE, n">1473</a></span><br/><span class="translit">
+<a href="/greek/1473.htm" title="mou: meu, minha -- ocorrência 407 de 567.">mou</a></span><br/><span class="greek">μου</span><br/><span class="eng">meu</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">PPro-G1S</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit">
+<a href="/greek/3756.htm" title="ouk: [foi] n Elimo -- ocorrência 534 de 830.">ouk</a></span><br/><span class="greek">οὐκ</span><br/><span class="eng">[foi] n</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit">
+<a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1510 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3981.htm" title="Grego de Strong 3981: persuasivo">3981</a></span><br/><span class="translit">
+<a href="/greek/3981.htm" title="peithois: persuasivo-ocorrência 1 de 1.">peithois</a></span><br/><span class="greek">πειθοῖς*</span><br/><span class="eng">persuasivo</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Dativo Masculino Plural">Adj-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4678.htm" title="Strong's Greek 4678: sabedoria">4678</a></span><br/><span class="translit">
+<a href="/greek/4678.htm" title="sophias: da sabedoria-ocorrência 5 de 12.">sophias</a></span><br/><span class="greek">σοφίας</span><br/><span class="eng">de sabedoria</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Feminino Singular">S-GFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3056.htm" title="Strong's Greek 3056: palavras, razões, motivos">3056</a></span><br/><span class="translit">
+<a href="/greek/3056.htm" title="logois: palavras-ocorrência 9 de 17.">logois</a></span><br/><span class="greek">λόγοις</span><span class="punct">  ,</span><br/>
+<span class="eng">palavras</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Masculino Plural">S-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/235.htm" title="Strong's Greek 235: mas, por9m, exceto">235</a></span><br/><span class="translit">
+<a href="/greek/235.htm" title="todos: mas, por₂, exceto-ocorrência 121 de 223.">allá</a></span><br/><span class="greek">ἀλλ'</span><br/><span class="eng">mas</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit">
+<a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1511 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/585.htm" title="Strong's Greek 585: demonstração">585</a></span><br/><span class="translit">
+<a href="/greek/585.htm" title="apodeixei: demonstração -- ocorrência 1 de 1.">apodeixei</a></span><br/><span class="greek">ἀποδείξει</span><br/><span class="eng">demonstração</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Feminino Singular">S-DFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit">
+<a href="/greek/4151.htm" title="pneumatos: do ESP extraterrito -- ocorrência 52 de 97.">pneumatos</a></span><br/><span class="greek">πνεύματος</span><br/><span class="eng">de esp@rito</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Neutro Singular">S-GNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit">
+<a href="/greek/2532.htm" title="kai: e, tamb₂m -- ocorrência 6027 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1411.htm" title="Strong's Greek 1411: poder, para supérflua, habilidade, feitos poderosos, obras maravilhosas">1411</a></span><br/><span class="translit">
+<a href="/greek/1411.htm" title="diname9: capacidade - poder -- ocorrência 8 de 21.">dynameōs</a></span><br/><span class="greek">δυνάμεως</span><span class="punct">  ;</span><br/>
+<span class="eng">de poder</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Feminino Singular">S-GFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">5   </span><span class="pos"><a href="/greek/2443.htm" title="Strong's Greek 2443: para que">2443</a></span><br/><span class="reftrans">5   </span>
+<span class="translit"><a href="/greek/2443.htm" title="Hina: para que -- ocorrência 353 de 671.">hina</a></span><br/><span class="refmain">5   </span><span class="greek">ἵνα</span><br/><span class="refbot">5   </span><span class="eng">que</span><br/><span class="reftop2">5   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="H9: a - - - ocorrência 562 de 992.">hē</a></span><br/><span class="greek">ἡ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Feminino Singular">Art-NFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4102.htm" title="Strong's Greek 4102: F9, confian3a, fidelidade">4102</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pistis: F17 de 36.">pistis</a></span><br/><span class="greek">πίστις</span><br/><span class="eng">fé</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Feminino Singular">S-NFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4771.htm" title="Grego de Strong 4771: tu, voc">4771</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hym3n: vosso, de V3S -- ocorrência 282 de 565.">hymōn</a></span><br/><span class="greek">ὑμῶν</span><span class="punct">  ,</span><br/><span class="eng">seu</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Genitivo 2ª Pessoa Plural">PPro-G2P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3361.htm" title="Grego de Strong 3361: n">3361</a></span><br/><span class="translit"><a href="/greek/3361.htm" title="M9: N9O -- ocorrência 631 de 1061.">mē</a></span><br/><span class="greek">μὴ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1510.htm" title="Grego de Strong 1510: ser, estar, existir">1510</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="* ou, do que-ocorrência 25 de 43.">ē</a></span><br/><span class="greek">ᾖ</span><br/><span class="eng">seria</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Subjuntivo Ativo - 3ª Pessoa Singular">V-PSA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1512 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4678.htm" title="Strong's Greek 4678: sabedoria">4678</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="sophia: sabedoria -- ocorrência 13 de 25.">sophia</a></span><br/><span class="greek">σοφίᾳ</span><br/><span class="eng">sabedoria</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Feminino Singular">S-DFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/444.htm" title="Grego de Strong 444: ser humano">444</a></span><br/><span class="translit"><a href="/greek/444.htm" title="anthr * P * N: dos seres humanos-ocorrência 58 de 100.">anthrōpōn</a></span><br/><span class="greek">ἀνθρώπων</span><span class="punct">  ,</span><br/><span class="eng">de seres humanos</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Plural">S-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/235.htm" title="Strong's Greek 235: mas, por9m, exceto">235</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="todos: mas, por₂, exceto-ocorrência 122 de 223.">allá</a></span><br/><span class="greek">ἀλλ'</span><br/><span class="eng">mas</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1513 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1411.htm" title="Strong's Greek 1411: poder, para supérflua, habilidade, feitos poderosos, obras maravilhosas">1411</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="dynamei: poder, para a extraterritorialidade, feito poderoso -- ocorrência 13 de 26.">dynamei</a></span><br/><span class="greek">δυνάμει</span><br/><span class="eng">poder</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Feminino Singular">S-DFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="theou: de Deus -- ocorrência 330 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><span class="punct">  .</span><br/><span class="eng">de Deus</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td class="center"><span class="title">Sabedoria desde o, a esp7rito de Deus</span></td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc">   </span></td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">6   </span><span class="pos"><a href="/greek/4678.htm" title="Strong's Greek 4678: sabedoria">4678</a></span><br/><span class="reftrans">6   </span>
+<span class="translit"><a href="/greek/4678.htm" title="Sophian: sabedoria-ocorrência 9 de 14.">Sophian</a></span><br/><span class="refmain">6   </span><span class="greek">Σοφίαν</span><br/><span class="refbot">6   </span><span class="eng">sabedoria</span><br/><span class="reftop2">6   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Feminino Singular">S-AFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: al7m dito, por7m, em seguida">1161</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="de: al9m dito , por9m, em seguida -- ocorrência 2121 de 2786.">de</a></span><br/><span class="greek">δὲ</span><br/><span class="eng">em seguida</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2980.htm" title="Strong's Greek 2980: falar, falar">2980</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="laloumen: n falam-ocorrência 2 de 10.">laloumen</a></span><br/><span class="greek">λαλοῦμεν</span><br/><span class="eng">nós falamos</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Ativo - 1ª Pessoa Plural">V-PIA-1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1514 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">entre</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="Tois: aos, extraterritorials -- ocorrência 417 de 628.">tois</a></span><br/><span class="greek">τοῖς</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Dativo Masculino Plural">Art-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5046.htm" title="Strong's Greek 5046: maduro, completo, perfeito">5046</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="teleiois: cheioy-desenvolvido -- ocorrência 1 de 1.">teleiois</a></span><br/><span class="greek">τελείοις</span><span class="punct">  ;</span><br/><span class="eng">Maduro</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Dativo Masculino Plural">Adj-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4678.htm" title="Strong's Greek 4678: sabedoria">4678</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="sophian: sabedoria-ocorrência 10 de 14.">sophian</a></span><br/><span class="greek">σοφίαν</span><br/><span class="eng">sabedoria</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Feminino Singular">S-AFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: al7m dito, por7m, em seguida">1161</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="de: al9m dito , por9m, em seguida -- ocorrência 2122 de 2786.">de</a></span><br/><span class="greek">δὲ</span><span class="punct">  ,</span><br/><span class="eng">em seguida</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="ou: N9O -- ocorrência 438 de 699.">ou</a></span><br/><span class="greek">οὐ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="tou : do -- ocorrência 1563 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/165.htm" title="Strong's Greek 165: era, eternidade">165</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ai9nos: idade -- ocorrência 16 de 25.">aiōnos</a></span><br/><span class="greek">αἰῶνος</span><br/><span class="eng">idade</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3778.htm" title="Grego de Strong 3778: isto, este">3778</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="toutou: de isto / este-ocorrência 49 de 69.">toutou</a></span><br/><span class="greek">τούτου</span><span class="punct">  ,</span><br/><span class="eng">de isto / este</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Demonstrativo - Genitivo Masculino Singular">DPro-GMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3761.htm" title="Strong's Greek 3761: tampuque, nem mesmo">3761</a></span><br/><span class="translit"><a href="/greek/3761.htm" title="Oude: tampuque , nem mesmo -- ocorrência 91 de 135.">oude</a></span><br/><span class="greek">οὐδὲ</span><br/><span class="eng">nem</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="T7: dos [que] -- ocorrência 794 de 1218.">tōn</a></span><br/><span class="greek">τῶν</span><br/><span class="eng">do</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Plural">Art-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/758.htm" title="Grego de Strong 758: l">758</a></span><br/><span class="translit"><a href="/greek/758.htm" title="archont3n: l3deres -- ocorrência 4 de 5.">archontōn</a></span><br/><span class="greek">ἀρχόντων</span><br/><span class="eng">l3deres</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Plural">S-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="tou : do -- ocorrência 1564 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/165.htm" title="Strong's Greek 165: era, eternidade">165</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ai7nos: idade -- ocorrência 17 de 25.">aiōnos</a></span><br/><span class="greek">αἰῶνος</span><br/><span class="eng">idade</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3778.htm" title="Grego de Strong 3778: isto, este">3778</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="toutou: de isto / este -- ocorrência 50 de 69.">toutou</a></span><br/><span class="greek">τούτου</span><span class="punct">  ,</span><br/><span class="eng">de isto / este</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Demonstrativo - Genitivo Masculino Singular">DPro-GMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="T7: dos [que] -- ocorrência 795 de 1218.">tōn</a></span><br/><span class="greek">τῶν</span><br/><span class="eng">o que</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Plural">Art-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2673.htm" title="Grego de Strong 2673: são vindo a nada">2673</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="katargoumen9: são vindo a nada-ocorrência 1 de 1.">katargoumenōn</a></span><br/><span class="greek">καταργουμένων</span><span class="punct">  .</span><br/><span class="eng">são vindo a nada</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Particípio Média ou Passiva - Genitivo Masculino Plural">V-PPM/P-GMP</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">7   </span><span class="pos"><a href="/greek/235.htm" title="Strong's Greek 235: mas, por9m, exceto">235</a></span><br/><span class="reftrans">7   </span>
+<span class="translit"><a href="/greek/235.htm" title="alla: mas, por outro lado, ao in206 de 421.">alla</a></span><br/><span class="refmain">7   </span><span class="greek">ἀλλὰ</span><br/><span class="refbot">7   </span>
+<span class="eng">mas</span><br/><span class="reftop2">7   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2980.htm" title="Strong's Greek 2980: falar, falar">2980</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="laloumen: n falam-ocorrência 3 de 10.">laloumen</a></span><br/><span class="greek">λαλοῦμεν</span><br/><span class="eng">nós falamos</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Ativo - 1ª Pessoa Plural">V-PIA-1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="theou: de Deus -- ocorrência 331 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><br/><span class="eng">de Deus</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4678.htm" title="Strong's Greek 4678: sabedoria">4678</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="sophian: sabedoria-ocorrência 11 de 14.">sophian</a></span><br/><span class="greek">σοφίαν</span><span class="punct">  ,</span><br/><span class="eng">sabedoria</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Feminino Singular">S-AFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1515 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3466.htm" title="Strong's Greek 3466: um mistério">3466</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="myst9ri9: um mistério-ocorrência 1 de 2.">mystēriō</a></span><br/><span class="greek">μυστηρίῳ</span><span class="punct">  ,</span><br/><span class="eng">um mistério</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Neutro Singular">S-DNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="T9: a-ocorrência 973 de 1538.">tēn</a></span><br/><span class="greek">τὴν</span><br/><span class="eng">que</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Feminino Singular">Art-AFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/613.htm" title="Grego de Strong 613: oculto">613</a></span><br/><span class="translit"><a href="/greek/613.htm" title="apokekrymmen9: oculto-ocorrência 1 de 1.">apokekrymmenēn</a></span><br/><span class="greek">ἀποκεκρυμμένην</span><span class="punct">  ,</span><br/><span class="eng">oculto</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Particípio Média ou Passiva - Acusativo Feminino Singular">V-RPM/P-AFS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3739.htm" title="Grego de Strong 3739: quem, qual, o que">3739</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="H9: [sabedoria] que -- ocorrência 46 de 98.">hēn</a></span><br/><span class="greek">ἣν</span><br/><span class="eng">que</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Relativo - Acusativo Feminino Singular">RelPro-AFS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4309.htm" title="Grego de Strong 4309: predeterminado">4309</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pro7risen: pré-determinado-ocorrência 4 de 4.">proōrisen</a></span><br/><span class="greek">προώρισεν</span><br/><span class="eng">predeterminado</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Singular">V-AIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="ho: o [que] -- ocorrência 2166 de 2965.">ho</a></span><br/><span class="greek">ὁ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Masculino Singular">Art-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="/greek/2316.htm" title="theos: Deus -- ocorrência 158 de 311.">theos</a></span><br/><span class="greek">θεὸς</span><br/><span class="eng">Deus</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Masculino Singular">S-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4253.htm" title="Grego de Strong 4253: antes, perante">4253</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pro: antes, perante -- ocorrência 31 de 47.">pro</a></span><br/><span class="greek">πρὸ</span><br/><span class="eng">antes</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="T7: dos [que] -- ocorrência 796 de 1218.">tōn</a></span><br/><span class="greek">τῶν</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Plural">Art-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/165.htm" title="Strong's Greek 165: era, eternidade">165</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ai9n0n: idades -- ocorrência 1 de 28.">aiōnōn</a></span><br/><span class="greek">αἰώνων</span><span class="punct">  ,</span><br/><span class="eng">eras</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Plural">S-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1519.htm" title="Strong's Greek 1519: para dentro, em, para">1519</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="eis: para dentro, em, Para -- ocorrência 1229 de 1774.">eis</a></span><br/><span class="greek">εἰς</span><br/><span class="eng">pois</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1391.htm" title="Strong's Greek 1391: GL extraterria">1391</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="doxan: GL extraterria -- ocorrência 32 de 58.">doxan</a></span><br/><span class="greek">δόξαν</span><br/><span class="eng">glínseca</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Feminino Singular">S-AFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1473.htm" title="Strong's Greek 1473: UE, n">1473</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="h3mn: de n9s, nosso -- ocorrência 145 de 408.">hēmōn</a></span><br/><span class="greek">ἡμῶν</span><span class="punct">  ,</span><br/><span class="eng">nosso</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Plural">PPro-G1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">8   </span><span class="pos"><a href="/greek/3739.htm" title="Grego de Strong 3739: quem, qual, o que">3739</a></span><br/><span class="reftrans">8   </span>
+<span class="translit"><a href="/greek/3739.htm" title="H9: que -- ocorrência 47 de 98.">hēn</a></span><br/><span class="refmain">8   </span>
+<span class="greek">ἣν</span><br/><span class="refbot">8   </span>
+<span class="eng">que</span><br/><span class="reftop2">8   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Relativo - Acusativo Feminino Singular">RelPro-AFS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3762.htm" title="Strong's Greek 3762: nenhum, nenhum, nada">3762</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="oudeis: nungux, nenhum, nada -- ocorrência 69 de 98.">oudeis</a></span><br/><span class="greek">οὐδεὶς</span><br/><span class="eng">nínguxm</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="T7: dos [que] -- ocorrência 797 de 1218.">tōn</a></span><br/><span class="greek">τῶν</span><br/><span class="eng">do</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Plural">Art-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/758.htm" title="Grego de Strong 758: l">758</a></span><br/><span class="translit"><a href="/greek/758.htm" title="archont3n: l3deres -- ocorrência 5 de 5.">archontōn</a></span><br/><span class="greek">ἀρχόντων</span><br/><span class="eng">l3deres</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Plural">S-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1565 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/165.htm" title="Strong's Greek 165: era, eternidade">165</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ai9nos: idade -- ocorrência 18 de 25.">aiōnos</a></span><br/><span class="greek">αἰῶνος</span><br/><span class="eng">idade</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3778.htm" title="Grego de Strong 3778: isto, este">3778</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="toutou: de isto / este -- ocorrência 51 de 69.">toutou</a></span><br/><span class="greek">τούτου</span><span class="punct">  ,</span><br/><span class="eng">de isto / este</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Demonstrativo - Genitivo Masculino Singular">DPro-GMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1097.htm" title="Grego de Strong 1097: [vir a] conhecer, aprender, perceber">1097</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="egn7: tem conhecido -- ocorrência 1 de 3.">egnōken</a></span><br/><span class="greek">ἔγνωκεν</span><span class="punct">  ;</span><br/><span class="eng">compreendeu</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Indicativo Ativo - 3ª Pessoa Singular">V-RIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1487.htm" title="Grego de Strong 1487: se">1487</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Ei : se -- ocorrência 281 de 508.">ei</a></span><br/><span class="greek">εἰ</span><br/><span class="eng">se </span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1063.htm" title="Strong's Greek 1063: pois, de fato">1063</a></span><br/><span class="translit"><a href="/greek/1063.htm" title="gar: pois , de fato -- ocorrência 587 de 1046.">gar</a></span><br/><span class="greek">γὰρ</span><br/><span class="eng">pois</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1097.htm" title="Grego de Strong 1097: [vir a] conhecer, aprender, perceber">1097</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="egn7: eles tinha conhecidos -- ocorrência 15 de 17.">egnōsan</a></span><br/><span class="greek">ἔγνωσαν</span><span class="punct">  ,</span><br/><span class="eng">eles tinha entendido</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Plural">V-AIA-3P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="Ouk: n7, nem -- ocorrência 535 de 830.">ouk</a></span><br/><span class="greek">οὐκ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/302.htm" title="Strong's Greek 302: part Península condicional que expressa possibilidade (sem tradu302)">302</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="An: de algum modo-ocorrência 143 de 166.">an</a></span><br/><span class="greek">ἂν</span><br/><span class="eng">de qualquer forma</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Partícula">Prtcl</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="ton : ao-ocorrência 1180 de 1588.">ton</a></span><br/><span class="greek">τὸν</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Masculino Singular">Art-AMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2962.htm" title="Grego de Strong 2962: Senhor">2962</a></span><br/><span class="translit"><a href="/greek/2962.htm" title="kyrion: Senhor -- ocorrência 41 de 68.">kyrion</a></span><br/><span class="greek">κύριον</span><br/><span class="eng">Senhor</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Masculino Singular">S-AMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="T3: da-ocorrência 696 de 1306.">tēs</a></span><br/><span class="greek">τῆς</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Feminino Singular">Art-GFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1391.htm" title="Strong's Greek 1391: GL extraterria">1391</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="dox9: glória-ocorrência 14 de 48.">doxēs</a></span><br/><span class="greek">δόξης</span><br/><span class="eng">de glory</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Feminino Singular">S-GFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4717.htm" title="Grego de Strong 4717: eles desejava crucificaram">4717</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="estaur@san: eles desejavam ter crucificado-ocorrência 6 de 7.">estaurōsan</a></span><br/><span class="greek">ἐσταύρωσαν</span><span class="punct">  ,</span><br/><span class="eng">eles desejavam crucificaram</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Plural">V-AIA-3P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">9   </span><span class="pos"><a href="/greek/235.htm" title="Strong's Greek 235: mas, por9m, exceto">235</a></span><br/><span class="reftrans">9   </span>
+<span class="translit"><a href="/greek/235.htm" title="alla: mas, por outro lado, ao in207 de 421.">alla</a></span><br/><span class="refmain">9   </span><span class="greek">ἀλλὰ</span><br/><span class="refbot">9   </span>
+<span class="eng">mas</span><br/><span class="reftop2">9   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2531.htm" title="Strong's Greek 2531: de acordo com, visto que, depois que">2531</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kath3s: de acordo com-ocorrência 93 de 182.">kathōs</a></span><br/><span class="greek">καθὼς</span><br/><span class="eng">como</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1125.htm" title="Grego de Strong 1125: escrever">1125</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="gegraptai : foi escrito -- ocorrência 51 de 67.">gegraptai</a></span><br/><span class="greek">γέγραπται</span><span class="punct">  ,</span><br/><span class="eng">foi escrito</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Indicativo Média ou Passiva - 3ª Pessoa Singular">V-RIM/P-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc2">      </span></td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3739.htm" title="Grego de Strong 3739: quem, qual, o que">3739</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="HA: coisas que -- ocorrência 61 de 118.">HA</a></span><br/><span class="greek">Ἃ</span><br/><span class="eng">coisas que</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Relativo - Acusativo Neutro Plural">RelPro-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3788.htm" title="Grego de Strong 3788: olho">3788</a></span><br/><span class="translit"><a href="/greek/3788.htm" title="Oftalmologia: olho -- ocorrência 11 de 15.">ophthalmos</a></span><br/><span class="greek">ὀφθαλμὸς</span><br/><span class="eng">olho</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Masculino Singular">S-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="Ouk: n7, nem -- ocorrência 536 de 830.">ouk</a></span><br/><span class="greek">οὐκ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3708.htm" title="Grego de Strong 3708: ver, perceber">3708</a></span><br/><span class="translit"><a href="/greek/3708.htm" title="Eiden: ele viu -- ocorrência 39 de 42.">eiden</a></span><br/><span class="greek">εἶδεν</span><span class="punct">  ,</span><br/><span class="eng">Serra</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Singular">V-AIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="/greek/2532.htm" title="kai: e, tamb₂ -- ocorrência 6028 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3775.htm" title="Grego de Strong 3775: ouvido">3775</a></span><br/><span class="translit"><a href="/greek/3775.htm" title="ous: ear -- ocorrência 4 de 13.">ous</a></span><br/><span class="greek">οὖς</span><br/><span class="eng">ouvido</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Neutro Singular">S-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="Ouk: n9, nem -- ocorrência 537 de 830.">ouk</a></span><br/><span class="greek">οὐκ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/191.htm" title="Grego de Strong 191: ouvir">191</a></span><br/><span class="translit"><a href="/greek/191.htm" title="* kousen: heard-ocorrência 16 de 17.">ēkousen</a></span><br/><span class="greek">ἤκουσεν</span><span class="punct">  ,</span><br/><span class="eng">ouvido</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Singular">V-AIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc4">            </span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="/greek/2532.htm" title="kai: e, tamb₂ -- ocorrência 6029 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1909.htm" title="Strong's Greek 1909: em, sobre, sobre, Em, Por, antes, atrav, contra, entre, ao lado, em, com base em">1909</a></span><br/><span class="translit"><a href="/greek/1909.htm" title="epi: sobre, em cima -- ocorrência 440 de 669.">epi</a></span><br/><span class="greek">ἐπὶ</span><br/><span class="eng">para dentro</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2588.htm" title="Strong's Greek 2588: Cora">2588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kardian: Cora Elimo -- ocorrência 14 de 19.">kardian</a></span><br/><span class="greek">καρδίαν</span><br/><span class="eng">Cora</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Feminino Singular">S-AFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/444.htm" title="Grego de Strong 444: ser humano">444</a></span><br/><span class="translit"><a href="/greek/444.htm" title="antr9pou: do ser humano-ocorrência 116 de 132.">anthrōpou</a></span><br/><span class="greek">ἀνθρώπου</span><br/><span class="eng">ser humano</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="Ouk: n7, nem -- ocorrência 538 de 830.">ouk</a></span><br/><span class="greek">οὐκ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/305.htm" title="Grego de Strong 305: Erger-se, subir, ascendente">305</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="aneb7: ele (a) ergueu-se, subiu --- ocorrência 19 de 22.">anebē</a></span><br/><span class="greek">ἀνέβη</span><span class="punct">  ,</span><br/><span class="eng">veio</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Singular">V-AIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc3">         </span></td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3739.htm" title="Grego de Strong 3739: quem, qual, o que">3739</a></span><br/><span class="translit"><a href="/greek/3739.htm" title="ha : que -- ocorrência 62 de 118.">ha</a></span><br/><span class="greek">ἃ*</span><br/><span class="eng">que</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Relativo - Acusativo Neutro Plural">RelPro-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2090.htm" title="Strong's Greek 2090: preparar">2090</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="h3toimasen: preparado -- ocorrência 1 de 3.">hētoimasen</a></span><br/><span class="greek">ἡτοίμασεν</span><br/><span class="eng">preparado</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Singular">V-AIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="ho: o [que] -- ocorrência 2167 de 2965.">ho</a></span><br/><span class="greek">ὁ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Masculino Singular">Art-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="/greek/2316.htm" title="theos: Deus -- ocorrência 159 de 311.">theos</a></span><br/><span class="greek">θεὸς</span><br/><span class="eng">Deus</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Masculino Singular">S-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Tois: aos, extraterritorials -- ocorrência 418 de 628.">tois</a></span><br/><span class="greek">τοῖς</span><br/><span class="eng">Pois aqueles para
+																				que</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Dativo Masculino Plural">Art-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/25.htm" title="Grego de Strong 25: amar">25</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="agap9sin: loving -- ocorrência 3 de 5.">agapōsin</a></span><br/><span class="greek">ἀγαπῶσιν</span><br/><span class="eng">amor</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Particípio Ativo - Dativo Masculino Plural">V-PPA-DMP</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/846.htm" title="Grego de Strong 846: ele(s), ela(s)">846</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="auton: - não, - na -- ocorrência 858 de 961.">auton</a></span><br/><span class="greek">αὐτόν</span><span class="punct">  —</span><br/><span class="eng">a ele</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Singular">PPro-AM3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">10   </span><span class="pos"><a href="/greek/1473.htm" title="Strong's Greek 1473: UE, n">1473</a></span><br/><span class="reftrans">10   </span>
+<span class="translit"><a href="/greek/1473.htm" title="h3min: a n9s -- ocorrência 109 de 169.">hēmin</a></span><br/><span class="refmain">10   </span><span class="greek">ἡμῖν</span><br/><span class="refbot">10   </span><span class="eng">a
+																				n7</span><br/><span class="reftop2">10   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Dativo 1ª Pessoa Plural">PPro-D1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: também, por, al, por outro lado, agora">1161</a></span><br/><span class="translit"><a href="/greek/1161.htm" title="de: tambidimensionalidade, por9imetria, poro outro lado, Ágora -- ocorrência 2123 de 2786.">de</a></span><br/><span class="greek">δὲ**</span><br/><span class="eng">em seguida</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/601.htm" title="Strong's Greek 601: revelado [eles]">601</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="apekalypsen: revelado [eles] - ocorrência 2 de 2.">apekalypsen</a></span><br/><span class="greek">ἀπεκάλυψεν</span><br/><span class="eng">revelado [eles]</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Singular">V-AIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="ho: o [que] -- ocorrência 2168 de 2965.">ho</a></span><br/><span class="greek">ὁ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Masculino Singular">Art-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="/greek/2316.htm" title="theos: Deus -- ocorrência 160 de 311.">theos</a></span><br/><span class="greek">θεὸς</span><br/><span class="eng">Deus</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Masculino Singular">S-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1223.htm" title="Strong's Greek 1223: por causa de, atrav">1223</a></span><br/><span class="translit"><a href="/greek/1223.htm" title="dia: por causa de, atrav9s de, pelo(a)-- ocorrência 304 de 521.">dia</a></span><br/><span class="greek">διὰ</span><br/><span class="eng">por</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1566 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Neutro Singular">Art-GNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneumatos: do ESP extraterrito -- ocorrência 53 de 97.">pneumatos</a></span><br/><span class="greek">πνεύματος</span><span class="punct">  .</span><br/><span class="eng">esp7rito</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Neutro Singular">S-GNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a --="" 1065="" 1714."="" occurrence="" of="">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Neutro Singular">Art-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1063.htm" title="Strong's Greek 1063: pois, de fato">1063</a></span><br/><span class="translit"><a href="/greek/1063.htm" title="gar: pois , de fato -- ocorrência 588 de 1046.">gar</a></span><br/><span class="greek">γὰρ</span><br/><span class="eng">pois</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneuma: vento, sopro, esp7rito -- ocorrência 97 de 160.">pneuma</a></span><br/><span class="greek">πνεῦμα</span><span class="punct">  ,</span><br/><span class="eng">esp7rito</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Neutro Singular">S-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3956.htm" title="Strong's Greek 3956: todo, cada um">3956</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Panta: tudo, todos -- ocorrência 140 de 265.">panta</a></span><br/><span class="greek">πάντα</span><br/><span class="eng">todos coisas</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Adjetivo - Acusativo Neutro Plural">Adj-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2045.htm" title="Strong's Greek 2045: pesquisas">2045</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="erauna: pesquisas -- ocorrência 1 de 1.">erauna</a></span><br/><span class="greek">ἐραυνᾷ</span><span class="punct">  ,</span><br/><span class="eng">pesquisas</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Ativo - 3ª Pessoa Singular">V-PIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="/greek/2532.htm" title="kai: e, tamb₂m -- ocorrência 6030 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">mesmo</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="ta: ao, ② -- ocorrência 506 de 843.">ta</a></span><br/><span class="greek">τὰ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Plural">Art-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/899.htm" title="Grego de Strong 899: profundidades">899</a></span><br/><span class="translit"><a href="/greek/899.htm" title="bath extraterritorial: ou do que -- ocorrência 1 de 1.">bathē</a></span><br/><span class="greek">βάθη</span><br/><span class="eng">profundidades</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Neutro Plural">S-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1567 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="theou: de Deus -- ocorrência 332 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><span class="punct">  .</span><br/><span class="eng">de Deus</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">11   </span><span class="pos"><a href="/greek/5101.htm" title="Strong's Greek 5101: quem, qual,o que? ">5101</a></span><br/><span class="reftrans">11   </span>
+<span class="translit"><a href="/greek/5101.htm" title="T3: quem, qual,o que?  -- Ocorrência 112 de 147.">tis</a></span><br/><span class="refmain">11   </span><span class="greek">τίς</span><br/><span class="refbot">11   </span><span class="eng">o
+																				que</span><br/><span class="reftop2">11   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Interrogativo/Indefinido - Nominativo Masculino Singular">IPro-NMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1063.htm" title="Strong's Greek 1063: pois, de fato">1063</a></span><br/><span class="translit"><a href="/greek/1063.htm" title="gar: pois , de fato -- ocorrência 589 de 1046.">gar</a></span><br/><span class="greek">γὰρ</span><br/><span class="eng">pois</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1492.htm" title="Grego de Strong 1492: saber, recordar">1492</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="oiden: ele sou , lembrou -- ocorrência 12 de 22.">oiden</a></span><br/><span class="greek">οἶδεν</span><br/><span class="eng">sabe</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Indicativo Ativo - 3ª Pessoa Singular">V-RIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/444.htm" title="Grego de Strong 444: ser humano">444</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="anthr * P * N: dos seres humanos-ocorrência 59 de 100.">anthrōpōn</a></span><br/><span class="greek">ἀνθρώπων</span><br/><span class="eng">de seres
+																				humanos</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Plural">S-GMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ta: ao, coisas-ocorrência 507 de 843.">ta</a></span><br/><span class="greek">τὰ</span><br/><span class="eng">as coisas</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Plural">Art-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1568 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">do</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/444.htm" title="Grego de Strong 444: ser humano">444</a></span><br/><span class="translit"><a href="/greek/444.htm" title="anthr7pou: do ser humano -- ocorrência 117 de 132.">anthrōpou</a></span><br/><span class="greek">ἀνθρώπου</span><span class="punct">  ,</span><br/><span class="eng">ser humano</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1487.htm" title="Grego de Strong 1487: se">1487</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Ei : se -- ocorrência 282 de 508.">ei</a></span><br/><span class="greek">εἰ</span><br/><span class="eng">se </span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3361.htm" title="Grego de Strong 3361: n">3361</a></span><br/><span class="translit"><a href="/greek/3361.htm" title="M9: N9O -- ocorrência 632 de 1061.">mē</a></span><br/><span class="greek">μὴ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a --="" 1066="" 1714."="" occurrence="" of="">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Neutro Singular">Art-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneuma: vento, sopro, esp9rito -- ocorrência 98 de 160.">pneuma</a></span><br/><span class="greek">πνεῦμα</span><br/><span class="eng">esp7rito</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Neutro Singular">S-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1569 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">do</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/444.htm" title="Grego de Strong 444: ser humano">444</a></span><br/><span class="translit"><a href="/greek/444.htm" title="antr9pou: do ser humano-ocorrência 118 de 132.">anthrōpou</a></span><br/><span class="greek">ἀνθρώπου</span><br/><span class="eng">ser humano</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a [é]"="" href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="para: o / a [que] -- ocorrência 1067 de 1714.">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">que [valuetech]</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Neutro Singular">Art-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1516 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/846.htm" title="Grego de Strong 846: ele(s), ela(s)">846</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="aut720 de 856.">autō</a></span><br/><span class="greek">αὐτῷ</span><span class="punct">  ?</span><br/><span class="eng">a ele</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Dativo Masculino 3ª Pessoa Singular">PPro-DM3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3779.htm" title="Grego de Strong 3779: assim">3779</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Hout 4: Assim-ocorrência 122 de 205.">houtōs</a></span><br/><span class="greek">οὕτως</span><br/><span class="eng">assim</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="/greek/2532.htm" title="kai: e, tamb₂m -- ocorrência 6031 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">tambidimensionalm</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ta: ao, coisas-ocorrência 508 de 843.">ta</a></span><br/><span class="greek">τὰ</span><br/><span class="eng">as coisas</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Plural">Art-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1570 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="theou: de Deus -- ocorrência 333 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><br/><span class="eng">de Deus</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3762.htm" title="Strong's Greek 3762: nenhum, nenhum, nada">3762</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="oudeis: nungux, nenhum, nada -- ocorrência 70 de 98.">oudeis</a></span><br/><span class="greek">οὐδεὶς</span><br/><span class="eng">nínguxm</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1097.htm" title="Grego de Strong 1097: [vir a] conhecer, aprender, perceber">1097</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="egn7: sabe-ocorrência 2 de 3.">egnōken</a></span><br/><span class="greek">ἔγνωκεν</span><span class="punct">  ,</span><br/><span class="eng">sabe</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Indicativo Ativo - 3ª Pessoa Singular">V-RIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1487.htm" title="Grego de Strong 1487: se">1487</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Ei : se -- ocorrência 283 de 508.">ei</a></span><br/><span class="greek">εἰ</span><br/><span class="eng">se </span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3361.htm" title="Grego de Strong 3361: n">3361</a></span><br/><span class="translit"><a href="/greek/3361.htm" title="M9: N9O -- ocorrência 633 de 1061.">mē</a></span><br/><span class="greek">μὴ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a --="" 1068="" 1714."="" occurrence="" of="">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Neutro Singular">Art-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneuma: vento, sopro, esp9rito -- ocorrência 99 de 160.">pneuma</a></span><br/><span class="greek">πνεῦμα</span><br/><span class="eng">esp7rito</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Neutro Singular">S-NNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1571 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="theou: de Deus -- ocorrência 334 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><span class="punct">  .</span><br/><span class="eng">de Deus</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">12   </span><span class="pos"><a href="/greek/1473.htm" title="Strong's Greek 1473: UE, n">1473</a></span><br/><span class="reftrans">12   </span>
+<span class="translit"><a href="/greek/1473.htm" title="H9: n9-ocorrência 57 de 127.">hēmeis</a></span><br/><span class="refmain">12   </span><span class="greek">ἡμεῖς</span><br/><span class="refbot">12   </span>
+<span class="eng">n7</span><br/><span class="reftop2">12   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Nominativo 1ª Pessoa Plural">PPro-N1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: al7m dito, por7m, em seguida">1161</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="de: al9m dito , por9m, em seguida -- ocorrência 2124 de 2786.">de</a></span><br/><span class="greek">δὲ</span><span class="punct">  ,</span><br/><span class="eng">em seguida</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="ou: N9O -- ocorrência 439 de 699.">ou</a></span><br/><span class="greek">οὐ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a --="" 1069="" 1714."="" occurrence="" of="">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Singular">Art-ANS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneuma: vento, sopro, esp9rito -- ocorrência 100 de 160.">pneuma</a></span><br/><span class="greek">πνεῦμα</span><br/><span class="eng">esp7rito</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Neutro Singular">S-ANS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="tou : do -- ocorrência 1572 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">do</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2889.htm" title="Strong's Greek 2889: ordem, ornamento, mundo, universo">2889</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kosmou: do mundo-ocorrência 42 de 72.">kosmou</a></span><br/><span class="greek">κόσμου</span><br/><span class="eng">mundo</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2983.htm" title="Strong's Greek 2983: ter, tomar">2983</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="elabomen: temas, recebemos , tomamos posse -- ocorrência 6 de 7.">elabomen</a></span><br/><span class="greek">ἐλάβομεν</span><span class="punct">  ,</span><br/><span class="eng">recebido</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 1ª Pessoa Plural">V-AIA-1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/235.htm" title="Strong's Greek 235: mas, por9m, exceto">235</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="alla: mas, por outro lado, ao in208 de 421.">alla</a></span><br/><span class="greek">ἀλλὰ</span><br/><span class="eng">mas</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a --="" 1070="" 1714."="" occurrence="" of="">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">o</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Singular">Art-ANS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneuma: vento, sopro, esp9rito -- ocorrência 101 de 160.">pneuma</a></span><br/><span class="greek">πνεῦμα</span><br/><span class="eng">esp7rito</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Neutro Singular">S-ANS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a [é]"="" href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="para: o / a [que] -- ocorrência 1071 de 1714.">to</a></span><br/><span class="greek">τὸ</span><br/><span class="eng">quem/que [valuetech]</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Singular">Art-ANS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1537.htm" title="Grego de Strong 1537: de, desde, a partir de, fora de">1537</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ek: De, desde, a partir de, fora de -- ocorrência 390 de 685.">ek</a></span><br/><span class="greek">ἐκ</span><br/><span class="eng">desde</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1573 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="/greek/2316.htm" title="theou: Deus -- ocorrência 335 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><span class="punct">  ,</span><br/><span class="eng">Deus</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2443.htm" title="Strong's Greek 2443: para que">2443</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Hina: para que -- ocorrência 354 de 671.">hina</a></span><br/><span class="greek">ἵνα</span><br/><span class="eng">que</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1492.htm" title="Grego de Strong 1492: saber, recordar">1492</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="eid7: podemos saber-ocorrência 1 de 1.">eidōmen</a></span><br/><span class="greek">εἰδῶμεν</span><br/><span class="eng">podemos saber</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Perfeito Subjuntivo Ativo - 1ª Pessoa Plural">V-RSA-1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ta: ao, coisas-ocorrência 509 de 843.">ta</a></span><br/><span class="greek">τὰ</span><br/><span class="eng">as coisas</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Plural">Art-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5259.htm" title="Strong's Greek 5259: debaixo, embaixador, soluço">5259</a></span><br/><span class="translit"><a href="/greek/5259.htm" title="hipo: sob, por, cerca de -- ocorrência 111 de 188.">hypo</a></span><br/><span class="greek">ὑπὸ</span><br/><span class="eng">por</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1574 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="/greek/2316.htm" title="theou: Deus -- ocorrência 336 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><br/><span class="eng">Deus</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5483.htm" title="Grego de Strong 5483: graciosamente deu">5483</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="charisthenta: graciosamente deu-ocorrência 1 de 1.">charisthenta</a></span><br/><span class="greek">χαρισθέντα</span><br/><span class="eng">tendo sido concedido</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Particípio Passiva - Acusativo Neutro Plural">V-APP-ANP</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1473.htm" title="Strong's Greek 1473: UE, n">1473</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="h3min: a n9s -- ocorrência 110 de 169.">hēmin</a></span><br/><span class="greek">ἡμῖν</span><span class="punct">  ;</span><br/><span class="eng">a n7</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Dativo 1ª Pessoa Plural">PPro-D1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">13   </span><span class="pos"><a href="/greek/3739.htm" title="Grego de Strong 3739: quem, qual, o que">3739</a></span><br/><span class="reftrans">13   </span>
+<span class="translit"><a href="/greek/3739.htm" title="ha : que -- ocorrência 63 de 118.">ha</a></span><br/><span class="refmain">13   </span>
+<span class="greek">ἃ</span><br/><span class="refbot">13   </span>
+<span class="eng">que</span><br/><span class="reftop2">13   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Relativo - Acusativo Neutro Plural">RelPro-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="/greek/2532.htm" title="kai: e, tamb₂m -- ocorrência 6032 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">tambidimensionalm</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2980.htm" title="Strong's Greek 2980: falar, falar">2980</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="laloumen: n falam-ocorrência 4 de 10.">laloumen</a></span><br/><span class="greek">λαλοῦμεν</span><span class="punct">  ,</span><br/><span class="eng">nós falamos</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Ativo - 1ª Pessoa Plural">V-PIA-1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="Ouk: n7, nem -- ocorrência 539 de 830.">ouk</a></span><br/><span class="greek">οὐκ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1517 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1318.htm" title="Grego de Strong 1318: ensinado">1318</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="didaktois: ensinado-ocorrência 1 de 2.">didaktois</a></span><br/><span class="greek">διδακτοῖς</span><br/><span class="eng">ensinada</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Dativo Masculino Plural">Adj-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/442.htm" title="Grego de Strong 442: humano">442</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="antr9pin9: de humanos-ocorrência 1 de 2.">anthrōpinēs</a></span><br/><span class="greek">ἀνθρωπίνης</span><br/><span class="eng">de human</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Adjetivo - Genitivo Feminino Singular">Adj-GFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4678.htm" title="Strong's Greek 4678: sabedoria">4678</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="sophias: sabedoria-ocorrência 6 de 12.">sophias</a></span><br/><span class="greek">σοφίας</span><br/><span class="eng">sabedoria</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Feminino Singular">S-GFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3056.htm" title="Strong's Greek 3056: palavras, razões, motivos">3056</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="logois: palavras-ocorrência 10 de 17.">logois</a></span><br/><span class="greek">λόγοις</span><span class="punct">  ,</span><br/><span class="eng">palavras</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Dativo Masculino Plural">S-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/235.htm" title="Strong's Greek 235: mas, por9m, exceto">235</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="todos: mas, por₂, exceto-ocorrência 123 de 223.">allá</a></span><br/><span class="greek">ἀλλ'</span><br/><span class="eng">mas</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1722.htm" title="Grego de Strong 1722: em, com, por">1722</a></span><br/><span class="translit"><a href="/greek/1722.htm" title="Pt: em, com, por -- ocorrência 1518 de 2775.">en</a></span><br/><span class="greek">ἐν</span><br/><span class="eng">em [aqueles]</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1318.htm" title="Grego de Strong 1318: ensinado">1318</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="didaktois: ensinado-ocorrência 2 de 2.">didaktois</a></span><br/><span class="greek">διδακτοῖς</span><br/><span class="eng">ensinada</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Dativo Masculino Plural">Adj-DMP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneumatos: do ESP extraterrito -- ocorrência 54 de 97.">pneumatos</a></span><br/><span class="greek">πνεύματος</span><span class="punct">  ,</span><br/><span class="eng">de esp@rito</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Neutro Singular">S-GNS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4152.htm" title="Grego de Strong 4152: por espiritual [meios]">4152</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneumatikois: por espiritual [meios] - ocorrência 2 de 3.">pneumatikois</a></span><br/><span class="greek">πνευματικοῖς</span><br/><span class="eng">por espiritual [meios]</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Adjetivo - Dativo Neutro Plural">Adj-DNP</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4152.htm" title="Grego de Strong 4152: coisas espirituais">4152</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneumatika: coisas espirituais-ocorrência 1 de 4.">pneumatika</a></span><br/><span class="greek">πνευματικὰ</span><br/><span class="eng">coisas espirituais</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Adjetivo - Acusativo Neutro Plural">Adj-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4793.htm" title="Strong's Greek 4793: comunicação">4793</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="synkrinontes: comunicação -- ocorrência 1 de 2.">synkrinontes</a></span><br/><span class="greek">συνκρίνοντες</span><span class="punct">  .</span><br/><span class="eng">comunicação</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Presente Particípio Ativo - Nominativo Masculino Plural">V-PPA-NMP</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">14   </span><span class="pos"><a href="/greek/5591.htm" title="Grego de Strong 5591: almaish">5591</a></span><br/><span class="reftrans">14   </span>
+<span class="translit"><a href="/greek/5591.htm" title="psychikos: almaish -- ocorrência 1 de 1.">psychikos</a></span><br/><span class="refmain">14   </span><span class="greek">ψυχικὸς</span><br/><span class="refbot">14   </span><span class="eng">[o]
+																				natural</span><br/><span class="reftop2">14   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: al7m dito, por7m, em seguida">1161</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="de: al9m dito , por9m, em seguida -- ocorrência 2125 de 2786.">de</a></span><br/><span class="greek">δὲ</span><br/><span class="eng">em seguida</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/444.htm" title="Grego de Strong 444: ser humano">444</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="uma pessoa, um ser humano, um homem -- ocorrência 99 de 123.">anthrōpos</a></span><br/><span class="greek">ἄνθρωπος</span><span class="punct">  ,</span><br/><span class="eng">ser humano</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Masculino Singular">S-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="ou: N9O -- ocorrência 440 de 699.">ou</a></span><br/><span class="greek">οὐ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1209.htm" title="Grego de Strong 1209: recebe">1209</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="dechetai: recebe -- ocorrência 8 de 8.">dechetai</a></span><br/><span class="greek">δέχεται</span><br/><span class="eng">recebe</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Média ou Passiva - 3ª Pessoa Singular">V-PIM/P-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="ta: ao, coisas-ocorrência 510 de 843.">ta</a></span><br/><span class="greek">τὰ</span><br/><span class="eng">as coisas</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Acusativo Neutro Plural">Art-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="tou : do -- ocorrência 1575 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">do</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Neutro Singular">Art-GNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4151.htm" title="Strong's Greek 4151: vento, sopro, ESP">4151</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneumatos: do ESP extraterrito -- ocorrência 55 de 97.">pneumatos</a></span><br/><span class="greek">πνεύματος</span><br/><span class="eng">esp7rito</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Neutro Singular">S-GNS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="tou : do -- ocorrência 1576 de 2538.">tou</a></span><br/><span class="greek">τοῦ</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Genitivo Masculino Singular">Art-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2316.htm" title="Grego de Strong 2316: Deus">2316</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="theou: de Deus -- ocorrência 337 de 698.">theou</a></span><br/><span class="greek">θεοῦ</span><span class="punct">  ;</span><br/><span class="eng">de Deus</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3472.htm" title="Strong's Greek 3472: insensatez maçante">3472</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="mōria: sem graça loucura -- Ocorrência de 2 a 3.">mōria</a></span><br/><span class="greek">μωρία</span><br/><span class="eng">tolice</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Nominativo Feminino Singular">S-NFS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1063.htm" title="Strong's Greek 1063: pois, de fato">1063</a></span><br/><span class="translit"><a href="/greek/1063.htm" title="gar: pois , de fato -- ocorrência 590 de 1046.">gar</a></span><br/><span class="greek">γὰρ</span><br/><span class="eng">pois</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/846.htm" title="Grego de Strong 846: ele(s), ela(s)">846</a></span><br/><span class="translit"><a href="/greek/846.htm" title="aut721 de 856.">autō</a></span><br/><span class="greek">αὐτῷ</span><br/><span class="eng">para um ele</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Dativo Masculino 3ª Pessoa Singular">PPro-DM3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1510.htm" title="Grego de Strong 1510: ser, estar, existir">1510</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="estin: ele9, est9 -- ocorrência 576 de 903.">estin</a></span><br/><span class="greek">ἐστίν</span><span class="punct">  ,</span><br/><span class="eng">s@o</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2532.htm" title="Strong's Greek 2532: e, tamb₂m">2532</a></span><br/><span class="translit"><a href="/greek/2532.htm" title="kai: e, tamb₂m -- ocorrência 6033 de 9079.">kai</a></span><br/><span class="greek">καὶ</span><br/><span class="eng">e</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3756.htm" title="Grego de Strong 3756: n">3756</a></span><br/><span class="translit"><a href="/greek/3756.htm" title="ou: N9O -- ocorrência 441 de 699.">ou</a></span><br/><span class="greek">οὐ</span><br/><span class="eng">n</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1410.htm" title="Grego de Strong 1410: ser poderoso, capaz">1410</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="dynatai: ele capaz, poderoso -- ocorrência 54 de 71.">dynatai</a></span><br/><span class="greek">δύναται</span><br/><span class="eng">ele intesti capaz</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Média ou Passiva - 3ª Pessoa Singular">V-PIM/P-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1097.htm" title="Grego de Strong 1097: [vir a] conhecer, aprender, perceber">1097</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="gn3nai: conheça [eles] - ocorrência 10 de 15.">gnōnai</a></span><br/><span class="greek">γνῶναι</span><span class="punct">  ,</span><br/><span class="eng">saber [eles]</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Infinitivo Active">V-ANA</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3754.htm" title="Strong's Greek 3754: que, porque, uma vez que">3754</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hoti: que, porque, uma vez que -- ocorrência 885 de 1309.">hoti</a></span><br/><span class="greek">ὅτι</span><br/><span class="eng">porque</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4153.htm" title="Grego de Strong 4153: espiritualmente">4153</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneumatik7: espiritualmente-ocorrência 1 de 2.">pneumatikōs</a></span><br/><span class="greek">πνευματικῶς</span><br/><span class="eng">espiritualmente</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Advérbio">Adv</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/350.htm" title="Strong's Greek 350: eles são julgados minuciosamente">350</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="anakrinetai: eles são julgados minuciosamente-ocorrência 1 de 3.">anakrinetai</a></span><br/><span class="greek">ἀνακρίνεται</span><span class="punct">  ;</span><br/><span class="eng">eles são discernidos</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Média ou Passiva - 3ª Pessoa Singular">V-PIM/P-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">15   </span><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="reftrans">15   </span>
+<span class="translit"><a href="/greek/3588.htm" title="ho: o [que] -- ocorrência 2169 de 2965.">ho</a></span><br/><span class="refmain">15   </span>
+<span class="greek">ὁ</span><br/><span class="refbot">15   </span><span class="eng">ele quem / que [valuetech]</span><br/><span class="reftop2">15   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Masculino Singular">Art-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: al7m dito, por7m, em seguida">1161</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="de: al9m dito , por9m, em seguida -- ocorrência 2126 de 2786.">de</a></span><br/><span class="greek">δὲ</span><br/><span class="eng">em seguida</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4152.htm" title="Grego de Strong 4152: espiritual">4152</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="pneumatikos: espiritual-ocorrência 2 de 4.">pneumatikos</a></span><br/><span class="greek">πνευματικὸς</span><span class="punct">  ,</span><br/><span class="eng">espiritual</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/350.htm" title="Strong's Greek 350: julga exaustivamente">350</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="anakrinei: juízes minuciosamente-ocorrência 1 de 1.">anakrinei</a></span><br/><span class="greek">ἀνακρίνει</span><br/><span class="eng">juízes</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Ativo - 3ª Pessoa Singular">V-PIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3588.htm" title="Grego de Strong 3588: o, a">3588</a></span><br/><span class="translit"><a href="/greek/3588.htm" title="ta: pois -- ocorrência 511 de 843.">ta</a></span><br/><span class="greek">τὰ**</span><br/><span class="eng">–</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Artigo - Nominativo Neutro Plural">Art-NNP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3956.htm" title="Strong's Greek 3956: todo, cada um">3956</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Panta: tudo, todos -- ocorrência 141 de 265.">panta</a></span><br/><span class="greek">πάντα</span><br/><span class="eng">todos coisas</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Adjetivo - Acusativo Neutro Plural">Adj-ANP</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/846.htm" title="Grego de Strong 846: ele(s), ela(s)">846</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="autos: ele -- ocorrência 114 de 168.">autos</a></span><br/><span class="greek">αὐτὸς</span><span class="punct">  ;</span><br/><span class="eng">ele</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Nominativo Masculino 3ª Pessoa Singular">PPro-NM3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: al7m dito, por7m, em seguida">1161</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="de: al9m dito , por9m, em seguida -- ocorrência 2127 de 2786.">de</a></span><br/><span class="greek">δὲ</span><br/><span class="eng">por@m</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5259.htm" title="Strong's Greek 5259: debaixo, embaixador, soluço">5259</a></span><br/><span class="translit"><a href="/greek/5259.htm" title="hyp': por -- ocorrência 19 de 25.">hyp'</a></span><br/><span class="greek">ὑπ'</span><br/><span class="eng">por</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Preposição">Prep</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3762.htm" title="Strong's Greek 3762: nenhum, nenhum, nada">3762</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="oudenos: de ningu2m, de nada .">oudenos</a></span><br/><span class="greek">οὐδενὸς</span><br/><span class="eng">nínguxm</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Adjetivo - Genitivo Masculino Singular">Adj-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/350.htm" title="Strong's Greek 350 (350)">350</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="anakrinetai: princípioavaliado exaustivamente-ocorrência 2 de 3.">anakrinetai</a></span><br/><span class="greek">ἀνακρίνεται</span><span class="punct">  .</span><br/><span class="eng">é julgado</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Média ou Passiva - 3ª Pessoa Singular">V-PIM/P-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc2">      </span></td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="reftop3">16   </span><span class="pos"><a href="/greek/5101.htm" title="Strong's Greek 5101: quem, qual,o que? ">5101</a></span><br/><span class="reftrans">16   </span>
+<span class="translit"><a href="/greek/5101.htm" title="T3: quem, qual,o que?  -- Ocorrência 113 de 147.">tis</a></span><br/><span class="refmain">16   </span><span class="greek">τίς</span><br/><span class="refbot">16   </span><span class="eng">o
+																				que</span><br/><span class="reftop2">16   </span>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Pronome Interrogativo/Indefinido - Nominativo Masculino Singular">IPro-NMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1063.htm" title="Strong's Greek 1063: pois, de fato">1063</a></span><br/><span class="translit"><a href="/greek/1063.htm" title="gar: pois , de fato -- ocorrência 591 de 1046.">gar</a></span><br/><span class="greek">γὰρ</span><br/><span class="eng">pois</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1097.htm" title="Grego de Strong 1097: [vir a] conhecer, aprender, perceber">1097</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="egn7: fez know-ocorrência 12 de 16.">egnō</a></span><br/><span class="greek">ἔγνω</span><br/><span class="eng">fez sabe</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Aoristo Indicativo Ativo - 3ª Pessoa Singular">V-AIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3563.htm" title="Grego de Strong 3563: a mente">3563</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="substantivo: a mente-ocorrência 4 de 9.">noun</a></span><br/><span class="greek">νοῦν</span><br/><span class="eng">o mente</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Masculino Singular">S-AMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2962.htm" title="Grego de Strong 2962: Senhor">2962</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="kyriou : do Senhor -- ocorrência 116 de 244.">Kyriou</a></span><br/><span class="greek">Κυρίου</span><span class="punct">  ?</span><br/><span class="eng">do Senhor</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc4">            </span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3739.htm" title="Grego de Strong 3739: quem, qual, o que">3739</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="hos: quem, o qual, aqui que -- ocorrência 155 de 217.">hos</a></span><br/><span class="greek">ὃς</span><br/><span class="eng">o que</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Relativo - Nominativo Masculino Singular">RelPro-NMS</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/4822.htm" title="Grego de Strong 4822: instruirá">4822</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="symbibasei: deve instruir-ocorrência 1 de 1.">symbibasei</a></span><br/><span class="greek">συμβιβάσει*</span><br/><span class="eng">vai instruir</span><br/>
+<span class="strongsnt"><a href="#" onclick="event.preventDefault()" title="Verbo - Futuro Indicativo Ativo - 3ª Pessoa Singular">V-FIA-3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/846.htm" title="Grego de Strong 846: ele(s), ela(s)">846</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="auton: - não, - na -- ocorrência 859 de 961.">auton</a></span><br/><span class="greek">αὐτόν</span><span class="punct">  ?</span><br/><span class="eng">a ele</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Singular">PPro-AM3S</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="center" width="95%">
+<tbody>
+<tr>
+<td>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td height="160" valign="middle"><span class="spc3">         </span></td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1473.htm" title="Strong's Greek 1473: UE, n">1473</a></span><br/><span class="translit"><a href="/greek/1473.htm" title="H9: n9-ocorrência 58 de 127.">hēmeis</a></span><br/><span class="greek">ἡμεῖς</span><br/><span class="eng">n7</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Pronome Pessoal/Possessivo - Nominativo 1ª Pessoa Plural">PPro-N1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/1161.htm" title="Strong's Greek 1161: al7m dito, por7m, em seguida">1161</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="de: al9m dito , por9m, em seguida -- ocorrência 2128 de 2786.">de</a></span><br/><span class="greek">δὲ</span><br/><span class="eng">por@m</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Conjunção">Conj</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/3563.htm" title="Grego de Strong 3563: a mente">3563</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="substantivo: a mente-ocorrência 5 de 9.">noun</a></span><br/><span class="greek">νοῦν</span><br/><span class="eng">o mente</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Acusativo Masculino Singular">S-AMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/5547.htm" title="Grego de Strong 5547: de Cristo">5547</a></span><br/><span class="translit"><a href="#" onclick="event.preventDefault()" title="Christou : de Cristo -- ocorrência 59 de 254.">Christou</a></span><br/><span class="greek">Χριστοῦ</span><br/><span class="eng">de Cristo</span><br/><span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Substantivo - Genitivo Masculino Singular">S-GMS</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="tablefloatleft">
+<tbody>
+<tr>
+<td align="left" height="160" valign="middle"><span class="pos"><a href="/greek/2192.htm" title="Grego de Strong 2192: ter, possuir">2192</a></span><br/><span class="translit"><a href="/greek/2192.htm" title="echomen: eles tidimensionalmente, possuem-ocorrência 13 de 43.">echomen</a></span><br/><span class="greek">ἔχομεν</span><span class="punct">  .</span><br/><span class="eng">tem</span><br/>
+<span class="strongsnt">
+<a href="#" onclick="event.preventDefault()" title="Verbo - Presente Indicativo Ativo - 1ª Pessoa Plural">V-PIA-1P</a></span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+        
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    var page = document.getElementById("app");
+
+    function toggleStrongs() {
+      page.classList.toggle("no_strongs");
+    }
+    function toggleTranslit() {
+      page.classList.toggle("no_translit");
+    }
+    function toggleGreek() {
+      page.classList.toggle("no_greek");
+    }
+    function toggleGrammar() {
+      page.classList.toggle("no_grammar");
+    }
+  </script>
+
+</body>
+</html>
