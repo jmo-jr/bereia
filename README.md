@@ -14,7 +14,13 @@ Baseado no **Texto Majoritário**, com destaque para a *Família 35*
 
 Caracteres especiais devem ser acrescentados após a vírgula
 
-> \b[\w\s\[\],]+
+`\b[\w\s\[\],]+`
+
+Substituir os links das definições em grego do Bibleapps.com:
+
+`/greek/(\d{1,4})\.htm`
+
+`https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp`
 
 ## Auxílios para tradução:
 
@@ -30,10 +36,14 @@ Glifos: ē, ō
 - Particípio ativo = Gerúndio (vendo)
 
 ## Templates para páginas
----
-bookName: ""
-bookChapter: 0
----
-{% render '../../_includes/pageHeader', bookName: bookName, bookChapter: bookChapter %}
 
-{% render '../../_includes/sideNav', bookName; bookName, bookChapter: bookChapter%}
+``` 
+---
+bookName: "Mateus"
+bookChapter: 1
+---
+```
+
+`{% render '../../_includes/pageHeader', bookName: bookName, bookChapter: bookChapter %}`
+
+`{% render '../../_includes/sideNav', bookName; bookName, bookChapter: bookChapter%}`
