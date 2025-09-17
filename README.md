@@ -18,9 +18,9 @@ Caracteres especiais devem ser acrescentados após a vírgula
 
 Substituir os links das definições em grego do Bibleapps.com:
 
-`/greek/(\d{1,4})\.htm`
+Find: `/greek/(\d{1,4})\.htm`
 
-`https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp`
+Replace: `https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp`
 
 ## Auxílios para tradução:
 
