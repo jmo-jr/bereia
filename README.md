@@ -35,6 +35,14 @@ Glifos: ē, ō
 - Particípio passivo = tendo visto, tendo sido visto
 - Particípio ativo = Gerúndio (vendo)
 
+### Declinações do artigo definido
+
+|  				| ACUSATIVO | NOMINATIVO | DATIVO | GENITIVO |
+|----------|----------|----------|----------|----------|
+| Masculino  | τὸν, τοὺς | ὁ, οἱ | τῷ, τοῖς | τοῦ, τῶν |
+| Feminino  | τὴν, τὰς | ἡ, αἱ | τῇ, ταῖς | τῆς, τῶν |
+| Neutro  | τὸ, τὰ | τὸ, τὰ | τῷ, τοῖς | τοῦ, τῶν |
+
 ## Templates para páginas
 
 ``` 
