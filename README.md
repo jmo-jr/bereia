@@ -14,7 +14,7 @@ Baseado no **Texto Majoritário**, com destaque para a *Família 35*
 
 Caracteres especiais devem ser acrescentados após a vírgula
 
-`\b[\w\s\[\],]+`
+`\b[\w\s\[\],]+` (\b = limite de palavra; \w = letra; \s = espaço; \ = escapa carac. espec.; + = um ou mais)
 
 Substituir os links das definições em grego do Bibleapps.com:
 
