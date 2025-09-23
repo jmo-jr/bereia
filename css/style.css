@@ -21,21 +21,22 @@ a:hover {
 
 
 h1 {
-    font-size: 28px;
-}
-
-h1 a {
-  color: white !important;
+    font-size: 22px;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 20px;
+		margin: auto;
 }
 
 h3 {
 	  margin-top: 0;
 		margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 20px;
+}
+
+h4 {
+	font-size: 16px;
 }
 
 /* REUSABLE CLASSES */
@@ -46,6 +47,10 @@ h3 {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.align-items-center {
+	align-items: center;
 }
 
 .center {
@@ -73,8 +78,31 @@ h3 {
 }
 
 .app-bar h1 {
-  font-size: 18px;
+	margin: 12px 0px;
+  font-size: 19px;
   font-weight: bold;
+
+	& a {
+  	color: rgba(255, 255, 255, .85) !important;
+	}
+}
+
+.main-nav ul {
+	display: flex;
+	gap: 24px;
+	margin: 0;
+	padding: 0;
+	font-family: 'Arial', sans-serif;
+	list-style: none;
+
+	& li a {
+		color: rgba(255, 255, 255, .85);
+		font-size: 15px;
+
+		&:visited {
+			color: rgba(255, 255, 255, .85);
+		}
+	}
 }
 
 .toolbar {
@@ -147,7 +175,7 @@ button.square {
 
 /* INTERLINEAR */
 
-#movebox2, #topheading {
+#movebox2, #topheading, .page-header {
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -444,6 +472,57 @@ button.square {
   margin: 4px;
 }
 
+/* BEE */
+
+.pericope.title {
+	padding: 16px;
+	text-align: center;
+	line-height: 1;
+	display: block;
+	font-size: 18px;
+}
+
+.pericope.concordance {
+    font-style: italic;
+    font-size: 14px;
+    display: block;
+    font-weight: normal;
+    margin-top: 8px;
+    color: dimgrey;
+    font-family: sans-serif;
+}
+
+.pericope.text {
+	padding: 0 40px;
+
+	& p {
+		margin: 8px 0;
+		font-size: 18px;
+		color: #262626;
+	}
+}
+
+.chapter-number {
+	margin-right: 4px;
+	color: #560219;
+	font-size: 21px;
+	font-weight: bold;
+}
+
+.verse-number {
+	min-width: 8px;
+	margin-right: -2px;
+	color: #560219;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;	
+	vertical-align: super;
+}
+
+.verse-text {
+	margin-right: 4px;
+}
+
 @media screen and (max-width: 768px) {
   .home.main-content {
       padding: 0 24px;
@@ -451,9 +530,9 @@ button.square {
   }
 
   .content h1 {
-      line-height: 1.2;
-      text-align: left;
       font-size: 22px;
+      text-align: left;
+      line-height: 1.2;
   }
 
   .content h2 {
@@ -462,8 +541,29 @@ button.square {
       font-size: 20px;
   }
 
+	.content h3 {
+		font-size: 18px;
+	}
+
+	.content h4 {
+		font-size: 16px;
+	}
+
   .d-flex.flex-wrap > div {
     width: 100%;
     line-height: 1.6;
   }
+}
+
+.indice {
+  border: solid 1px lightgrey;
+	padding: 24px 24px 12px 0;
+	width: 290px;
+	text-align: left;
+	height: fit-content;
+
+	& a {
+		margin-bottom: 12px;
+		display: block;
+	}
 }
