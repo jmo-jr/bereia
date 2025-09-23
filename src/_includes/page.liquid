@@ -1,5 +1,5 @@
 ---
-title: Bíblia de Estudo Interlinear
+title: Bíblia BEREIA
 ---
 <!DOCTYPE html>
 <html land="pt-br">
@@ -10,7 +10,7 @@ title: Bíblia de Estudo Interlinear
 	<base href="{{ pathPrefix }}">
   <meta name="description" content="Página do capítulo do livro escolhido">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="{{ '/img/favicon.png' | url }}">
+	<link rel="shortcut icon" href="{{ '/img/logo.png' | url }}">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
   <style>
@@ -34,13 +34,26 @@ title: Bíblia de Estudo Interlinear
   <div id="app" class="wrapper">
 
     <header class="app-bar">
-      <h1><a href="{{ '/' | url }}">Bíblia BEREIA</a></h1>
+			<div class="content d-flex justify-between align-items-center">
+				<div class="d-flex align-items-center" style="gap:16px;">
+					<img src="{{ '/img/logo.png' | url }}" style="width:34px; height: 34px;">
+					<h1><a href="{{ '/' | url }}">Bíblia BEREIA</a></h1>
+				</div>
+
+				<nav class="main-nav">
+					<ul>
+						<li><a href="{{ '/sobre/' | url }}">Info</a></li>
+						<li><a href="{{ '/mateus/1/' | url }}">Bíblia de Estudo</a></li>
+						<li><a href="{{ '/interlinear/mateus/01/' | url }}">Interlinear</a></li>
+					</ul>
+				</nav>
+			</div>
     </header>
 
     <div class="toolbar">
       <div class="content">
 
-        <div class="d-flex justify-between">
+        <div id="" class="d-flex justify-between">
 
 					{% comment %} Navegador dos livros {% endcomment %}
           <div class="input-group">
@@ -92,15 +105,26 @@ title: Bíblia de Estudo Interlinear
 
           </div>
 
+					{% if type == "be" %}
+					<h2>Bíblia de Estudo Exegético</h2>
+					{% else %}
 					<h2>Interlinear Analítico</h2>
+					{% endif %}
 
 					{% comment %} Configurações de tela {% endcomment %}
+					{% if type == "be" %}
+					<div class="search-field">
+						<input type="text">
+            <button class="search-icon" type="button" title="Busca">o</button>
+					</div>
+					{% else %}
           <div class="button-group">
             <button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
             <button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
             <button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
             <button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
           </div>
+					{% endif %}
 
         </div>
 
