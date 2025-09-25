@@ -15,28 +15,36 @@
   <div id="app" class="wrapper">
 
     <header class="app-bar">
-			<div class="content d-flex justify-between align-items-center">
-				<div class="d-flex align-items-center" style="gap:16px;">
-					<img src="/nt-interlinear/img/logo.png" style="width:34px; height: 34px;">
-					<h1><a href="/nt-interlinear/">Bíblia BEREIA</a></h1>
-				</div>
+	<div class="content d-flex justify-between align-items-center">
+		<div class="d-flex align-items-center" style="gap:16px;">
+			<img src="/nt-interlinear/img/logo.png" style="width:34px; height: 34px;">
+			<h1><a href="/nt-interlinear/">Bíblia BEREIA</a></h1>
+		</div>
 
-				<nav class="main-nav">
-					<ul>
-						<li><a href="/nt-interlinear/sobre/">Info</a></li>
-						<li><a href="/nt-interlinear/mateus/1/">Bíblia de Estudo</a></li>
-						<li><a href="/nt-interlinear/interlinear/mateus/01/">Interlinear</a></li>
-					</ul>
-				</nav>
+		<button type="button" id="toggleMenu">
+			<div class="burger-icon">
+				<div class="burger-layer"></div>
+				<div class="burger-layer"></div>
+				<div class="burger-layer"></div>
 			</div>
-    </header>
+		</button>
+
+		<nav class="main-nav">
+			<ul>
+				<li><a href="/nt-interlinear/mateus/1/">Bíblia de Estudo</a></li>
+				<li><a href="/nt-interlinear/interlinear/mateus/01/">Interlinear</a></li>
+				<li><a href="/nt-interlinear/sobre/">Sobre</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
 
     <main class="home main-content">
       <div class="content">
 
         
           
-<h1>BEREIA - Bíblia de Estudo com Recursos Exegético e Interlinear Analítico</h1>
+<h1>BEREIA - Bíblia de Estudo com Recursos Exegéticos e Interlinear Analítico</h1>
 
 <p>Este recurso apresenta os textos gregos do Antigo e do Novo Testamento (<a href="/nt-interlinear/sobre/">LXX e TM</a>, respectivamente), juntamente com uma tradução de cada termo, palavra por palavra, além de números Strong que levam a definições mais extensas das palavras. Assim é possível ter acesso aos textos originais, assim como uma tradução literal de cada palavra.</p>
 
@@ -156,6 +164,43 @@
     </main>
 
   </div>
+
+	<script>
+		(function () {
+			const toggleBtn = document.getElementById('toggleMenu');
+			const nav = document.querySelector('.main-nav');
+
+			if (!toggleBtn || !nav) return;
+
+			toggleBtn.setAttribute('aria-expanded', 'false');
+
+			toggleBtn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const opened = nav.classList.toggle('open');
+				toggleBtn.setAttribute('aria-expanded', String(opened));
+			});
+
+			// Click/touch outside to close
+			const closeIfOutside = (e) => {
+				if (!nav.classList.contains('open')) return;
+				if (nav.contains(e.target) || e.target === toggleBtn) return;
+				nav.classList.remove('open');
+				toggleBtn.setAttribute('aria-expanded', 'false');
+			};
+
+			document.addEventListener('click', closeIfOutside);
+			document.addEventListener('touchstart', closeIfOutside);
+
+			// Close with Escape
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && nav.classList.contains('open')) {
+					nav.classList.remove('open');
+					toggleBtn.setAttribute('aria-expanded', 'false');
+					toggleBtn.focus();
+				}
+			});
+		})();
+	</script>
 
 </body>
 </html>
