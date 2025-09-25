@@ -41,6 +41,14 @@ h4 {
 
 /* REUSABLE CLASSES */
 
+.show-mobile {
+	display: none;
+}
+
+.show-desktop {
+	display: block;
+}
+
 .d-flex {
   display: flex;
 }
@@ -87,22 +95,31 @@ h4 {
 	}
 }
 
-.main-nav ul {
-	display: flex;
-	gap: 24px;
-	margin: 0;
-	padding: 0;
-	font-family: 'Arial', sans-serif;
-	list-style: none;
+.main-nav {
+	transition: all 1s ease;
+	z-index: 1000;
 
-	& li a {
-		color: rgba(255, 255, 255, .85);
-		font-size: 15px;
+	& ul {
+		display: flex;
+		gap: 24px;
+		margin: 0;
+		padding: 0;
+		font-family: 'Arial', sans-serif;
+		list-style: none;
 
-		&:visited {
+		& li a {
 			color: rgba(255, 255, 255, .85);
+			font-size: 15px;
+
+			&:visited {
+				color: rgba(255, 255, 255, .85);
+			}
 		}
 	}
+}
+
+#toggleMenu {
+	display: none;
 }
 
 .toolbar {
@@ -112,7 +129,7 @@ h4 {
   right: 0;
   padding: 12px;
   background-color: #EBEBEB;
-  z-index: 1000;
+  z-index: 999;
 }
 
 select.drop {
@@ -178,8 +195,9 @@ button.square {
 #movebox2, #topheading, .page-header {
   display: flex;
   justify-content: space-around;
+	align-items: center;
   width: 100%;
-  padding-top: 20px;
+  padding-top: 24px;
   font-size: 1.05em;
   font-weight: 700;
   color: #7B0000;
@@ -205,7 +223,7 @@ button.square {
 .vheading {
   width: 100%;
   margin-bottom: 10px;
-  padding-left: 8px;
+  /* padding-left: 8px; */
   font-size: 16px;
   font-weight: 700;
   color: #7B0000;
@@ -219,6 +237,10 @@ button.square {
   line-height: 44px;
   font-weight: bold;
   color: black;
+}
+
+table.tablefloatleft td {
+  height: 140px;
 }
 
 .refmain {
@@ -475,11 +497,12 @@ button.square {
 /* BEE */
 
 .pericope.title {
+	display: block;
+	margin-bottom: 0;
 	padding: 16px;
+	font-size: 18px;
 	text-align: center;
 	line-height: 1;
-	display: block;
-	font-size: 18px;
 }
 
 .pericope.concordance {
@@ -499,6 +522,8 @@ button.square {
 		margin: 8px 0;
 		font-size: 18px;
 		color: #262626;
+		text-align: left;
+		line-height: 1.4;
 	}
 }
 
@@ -524,29 +549,93 @@ button.square {
 }
 
 @media screen and (max-width: 768px) {
-  .home.main-content {
+
+	.show-desktop {
+		display: none;
+	}
+
+	.show-mobile {
+		display: block;
+	}
+
+	.app-bar {
+    padding: 0 12px;
+	}
+
+	h2.show-mobile {
+    margin-bottom: 12px;
+    text-align: center !important;
+	}
+  
+	nav.main-nav {
+    position: absolute;
+    background-color: #560219;
+    right: 0;
+    top: 100%;
+    padding: 12px 24px;
+    display: none;
+
+		& ul {
+			display: block;
+			text-align: left;
+
+			& li {
+				line-height: 2.3;
+			}
+		}
+
+		&.open {
+			display: block;
+		}
+	}
+
+	#toggleMenu {
+		background: transparent;
+		border: none;
+		display: block;
+		
+		& .burger-icon {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			width: 24px;
+
+			& .burger-layer {
+					height: 3px;
+					background-color: rgba(255,255,255,.85);
+			}
+		}
+	}
+	
+	.home.main-content {
       padding: 0 24px;
       margin-top: 56px;
   }
 
-  .content h1 {
+	.main-content {
+    margin-top: 140px;
+	}
+
+  .content {
+		& h1 {
       font-size: 22px;
       text-align: left;
       line-height: 1.2;
-  }
+  	}
 
-  .content h2 {
+  	& h2 {
       text-align: left;
       line-height: 1.3;
       font-size: 20px;
-  }
+  	}
 
-	.content h3 {
-		font-size: 18px;
-	}
+		& h3 {
+			font-size: 18px;
+		}
 
-	.content h4 {
-		font-size: 16px;
+		& h4 {
+			font-size: 16px;
+		}
 	}
 
   .d-flex.flex-wrap > div {
@@ -554,6 +643,8 @@ button.square {
     line-height: 1.6;
   }
 }
+
+/* SOBRE */
 
 .indice {
   border: solid 1px lightgrey;
