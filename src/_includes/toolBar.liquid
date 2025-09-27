@@ -7,7 +7,7 @@
 		<h2 class="show-mobile">Interlinear Analítico</h2>
 		{% endif %}
 
-		<div class="d-flex justify-between">
+		<div class="d-flex justify-between flex-wrap">
 
 			{% comment %} Navegador dos livros {% endcomment %}
 			<div class="input-group">
@@ -28,28 +28,14 @@
 						{% if book.name == bookName %}
 							{% assign num = book.chapters %}
 							{% assign range = (1..num) %}
-							{% for n in range %} 
-								{% if n <= 9 %}
-
-									<option 
-										value="{{ book.permalink | url }}0{{ n }}"
-										{% if bookChapter == n %}selected{% endif %}
-									>
-										0{{ n }}
-									</option>
-
-								{% else %}
-
-									<option 
-										value="{{ book.permalink | url }}{{ n }}"
-										{% if bookChapter == n %}selected{% endif %}
-									>
-										{{ n }}
-									</option>
-
-								{% endif %}
+							{% for n in range %}
+								<option 
+									value="{{ book.permalink | url }}{{ n }}"
+									{% if bookChapter == n %}selected{% endif %}
+								>
+									{{ n }}
+								</option>
 							{% endfor %}
-
 						{% endif %}
 					{% endfor %}
 
@@ -67,10 +53,7 @@
 
 			{% comment %} Configurações de tela {% endcomment %}
 			{% if type %}
-			<div class="search-field d-none">
-				<input type="text">
-				<button class="search-icon" type="button" title="Busca">o</button>
-			</div>
+			<div id="search" class="search"></div>
 			{% else %}
 			<div class="button-group">
 				<button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>

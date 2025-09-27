@@ -13,6 +13,7 @@ title: Bíblia BEREIA
 	<link rel="shortcut icon" href="{{ '/img/logo.png' | url }}">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+	<link rel="stylesheet" href="{{ '/biblia/pagefind/pagefind-ui.css' | url }}">
   <style>
     .ui-tooltip {
       padding: 4px 8px;
@@ -35,10 +36,10 @@ title: Bíblia BEREIA
 
     {% render 'siteHeader' %}
 
-		{% render 'toolBar', bookList: ntBooks, bookName: bookName, type: bee %}
+		{% render 'toolBar', bookList: ntBooks, bookName: bookName, bookChapter: bookChapter, type: bee %}
 
     <main class="main-content">
-      <div class="content">
+      <div class="content" data-pagefind-body>
 
         {% block content %}
           {{ content }}
@@ -103,6 +104,8 @@ title: Bíblia BEREIA
 			});
 		})();
 	</script>
-
+	<script 
+		src="{{ '/biblia/pagefind/pagefind-ui.js' | url }}" 
+		onload="new PagefindUI({ element: '#search', showImages: false, translations: { placeholder: 'Busca', zero_results: 'Não encontrei [SEARCH_TERM]' }, many_results: '[COUNT] results for [SEARCH_TERM]', one_result: '[COUNT] result for [SEARCH_TERM]', });"></script>
 </body>
 </html>
