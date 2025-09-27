@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Cardo');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+	--textColor: rgba(0, 0, 0, .85);
+	--sans-font: 'Open Sans', Arial, sans-serif;
+	--serif-font: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+}
 
 body {
-  font: 1.05em Georgia, 'Times New Roman', Times, serif;
+  font: 1em var(--serif-font);
   margin: 0;
   line-height: 1.35em;
-  color: #001320;
+  color: var(--textColor);
   background-color: #fdfeff;
   text-align: justify;
 }
@@ -19,6 +27,10 @@ a:hover {
   color: #99D6FF;
 }
 
+h1, h2, h3, h4 {
+	font-family: var(--sans-font);
+	font-weight: 600;
+}
 
 h1 {
     font-size: 22px;
@@ -30,13 +42,30 @@ h2 {
 }
 
 h3 {
-	  margin-top: 0;
-		margin-bottom: 8px;
+	  margin: 8px 0;
     font-size: 20px;
 }
 
 h4 {
 	font-size: 16px;
+}
+
+.book-group {
+	color: rgba(0, 0, 0, .75);
+	margin: 0 0 8px;
+}
+
+.book-lists {
+	& ul {
+		list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+
+		& a {
+			font-family: var(--sans-font);
+			line-height: 1.5;
+		}
+	}
 }
 
 /* REUSABLE CLASSES */
@@ -78,20 +107,25 @@ h4 {
   position: fixed;
   left: 0;
   right: 0;
-  height: 48px;
+  height: 50px;
   background-color: #560219;
   color: white;
   text-align: center;
   z-index: 1000;
-}
 
-.app-bar h1 {
-	margin: 12px 0px;
-  font-size: 19px;
-  font-weight: bold;
+	& > .content {
+		height: 100%;
+	}
 
-	& a {
-  	color: rgba(255, 255, 255, .85) !important;
+	& h1 {
+		margin: 12px 0px;
+		font-family: var(--serif-font);
+		font-size: 19px;
+		font-weight: bold;
+
+		& a {
+			color: rgba(255, 255, 255, .85) !important;
+		}
 	}
 }
 
@@ -104,7 +138,7 @@ h4 {
 		gap: 24px;
 		margin: 0;
 		padding: 0;
-		font-family: 'Arial', sans-serif;
+		font-family: var(--sans-font);
 		list-style: none;
 
 		& li a {
@@ -130,6 +164,22 @@ h4 {
   padding: 12px;
   background-color: #EBEBEB;
   z-index: 999;
+
+	& input.pagefind-ui__search-input.svelte-e9gkc3 {
+    width: 200px;
+    height: 40px;
+    padding: 0 32px;
+    font-size: 14px;
+	}
+
+	& .pagefind-ui__search-clear.svelte-e9gkc3 {
+    height: 32px !important;
+	}
+
+	& .pagefind-ui__form.svelte-e9gkc3:before {
+		top: 13px !important;
+		left: 12px !important;
+	}
 }
 
 select.drop {
@@ -169,6 +219,10 @@ button.square {
   margin-top: 110px;
 }
 
+.home.main-content {
+	margin-top: 80px;
+}
+
 /* STRUCTURE */
 
 .wrapper {
@@ -197,11 +251,16 @@ button.square {
   justify-content: space-around;
 	align-items: center;
   width: 100%;
-  padding-top: 24px;
+  padding-top: 32px;
   font-size: 1.05em;
   font-weight: 700;
   color: #7B0000;
   text-align: center;
+}
+
+.page-header h3 {
+	font-family: var(--serif-font);
+	font-weight: bold;
 }
 
 #movebox2 a, #topheading a {
@@ -520,10 +579,10 @@ table.tablefloatleft td {
 
 	& p {
 		margin: 8px 0;
-		font-size: 18px;
+		font-size: 17px;
 		color: #262626;
 		text-align: left;
-		line-height: 1.4;
+		line-height: 1.8;
 	}
 }
 
@@ -536,7 +595,7 @@ table.tablefloatleft td {
 
 .verse-number {
 	min-width: 8px;
-	margin-right: -2px;
+	margin-right: 0;
 	color: #560219;
 	font-size: 12px;
 	font-weight: bold;
@@ -655,19 +714,7 @@ table.tablefloatleft td {
 
 	input.pagefind-ui__search-input.svelte-e9gkc3 {
     width: calc(100vw - 24px);
-    height: 40px;
-    margin: 12px 0 0;
-    padding: 0 32px;
-    font-size: 14px;
-	}
-
-	.pagefind-ui__search-clear.svelte-e9gkc3 {
-    height: 32px !important;
-	}
-
-	.pagefind-ui__form.svelte-e9gkc3:before {
-		top: 13px !important;
-		left: 12px !important;
+		margin: 12px 0 0;
 	}
 }
 
