@@ -1,40 +1,21 @@
 /**
- * Dicionário de palavras gregas
- * retirado de
+ * Dicionário de palavras gregas retirado de
  * Concordância Exaustiva de Strong
- * por
- * James Strong, STD, LL.D.
+ * por James Strong, STD, LL.D.
  * 1890
  *
  * Versão JSON
  * ============
  * Copyright 2009, Open Scriptures. CC-BY-SA. Derivado de XML.
- * $Id$
- *
- * Versão XML e-text
- * ==================
- *
- * A versão XML deste trabalho foi preparada em 2006 por Ulrik Petersen
- * (http://ulrikp.org) da versão eletrônica ASCII apresentada abaixo.
- * A versão XML contém o grego UTF-8 "real" onde o ASCII original
- * A versão e-texto possui transliteração. O XML possui um DTD independente
- * que deve ser fácil de seguir.
- *
- * Ulrik Petersen agradece correções de bugs no texto. Por favor, envie-as para
- * endereço fornecido no site:
- *
- * http://ulrikp.org
- *
- * Ulrik Petersen
  */
 
 var strongsGreekDictionary = {
-	"G1615": { 
-		"strongs_def": " para completar completamente", 
-		"derivation": "de G1537 (ἐκ) e G5055 (τελέω);", 
-		"translit": "ekteléō", 
-		"lemma": "ἐκτελέω", 
-		"kjv_def": "terminar" 
+	"G1615": {
+		"strongs_def": " para completar completamente",
+		"derivation": "de G1537 (ἐκ) e G5055 (τελέω);",
+		"translit": "ekteléō",
+		"lemma": "ἐκτελέω",
+		"kjv_def": "terminar"
 	},
 	"G2274": { "strongs_def": " piorar, ou seja, vencer (literal ou figurativamente); por implicação, classificar-se mais baixo", "derivation": "do mesmo que G2276 (ἥττον);", "translit": "hēttáō", "lemma": "ἡττάω", "kjv_def": "ser inferior, superar" },
 	"G4533": { "derivation": "de origem hebraica (H08012);", "strongs_def": " Salmão, um israelita", "kjv_def": "Salmão", "translit": "Salmṓn", "lemma": "Σαλμών" },
@@ -924,7 +905,7 @@ var strongsGreekDictionary = {
 	"G331": { "kjv_def": "acusado, anátema, maldição, X grande", "translit": "anáthema", "lemma": "ἀνάθεμα", "derivation": "de G394 (ἀνατίθεμαι);", "strongs_def": "uma proibição (religiosa) ou (concretamente) excomungado (coisa ou pessoa)" },
 	"G5408": { "kjv_def": "assassinar, + ser morto com, massacrar", "translit": "phónos", "lemma": "φόνος", "derivation": "de um primário obsoleto (matar);", "strongs_def": "assassinar" },
 	"G3603": { "kjv_def": "chamado, que é (fazer), isto é (dizer)", "translit": "hó esti", "lemma": "ὅ ἐστι", "derivation": "do neutro de G3739 (ὅς) e da terceira pessoa do singular presente indicativo de G1510 (εἰμί);", "strongs_def": "que é" },
-	"G81": { "derivation": "from G80 (ἀδελφός);", "strongs_def": " fraternidade (propriamente, o sentimento de fraternidade), ou seja, a fraternidade (cristã),""kjv_def": "irmãos, fraternidade", "lemma": "ἀδελφότης", "translit": "adelphótēs" },
+	"G81": { "derivation": "from G80 (ἀδελφός);", "strongs_def": " fraternidade (propriamente, o sentimento de fraternidade), ou seja, a fraternidade (cristã)", "kjv_def": "irmãos, fraternidade", "lemma": "ἀδελφότης", "translit": "adelphótēs" },
 	"G4874": { "derivation": "de G4862 (σύν) e um composto de G303 (ἀνά) e G3396 (μίγνυμι);", "strongs_def": " misturar, ou seja, (figurativo) associar com", "kjv_def": "(ter, manter) companhia (com)", "lemma": "συναναμίγνυμι", "translit": "synanamígnymi" },
 	"G4841": { "lemma": "συμπάσχω", "translit": "sympáschō", "kjv_def": "sofrer com", "strongs_def": "experimentar dor em conjunto ou do mesmo tipo (especialmente, perseguição; \"simpatizar\")", "derivation": "de G4862 (σύν) e G3958 (πάσχω) (incluindo sua alternativa);" },
 	"G3180": { "kjv_def": "astúcia, fique à espera", "translit": "methodeía", "lemma": "μεθοδεία", "derivation": "de um composto de G3326 (μετά) e G3593 (ὁδεύω) (compare \"método\");", "strongs_def": " viajando acabou, ou seja, farsa (malandragem)" },
@@ -2852,7 +2833,7 @@ var strongsGreekDictionary = {
 		"G1999": { "translit": "episýstasis", "lemma": "ἐπισύστασις", "kjv_def": "aquilo que vem sobre, + levantando", "strongs_def": "uma conspiração, ou seja, ajuntamento (tumultuado ou amigável)", "derivation": "da voz média de um composto de G1909 (ἐπί) e G4921 (συνιστάω);" },
 		"G963": { "derivation": "de origem caldeia;", "strongs_def": " date-house; Betânia, um lugar na Palestina", "kjv_def": "Betânia", "lemma": "Βηθανία", "translit": "Bēthanía" },
 		"G1932": { "derivation": "de G1933 (ἐπιεικής);", "strongs_def": "adequação, ou seja (por implicação) equidade, brandura", "kjv_def": "clemência, gentileza", "lemma": "ἐπιείκεια", "translit": "epieíkeia" },
-		"G2239": { "lemma": "ἦθος", "translit": "ēthos", "kjv_def": "manners", "strongs_def": "uso, ou seja, hábitos morais (plural),""derivation": "uma forma reforçada de G1485 (ἔθος);" },
+		"G2239": { "lemma": "ἦθος", "translit": "ēthos", "kjv_def": "manners", "strongs_def": "uso, ou seja, hábitos morais (plural)", "derivation": "uma forma reforçada de G1485 (ἔθος);" },
 		"G4083": { "derivation": "de afinidade incerta;", "strongs_def": " o antebraço, ou seja, (como medida) um côvado", "kjv_def": "côvado", "lemma": "πῆχυς", "translit": "pēchys" },
 		"G419": { "strongs_def": " não pesquisado, ou seja (por implicação) inescrutável", "derivation": "de G1 (Α) (como uma partícula negativa) e uma suposta derivada de G1830 (ἐξερευνάω);", "lemma": "ἀνεξερεύνητος", "translit": "anexereúnētos", "kjv_def": "insondável" },
 		"G1794": { "strongs_def": " provavelmente semelhante a G1507 (εἱλίσσω)); entrelaçar, ou seja, encerrar em", "derivation": "de G1722 (ἐν) e (torcer;", "lemma": "ἐντυλίσσω", "translit": "entylíssō", "kjv_def": "envolver em (juntos)" },
@@ -4869,7 +4850,7 @@ var strongsGreekDictionary = {
 				"G4002": { "lemma": "πέντε", "translit": "pénte", "kjv_def": "cinco", "strongs_def": " \"cinco\"", "derivation": "um número primário;" },
 				"G1418": { "kjv_def": "+ difícil, + grave, etc", "translit": "dis-", "lemma": "δυσ-", "derivation": "uma partícula primária inseparável de derivação incerta;", "strongs_def": "usado somente em composição como um prefixo; difícil, ou seja, com dificuldade" },
 				"G1110": { "derivation": "de G1097 (γινώσκω);", "strongs_def": " bem conhecido", "kjv_def": "conhecido, (que pode ser) conhecido, notável", "lemma": "γνωστός", "translit": "gnōstós" },
-				"G1098": { "translit": "gleûkos", "lemma": "γλεῦκος", "kjv_def": "vinho novo", "strongs_def": "vinho doce, ou seja, (propriamente) mosto (suco fresco), mas usado para vinho fermentado mais sacarino (e, portanto, altamente inebriante),""derivation": "semelhante a G1099 (γλυκύς);" },
+				"G1098": { "translit": "gleûkos", "lemma": "γλεῦκος", "kjv_def": "vinho novo", "strongs_def": "vinho doce, ou seja, (propriamente) mosto (suco fresco), mas usado para vinho fermentado mais sacarino (e, portanto, altamente inebriante)", "derivation": "semelhante a G1099 (γλυκύς);" },
 				"G1266": { "lemma": "διαμερίζω", "translit": "diamerízō", "kjv_def": "fendido, dividir, parte", "strongs_def": " particionar completamente (literalmente em distribuição, figurativamente em dissensão)", "derivation": "de G1223 (διά) e G3307 (μερίζω);" },
 				"G4254": { "derivation": "de G4253 (πρό) e G71 (ἄγω);", "strongs_def": "conduzir para a frente (magistralmente); intransitivamente, preceder (em lugar ou tempo (particípio, anterior))", "kjv_def": "trazer (à frente, para fora), ir antes", "translit": "proágō", "lemma": "προάγω" },
 				"G4767": { "kjv_def": "hateful", "translit": "stygnētós", "lemma": "στυγνητός", "derivation": "de um derivado de um termo obsoleto aparentemente primário (odiar);", "strongs_def": "odiado, ou seja, odioso" },
@@ -4888,7 +4869,7 @@ var strongsGreekDictionary = {
 				"G227": { "derivation": "de G1 (Α) (como uma partícula negativa) e G2990 (λανθάνω);", "strongs_def": " verdadeiro (como não ocultar)", "kjv_def": "verdadeiro, verdadeiramente, verdade", "lemma": "ἀληθής", "translit": "alēthḗs" },
 				"G3835": { "strongs_def": " totalmente funcional, ou seja, hábil (astuto)", "derivation": "de G3956 (πᾶς) e G2041 (ἔργον);", "lemma": "πανοῦργος", "translit": "panoûrgos", "kjv_def": "astuto" },
 				"G475": { "strongs_def": " colocar-se do lado oposto, ou seja, ser contestador", "derivation": "de G473 (ἀντί) e G1303 (διατίθεμαι);", "translit": "antidiatíthemai", "lemma": "ἀντιδιατίθεμαι", "kjv_def": "que se opõem" },
-				"G4509": { "translit": "rhýpos", "lemma": "ῥύπος", "kjv_def": "filth", "strongs_def": " sujeira, ou seja, depravação (moral),""derivation": "de afinidade incerta;" },
+				"G4509": { "translit": "rhýpos", "lemma": "ῥύπος", "kjv_def": "filth", "strongs_def": " sujeira, ou seja, depravação (moral)", "derivation": "de afinidade incerta;" },
 				"G252": { "kjv_def": "sal", "translit": "halykós", "lemma": "ἁλυκός", "derivation": "de G251 (ἅλς);", "strongs_def": " salgado" },
 				"G1606": { "translit": "ekpnéō", "lemma": "ἐκπνέω", "kjv_def": "desistir do fantasma", "strongs_def": " expirar", "derivation": "de G1537 (ἐκ) e G4154 (πνέω);" },
 				"G4999": { "kjv_def": "tavernas", "translit": "Tabérnai", "lemma": "Ταβέρναι", "derivation": "plural de origem latina;", "strongs_def": "cabanas ou edifícios com paredes de madeira; Tabernæ" },
