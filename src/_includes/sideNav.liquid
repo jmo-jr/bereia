@@ -1,6 +1,11 @@
+{% assign chapterNum = 1 %}
+{% if theBookChapter > 1 %}
+{% assign chapterNum = theBookChapter %}
+{% endif %}
+
 <div id="left">
-	<a href="{{ '/interlinear/' | url }}{{ theBookName | downcase }}/{% if theBookChapter > 1 %}{{ theBookChapter | minus: 1 }}{% else %}01/#{% endif %}"
-		title="{{ theBookName }} {{ theBookChapter | minus: 1 }}">
+	<a href="{{ '/interlinear/' | url }}{{ theBookName | downcase }}/{{ chapterNum | minus: 1 }}/"
+		title="{{ theBookName }} {{ chapterNum | minus: 1 }}">
 		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
 			<path id="seta-esquerda" data-name="seta-esquerda"
 				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
@@ -10,8 +15,8 @@
 </div>
 
 <div id="right">
-	<a href="{{ '/interlinear/' | url }}{{ theBookName | downcase }}/{{ theBookChapter | plus: 1 }}"
-		title="{{ theBookName }} {{ theBookChapter | plus: 1 }}">
+	<a href="{{ '/interlinear/' | url }}{{ theBookName | downcase }}/{{ chapterNum | plus: 1 }}"
+		title="{{ theBookName }} {{ chapterNum | plus: 1 }}">
 		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
 			<path id="seta-direita" data-name="seta-direita"
 				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"

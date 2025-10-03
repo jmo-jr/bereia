@@ -52,6 +52,6 @@ bookChapter: 1
 ---
 ```
 
-`{% render '../../_includes/pageHeader', bookName: bookName, bookChapter: bookChapter %}`
+`{% render './_includes/bookNav', bookName: bookName, bookChapter: bookChapter %}`
 
-`{% render '../../_includes/sideNav', theBookName: bookName, theBookChapter: bookChapter %}`
+`{% render './_includes/sideNav', theBookName: bookName, theBookChapter: bookChapter %}`
