@@ -26,14 +26,18 @@ Replace: `https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&
 
 Glifos: ē, ō
 
-- Aoristo Indicativo = Pretérito Perfeito Simples (eles foram)
-- Dativo = (indireto) a, para; (instrumento) com, por meio de; (lugar) em, sobre
-- Vocativo = Mestre!
-- Genitivo = do
+Vozes e Tempos Verbais:
 - Nominativo = A pesoa ...
 - Acusativo = ... a coisa
-- Particípio passivo = tendo visto, tendo sido visto
-- Particípio ativo = Gerúndio (vendo)
+- Dativo = (indireto) a, para; (instrumento) com, por meio de; (lugar) em, sobre
+- Genitivo = do
+- Vocativo = Mestre!
+
+- Aoristo Indicativo = Pretérito Perfeito Simples (eles foram)
+- Presente Particípio Ativo (PPA) = Gerúndio (vendo)
+- Presente Particípio Passivo (PPP) = sendo visto
+- Aoristo Particípio Ativo (APA) = tendo visto
+- Aoristo Particípio Passivo (APP) = tendo sido visto
 
 ### Declinações do artigo definido
 
