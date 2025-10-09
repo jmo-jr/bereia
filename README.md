@@ -59,3 +59,5 @@ bookChapter: 1
 `{% render './_includes/bookNav', bookName: bookName, bookChapter: bookChapter %}`
 
 `{% render './_includes/sideNav', theBookName: bookName, theBookChapter: bookChapter %}`
+
+Novo Tooltip: https://calebjacob.github.io/tooltipster/#demos
