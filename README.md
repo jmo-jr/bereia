@@ -1,4 +1,4 @@
-# Bíblia Interlinear Grego-Português 
+# BEREIA - Bíblia de Estudo com Recursos Exegéticos e Interlinear Analítico 
 
 Baseado no **Texto Majoritário**, com destaque para a *Família 35*
 
