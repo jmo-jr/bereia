@@ -6,9 +6,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('src/css');
   eleventyConfig.addPassthroughCopy('src/img');
 
-  // Habilita o plugin que adiciona utilitários para URLs com pathPrefix
-  //eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
-
 	//PageFind search
 	eleventyConfig.on('eleventy.after', () => {
     execSync(`npx pagefind --site _site/biblia --output-subdir pagefind --glob \"**/*.html\"`, { encoding: 'utf-8' })
