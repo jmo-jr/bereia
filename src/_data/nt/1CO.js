@@ -2,12 +2,12 @@ const data = require('../../interlinear/nt/1CO.json');
 const dict = require('../greeknt_dict.json');
 
 // TODO: Trazer `grego` de dict (depois de eliminar duplicatas)
-const DICT_FIELDS = ['transliteracao', 'traducao', 'verbete', 'desgram', 'ocorrencia', 'grego'];
+const DICT_FIELDS = ['transliteracao', 'traducao', 'verbete', 'desgram', 'classegram', 'ocorrencia', 'grego', 'strongs'];
 
 const normalizeGreek = (value = '') =>
   value
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    // .normalize('NFD')
+    // .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
 
 const dictIndex = Object.entries(dict).reduce((acc, [key, entry]) => {
@@ -19,7 +19,7 @@ const dictIndex = Object.entries(dict).reduce((acc, [key, entry]) => {
 }, {});
 
 const enhanceTokenWithDict = (token = {}) => {
-  const normalized = normalizeGreek(token.greek || '');
+  const normalized = normalizeGreek(token.lemma || '');
   const dictEntry = dictIndex[normalized];
 
   if (!dictEntry) {
