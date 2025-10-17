@@ -14,7 +14,7 @@ Baseado no **Texto Majoritário**, com destaque para a *Família 35*
 
 Caracteres especiais devem ser acrescentados após a vírgula
 
-`\b[\w\s\[\],áàãéíóõúç()]+` (\b = limite de palavra; \w = letra; \s = espaço; \ = escapa carac. espec.; + = um ou mais)
+`\b[\w\s\[\],áàãéêíóõôúç()]+` (\b = limite de palavra; \w = letra; \s = espaço; \ = escapa carac. espec.; + = um ou mais)
 
 Substituir os links das definições em grego do Bibleapps.com:
 
@@ -38,6 +38,11 @@ Vozes e Tempos Verbais:
 - Presente Particípio Passivo (PPP) = sendo visto
 - Aoristo Particípio Ativo (APA) = tendo visto
 - Aoristo Particípio Passivo (APP) = tendo sido visto
+
+Subjuntivo:
+- Presente: que ...
+- Pretérito Imperfeito: se/talvez ...
+- Futuro: quando/se ...
 
 ### Declinações do artigo definido
 
