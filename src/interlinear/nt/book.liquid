@@ -9,6 +9,7 @@ bee: true
 eleventyComputed:
   bookName: "{{ entry.bookName }}"
   bookNameAbbr: "{{ entry.bookSlug }}"
+  bookChapter: "{{ entry.chapter.number }}"
 ---
 {% assign chapter = entry.chapter %}
 {% render '../../_includes/bookNav', bookName: bookName, bookChapter: chapter.number, bookAbbr: bookNameAbbr %}
@@ -55,7 +56,7 @@ eleventyComputed:
 								<div class="interlinear">
 									{% for token in verse.tokens %}
 										<span class="token">
-											<a class="strongs" hreh="#" title="{{ token.verbete }}:">{{ token.strongs }}</a>
+											<a class="strongs" hreh="#" title="{{ token.verbete }}">{{ token.strongs }}</a>
 											<span class="translit" title="{{ token.ocorrencia }}">{{ token.transliteracao }}</span>
 											<span class="greek">{{ token.lemma }}</span>
 											<span class="translate">{{ token.traducao }}</span>
