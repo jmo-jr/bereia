@@ -1,0 +1,72 @@
+---
+title: Bíblia BEREIA
+---
+<!DOCTYPE html>
+<html land="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title }}</title>
+  <meta name="description" content="Página inicial da BEI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{{ './img/favicon.png' }}">
+  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+</head>
+
+<body>
+
+  <div id="app" class="wrapper">
+
+    {% render 'siteHeader' %}
+
+    <main class="home main-content">
+      <div class="content">
+
+        {% block content %}
+          {{ content }}
+        {% endblock %}
+
+      </div>
+    </main>
+
+  </div>
+
+	<script>
+		(function () {
+			const toggleBtn = document.getElementById('toggleMenu');
+			const nav = document.querySelector('.main-nav');
+
+			if (!toggleBtn || !nav) return;
+
+			toggleBtn.setAttribute('aria-expanded', 'false');
+
+			toggleBtn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const opened = nav.classList.toggle('open');
+				toggleBtn.setAttribute('aria-expanded', String(opened));
+			});
+
+			// Click/touch outside to close
+			const closeIfOutside = (e) => {
+				if (!nav.classList.contains('open')) return;
+				if (nav.contains(e.target) || e.target === toggleBtn) return;
+				nav.classList.remove('open');
+				toggleBtn.setAttribute('aria-expanded', 'false');
+			};
+
+			document.addEventListener('click', closeIfOutside);
+			document.addEventListener('touchstart', closeIfOutside);
+
+			// Close with Escape
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && nav.classList.contains('open')) {
+					nav.classList.remove('open');
+					toggleBtn.setAttribute('aria-expanded', 'false');
+					toggleBtn.focus();
+				}
+			});
+		})();
+	</script>
+
+</body>
+</html>

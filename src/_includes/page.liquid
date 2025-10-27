@@ -1,0 +1,111 @@
+---
+title: Bíblia BEREIA
+---
+<!DOCTYPE html>
+<html land="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title }}</title>
+	<base href="{{ pathPrefix }}">
+  <meta name="description" content="Página do capítulo do livro escolhido">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{{ '/img/logo.png' | url }}">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+	<link rel="stylesheet" href="{{ '/biblia/pagefind/pagefind-ui.css' | url }}">
+  <style>
+    .ui-tooltip {
+      padding: 4px 8px;
+      background-color: lightyellow;
+      font-size: 14px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( document ).tooltip();
+    } );
+  </script>
+</head>
+
+<body>
+
+  <div id="app" class="wrapper">
+
+    {% render 'siteHeader' %}
+
+		{% render 'toolBar', bookList: ntBooks, bookName: bookName, bookChapter: bookChapter, type: bee %}
+
+    <main class="main-content">
+      <div class="content" data-pagefind-body>
+
+        {% block content %}
+          {{ content }}
+        {% endblock %}
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    var page = document.getElementById("app");
+
+    function toggleStrongs() {
+      page.classList.toggle("no_strongs");
+    }
+    function toggleTranslit() {
+      page.classList.toggle("no_translit");
+    }
+    function toggleGreek() {
+      page.classList.toggle("no_greek");
+    }
+    function toggleGrammar() {
+      page.classList.toggle("no_grammar");
+    }
+  </script>
+
+	<script>
+		(function () {
+			const toggleBtn = document.getElementById('toggleMenu');
+			const nav = document.querySelector('.main-nav');
+
+			if (!toggleBtn || !nav) return;
+
+			toggleBtn.setAttribute('aria-expanded', 'false');
+
+			toggleBtn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const opened = nav.classList.toggle('open');
+				toggleBtn.setAttribute('aria-expanded', String(opened));
+			});
+
+			// Click/touch outside to close
+			const closeIfOutside = (e) => {
+				if (!nav.classList.contains('open')) return;
+				if (nav.contains(e.target) || e.target === toggleBtn) return;
+				nav.classList.remove('open');
+				toggleBtn.setAttribute('aria-expanded', 'false');
+			};
+
+			document.addEventListener('click', closeIfOutside);
+			document.addEventListener('touchstart', closeIfOutside);
+
+			// Close with Escape
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && nav.classList.contains('open')) {
+					nav.classList.remove('open');
+					toggleBtn.setAttribute('aria-expanded', 'false');
+					toggleBtn.focus();
+				}
+			});
+		})();
+	</script>
+	<script 
+		src="{{ '/biblia/pagefind/pagefind-ui.js' | url }}" 
+		onload="new PagefindUI({ element: '#search', showImages: false, translations: { placeholder: 'Busca', zero_results: 'Não encontrei [SEARCH_TERM]' }, many_results: '[COUNT] results for [SEARCH_TERM]', one_result: '[COUNT] result for [SEARCH_TERM]', });"></script>
+</body>
+</html>

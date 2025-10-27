@@ -1,0 +1,71 @@
+<div class="toolbar">
+	<div class="content">
+
+		{% if type %}
+		<h2 class="show-mobile">Bíblia de Estudo Exegético</h2>
+		{% else %}
+		<h2 class="show-mobile">Interlinear Analítico</h2>
+		{% endif %}
+
+		<div class="d-flex justify-between align-items-center flex-wrap">
+
+			{% comment %} Navegador dos livros {% endcomment %}
+			<div class="input-group">
+
+				<form>
+					<select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
+						{% for livro in bookList %}
+						<option 
+							value="{{ livro.permalink | url | append: '01' }}"
+							{% if bookName == livro.name %}selected{% endif %}
+						>{{ livro.name }}</option>
+						{% endfor %}
+					</select>
+
+					<select name="chapter" class="drop" onchange="location.href = this.value;">
+
+					{% for book in bookList %}
+						{% if book.name == bookName %}
+							{% assign num = book.chapters %}
+							{% assign range = (1..num) %}
+							{% for n in range %}
+								<option 
+									value="{{ book.permalink | url }}{{ n }}"
+									{% if bookChapter == n %}selected{% endif %}
+								>
+									{{ n }}
+								</option>
+							{% endfor %}
+						{% endif %}
+					{% endfor %}
+
+					</select>
+
+				</form>
+
+			</div>
+
+			{% if type %}
+			<h2 class="show-desktop">Bíblia de Estudo Exegético</h2>
+			{% else %}
+			<h2 class="show-desktop">Interlinear Analítico</h2>
+			{% endif %}
+
+			{% comment %} Configurações de tela {% endcomment %}
+			{% if type %}
+			<div id="search" class="search"></div>
+			{% else %}
+			<div class="button-group">
+				<button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
+				<button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
+				{% comment %} REMOVER? {% endcomment %}
+				<button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
+				{% comment %} / {% endcomment %}
+				<button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
+			</div>
+			{% endif %}
+
+		</div>
+
+	</div>
+</div>
