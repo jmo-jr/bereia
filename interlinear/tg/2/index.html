@@ -1,0 +1,4073 @@
+<!DOCTYPE html>
+<html land="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bíblia BEREIA</title>
+	<base href="">
+  <meta name="description" content="Página do capítulo do livro escolhido">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/bereia/img/logo.png">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/bereia/css/style.css">
+	<link rel="stylesheet" href="/bereia/biblia/pagefind/pagefind-ui.css">
+  <style>
+    .ui-tooltip {
+      padding: 4px 8px;
+      background-color: lightyellow;
+      font-size: 14px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( document ).tooltip();
+    } );
+  </script>
+</head>
+
+<body>
+
+  <div id="app" class="wrapper">
+
+    <header class="app-bar">
+	<div class="content d-flex justify-between align-items-center">
+		<div class="d-flex align-items-center" style="gap:16px;">
+			<img src="/bereia/img/logo.png" style="width:34px; height: 34px;">
+			<h1><a href="/bereia/">Bíblia BEREIA</a></h1>
+		</div>
+
+		<button type="button" id="toggleMenu">
+			<div class="burger-icon">
+				<div class="burger-layer"></div>
+				<div class="burger-layer"></div>
+				<div class="burger-layer"></div>
+			</div>
+		</button>
+
+		<nav class="main-nav">
+			<ul>
+				<li><a href="/bereia/biblia/mateus/1/">Bíblia de Estudo</a></li>
+				<li><a href="/bereia/interlinear/mateus/1/">Interlinear</a></li>
+				<li><a href="/bereia/sobre/">Sobre</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+		<div class="toolbar">
+	<div class="content">
+
+		
+		<h2 class="show-mobile">Bíblia de Estudo Exegético</h2>
+		
+
+		<div class="d-flex justify-between align-items-center flex-wrap">
+
+			
+			<div class="input-group">
+
+				<form>
+					<select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
+						
+						<option 
+							value="/bereia/interlinear/mt/1"
+							
+						>Mateus</option>
+						
+						<option 
+							value="/bereia/interlinear/mc/1"
+							
+						>Marcos</option>
+						
+						<option 
+							value="/bereia/interlinear/lc/1"
+							
+						>Lucas</option>
+						
+						<option 
+							value="/bereia/interlinear/jo/1"
+							
+						>João</option>
+						
+						<option 
+							value="/bereia/interlinear/at/1"
+							
+						>Atos</option>
+						
+						<option 
+							value="/bereia/interlinear/rm/1"
+							
+						>Romanos</option>
+						
+						<option 
+							value="/bereia/interlinear/1co/1"
+							
+						>1 Coríntios</option>
+						
+						<option 
+							value="/bereia/interlinear/2co/1"
+							
+						>2 Coríntios</option>
+						
+						<option 
+							value="/bereia/interlinear/gl/1"
+							
+						>Gálatas</option>
+						
+						<option 
+							value="/bereia/interlinear/ef/1"
+							
+						>Efésios</option>
+						
+						<option 
+							value="/bereia/interlinear/fp/1"
+							
+						>Filipenses</option>
+						
+						<option 
+							value="/bereia/interlinear/cl/1"
+							
+						>Colossenses</option>
+						
+						<option 
+							value="/bereia/interlinear/1ts/1"
+							
+						>1 Tessalonicenses</option>
+						
+						<option 
+							value="/bereia/interlinear/2ts/1"
+							
+						>2 Tessalonicenses</option>
+						
+						<option 
+							value="/bereia/interlinear/1tm/1"
+							
+						>1 Timóteo</option>
+						
+						<option 
+							value="/bereia/interlinear/2tm/1"
+							
+						>2 Timóteo</option>
+						
+						<option 
+							value="/bereia/interlinear/tt/1"
+							
+						>Tito</option>
+						
+						<option 
+							value="/bereia/interlinear/fm/1"
+							
+						>Filemon</option>
+						
+						<option 
+							value="/bereia/interlinear/hb/1"
+							
+						>Hebreus</option>
+						
+						<option 
+							value="/bereia/interlinear/tg/1"
+							selected
+						>Tiago</option>
+						
+						<option 
+							value="/bereia/interlinear/1pe/1"
+							
+						>1 Pedro</option>
+						
+						<option 
+							value="/bereia/interlinear/2pe/1"
+							
+						>2 Pedro</option>
+						
+						<option 
+							value="/bereia/interlinear/1jo/1"
+							
+						>1 João</option>
+						
+						<option 
+							value="/bereia/interlinear/2jo/1"
+							
+						>2 João</option>
+						
+						<option 
+							value="/bereia/interlinear/3jo/1"
+							
+						>3 João</option>
+						
+						<option 
+							value="/bereia/interlinear/jd/1"
+							
+						>Judas</option>
+						
+						<option 
+							value="/bereia/interlinear/ap/1"
+							
+						>Apocalipse</option>
+						
+					</select>
+
+					<select name="chapter" class="drop" onchange="location.href = this.value;">
+
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+							
+							
+							
+								<option 
+									value="/bereia/interlinear/tg/1"
+									
+								>
+									1
+								</option>
+							
+								<option 
+									value="/bereia/interlinear/tg/2"
+									
+								>
+									2
+								</option>
+							
+								<option 
+									value="/bereia/interlinear/tg/3"
+									
+								>
+									3
+								</option>
+							
+								<option 
+									value="/bereia/interlinear/tg/4"
+									
+								>
+									4
+								</option>
+							
+								<option 
+									value="/bereia/interlinear/tg/5"
+									
+								>
+									5
+								</option>
+							
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+
+					</select>
+
+				</form>
+
+			</div>
+
+			
+			<h2 class="show-desktop">Bíblia de Estudo Exegético</h2>
+			
+
+			
+			
+			<div id="search" class="search"></div>
+			
+
+		</div>
+
+	</div>
+</div>
+
+    <main class="main-content">
+      <div class="content" data-pagefind-body>
+
+        
+          
+
+
+
+
+
+<div id="movebox2" class="page-header">
+
+	<a href="/bereia/interlinear/tg/1/"
+		title="Tiago 1">◄</a>
+
+	<h3>Tiago 2</h3>
+
+	<a href="/bereia/interlinear/tg/3/"
+		title="Tiago 3">►</a>
+
+</div>
+
+
+
+
+
+
+<div id="left">
+	<a href="/bereia/interlinear/tg/1/"
+		title="tg 1">
+		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
+			<path id="seta-esquerda" data-name="seta-esquerda"
+				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
+				transform="translate(0 24) rotate(270)" fill="#ddd" />
+		</svg>
+	</a>
+</div>
+
+<div id="right">
+	<a href="/bereia/interlinear/tg/3"
+		title="tg 3">
+		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
+			<path id="seta-direita" data-name="seta-direita"
+				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
+				transform="translate(14) rotate(90)" fill="#ddd" />
+		</svg>
+	</a>
+</div>
+
+<div id="botright">
+	<a href="#" title="Ir para o topo">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="14" viewBox="0 0 24 14">
+			<path id="seta-acima" data-name="seta-acima"
+				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
+				transform="translate(0) rotate(0)" fill="#ddd" />
+		</svg>
+	</a>
+</div>
+
+	<div class="chapter-wrapper">
+		<h1 class="vheading">ΙΑΚΩΒΟΥ 2</h1>
+
+		
+		
+			
+				<section class="pericope" id="p005">
+					
+						<h2 class="pericope-title">A fé sem favoritismo</h2>
+							
+					
+
+					<ul class="versiculos">
+						
+							<li id="v1">
+								<strong class="refmain" style="margin-top: 65px">1</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G80: irmão">80</a>
+											<span class="translit" title="adelphoi: irmãos -- Ocorrências: 145.">adelphoi</span>
+											<span class="greek">Ἀδελφοί</span>
+											<span class="translate">irmãos</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="mou: de mim, meu, minha -- Ocorrências: 567.">mou</span>
+											<span class="greek">μου</span>
+											<span class="translate">de mim</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">Ppro-G1S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1722: em, sobre, por, com, entre">1722</a>
+											<span class="translit" title="en: em, com, por -- Ocorrências: 2775.">en</span>
+											<span class="greek">ἐν</span>
+											<span class="translate">em</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">προσωποληψίαις</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2192: ter, possuir">2192</a>
+											<span class="translit" title="echete: vós tendes -- Ocorrências: 51.">echete</span>
+											<span class="greek">ἔχετε</span>
+											<span class="translate">tendes</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Plural">V-PIA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēn: a -- Ocorrências: 1538.">tēn</span>
+											<span class="greek">τὴν</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistin: fé -- Ocorrências: 55.">pistin</span>
+											<span class="greek">πίστιν</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tou: do -- Ocorrências: 2538.">tou</span>
+											<span class="greek">τοῦ</span>
+											<span class="translate">do</span>
+											<small class="refs" title="Artigo - Genitivo Masculino Singuar">Art-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2962: senhor, dono, o Senhor (gr. da LXX para YHWH)">2962</a>
+											<span class="translit" title="kyriou: do Senhor -- Ocorrências: 244.">Kyriou</span>
+											<span class="greek">κυρίου</span>
+											<span class="translate">do Senhor</span>
+											<small class="refs" title="Substantivo - Genitivo Masculino Singular">S-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="hēmōn: de nós, nosso -- Ocorrências: 408.">hēmōn</span>
+											<span class="greek">ἡμῶν</span>
+											<span class="translate">nosso</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Plural">PPro-G1P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2424: Jesus, forma contraída de Josué, 'Jeová é salvação'">2424</a>
+											<span class="translit" title="Iēsou: de Jesus -- Ocorrências: 332.">Iēsou</span>
+											<span class="greek">Ἰησοῦ</span>
+											<span class="translate">de Jesus</span>
+											<small class="refs" title="Substantivo - Genitivo Masculino Singular">S-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5547: Cristo, ungido, o Messias">5547</a>
+											<span class="translit" title="Christou: de Cristo -- Ocorrências: 254.">christou</span>
+											<span class="greek">χριστοῦ</span>
+											<span class="translate">de Cristo</span>
+											<small class="refs" title="Substantivo - Genitivo Masculino Singular">S-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēs: da -- Ocorrências: 1306.">tēs</span>
+											<span class="greek">τῆς</span>
+											<span class="translate">da</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Singular">Art-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1391: GL extraterria">1391</a>
+											<span class="translit" title="doxēs: de glory -- Ocorrências: 48.">doxēs</span>
+											<span class="greek">δόξης</span>
+											<span class="translate">de glory</span>
+											<small class="refs" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v2">
+								<strong class="refmain" style="margin-top: 65px">2</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1437: se">1437</a>
+											<span class="translit" title="ean: se -- Ocorrências: 334.">ean</span>
+											<span class="greek">Ἐὰν</span>
+											<span class="translate">se </span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1063: pois, de fato">1063</a>
+											<span class="translit" title="gar: pois, de fato -- Ocorrências: 1046.">gar</span>
+											<span class="greek">γὰρ</span>
+											<span class="translate">pois</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1525: entrar">1525</a>
+											<span class="translit" title="eiselthē: ** -- Ocorrências: 9.">eiselthē</span>
+											<span class="greek">εἰσέλθῃ</span>
+											<span class="translate">entrarão</span>
+											<small class="refs" title="Verbo - Aoristo Subjuntivo Ativa - 3ª Pessoa Singular">V-ASA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1519: em, para, em direção a, a fim de">1519</a>
+											<span class="translit" title="eis: para, em direção a, em -- Ocorrências: 1774.">eis</span>
+											<span class="greek">εἰς</span>
+											<span class="translate">para</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēn: a -- Ocorrências: 1538.">tēn</span>
+											<span class="greek">τὴν</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4864: um ajuntamento, reuni Elimo, congrega92, sinagoga">4864</a>
+											<span class="translit" title="synagōgēn: sinagoga -- Ocorrências: 12.">synagōgēn</span>
+											<span class="greek">συναγωγὴν</span>
+											<span class="translate">sinagoga</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="hymōn: vosso, de vós -- Ocorrências: 565.">hymōn</span>
+											<span class="greek">ὑμῶν</span>
+											<span class="translate">de vós</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 2ª Pessoa Plural">PPro-G2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G435: um homem">435</a>
+											<span class="translit" title="anēr: marido -- Ocorrências: 51.">anēr</span>
+											<span class="greek">ἀνὴρ</span>
+											<span class="translate">marido</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5554: anéis com ouro">5554</a>
+											<span class="translit" title="chrysodaktylios: com ouro rings -- Ocorrências: 1.">chrysodaktylios</span>
+											<span class="greek">χρυσοδακτύλιος</span>
+											<span class="translate">anéis com ouro</span>
+											<small class="refs" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1722: em, sobre, por, com, entre">1722</a>
+											<span class="translit" title="en: em, com, por -- Ocorrências: 2775.">en</span>
+											<span class="greek">ἐν</span>
+											<span class="translate">em</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2066: vestuário">2066</a>
+											<span class="translit" title="esthēti: garments -- Ocorrências: 4.">esthēti</span>
+											<span class="greek">ἐσθῆτι</span>
+											<span class="translate">vestuário</span>
+											<small class="refs" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2986: brilhante">2986</a>
+											<span class="translit" title="lampra: bright -- Ocorrências: 3.">lampra</span>
+											<span class="greek">λαμπρᾷ</span>
+											<span class="translate">brilhante</span>
+											<small class="refs" title="Adjetivo - Dativo Feminino Singular">Adj-DFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1525: entrar">1525</a>
+											<span class="translit" title="eiselthē: ** -- Ocorrências: 9.">eiselthē</span>
+											<span class="greek">εἰσέλθῃ</span>
+											<span class="translate">entrarão</span>
+											<small class="refs" title="Verbo - Aoristo Subjuntivo Ativa - 3ª Pessoa Singular">V-ASA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4434: curvado, pobre, mendigo">4434</a>
+											<span class="translit" title="ptōchos: beggar -- Ocorrências: 3.">ptōchos</span>
+											<span class="greek">πτωχὸς</span>
+											<span class="translate">um mendigo</span>
+											<small class="refs" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1722: em, sobre, por, com, entre">1722</a>
+											<span class="translit" title="en: em, com, por -- Ocorrências: 2775.">en</span>
+											<span class="greek">ἐν</span>
+											<span class="translate">em</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4508: gasto">4508</a>
+											<span class="translit" title="rhypara: shabby -- Ocorrências: 1.">rhypara</span>
+											<span class="greek">ῥυπαρᾷ</span>
+											<span class="translate">pobre</span>
+											<small class="refs" title="Adjetivo - Dativo Feminino Singular">Adj-DFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2066: vestuário">2066</a>
+											<span class="translit" title="esthēti: garments -- Ocorrências: 4.">esthēti</span>
+											<span class="greek">ἐσθῆτι</span>
+											<span class="translate">vestuário</span>
+											<small class="refs" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v3">
+								<strong class="refmain" style="margin-top: 65px">3</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1914: ye might have look">1914</a>
+											<span class="translit" title="epiblepsēte: ye might have looked -- Ocorrências: 1.">epiblepsēte</span>
+											<span class="greek">ἐπιβλέψητε</span>
+											<span class="translate">vós</span>
+											<small class="refs" title="Verbo - Aoristo Subjuntivo Ativa - 2ª Pessoa Plural">V-ASA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1909: em, sobre, por, antes, através, contra, entre, ao lado, com base em">1909</a>
+											<span class="translit" title="epi: sobre, em cima -- Ocorrências: 669.">epi</span>
+											<span class="greek">ἐπὶ</span>
+											<span class="translate">sobre</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2307: vontade">2307</a>
+											<span class="translit" title="ton: ao -- Ocorrências: 1588.">Ton</span>
+											<span class="greek">τὸν</span>
+											<span class="translate">O</span>
+											<small class="refs" title="Artigo - Acusativo Masculino Singular">Art-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5409: veste">5409</a>
+											<span class="translit" title="phorounta: wears -- Ocorrências: 1.">phorounta</span>
+											<span class="greek">φοροῦντα</span>
+											<span class="translate">veste</span>
+											<small class="refs" title="Verbo - Presente Particípio Ativa - Acusativo Masculino Singular">V-PPA-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēn: a -- Ocorrências: 1538.">tēn</span>
+											<span class="greek">τὴν</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2066: vestuário">2066</a>
+											<span class="translit" title="esthēta: apparel -- Ocorrências: 3.">esthēta</span>
+											<span class="greek">ἐσθῆτα</span>
+											<span class="translate">vestuário</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēn: a -- Ocorrências: 1538.">tēn</span>
+											<span class="greek">τὴν</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">λαμπράν</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3004: falar, dizer">3004</a>
+											<span class="translit" title="eipēte: se vós dissésseis, falásseis -- Ocorrências: 8.">eipēte</span>
+											<span class="greek">εἴπητε</span>
+											<span class="translate">dissésseis</span>
+											<small class="refs" title="Verbo - Aoristo Subjuntivo Ativa - 2ª Pessoa Plural">V-ASA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela (s">846</a>
+											<span class="translit" title="autō: a ele -- Ocorrências: 856.">autō</span>
+											<span class="greek">αὐτῷ</span>
+											<span class="translate">a ele</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo Masculino Singular">Ppro-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="sy: tu -- Ocorrências: 174.">Sy</span>
+											<span class="greek">Σὺ</span>
+											<span class="translate">tu</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Nominativo 2ª Pessoa Singular">PPro-N2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2521: aprovar-se, residir">2521</a>
+											<span class="translit" title="Kathou: Tu estás assentado(a) -- Ocorrências: 7.">Kathou</span>
+											<span class="greek">κάθου</span>
+											<span class="translate">Est @ asentado</span>
+											<small class="refs" title="Verbo - Presente Imperativo Média ou Passiva - 2ª Pessoa Singular">V-PMM/P-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5602: aqui">5602</a>
+											<span class="translit" title="hōde: aqui -- Ocorrências: 62.">hōde</span>
+											<span class="greek">ὧδε</span>
+											<span class="translate">aqui</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2573: bem">2573</a>
+											<span class="translit" title="kalōs: bem -- Ocorrências: 37.">Kalōs</span>
+											<span class="greek">καλῶς</span>
+											<span class="translate">Bem</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tō: do -- Ocorrências: 1246.">tō</span>
+											<span class="greek">τῷ</span>
+											<span class="translate">do</span>
+											<small class="refs" title="Artigo - Genitivo Masculino Singular">Art-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4434: curvado, pobre, mendigo">4434</a>
+											<span class="translit" title="ptōchō: poor -- Ocorrências: 1.">ptōchō</span>
+											<span class="greek">πτωχῷ</span>
+											<span class="translate">pobres</span>
+											<small class="refs" title="Adjetivo - Dativo Masculino Singular">Adj-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3004: falar, dizer">3004</a>
+											<span class="translit" title="eipēte: se vós dissésseis, falásseis -- Ocorrências: 8.">eipēte</span>
+											<span class="greek">εἴπητε</span>
+											<span class="translate">dissésseis</span>
+											<small class="refs" title="Verbo - Aoristo Subjuntivo Ativa - 2ª Pessoa Plural">V-ASA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="sy: tu -- Ocorrências: 174.">Sy</span>
+											<span class="greek">Σὺ</span>
+											<span class="translate">tu</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Nominativo 2ª Pessoa Singular">PPro-N2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2476: ficar de P">2476</a>
+											<span class="translit" title="stēthi: stand -- Ocorrências: 3.">stēthi</span>
+											<span class="greek">στῆθι</span>
+											<span class="translate">suporte</span>
+											<small class="refs" title="Verbo - Aoristo Imperativo Ativa - 2ª Pessoa Singular">V-AMA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1563: l">1563</a>
+											<span class="translit" title="ekei: lá -- Ocorrências: 95.">ekei</span>
+											<span class="greek">ἐκεῖ</span>
+											<span class="translate">lá</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2228: ou, que, do que">2228</a>
+											<span class="translit" title="ē: ou, que, do que --- Ocorrências: 346.">ē</span>
+											<span class="greek">ἢ</span>
+											<span class="translate">mas</span>
+											<small class="refs" title="Partícula">Prtcl</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2521: aprovar-se, residir">2521</a>
+											<span class="translit" title="Kathou: Tu estás assentado(a) -- Ocorrências: 7.">Kathou</span>
+											<span class="greek">κάθου</span>
+											<span class="translate">Est @ asentado</span>
+											<small class="refs" title="Verbo - Presente Imperativo Média ou Passiva - 2ª Pessoa Singular">V-PMM/P-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5602: aqui">5602</a>
+											<span class="translit" title="hōde: aqui -- Ocorrências: 62.">hōde</span>
+											<span class="greek">ὧδε</span>
+											<span class="translate">aqui</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5259: por, sob, abaixo, através">5259</a>
+											<span class="translit" title="hypo: sob, por, acerca de  -- Ocorrências: 188.">hypo</span>
+											<span class="greek">ὑπὸ</span>
+											<span class="translate">por</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="to: o(a) [que]  -- Ocorrências: 1714.">to</span>
+											<span class="greek">τὸ</span>
+											<span class="translate">o(a)</span>
+											<small class="refs" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5286: estrado, suped">5286 </a>
+											<span class="translit" title="hypopodion: estrado, supedâneo -- Ocorrências: 7.">hypopodion </span>
+											<span class="greek">ὑποπόδιόν</span>
+											<span class="translate">estrado</span>
+											<small class="refs" title="Substantivo - Nominativo Neutro Singular">S-NNS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="mou: de mim, meu, minha -- Ocorrências: 567.">mou</span>
+											<span class="greek">μου</span>
+											<span class="translate">de mim</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">Ppro-G1S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v4">
+								<strong class="refmain" style="margin-top: 65px">4</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ou: não -- Ocorrências: 1.">ou</span>
+											<span class="greek">οὐ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="AdVerbo">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1252: fez ye faz a diferença">1252</a>
+											<span class="translit" title="diekrithēte: fez ye make a difference -- Ocorrências: 1.">diekrithēte</span>
+											<span class="greek">διεκρίθητε</span>
+											<span class="translate">fez tu fazer uma distinção</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Passiva - 2ª Pessoa Plural">V-AIP-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1722: em, sobre, por, com, entre">1722</a>
+											<span class="translit" title="en: em, com, por -- Ocorrências: 2775.">en</span>
+											<span class="greek">ἐν</span>
+											<span class="translate">em</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1438: ele(a) mesmo, a si mesmo">1438</a>
+											<span class="translit" title="heautois: a si mesmos -- Ocorrências: 52.">heautois</span>
+											<span class="greek">ἑαυτοῖς</span>
+											<span class="translate">si mesmos</span>
+											<small class="refs" title="Pronome Reflexivo - Dativo Masculino 3ª Pessoa Plural">RefPro-DM3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1096: vir a ser, nascer, tornar - se, ocorrer ">1096</a>
+											<span class="translit" title="egenesthe: became -- Ocorrências: 4.">egenesthe</span>
+											<span class="greek">ἐγένεσθε</span>
+											<span class="translate">foram</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Média - 2ª Pessoa Plural">V-AIM-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2923: juízes">2923</a>
+											<span class="translit" title="kritai: judges -- Ocorrências: 3.">kritai</span>
+											<span class="greek">κριταὶ</span>
+											<span class="translate">juízes</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1261: pensamentos">1261</a>
+											<span class="translit" title="dialogismōn: thoughts -- Ocorrências: 3.">dialogismōn</span>
+											<span class="greek">διαλογισμῶν</span>
+											<span class="translate">disputas</span>
+											<small class="refs" title="Substantivo - Genitivo Masculino Plural">S-GMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4190: penoso, doloroso, mau, perverso">4190</a>
+											<span class="translit" title="ponērōn: the evils -- Ocorrências: 6.">ponērōn</span>
+											<span class="greek">πονηρῶν</span>
+											<span class="translate">o males</span>
+											<small class="refs" title="Adjetivo - Genitivo Neutro Plural">Adj-GNP</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v5">
+								<strong class="refmain" style="margin-top: 65px">5</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G191: ouvir, dar ouvidos, é ouvido">191</a>
+											<span class="translit" title="akousate: ouvi vós -- Ocorrências: 10.">akousate</span>
+											<span class="greek">Ἀκούσατε</span>
+											<span class="translate">ouçam</span>
+											<small class="refs" title="Verbo - Aoristo Imperativo Ativa - 2ª Pessoa Plural">V-AMA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G80: irmão">80</a>
+											<span class="translit" title="adelphoi: irmãos -- Ocorrências: 145.">adelphoi</span>
+											<span class="greek">ἀδελφοί</span>
+											<span class="translate">irmãos</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="mou: de mim, meu, minha -- Ocorrências: 567.">mou</span>
+											<span class="greek">μου</span>
+											<span class="translate">de mim</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">Ppro-G1S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G27: amado">27</a>
+											<span class="translit" title="agapētoi: amados -- Ocorrências: 30.">agapetoi</span>
+											<span class="greek">ἀγαπητοί</span>
+											<span class="translate">amados</span>
+											<small class="refs" title="Adjetivo - Vocativo Masculino Plural">Adj-VMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ouch: não -- Ocorrências: 105.">ouch</span>
+											<span class="greek">Οὐχ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="AdVerbo">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="ho: o [que] -- Ocorrências: 2965.">ho</span>
+											<span class="greek">ὁ</span>
+											<span class="translate">o</span>
+											<small class="refs" title="Artigo - Nominativo Masculino Singular">RelPro-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2316: um deus, o Deus de Israel">2316</a>
+											<span class="translit" title="theos: Deus -- Ocorrências: 311.">theos</span>
+											<span class="greek">θεὸς</span>
+											<span class="translate">Deus</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1586: ele escolheu">1586</a>
+											<span class="translit" title="exelexato: ele chose -- Ocorrências: 10.">exelexato</span>
+											<span class="greek">ἐξελέξατο</span>
+											<span class="translate">ele escolheu</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Média - 3ª Pessoa Singular">V-AIM-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tous: os -- Ocorrências: 740.">tous</span>
+											<span class="greek">τοὺς</span>
+											<span class="translate">os</span>
+											<small class="refs" title="Artigo - Acusativo Masculino Plural">Art-AMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4434: curvado, pobre, mendigo">4434</a>
+											<span class="translit" title="ptōchous: poor -- Ocorrências: 8.">ptōchous</span>
+											<span class="greek">πτωχοὺς</span>
+											<span class="translate">pobres</span>
+											<small class="refs" title="Adjetivo - Acusativo Masculino Plural">Adj-AMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tou: do -- Ocorrências: 2538.">tou</span>
+											<span class="greek">τοῦ</span>
+											<span class="translate">do</span>
+											<small class="refs" title="Artigo - Genitivo Masculino Singuar">Art-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2889: ordem, ornamento, mundo, universo">2889</a>
+											<span class="translit" title="kosmou: do mundo -- Ocorrências: 72.">kosmou</span>
+											<span class="greek">κόσμου</span>
+											<span class="translate">mundo</span>
+											<small class="refs" title="Substantivo - Genitivo Masculino Singular">S-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4145: rich">4145</a>
+											<span class="translit" title="plousious: rich -- Ocorrências: 4.">plousious</span>
+											<span class="greek">πλουσίους</span>
+											<span class="translate">Rico</span>
+											<small class="refs" title="Adjetivo - Acusativo Masculino Plural">Adj-AMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1722: em, sobre, por, com, entre">1722</a>
+											<span class="translit" title="en: em, com, por -- Ocorrências: 2775.">en</span>
+											<span class="greek">ἐν</span>
+											<span class="translate">em</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="Pistei: por fé -- Ocorrências: 58.">Pistei</span>
+											<span class="greek">πίστει</span>
+											<span class="translate">por fé</span>
+											<small class="refs" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2818: herdeiros">2818</a>
+											<span class="translit" title="klēronomous: heirs -- Ocorrências: 1.">klēronomous</span>
+											<span class="greek">κληρονόμους</span>
+											<span class="translate">herdeiros</span>
+											<small class="refs" title="Substantivo - Acusativo Masculino Plural">S-AMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēs: da -- Ocorrências: 1306.">tēs</span>
+											<span class="greek">τῆς</span>
+											<span class="translate">da</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Singular">Art-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G932: reino, governo, soberania">932</a>
+											<span class="translit" title="basileias: do reino -- Ocorrências: 22.">basileias</span>
+											<span class="greek">βασιλείας</span>
+											<span class="translate">do reino</span>
+											<small class="refs" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3739: quem, qual, que">3739</a>
+											<span class="translit" title="hēs: de quem, da qual, de que -- Ocorrências: 49.">hēs</span>
+											<span class="greek">ἧς</span>
+											<span class="translate">da qual</span>
+											<small class="refs" title="Pronome Relativo - Genitivo Feminino Singular">RelPro-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1861: prometido">1861</a>
+											<span class="translit" title="epēngeilato: promised -- Ocorrências: 5.">epēngeilato</span>
+											<span class="greek">ἐπηγγείλατο</span>
+											<span class="translate">prometido</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Média - 3ª Pessoa Singular">V-AIM-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="Tois: aos -- Ocorrências: 628.">tois</span>
+											<span class="greek">τοῖς</span>
+											<span class="translate">aos</span>
+											<small class="refs" title="Artigo - Dativo Masculino Plural">Art-DMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G25: amar, preferir, estimar">25</a>
+											<span class="translit" title="agaposin: eles(as) amam -- Ocorrências: 5.">agaposin</span>
+											<span class="greek">ἀγαπῶσιν</span>
+											<span class="translate">amam</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Plural">V-PIA-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="auton: a ele -- Ocorrências: 961.">auton</span>
+											<span class="greek">αὐτόν</span>
+											<span class="translate">a ele</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo Masculino 3ª Pessoa Singular">PPro-DM3S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v6">
+								<strong class="refmain" style="margin-top: 65px">6</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="hymeis: vós -- Ocorrências: 238.">hymeis</span>
+											<span class="greek">Ὑμεῖς</span>
+											<span class="translate">vós</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Nominativo 2ª Pessoa Plural">Ppro-N2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G818: desonrado">818</a>
+											<span class="translit" title="ētimasate: dishonraed -- Ocorrências: 1.">ētimasate</span>
+											<span class="greek">ἠτιμάσατε</span>
+											<span class="translate">desonra</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Ativa - 2ª Pessoa Plural">V-AIA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2307: vontade">2307</a>
+											<span class="translit" title="ton: ao -- Ocorrências: 1588.">Ton</span>
+											<span class="greek">τὸν</span>
+											<span class="translate">O</span>
+											<small class="refs" title="Artigo - Acusativo Masculino Singular">Art-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4434: curvado, pobre, mendigo">4434</a>
+											<span class="translit" title="ptōchon: poor -- Ocorrências: 2.">ptōchon</span>
+											<span class="greek">πτωχόν</span>
+											<span class="translate">pobre [homem</span>
+											<small class="refs" title="Adjetivo - Acusativo Masculino Singular">Adj-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ouch: não -- Ocorrências: 105.">ouch</span>
+											<span class="greek">Οὐχ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="AdVerbo">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hoi: os -- Ocorrências: 1121.">hoi</span>
+											<span class="greek">οἱ</span>
+											<span class="translate">os</span>
+											<small class="refs" title="Artigo - Nominativo Masculino Plural">Art-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4145: rich">4145</a>
+											<span class="translit" title="plousioi: rich -- Ocorrências: 4.">plousioi</span>
+											<span class="greek">πλούσιοι</span>
+											<span class="translate">Rico</span>
+											<small class="refs" title="Adjetivo - Nominativo Masculino Plural">Adj-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2616: oprimir">2616</a>
+											<span class="translit" title="katadynasteuousin: são, estão -- Ocorrências: 1.">katadynasteuousin</span>
+											<span class="greek">καταδυναστεύουσιν</span>
+											<span class="translate">oprimir</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Plural">V-PIA-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="hymōn: vosso, de vós -- Ocorrências: 565.">hymōn</span>
+											<span class="greek">ὑμῶν</span>
+											<span class="translate">de vós</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 2ª Pessoa Plural">PPro-G2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="autoi: eles -- Ocorrências: 86.">autoi</span>
+											<span class="greek">αὐτοὶ</span>
+											<span class="translate">eles</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Nominativo Masculino 3ª Pessoa Plural">PPro-NM3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1670: do drag">1670</a>
+											<span class="translit" title="helkousin: são, estão -- Ocorrências: 1.">helkousin</span>
+											<span class="greek">ἕλκουσιν</span>
+											<span class="translate">fazer arrastar</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Plural">V-PIA-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771 </a>
+											<span class="translit" title="hymas: vós -- Ocorrências: 438.">hymas</span>
+											<span class="greek">ὑμᾶς</span>
+											<span class="translate">vós</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Acusativo 2ª Pessoa Plural">Ppro-A2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1519: em, para, em direção a, a fim de">1519</a>
+											<span class="translit" title="eis: para, em direção a, em -- Ocorrências: 1774.">eis</span>
+											<span class="greek">εἰς</span>
+											<span class="translate">para</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2922: julho [como para">2922</a>
+											<span class="translit" title="kritēria: julgamento [como to] -- Ocorrências: 2.">kritēria</span>
+											<span class="greek">κριτήρια</span>
+											<span class="translate">julho [como para</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Plural">S-ANP</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v7">
+								<strong class="refmain" style="margin-top: 65px">7</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ouk: não, nem  -- Ocorrências: 830.">ouk</span>
+											<span class="greek">Οὐκ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="autoi: eles -- Ocorrências: 86.">autoi</span>
+											<span class="greek">αὐτοὶ</span>
+											<span class="translate">eles</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Nominativo Masculino 3ª Pessoa Plural">PPro-NM3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G987: blasfemar">987</a>
+											<span class="translit" title="blasphēmousin: são, estão -- Ocorrências: 3.">blasphēmousin</span>
+											<span class="greek">βλασφημοῦσιν</span>
+											<span class="translate">blasfemar</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Plural">V-PIA-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="to: o(a) [que]  -- Ocorrências: 1714.">to</span>
+											<span class="greek">τὸ</span>
+											<span class="translate">o(a)</span>
+											<small class="refs" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2570: bom, belo">2570</a>
+											<span class="translit" title="Kalon: Bom -- Ocorrências: 54.">Kalon</span>
+											<span class="greek">καλὸν</span>
+											<span class="translate">Bom</span>
+											<small class="refs" title="Adjetivo - Nominativo Neutro Singular">Adj-NNS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3686: nome">3686</a>
+											<span class="translit" title="onoma: o nome -- Ocorrências: 106.">onoma</span>
+											<span class="greek">ὄνομα</span>
+											<span class="translate">nome</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Singular">S-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="to: o(a) [que]  -- Ocorrências: 1714.">to</span>
+											<span class="greek">τὸ</span>
+											<span class="translate">o(a)</span>
+											<small class="refs" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1941: foi chamada">1941</a>
+											<span class="translit" title="epiklēthen: foi chamada -- Ocorrências: 1.">epiklēthen</span>
+											<span class="greek">ἐπικληθὲν</span>
+											<span class="translate">tendo sido chamada</span>
+											<small class="refs" title="Verbo - Aoristo Particípio Passiva - Acusativo Neutro Singular">V-APP-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">ἐφ</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771 </a>
+											<span class="translit" title="hymas: vós -- Ocorrências: 438.">hymas</span>
+											<span class="greek">ὑμᾶς</span>
+											<span class="translate">vós</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Acusativo 2ª Pessoa Plural">Ppro-A2P</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v8">
+								<strong class="refmain" style="margin-top: 65px">8</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1487: se">1487 </a>
+											<span class="translit" title="Ei: se -- Ocorrências: 508.">ei </span>
+											<span class="greek">Εἰ</span>
+											<span class="translate">se </span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3305: entretanto">3305</a>
+											<span class="translit" title="mentoi: entretanto -- Ocorrências: 8.">mentoi</span>
+											<span class="greek">μέντοι</span>
+											<span class="translate">entretanto</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3551: costume, lei, a Torá">3551</a>
+											<span class="translit" title="nomon: uma lei, a Lei -- Ocorrências: 61.">nomon</span>
+											<span class="greek">νόμον</span>
+											<span class="translate">lei</span>
+											<small class="refs" title="Substantivo - Masculino">S-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5055: terminar, finalizar, cumprir">5055</a>
+											<span class="translit" title="teleite: ye cheioy developed -- Ocorrências: 2.">teleite</span>
+											<span class="greek">τελεῖτε</span>
+											<span class="translate">tu manter</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Plural">V-PIA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">βασιλικόν</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2596: (gen) contra, abaixo de, durante todo, por; (acus) contra, Entre, diariamente, dia a dia, cada dia, de acordo com, por meio de">2596</a>
+											<span class="translit" title="kata: conforme, de acordo com, por meio de, de encontro a -- Ocorrências: 334.">Kata</span>
+											<span class="greek">κατὰ</span>
+											<span class="translate">Conforme</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēn: a -- Ocorrências: 1538.">tēn</span>
+											<span class="greek">τὴν</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1124: um escrito, uma escrita">1124</a>
+											<span class="translit" title="graphēn: Scripture -- Ocorrências: 4.">graphēn</span>
+											<span class="greek">γραφήν</span>
+											<span class="translate">Escritura</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G25: amar, preferir, estimar">25</a>
+											<span class="translit" title="Agapēseis: tu amarás -- Ocorrências: 10.">agapeseis</span>
+											<span class="greek">Ἀγαπήσεις</span>
+											<span class="translate">amarás</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V-FIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2307: vontade">2307</a>
+											<span class="translit" title="ton: ao -- Ocorrências: 1588.">Ton</span>
+											<span class="greek">τὸν</span>
+											<span class="translate">O</span>
+											<small class="refs" title="Artigo - Acusativo Masculino Singular">Art-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4139: PR">4139 </a>
+											<span class="translit" title="plēsion: próximo -- Ocorrências: 17.">plēsion </span>
+											<span class="greek">πλησίον</span>
+											<span class="translate">prximo</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="sou: de ti, teu, tua -- Ocorrências: 487.">sou</span>
+											<span class="greek">σου</span>
+											<span class="translate">de ti</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 2ª Pessoa Singular">Ppro-G2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5613: assim como, como">5613</a>
+											<span class="translit" title="hōs: assim como, como -- Ocorrências: 508.">hōs</span>
+											<span class="greek">ὡς</span>
+											<span class="translate">cerca</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4572: a / de si mesmo">4572</a>
+											<span class="translit" title="seauton: a/de si mesmo -- Ocorrências: 33.">seauton</span>
+											<span class="greek">σεαυτόν</span>
+											<span class="translate">si mesmo</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Acusativo Masculino 2ª Pessoa Singular">PPro-AM2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2573: bem">2573</a>
+											<span class="translit" title="kalōs: bem -- Ocorrências: 37.">Kalōs</span>
+											<span class="greek">καλῶς</span>
+											<span class="translate">Bem</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4160: fazer, construir, causar">4160</a>
+											<span class="translit" title="poieite: voce do -- Ocorrências: 36.">poieite</span>
+											<span class="greek">ποιεῖτε</span>
+											<span class="translate">vós</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Plural">V-PIA-2P</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v9">
+								<strong class="refmain" style="margin-top: 65px">9</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1487: se">1487 </a>
+											<span class="translit" title="Ei: se -- Ocorrências: 508.">ei </span>
+											<span class="greek">εἰ</span>
+											<span class="translate">se </span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">προσωποληπτεῖτε</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G266: o pecado">266</a>
+											<span class="translit" title="hamartian: o pecado -- Ocorrências: 27.">hamartian</span>
+											<span class="greek">ἁμαρτίαν</span>
+											<span class="translate">o pecado</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2038: trabalhar, realizar, fazer, praticar, adquirir">2038</a>
+											<span class="translit" title="ergazesthe: Work -- Ocorrências: 3.">ergazesthe</span>
+											<span class="greek">ἐργάζεσθε</span>
+											<span class="translate">Trabalho</span>
+											<small class="refs" title="Verbo - Presente Imperativo Média ou Passiva - 2ª Pessoa Plural">V-PMM/P-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1651: sendo condenado">1651</a>
+											<span class="translit" title="elenchomenoi: sendo condenado -- Ocorrências: 1.">elenchomenoi</span>
+											<span class="greek">ἐλεγχόμενοι</span>
+											<span class="translate">sendo condenado</span>
+											<small class="refs" title="Verbo - Presente Particípio Média ou Passiva - Nominativo Masculino Plural">V-PPM/P-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5259: por, sob, abaixo, através">5259</a>
+											<span class="translit" title="hypo: sob, por, acerca de  -- Ocorrências: 188.">hypo</span>
+											<span class="greek">ὑπὸ</span>
+											<span class="translate">por</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tou: do -- Ocorrências: 2538.">tou</span>
+											<span class="greek">τοῦ</span>
+											<span class="translate">do</span>
+											<small class="refs" title="Artigo - Genitivo Masculino Singuar">Art-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3551: costume, lei, a Torá">3551</a>
+											<span class="translit" title="nomou: lei -- Ocorrências: 67.">nomou</span>
+											<span class="greek">νόμου</span>
+											<span class="translate">lei</span>
+											<small class="refs" title="Substantivo - Dativo Masculino Singular">S-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5613: assim como, como">5613</a>
+											<span class="translit" title="hōs: assim como, como -- Ocorrências: 508.">hōs</span>
+											<span class="greek">ὡς</span>
+											<span class="translate">cerca</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3848: bold tresspasser">3848</a>
+											<span class="translit" title="parabatai: bold tresspasser -- Ocorrências: 1.">parabatai</span>
+											<span class="greek">παραβάται</span>
+											<span class="translate">transgressores</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v10">
+								<strong class="refmain" style="margin-top: 65px">10</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3748: quem quer que, seja quem for, o que quer que seja">3748</a>
+											<span class="translit" title="hostis: alguém, um certo, algo.">hostis</span>
+											<span class="greek">Ὅστις</span>
+											<span class="translate">o qual</span>
+											<small class="refs" title="Pronome Relativo - Nominativo Masculino Singular">RelPro-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1063: pois, de fato">1063</a>
+											<span class="translit" title="gar: pois, de fato -- Ocorrências: 1046.">gar</span>
+											<span class="greek">γὰρ</span>
+											<span class="translate">pois</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3650: todo, inteiro">3650</a>
+											<span class="translit" title="holon: todo, inteiro -- Ocorrências: 35.">holon</span>
+											<span class="greek">ὅλον</span>
+											<span class="translate">tudo</span>
+											<small class="refs" title="Adjetivo - Nominativo Neutro Singular">Adj-NNS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2307: vontade">2307</a>
+											<span class="translit" title="ton: ao -- Ocorrências: 1588.">Ton</span>
+											<span class="greek">τὸν</span>
+											<span class="translate">O</span>
+											<small class="refs" title="Artigo - Acusativo Masculino Singular">Art-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3551: costume, lei, a Torá">3551</a>
+											<span class="translit" title="nomon: uma lei, a Lei -- Ocorrências: 61.">nomon</span>
+											<span class="greek">νόμον</span>
+											<span class="translate">lei</span>
+											<small class="refs" title="Substantivo - Masculino">S-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5083: ele manterá o tacto">5083</a>
+											<span class="translit" title="tērēsei: ele will keep-em-tact -- Ocorrências: 1.">tērēsei</span>
+											<span class="greek">τηρήσει</span>
+											<span class="translate">ele vai manter</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 3ª Pessoa Singular">V-FIA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">πταίσει</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1722: em, sobre, por, com, entre">1722</a>
+											<span class="translit" title="en: em, com, por -- Ocorrências: 2775.">en</span>
+											<span class="greek">ἐν</span>
+											<span class="translate">em</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1520: um, uma">1520</a>
+											<span class="translit" title="heni: a um -- Ocorrências: 22.">heni</span>
+											<span class="greek">ἑνί</span>
+											<span class="translate">para um leopardo</span>
+											<small class="refs" title="Adjetivo - Dativo Masculino Singular">Adj-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1096: vir a ser, nascer, tornar - se, ocorrer ">1096</a>
+											<span class="translit" title="gegonen: tornou-se -- Ocorrências: 31.">gegonen</span>
+											<span class="greek">γέγονεν</span>
+											<span class="translate">ocorreu</span>
+											<small class="refs" title="Verbo - Perfeito Indicativo Ativa - 3ª Pessoa Singular">V-RIA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3956: todo, cada um">3956</a>
+											<span class="translit" title="Pantōn: de todos -- Ocorrências: 135.">Pantōn</span>
+											<span class="greek">πάντων</span>
+											<span class="translate">de todos</span>
+											<small class="refs" title="Adjetivo - Genitivo Masculino Plural">Adj-GMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1777: ser pass1, sujeito a, envolvido em">1777</a>
+											<span class="translit" title="enochos: passível, sujeito -- Ocorrências: 8.">enochos </span>
+											<span class="greek">ἔνοχος</span>
+											<span class="translate">pass7vel</span>
+											<small class="refs" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v11">
+								<strong class="refmain" style="margin-top: 65px">11</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="ho: o [que] -- Ocorrências: 2965.">ho</span>
+											<span class="greek">Ὁ</span>
+											<span class="translate">o</span>
+											<small class="refs" title="Artigo - Nominativo Masculino Singular">RelPro-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1063: pois, de fato">1063</a>
+											<span class="translit" title="gar: pois, de fato -- Ocorrências: 1046.">gar</span>
+											<span class="greek">γὰρ</span>
+											<span class="translate">pois</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3004: falar, dizer">3004</a>
+											<span class="translit" title="eipōn: tendo dito -- Ocorrências: 29.">eipōn</span>
+											<span class="greek">εἰπών</span>
+											<span class="translate">tendo dito</span>
+											<small class="refs" title="Verbo - Aoristo Particípio Ativa - Nominativo Masculino Singular">V-APA-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">Μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3431: adulterar">3431 </a>
+											<span class="translit" title="moicheuseis: tu adulterará -- Ocorrências: 3.">moicheuseis </span>
+											<span class="greek">μοιχεύσεις</span>
+											<span class="translate">tu adulterará</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V-FIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3004: falar, dizer">3004</a>
+											<span class="translit" title="eipen: ele(a) dizia -- Ocorrências: 616.">eipen</span>
+											<span class="greek">εἶπεν</span>
+											<span class="translate">dizia</span>
+											<small class="refs" title="Verbo - Imperfeito Indicativo - 3ª Pessoa Singular">V-II-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καί</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">Μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5407: assassinar, matar">5407 </a>
+											<span class="translit" title="phoneuseis: voce assassinará -- Ocorrências: 3.">phoneuseis </span>
+											<span class="greek">φονεύσεις</span>
+											<span class="translate">vós é</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V-FIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1487: se">1487 </a>
+											<span class="translit" title="Ei: se -- Ocorrências: 508.">ei </span>
+											<span class="greek">εἰ</span>
+											<span class="translate">se </span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ou: não -- Ocorrências: 1.">ou</span>
+											<span class="greek">οὐ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="AdVerbo">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3431: adulterar">3431 </a>
+											<span class="translit" title="moicheuseis: tu adulterará -- Ocorrências: 3.">moicheuseis </span>
+											<span class="greek">μοιχεύσεις</span>
+											<span class="translate">tu adulterará</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V-FIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5407: assassinar, matar">5407 </a>
+											<span class="translit" title="phoneuseis: voce assassinará -- Ocorrências: 3.">phoneuseis </span>
+											<span class="greek">φονεύσεις</span>
+											<span class="translate">vós é</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V-FIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de </span>
+											<span class="greek">δέ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1096: vir a ser, nascer, tornar - se, ocorrer ">1096</a>
+											<span class="translit" title="gegonas: voce have become -- Ocorrências: 3.">gegonas</span>
+											<span class="greek">γέγονας</span>
+											<span class="translate">tu tornaram-se</span>
+											<small class="refs" title="Verbo - Perfeito Indicativo Ativa - 2ª Pessoa Singular">V-RIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3848: bold tresspasser">3848</a>
+											<span class="translit" title="parabatēs: bold tresspasser -- Ocorrências: 2.">parabatēs</span>
+											<span class="greek">παραβάτης</span>
+											<span class="translate">um transgressor</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3551: costume, lei, a Torá">3551</a>
+											<span class="translit" title="nomou: lei -- Ocorrências: 67.">nomou</span>
+											<span class="greek">νόμου</span>
+											<span class="translate">lei</span>
+											<small class="refs" title="Substantivo - Dativo Masculino Singular">S-DMS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v12">
+								<strong class="refmain" style="margin-top: 65px">12</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3779: assim">3779</a>
+											<span class="translit" title="Houtōs: assim -- Ocorrências: 205.">Houtōs</span>
+											<span class="greek">Οὕτως</span>
+											<span class="translate">Assim</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2980: falar, falar">2980</a>
+											<span class="translit" title="laleite: speak -- Ocorrências: 4.">laleite</span>
+											<span class="greek">λαλεῖτε</span>
+											<span class="translate">fale</span>
+											<small class="refs" title="Verbo - Presente Imperativo Ativa - 2ª Pessoa Plural">V-PMA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3779: assim">3779</a>
+											<span class="translit" title="Houtōs: assim -- Ocorrências: 205.">Houtōs</span>
+											<span class="greek">οὕτως</span>
+											<span class="translate">Assim</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4160: fazer, construir, causar">4160</a>
+											<span class="translit" title="poieite: voce do -- Ocorrências: 36.">poieite</span>
+											<span class="greek">ποιεῖτε</span>
+											<span class="translate">vós</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Plural">V-PIA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5613: assim como, como">5613</a>
+											<span class="translit" title="hōs: assim como, como -- Ocorrências: 508.">hōs</span>
+											<span class="greek">ὡς</span>
+											<span class="translate">cerca</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1223: através de, por, por causa de">1223</a>
+											<span class="translit" title="dia: por causa de, através de, por, pelo(a) -- Ocorrências: 148.">dia</span>
+											<span class="greek">διὰ</span>
+											<span class="translate">por</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3551: costume, lei, a Torá">3551</a>
+											<span class="translit" title="nomou: lei -- Ocorrências: 67.">nomou</span>
+											<span class="greek">νόμου</span>
+											<span class="translate">lei</span>
+											<small class="refs" title="Substantivo - Dativo Masculino Singular">S-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1657: liberdade">1657</a>
+											<span class="translit" title="eleutherias: freedom -- Ocorrências: 2.">eleutherias</span>
+											<span class="greek">ἐλευθερίας</span>
+											<span class="translate">de freedom</span>
+											<small class="refs" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3195: pretender, estar prestes a, protelar, hesitar">3195</a>
+											<span class="translit" title="mellontes: sendo acerca -- Ocorrências: 4.">mellontes</span>
+											<span class="greek">μέλλοντες</span>
+											<span class="translate">sendo acerca</span>
+											<small class="refs" title="Verbo - Presente Particípio Ativa - Nominativo Masculino Plural">V-PPA-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2919: julgar, decidir">2919</a>
+											<span class="translit" title="krinesthai: estar judged -- Ocorrências: 5.">krinesthai</span>
+											<span class="greek">κρίνεσθαι</span>
+											<span class="translate">a julgar</span>
+											<small class="refs" title="Verbo - Presente Infinitivo Média ou Passiva">V-PNM/P</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v13">
+								<strong class="refmain" style="margin-top: 65px">13</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">Ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1063: pois, de fato">1063</a>
+											<span class="translit" title="gar: pois, de fato -- Ocorrências: 1046.">gar</span>
+											<span class="greek">γὰρ</span>
+											<span class="translate">pois</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2920: julho, senten">2920</a>
+											<span class="translit" title="krisis: judgement -- Ocorrências: 8.">krisis</span>
+											<span class="greek">κρίσις</span>
+											<span class="translate">acórdão</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G448: sem piedade">448</a>
+											<span class="translit" title="aneleos: without mercy -- Ocorrências: 1.">aneleos</span>
+											<span class="greek">ἀνέλεος</span>
+											<span class="translate">sem misericórdia [será</span>
+											<small class="refs" title="Adjetivo - Nominativo Feminino Singular">Adj-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tō: do -- Ocorrências: 1246.">tō</span>
+											<span class="greek">τῷ</span>
+											<span class="translate">do</span>
+											<small class="refs" title="Artigo - Genitivo Masculino Singular">Art-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4160: fazer, construir, causar">4160</a>
+											<span class="translit" title="poiēsanti: appointed -- Ocorrências: 3.">poiēsanti</span>
+											<span class="greek">ποιήσαντι</span>
+											<span class="translate">tendo nomeado</span>
+											<small class="refs" title="Verbo - Aoristo Particípio Ativa - Dativo Masculino Singular">V-APA-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1656: misericórdia">1656</a>
+											<span class="translit" title="eleos: mercy -- Ocorrências: 20.">eleos</span>
+											<span class="greek">ἔλεος</span>
+											<span class="translate">misericórdia</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Singular">S-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2620: ostenta sobre">2620</a>
+											<span class="translit" title="katakauchatai: boasts sobre -- Ocorrências: 1.">katakauchatai</span>
+											<span class="greek">κατακαυχᾶται</span>
+											<span class="translate">triumps sobre</span>
+											<small class="refs" title="Verbo - Presente Indicativo Média ou Passiva - 3ª Pessoa Singular">V-PIM/P-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">ἔλεον</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2920: julho, senten">2920</a>
+											<span class="translit" title="kriseōs: de julgamento -- Ocorrências: 16.">kriseōs</span>
+											<span class="greek">κρίσεως</span>
+											<span class="translate">de julho</span>
+											<small class="refs" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+					</ul>
+				</section>
+			
+				<section class="pericope" id="p006">
+					
+						<h2 class="pericope-title">A fé sem obras é morta</h2>
+							
+					
+
+					<ul class="versiculos">
+						
+							<li id="v14">
+								<strong class="refmain" style="margin-top: 65px">14</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5101: quem, qual, o que?">5101</a>
+											<span class="translit" title="ti: alguém, algo, qualquer um -- Ocorrências: 347.">Ti</span>
+											<span class="greek">Τί</span>
+											<span class="translate">o que</span>
+											<small class="refs" title="Pronome Interrogativo/Indefinido - Acusativo Neutro Singular">IPro-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="to: o(a) [que]  -- Ocorrências: 1714.">to</span>
+											<span class="greek">τὸ</span>
+											<span class="translate">o(a)</span>
+											<small class="refs" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3786: lucro">3786</a>
+											<span class="translit" title="ophelos: profit -- Ocorrências: 3.">ophelos</span>
+											<span class="greek">ὄφελος</span>
+											<span class="translate">lucro</span>
+											<small class="refs" title="Substantivo - Nominativo Neutro Singular">S-NNS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G80: irmão">80</a>
+											<span class="translit" title="adelphoi: irmãos -- Ocorrências: 145.">adelphoi</span>
+											<span class="greek">ἀδελφοί</span>
+											<span class="translate">irmãos</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="mou: de mim, meu, minha -- Ocorrências: 567.">mou</span>
+											<span class="greek">μου</span>
+											<span class="translate">de mim</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">Ppro-G1S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1437: se">1437</a>
+											<span class="translit" title="ean: se -- Ocorrências: 334.">ean</span>
+											<span class="greek">ἐὰν</span>
+											<span class="translate">se </span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistin: fé -- Ocorrências: 55.">pistin</span>
+											<span class="greek">πίστιν</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3004: falar, dizer">3004</a>
+											<span class="translit" title="legē: que ele(a) fale, diga -- Ocorrências: 3.">legē</span>
+											<span class="greek">λέγῃ</span>
+											<span class="translate">fale</span>
+											<small class="refs" title="Verbo - Presente Subjuntivo Ativa - 3ª Pessoa Singular">V-PSA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5100: algu7m, qualquer um, algo">5100</a>
+											<span class="translit" title="tis: alguém, um certo, algo -- Ocorrências: 238.">tis</span>
+											<span class="greek">τις</span>
+											<span class="translate">qualquer</span>
+											<small class="refs" title="Pronome Relativo - Nominativo Feminino Singular">RelPro-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2192: ter, possuir">2192</a>
+											<span class="translit" title="echein: ter -- Ocorrências: 30.">echein</span>
+											<span class="greek">ἔχειν</span>
+											<span class="translate">ter</span>
+											<small class="refs" title="Verbo - Presente Infinitivo Ativo">V-PNA</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041        </a>
+											<span class="translit" title="erga: obras, ações, atos -- Ocorrências: 60.">erga        </span>
+											<span class="greek">ἔργα</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Plural">S-ANP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2192: ter, possuir">2192</a>
+											<span class="translit" title="echē: que ele(a) tenha -- Ocorrências: 11.">echē</span>
+											<span class="greek">ἔχῃ</span>
+											<span class="translate">tenha</span>
+											<small class="refs" title="Verbo - Presente Subjuntivo Ativa - 3ª Pessoa Singular">V-PSA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">Μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1410: ser poderoso, capaz">1410</a>
+											<span class="translit" title="dynatai: ele é capaz, poderoso -- Ocorrências: 71.">dynatai</span>
+											<span class="greek">δύναται</span>
+											<span class="translate">capaz</span>
+											<small class="refs" title="Verbo - Presente Indicativo Média ou Passiva - 3ª Pessoa Plural">V-PIM/P-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistis: fé, fidelidade, confiança – tem o sentido de ser persuadido -- Ocorrências: 36.">pistis</span>
+											<span class="greek">πίστις</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4982: salvar">4982</a>
+											<span class="translit" title="sōsai: save -- Ocorrências: 15.">sōsai</span>
+											<span class="greek">σῶσαι</span>
+											<span class="translate">para salvar</span>
+											<small class="refs" title="Verbo - Aoristo Infinitivo Ativo">V-ANA</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="auton: a ele -- Ocorrências: 961.">auton</span>
+											<span class="greek">αὐτόν</span>
+											<span class="translate">a ele</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo Masculino 3ª Pessoa Singular">PPro-DM3S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v15">
+								<strong class="refmain" style="margin-top: 65px">15</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1437: se">1437</a>
+											<span class="translit" title="ean: se -- Ocorrências: 334.">ean</span>
+											<span class="greek">Ἐὰν</span>
+											<span class="translate">se </span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G80: irmão">80</a>
+											<span class="translit" title="adelphos: irmão -- Ocorrências: 43.">adelphos</span>
+											<span class="greek">ἀδελφὸς</span>
+											<span class="translate">irmão</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2228: ou, que, do que">2228</a>
+											<span class="translit" title="ē: ou, que, do que --- Ocorrências: 346.">ē</span>
+											<span class="greek">ἢ</span>
+											<span class="translate">mas</span>
+											<small class="refs" title="Partícula">Prtcl</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G79: irmã">79</a>
+											<span class="translit" title="adelphē: irmã -- Ocorrências: 9.">adelphē</span>
+											<span class="greek">ἀδελφὴ</span>
+											<span class="translate">irmã</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1131: nu">1131</a>
+											<span class="translit" title="gymnoi: naked -- Ocorrências: 2.">gymnoi</span>
+											<span class="greek">γυμνοὶ</span>
+											<span class="translate">nu</span>
+											<small class="refs" title="Adjetivo - Nominativo Masculino Plural">Adj-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5225: be">5225</a>
+											<span class="translit" title="hyparchōsin: be -- Ocorrências: 1.">hyparchōsin</span>
+											<span class="greek">ὑπάρχωσιν</span>
+											<span class="translate">ser</span>
+											<small class="refs" title="Verbo - Presente Subjuntivo Ativa - 3ª Pessoa Plural">V-PSA-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3007: falta">3007</a>
+											<span class="translit" title="leipomenoi: lacking -- Ocorrências: 2.">leipomenoi</span>
+											<span class="greek">λειπόμενοι</span>
+											<span class="translate">falta</span>
+											<small class="refs" title="Verbo - Presente Particípio Média ou Passiva - Nominativo Masculino Plural">V-PPM/P-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1510: ser, estar, existir">1510</a>
+											<span class="translit" title="ōsin: que eles(as) sejam, estejam -- Ocorrências: 11.">ōsin</span>
+											<span class="greek">ὦσιν</span>
+											<span class="translate">estejam</span>
+											<small class="refs" title="Verbo - Presente Subjuntivo Ativa - 3ª Pessoa Plural">V-PSA-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēs: da -- Ocorrências: 1306.">tēs</span>
+											<span class="greek">τῆς</span>
+											<span class="translate">da</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Singular">Art-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2184: de daily">2184</a>
+											<span class="translit" title="ephēmerou: de daily -- Ocorrências: 1.">ephēmerou</span>
+											<span class="greek">ἐφημέρου</span>
+											<span class="translate">de daily</span>
+											<small class="refs" title="Adjetivo - Genitivo Feminino Singular">Adj-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5160: comida">5160</a>
+											<span class="translit" title="trophēs: comida -- Ocorrências: 11.">trophēs</span>
+											<span class="greek">τροφῆς</span>
+											<span class="translate">comida</span>
+											<small class="refs" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v16">
+								<strong class="refmain" style="margin-top: 65px">16</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3004: falar, dizer">3004 </a>
+											<span class="translit" title="eipē: se ele falasse, dissesse -- Ocorrências: 22.">eipē</span>
+											<span class="greek">εἴπῃ</span>
+											<span class="translate">falasse</span>
+											<small class="refs" title="Verbo - Aoristo Subjuntivo Ativa - 3ª Pessoa Singular">V-ASA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de </span>
+											<span class="greek">δέ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5100: algu7m, qualquer um, algo">5100</a>
+											<span class="translit" title="tis: alguém, um certo, algo -- Ocorrências: 238.">tis</span>
+											<span class="greek">τις</span>
+											<span class="translate">qualquer</span>
+											<small class="refs" title="Pronome Relativo - Nominativo Feminino Singular">RelPro-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="autois: a eles -- Ocorrências: 559.">autois</span>
+											<span class="greek">αὐτοῖς</span>
+											<span class="translate">a eles</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo Masculino/Neutro 3ª Pessoa Plural">PPro-DMN3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ex: de, desde, a partir de, fora de -- Ocorrências: 236.">ex</span>
+											<span class="greek">ἐξ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="hymōn: vosso, de vós -- Ocorrências: 565.">hymōn</span>
+											<span class="greek">ὑμῶν</span>
+											<span class="translate">de vós</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 2ª Pessoa Plural">PPro-G2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5217: partir, ir embora, morrer">5217</a>
+											<span class="translit" title="Hypagete: vão -- Ocorrências: 14.">hypagete</span>
+											<span class="greek">Ὑπάγετε</span>
+											<span class="translate">vá</span>
+											<small class="refs" title="Verbo - Presente Imperativo Ativa - 2ª Pessoa Plural">V-PMA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1722: em, sobre, por, com, entre">1722</a>
+											<span class="translit" title="en: em, com, por -- Ocorrências: 2775.">en</span>
+											<span class="greek">ἐν</span>
+											<span class="translate">em</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1515: paz, totalidade, bem-estar">1515</a>
+											<span class="translit" title="eirēnē: paz -- Ocorrências: 48.">eirēnē</span>
+											<span class="greek">εἰρήνῃ</span>
+											<span class="translate">paz</span>
+											<small class="refs" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2328: seja aquecido">2328</a>
+											<span class="translit" title="thermainesthe: be warmed -- Ocorrências: 1.">thermainesthe</span>
+											<span class="greek">θερμαίνεσθε</span>
+											<span class="translate">ser aquecido</span>
+											<small class="refs" title="Verbo - Presente Imperativo Média ou Passiva - 2ª Pessoa Plural">V-PMM/P-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5526: ser preenchido">5526</a>
+											<span class="translit" title="chortazesthe: be filled -- Ocorrências: 1.">chortazesthe</span>
+											<span class="greek">χορτάζεσθε</span>
+											<span class="translate">ser preenchido</span>
+											<small class="refs" title="Verbo - Presente Imperativo Média ou Passiva - 2ª Pessoa Plural">V-PMM/P-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1325: dar, oferecer">1325</a>
+											<span class="translit" title="dōte: que vós deis, ofereçais -- Ocorrências: 3.">dōte</span>
+											<span class="greek">δῶτε</span>
+											<span class="translate">ofere3am</span>
+											<small class="refs" title="Verbo - Aoristo Subjuntivo Ativa - 2ª Pessoa Plural">V-ASA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="autois: a eles -- Ocorrências: 559.">autois</span>
+											<span class="greek">αὐτοῖς</span>
+											<span class="translate">a eles</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo Masculino/Neutro 3ª Pessoa Plural">PPro-DMN3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: os/as">3588</a>
+											<span class="translit" title="ta: os, as [coisas] -- Ocorrências: 843.">ta</span>
+											<span class="greek">τὰ</span>
+											<span class="translate">as [coisas]</span>
+											<small class="refs" title="Artigo - Nominativo Neutro Plural">Art-NNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2006: coisas necessárias">2006</a>
+											<span class="translit" title="epitēdeia: needful things -- Ocorrências: 1.">epitēdeia</span>
+											<span class="greek">ἐπιτήδεια</span>
+											<span class="translate">coisas necessárias</span>
+											<small class="refs" title="Adjetivo - Acusativo Neutro Plural">Adj-ANP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tou: do -- Ocorrências: 2538.">tou</span>
+											<span class="greek">τοῦ</span>
+											<span class="translate">do</span>
+											<small class="refs" title="Artigo - Genitivo Masculino Singuar">Art-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4983: corpo">4983</a>
+											<span class="translit" title="sōmatos: do corpo -- Ocorrências: 36.">sōmatos</span>
+											<span class="greek">σώματος</span>
+											<span class="translate">corpo</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Singular">S-GNS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5101: quem, qual, o que?">5101</a>
+											<span class="translit" title="ti: alguém, algo, qualquer um -- Ocorrências: 347.">Ti</span>
+											<span class="greek">τί</span>
+											<span class="translate">o que</span>
+											<small class="refs" title="Pronome Interrogativo/Indefinido - Acusativo Neutro Singular">IPro-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="to: o(a) [que]  -- Ocorrências: 1714.">to</span>
+											<span class="greek">τὸ</span>
+											<span class="translate">o(a)</span>
+											<small class="refs" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3786: lucro">3786</a>
+											<span class="translit" title="ophelos: profit -- Ocorrências: 3.">ophelos</span>
+											<span class="greek">ὄφελος</span>
+											<span class="translate">lucro</span>
+											<small class="refs" title="Substantivo - Nominativo Neutro Singular">S-NNS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v17">
+								<strong class="refmain" style="margin-top: 65px">17</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3779: assim">3779</a>
+											<span class="translit" title="Houtōs: assim -- Ocorrências: 205.">Houtōs</span>
+											<span class="greek">Οὕτως</span>
+											<span class="translate">Assim</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistis: fé, fidelidade, confiança – tem o sentido de ser persuadido -- Ocorrências: 36.">pistis</span>
+											<span class="greek">πίστις</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1437: se">1437</a>
+											<span class="translit" title="ean: se -- Ocorrências: 334.">ean</span>
+											<span class="greek">ἐὰν</span>
+											<span class="translate">se </span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3361: não, para que não">3361</a>
+											<span class="translit" title="mē: não -- Ocorrências: 1061.">mē</span>
+											<span class="greek">μὴ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041        </a>
+											<span class="translit" title="erga: obras, ações, atos -- Ocorrências: 60.">erga        </span>
+											<span class="greek">ἔργα</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Plural">S-ANP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2192: ter, possuir">2192</a>
+											<span class="translit" title="echē: que ele(a) tenha -- Ocorrências: 11.">echē</span>
+											<span class="greek">ἔχῃ</span>
+											<span class="translate">tenha</span>
+											<small class="refs" title="Verbo - Presente Subjuntivo Ativa - 3ª Pessoa Singular">V-PSA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3498: morto">3498</a>
+											<span class="translit" title="nekra: dead -- Ocorrências: 3.">nekra</span>
+											<span class="greek">νεκρά</span>
+											<span class="translate">mortos</span>
+											<small class="refs" title="Adjetivo - Nominativo Feminino Singular">Adj-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1510: ser, estar, existir">1510</a>
+											<span class="translit" title="estin: ele(a) é, está -- Ocorrências: 903.">estin</span>
+											<span class="greek">ἐστιν</span>
+											<span class="translate">é</span>
+											<small class="refs" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">καθ</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1438: ele(a) mesmo, a si mesmo">1438</a>
+											<span class="translit" title="heautēn: itself -- Ocorrências: 7.">heautēn</span>
+											<span class="greek">ἑαυτήν</span>
+											<span class="translate">próprio</span>
+											<small class="refs" title="Pronome Reflexivo - Acusativo Feminino 3ª Pessoa Singular">RefPro-AF3S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v18">
+								<strong class="refmain" style="margin-top: 65px">18</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">Ἀλλ</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2046: dizer, falar">2046</a>
+											<span class="translit" title="erei: ele will say -- Ocorrências: 17.">erei</span>
+											<span class="greek">ἐρεῖ</span>
+											<span class="translate">ele vai dizer</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 3ª Pessoa Singular">V-FIA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5100: algu7m, qualquer um, algo">5100</a>
+											<span class="translit" title="tis: alguém, um certo, algo -- Ocorrências: 238.">tis</span>
+											<span class="greek">τις</span>
+											<span class="translate">qualquer</span>
+											<small class="refs" title="Pronome Relativo - Nominativo Feminino Singular">RelPro-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="sy: tu -- Ocorrências: 174.">Sy</span>
+											<span class="greek">Σὺ</span>
+											<span class="translate">tu</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Nominativo 2ª Pessoa Singular">PPro-N2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistin: fé -- Ocorrências: 55.">pistin</span>
+											<span class="greek">πίστιν</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2192: ter, possuir">2192</a>
+											<span class="translit" title="echeis: tu tens -- Ocorrências: 28.">echeis</span>
+											<span class="greek">ἔχεις</span>
+											<span class="translate">tens</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Singular">V-PIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2504: também">2504</a>
+											<span class="translit" title="Kagō: também eu -- Ocorrências: 76.">Kagō</span>
+											<span class="greek">κἀγὼ</span>
+											<span class="translate">Tambidimensionalm eu</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - 1ª Pessoa Singular - Comparativo">PPro-S1C</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041        </a>
+											<span class="translit" title="erga: obras, ações, atos -- Ocorrências: 60.">erga        </span>
+											<span class="greek">ἔργα</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Plural">S-ANP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2192: ter, possuir">2192</a>
+											<span class="translit" title="echō: eu tenho -- Ocorrências: 48.">echō</span>
+											<span class="greek">ἔχω</span>
+											<span class="translate">eu tenho</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 1ª Pessoa Singular">V-PIA-1S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title=""></a>
+											<span class="translit" title=""></span>
+											<span class="greek">δεῖξόν</span>
+											<span class="translate"></span>
+											<small class="refs" title=""></small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="moi: a mim -- Ocorrências: 225.">moi</span>
+											<span class="greek">μοι</span>
+											<span class="translate">a mim</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo 1ª Pessoa Singular">PPro-D1S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēn: a -- Ocorrências: 1538.">tēn</span>
+											<span class="greek">τὴν</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistin: fé -- Ocorrências: 55.">pistin</span>
+											<span class="greek">πίστιν</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="sou: de ti, teu, tua -- Ocorrências: 487.">sou</span>
+											<span class="greek">σου</span>
+											<span class="translate">de ti</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 2ª Pessoa Singular">Ppro-G2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ek: de, desde, a partir de, fora de -- Ocorrências: 685.">ek</span>
+											<span class="greek">ἐκ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tōn: das [que] -- Ocorrências: 1218.">tōn</span>
+											<span class="greek">τῶν</span>
+											<span class="translate">das</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Plural">Art-GFP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="sou: de ti, teu, tua -- Ocorrências: 487.">sou</span>
+											<span class="greek">σου</span>
+											<span class="translate">de ti</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 2ª Pessoa Singular">Ppro-G2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2504: também">2504</a>
+											<span class="translit" title="Kagō: também eu -- Ocorrências: 76.">Kagō</span>
+											<span class="greek">κἀγὼ</span>
+											<span class="translate">Tambidimensionalm eu</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - 1ª Pessoa Singular - Comparativo">PPro-S1C</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1166: mostrar, exibir">1166</a>
+											<span class="translit" title="deixō: I will show -- Ocorrências: 5.">deixō</span>
+											<span class="greek">δείξω</span>
+											<span class="translate">Eu vou mostrar</span>
+											<small class="refs" title="Verbo - Futuro Indicativo Ativa - 1ª Pessoa Singular">V-FIA-1S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="soi: a ti -- Ocorrências: 215.">soi</span>
+											<span class="greek">σοι</span>
+											<span class="translate">a ti</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo 2ª Pessoa Singular">PPro-D2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ek: de, desde, a partir de, fora de -- Ocorrências: 685.">ek</span>
+											<span class="greek">ἐκ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tōn: das [que] -- Ocorrências: 1218.">tōn</span>
+											<span class="greek">τῶν</span>
+											<span class="translate">das</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Plural">Art-GFP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="mou: de mim, meu, minha -- Ocorrências: 567.">mou</span>
+											<span class="greek">μου</span>
+											<span class="translate">de mim</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">Ppro-G1S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tēn: a -- Ocorrências: 1538.">tēn</span>
+											<span class="greek">τὴν</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistin: fé -- Ocorrências: 55.">pistin</span>
+											<span class="greek">πίστιν</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="mou: de mim, meu, minha -- Ocorrências: 567.">mou</span>
+											<span class="greek">μου</span>
+											<span class="translate">de mim</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Singular">Ppro-G1S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v19">
+								<strong class="refmain" style="margin-top: 65px">19</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4771: tu, vós, tu(s)">4771</a>
+											<span class="translit" title="sy: tu -- Ocorrências: 174.">Sy</span>
+											<span class="greek">Σὺ</span>
+											<span class="translate">tu</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Nominativo 2ª Pessoa Singular">PPro-N2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4100: crer, confiar">4100</a>
+											<span class="translit" title="pisteueis: believe voce -- Ocorrências: 8.">pisteueis</span>
+											<span class="greek">πιστεύεις</span>
+											<span class="translate">tucrê</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Singular">V-PIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3754: que, porque, uma vez que">3754</a>
+											<span class="translit" title="hoti: que, porque, uma vez que -- Ocorrências: 1309.">hoti</span>
+											<span class="greek">ὅτι</span>
+											<span class="translate">que</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="ho: o [que] -- Ocorrências: 2965.">ho</span>
+											<span class="greek">ὁ</span>
+											<span class="translate">o</span>
+											<small class="refs" title="Artigo - Nominativo Masculino Singular">RelPro-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2316: um deus, o Deus de Israel">2316</a>
+											<span class="translit" title="theos: Deus -- Ocorrências: 311.">theos</span>
+											<span class="greek">θεὸς</span>
+											<span class="translate">Deus</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1520: um, uma">1520</a>
+											<span class="translit" title="heis: um -- Ocorrências: 99.">heis</span>
+											<span class="greek">εἷς</span>
+											<span class="translate">um</span>
+											<small class="refs" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1510: ser, estar, existir">1510</a>
+											<span class="translit" title="estin: ele(a) é, está -- Ocorrências: 903.">estin</span>
+											<span class="greek">ἐστίν</span>
+											<span class="translate">é</span>
+											<small class="refs" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2573: bem">2573</a>
+											<span class="translit" title="kalōs: bem -- Ocorrências: 37.">Kalōs</span>
+											<span class="greek">καλῶς</span>
+											<span class="translate">Bem</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4160: fazer, construir, causar">4160</a>
+											<span class="translit" title="poieis: do voce -- Ocorrências: 13.">poieis</span>
+											<span class="greek">ποιεῖς</span>
+											<span class="translate">vós</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Singular">V-PIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: os/as">3588</a>
+											<span class="translit" title="ta: os, as [coisas] -- Ocorrências: 843.">ta</span>
+											<span class="greek">τὰ</span>
+											<span class="translate">as [coisas]</span>
+											<small class="refs" title="Artigo - Nominativo Neutro Plural">Art-NNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1140: dem">1140</a>
+											<span class="translit" title="daimonia: demônios -- Ocorrências: 32.">daimonia</span>
+											<span class="greek">δαιμόνια</span>
+											<span class="translate">demínsecos</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Plural">S-ANP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4100: crer, confiar">4100</a>
+											<span class="translit" title="pisteuousin: são, estão -- Ocorrências: 14.">pisteuousin</span>
+											<span class="greek">πιστεύουσιν</span>
+											<span class="translate">acreditar</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Plural">V-PIA-3P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5425: estremecimento">5425</a>
+											<span class="translit" title="phrissousin: são, estão -- Ocorrências: 1.">phrissousin</span>
+											<span class="greek">φρίσσουσιν</span>
+											<span class="translate">estremecer</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Plural">V-PIA-3P</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v20">
+								<strong class="refmain" style="margin-top: 65px">20</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2309: querer, desejar">2309</a>
+											<span class="translit" title="theleis: voce desire -- Ocorrências: 18.">theleis</span>
+											<span class="greek">Θέλεις</span>
+											<span class="translate">voc7 desejar</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Singular">V-PIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1097: conhecer, reconhecer, perceber">1097</a>
+											<span class="translit" title="gnōnai: know -- Ocorrências: 15.">gnōnai</span>
+											<span class="greek">γνῶναι</span>
+											<span class="translate">para saber</span>
+											<small class="refs" title="Verbo - Aoristo Infinitivo Ativo">V-ANA</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5599: ó!">5599</a>
+											<span class="translit" title="Ō: ó! -- Ocorrências: 17.">Ō</span>
+											<span class="greek">ὦ</span>
+											<span class="translate">ó</span>
+											<small class="refs" title="Inj">Inj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G444: ser humano">444</a>
+											<span class="translit" title="anthrōpe: ser humano, homem -- Ocorrências: 9.">anthrōpe</span>
+											<span class="greek">ἄνθρωπε</span>
+											<span class="translate">ser humano</span>
+											<small class="refs" title="Substantivo - Vocativo Masculino Singular">S-VMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2756: vazio, V Elimo, in elimtil">2756</a>
+											<span class="translit" title="kene: empty -- Ocorrências: 1.">kene</span>
+											<span class="greek">κενέ</span>
+											<span class="translate">vazio</span>
+											<small class="refs" title="Adjetivo - Vocativo Masculino Singular">Adj-VMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3754: que, porque, uma vez que">3754</a>
+											<span class="translit" title="hoti: que, porque, uma vez que -- Ocorrências: 1309.">hoti</span>
+											<span class="greek">ὅτι</span>
+											<span class="translate">que</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistis: fé, fidelidade, confiança – tem o sentido de ser persuadido -- Ocorrências: 36.">pistis</span>
+											<span class="greek">πίστις</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5565: sem">5565</a>
+											<span class="translit" title="chōris: without -- Ocorrências: 41.">chōris</span>
+											<span class="greek">χωρὶς</span>
+											<span class="translate">sem</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tōn: das [que] -- Ocorrências: 1218.">tōn</span>
+											<span class="greek">τῶν</span>
+											<span class="translate">das</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Plural">Art-GFP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3498: morto">3498</a>
+											<span class="translit" title="nekra: dead -- Ocorrências: 3.">nekra</span>
+											<span class="greek">νεκρά</span>
+											<span class="translate">mortos</span>
+											<small class="refs" title="Adjetivo - Nominativo Feminino Singular">Adj-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1510: ser, estar, existir">1510</a>
+											<span class="translit" title="estin: ele(a) é, está -- Ocorrências: 903.">estin</span>
+											<span class="greek">ἐστιν</span>
+											<span class="translate">é</span>
+											<small class="refs" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v21">
+								<strong class="refmain" style="margin-top: 65px">21</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G11: Abraão">11</a>
+											<span class="translit" title="Abraam: Abraão -- Ocorrências: 73.">Abraam</span>
+											<span class="greek">Ἀβραὰμ</span>
+											<span class="translate">Abraão</span>
+											<small class="refs" title="Substantivo">S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="ho: o [que] -- Ocorrências: 2965.">ho</span>
+											<span class="greek">ὁ</span>
+											<span class="translate">o</span>
+											<small class="refs" title="Artigo - Nominativo Masculino Singular">RelPro-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3962: pai">3962 </a>
+											<span class="translit" title="patēr: pai -- Ocorrências: 112.">patēr </span>
+											<span class="greek">πατὴρ</span>
+											<span class="translate">Pai</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1473: eu, nós">1473</a>
+											<span class="translit" title="hēmōn: de nós, nosso -- Ocorrências: 408.">hēmōn</span>
+											<span class="greek">ἡμῶν</span>
+											<span class="translate">nosso</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo 1ª Pessoa Plural">PPro-G1P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ouk: não, nem  -- Ocorrências: 830.">ouk</span>
+											<span class="greek">οὐκ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ex: de, desde, a partir de, fora de -- Ocorrências: 236.">ex</span>
+											<span class="greek">ἐξ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1344: foi justificado">1344</a>
+											<span class="translit" title="edikaiōthē: ** -- Ocorrências: 6.">edikaiōthē</span>
+											<span class="greek">ἐδικαιώθη</span>
+											<span class="translate">foi justificado</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Passiva - 3ª Pessoa Singular">V-AIP-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G399: tendo oferecido">399</a>
+											<span class="translit" title="anenenkas: having offered up -- Ocorrências: 2.">anenenkas</span>
+											<span class="greek">ἀνενέγκας</span>
+											<span class="translate">tendo oferecido</span>
+											<small class="refs" title="Verbo - Aoristo Particípio Ativa - Nominativo Masculino Singular">V-APA-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2464: Isaac">2464</a>
+											<span class="translit" title="Isaak: Isaac -- Ocorrências: 20.">Isaak</span>
+											<span class="greek">Ἰσαὰκ</span>
+											<span class="translate">Isaque</span>
+											<small class="refs" title="Substantivo">S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2307: vontade">2307</a>
+											<span class="translit" title="ton: ao -- Ocorrências: 1588.">Ton</span>
+											<span class="greek">τὸν</span>
+											<span class="translate">O</span>
+											<small class="refs" title="Artigo - Acusativo Masculino Singular">Art-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5207: filho">5207</a>
+											<span class="translit" title="huion: um filho -- Ocorrências: 86.">huion</span>
+											<span class="greek">υἱὸν</span>
+											<span class="translate">um filho</span>
+											<small class="refs" title="Substantivo - Acusativo Masculino Singular">S-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="autou: dele -- Ocorrências: 1428.">autou</span>
+											<span class="greek">αὐτοῦ</span>
+											<span class="translate">dele</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo Masculino Singular">Ppro-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1909: em, sobre, por, antes, através, contra, entre, ao lado, com base em">1909</a>
+											<span class="translit" title="epi: sobre, em cima -- Ocorrências: 669.">epi</span>
+											<span class="greek">ἐπὶ</span>
+											<span class="translate">sobre</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="to: o(a) [que]  -- Ocorrências: 1714.">to</span>
+											<span class="greek">τὸ</span>
+											<span class="translate">o(a)</span>
+											<small class="refs" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2379: altar">2379 </a>
+											<span class="translit" title="thysiastērion: altar -- Ocorrências: 6.">thysiastērion </span>
+											<span class="greek">θυσιαστήριον</span>
+											<span class="translate">altar</span>
+											<small class="refs" title="Substantivo - Acusativo Neutro Singular">S-ANS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v22">
+								<strong class="refmain" style="margin-top: 65px">22</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G991: olhar, observar">991</a>
+											<span class="translit" title="blepeis: tu observas, olhas, repara -- Ocorrências: 10.">blepeis</span>
+											<span class="greek">Βλέπεις</span>
+											<span class="translate">tu repara</span>
+											<small class="refs" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Singular">V-PIA-2S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3754: que, porque, uma vez que">3754</a>
+											<span class="translit" title="hoti: que, porque, uma vez que -- Ocorrências: 1309.">hoti</span>
+											<span class="greek">ὅτι</span>
+											<span class="translate">que</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistis: fé, fidelidade, confiança – tem o sentido de ser persuadido -- Ocorrências: 36.">pistis</span>
+											<span class="greek">πίστις</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4903: foi working com">4903</a>
+											<span class="translit" title="synērgei: foi working com -- Ocorrências: 1.">synērgei</span>
+											<span class="greek">συνήργει</span>
+											<span class="translate">foi working com</span>
+											<small class="refs" title="Verbo - Imperfeito Indicativo Ativa - 3ª Pessoa Singular">V-IIA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="Tois: aos -- Ocorrências: 628.">tois</span>
+											<span class="greek">τοῖς</span>
+											<span class="translate">aos</span>
+											<small class="refs" title="Artigo - Dativo Masculino Plural">Art-DMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergois: works -- Ocorrências: 13.">ergois</span>
+											<span class="greek">ἔργοις</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Substantivo - Dativo Neutro Plural">S-DNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela(s)">846</a>
+											<span class="translit" title="autou: dele -- Ocorrências: 1428.">autou</span>
+											<span class="greek">αὐτοῦ</span>
+											<span class="translate">dele</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Genitivo Masculino Singular">Ppro-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ek: de, desde, a partir de, fora de -- Ocorrências: 685.">ek</span>
+											<span class="greek">ἐκ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tōn: das [que] -- Ocorrências: 1218.">tōn</span>
+											<span class="greek">τῶν</span>
+											<span class="translate">das</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Plural">Art-GFP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistis: fé, fidelidade, confiança – tem o sentido de ser persuadido -- Ocorrências: 36.">pistis</span>
+											<span class="greek">πίστις</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5048: foi trazido para o desenvolvimento cheio">5048</a>
+											<span class="translit" title="eteleiōthē: ** -- Ocorrências: 1.">eteleiōthē</span>
+											<span class="greek">ἐτελειώθη</span>
+											<span class="translate">foi aperfeiçoado</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Passiva - 3ª Pessoa Singular">V-AIP-3S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v23">
+								<strong class="refmain" style="margin-top: 65px">23</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">Καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4137: completar, preencher, cumprir">4137</a>
+											<span class="translit" title="eplērōthē: fosse cumprido -- Ocorrências: 7.">eplērōthē</span>
+											<span class="greek">ἐπληρώθη</span>
+											<span class="translate">cumpriu-se</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Passiva - 3ª Pessoa Singular">V-AIP-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1124: um escrito, uma escrita">1124</a>
+											<span class="translit" title="graphē: a Escritura, um escrito -- Ocorrências: 24.">graphē</span>
+											<span class="greek">γραφὴ</span>
+											<span class="translate">Escritura</span>
+											<small class="refs" title="Substantivo - Feminino">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3004: falar, dizer">3004</a>
+											<span class="translit" title="legousa: dizendo, falando ela -- Ocorrências: 22.">legousa</span>
+											<span class="greek">λέγουσα</span>
+											<span class="translate">dizendo</span>
+											<small class="refs" title="Verbo - Presente Particípio Ativa - Nominativo Feminino Singular">V-PPA-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4100: crer, confiar">4100</a>
+											<span class="translit" title="episteusen: believed -- Ocorrências: 14.">episteusen</span>
+											<span class="greek">Ἐπίστευσεν</span>
+											<span class="translate">creu</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G11: Abraão">11</a>
+											<span class="translit" title="Abraam: Abraão -- Ocorrências: 73.">Abraam</span>
+											<span class="greek">Ἀβραὰμ</span>
+											<span class="translate">Abraão</span>
+											<small class="refs" title="Substantivo">S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tō: do -- Ocorrências: 1246.">tō</span>
+											<span class="greek">τῷ</span>
+											<span class="translate">do</span>
+											<small class="refs" title="Artigo - Genitivo Masculino Singular">Art-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2316: um deus, o Deus de Israel">2316</a>
+											<span class="translit" title="theō: a Deus -- Ocorrências: 160.">theō</span>
+											<span class="greek">θεῷ</span>
+											<span class="translate">a Deus</span>
+											<small class="refs" title="Substantivo - Dativo Masculino Singular">S-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3049: ele foi considerado">3049</a>
+											<span class="translit" title="elogisthē: ** -- Ocorrências: 9.">elogisthē</span>
+											<span class="greek">ἐλογίσθη</span>
+											<span class="translate">ele foi contado</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Passiva - 3ª Pessoa Singular">V-AIP-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G846: ele(s), ela (s">846</a>
+											<span class="translit" title="autō: a ele -- Ocorrências: 856.">autō</span>
+											<span class="greek">αὐτῷ</span>
+											<span class="translate">a ele</span>
+											<small class="refs" title="Pronome Pessoal/Possessivo - Dativo Masculino Singular">Ppro-DMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1519: em, para, em direção a, a fim de">1519</a>
+											<span class="translit" title="eis: para, em direção a, em -- Ocorrências: 1774.">eis</span>
+											<span class="greek">εἰς</span>
+											<span class="translate">para</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1343: justi">1343</a>
+											<span class="translit" title="dikaiosynēn: justiça, retidão -- Ocorrências: 37.">dikaiosynēn</span>
+											<span class="greek">δικαιοσύνην</span>
+											<span class="translate">justi</span>
+											<small class="refs" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5384: amado, querido, amigo, um amigo">5384</a>
+											<span class="translit" title="philos: a friend -- Ocorrências: 8.">philos</span>
+											<span class="greek">φίλος</span>
+											<span class="translate">um amigo</span>
+											<small class="refs" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2316: um deus, o Deus de Israel">2316</a>
+											<span class="translit" title="theou: de Deus -- Ocorrências: 698.">theou</span>
+											<span class="greek">θεοῦ</span>
+											<span class="translate">de Deus</span>
+											<small class="refs" title="Substantivo - Genitivo Masculino Singular">S-GMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2564: chamar">2564</a>
+											<span class="translit" title="eklēthē: ele foi chamado -- Ocorrências: 7.">eklēthē</span>
+											<span class="greek">ἐκλήθη</span>
+											<span class="translate">foi chamada</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Passiva - 3ª Pessoa Singular">V-AIP-3S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v24">
+								<strong class="refmain" style="margin-top: 65px">24</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3708: ver, perceber">3708</a>
+											<span class="translit" title="horate: See -- Ocorrências: 8.">horate</span>
+											<span class="greek">Ὁρᾶτε</span>
+											<span class="translate">Ver [para ele</span>
+											<small class="refs" title="Verbo - Presente Imperativo Ativa - 2ª Pessoa Plural">V-PMA-2P</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5106: Agora pois">5106</a>
+											<span class="translit" title="Toinyn: now pois -- Ocorrências: 3.">Toinyn</span>
+											<span class="greek">τοίνυν</span>
+											<span class="translate">portanto</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3754: que, porque, uma vez que">3754</a>
+											<span class="translit" title="hoti: que, porque, uma vez que -- Ocorrências: 1309.">hoti</span>
+											<span class="greek">ὅτι</span>
+											<span class="translate">que</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ex: de, desde, a partir de, fora de -- Ocorrências: 236.">ex</span>
+											<span class="greek">ἐξ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1344:">1344</a>
+											<span class="translit" title="dikaioutai: é justified -- Ocorrências: 4.">dikaioutai</span>
+											<span class="greek">δικαιοῦται</span>
+											<span class="translate">é justificado</span>
+											<small class="refs" title="Verbo - Presente Indicativo Média ou Passiva - 3ª Pessoa Singular">V-PIM/P-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G444: ser humano">444</a>
+											<span class="translit" title="anthrōpos: uma pessoa, um ser humano, um homem -- Ocorrências: 123.">anthrōpos</span>
+											<span class="greek">ἄνθρωπος</span>
+											<span class="translate">pessoas</span>
+											<small class="refs" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ouk: não, nem  -- Ocorrências: 830.">ouk</span>
+											<span class="greek">οὐκ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ek: de, desde, a partir de, fora de -- Ocorrências: 685.">ek</span>
+											<span class="greek">ἐκ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pisteōs: da fé, da confiança, da fidelidade -- Ocorrências: 94.">pisteōs</span>
+											<span class="greek">πίστεως</span>
+											<span class="translate">de f</span>
+											<small class="refs" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3440: apenas">3440</a>
+											<span class="translit" title="monon: apenas -- Ocorrências: 67.">Monon</span>
+											<span class="greek">μόνον</span>
+											<span class="translate">apenas</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v25">
+								<strong class="refmain" style="margin-top: 65px">25</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3668: da mesma forma">3668</a>
+											<span class="translit" title="homoiōs: likewise -- Ocorrências: 31.">homoiōs</span>
+											<span class="greek">Ὁμοίως</span>
+											<span class="translate">da mesma forma</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1161: além disso, mas, e, agora, também, então">1161</a>
+											<span class="translit" title="de: além disso, então, em seguida -- Ocorrências: 2786.">de</span>
+											<span class="greek">δὲ</span>
+											<span class="translate">em seguida</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4460: Raabe">4460</a>
+											<span class="translit" title="Rhaab: Rahab -- Ocorrências: 2.">Rhaab</span>
+											<span class="greek">Ῥαὰβ</span>
+											<span class="translate">Raabe</span>
+											<small class="refs" title="Substantivo">S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4204: prostituta">4204</a>
+											<span class="translit" title="pornē: ** -- Ocorrências: 4.">pornē</span>
+											<span class="greek">πόρνη</span>
+											<span class="translate">prostituta</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3756: não">3756</a>
+											<span class="translit" title="ouk: não, nem  -- Ocorrências: 830.">ouk</span>
+											<span class="greek">οὐκ</span>
+											<span class="translate">não</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1537: de, desde, a partir de, fora de">1537</a>
+											<span class="translit" title="ex: de, desde, a partir de, fora de -- Ocorrências: 236.">ex</span>
+											<span class="greek">ἐξ</span>
+											<span class="translate">de</span>
+											<small class="refs" title="Preposição">Prep</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1344: foi justificado">1344</a>
+											<span class="translit" title="edikaiōthē: ** -- Ocorrências: 6.">edikaiōthē</span>
+											<span class="greek">ἐδικαιώθη</span>
+											<span class="translate">foi justificado</span>
+											<small class="refs" title="Verbo - Aoristo Indicativo Passiva - 3ª Pessoa Singular">V-AIP-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5264: tendo recebido pessoalmente">5264</a>
+											<span class="translit" title="hypodexamenē: ** -- Ocorrências: 1.">hypodexamenē</span>
+											<span class="greek">ὑποδεξαμένη</span>
+											<span class="translate">tendo recebido</span>
+											<small class="refs" title="Verbo - Aoristo Particípio Média - Nominativo Feminino Singular">V-APM-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tous: os -- Ocorrências: 740.">tous</span>
+											<span class="greek">τοὺς</span>
+											<span class="translate">os</span>
+											<small class="refs" title="Artigo - Acusativo Masculino Plural">Art-AMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G32: mensageiro, anjo">32</a>
+											<span class="translit" title="angelous: mensageiros, anjos -- Ocorrências: 20.">angelous</span>
+											<span class="greek">ἀγγέλους</span>
+											<span class="translate">mensageiros</span>
+											<small class="refs" title="Substantivo - Acusativo Masculino Plural">S-AMP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2087: um outro">2087</a>
+											<span class="translit" title="hetera: um outro -- Ocorrências: 14.">hetera</span>
+											<span class="greek">ἑτέρᾳ</span>
+											<span class="translate">um outro</span>
+											<small class="refs" title="Adjetivo - Dativo Feminino Singular">Adj-DFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3598: caminho">3598 </a>
+											<span class="translit" title="hodō: caminho -- Ocorrências: 23.">hodō </span>
+											<span class="greek">ὁδῷ</span>
+											<span class="translate">caminho</span>
+											<small class="refs" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1544: expulsar, remover, produzir">1544</a>
+											<span class="translit" title="ekbalousa: having put [eles] forth -- Ocorrências: 1.">ekbalousa</span>
+											<span class="greek">ἐκβαλοῦσα</span>
+											<span class="translate">tendo colocado [eles] adiante</span>
+											<small class="refs" title="Verbo - Aoristo Particípio Ativa - Nominativo Feminino Singular">V-APA-NFS</small>
+										</span>
+									
+								</div>
+							</li>
+						
+							<li id="v26">
+								<strong class="refmain" style="margin-top: 65px">26</strong>
+								<div class="interlinear">
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5618: assim como">5618</a>
+											<span class="translit" title="hōsper: assim como -- Ocorrências: 36.">hōsper</span>
+											<span class="greek">Ὥσπερ</span>
+											<span class="translate">assim como</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1063: pois, de fato">1063</a>
+											<span class="translit" title="gar: pois, de fato -- Ocorrências: 1046.">gar</span>
+											<span class="greek">γὰρ</span>
+											<span class="translate">pois</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="to: o(a) [que]  -- Ocorrências: 1714.">to</span>
+											<span class="greek">τὸ</span>
+											<span class="translate">o(a)</span>
+											<small class="refs" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4983: corpo">4983</a>
+											<span class="translit" title="sōma: o corpo -- Ocorrências: 70.">sōma</span>
+											<span class="greek">σῶμα</span>
+											<span class="translate">corpo</span>
+											<small class="refs" title="Substantivo - Nominativo Neutro Singular">S-NNS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5565: sem">5565</a>
+											<span class="translit" title="chōris: without -- Ocorrências: 41.">chōris</span>
+											<span class="greek">χωρὶς</span>
+											<span class="translate">sem</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4151: vento, sopro, espírito">4151</a>
+											<span class="translit" title="pneumatos: do espírito -- Ocorrências: 97.">pneumatos</span>
+											<span class="greek">πνεύματος</span>
+											<span class="translate">do espírito</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Singular">S-GNS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3498: morto">3498</a>
+											<span class="translit" title="nekron: dead -- Ocorrências: 3.">nekron</span>
+											<span class="greek">νεκρόν</span>
+											<span class="translate">mortos</span>
+											<small class="refs" title="Adjetivo - Acusativo Masculino Singular">Adj-AMS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1510: ser, estar, existir">1510</a>
+											<span class="translit" title="estin: ele(a) é, está -- Ocorrências: 903.">estin</span>
+											<span class="greek">ἐστιν</span>
+											<span class="translate">é</span>
+											<small class="refs" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3779: assim">3779</a>
+											<span class="translit" title="Houtōs: assim -- Ocorrências: 205.">Houtōs</span>
+											<span class="greek">οὕτως</span>
+											<span class="translate">Assim</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2532: e, também">2532</a>
+											<span class="translit" title="kai: e, também -- Ocorrências: 9079.">kai</span>
+											<span class="greek">καὶ</span>
+											<span class="translate">e</span>
+											<small class="refs" title="Conjunção">Conj</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="hē: a --- Ocorrências: 992.">hē</span>
+											<span class="greek">ἡ</span>
+											<span class="translate">a</span>
+											<small class="refs" title="Artigo - Nominativo Feminino Singular">Art-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G4102: f">4102</a>
+											<span class="translit" title="pistis: fé, fidelidade, confiança – tem o sentido de ser persuadido -- Ocorrências: 36.">pistis</span>
+											<span class="greek">πίστις</span>
+											<span class="translate">fé</span>
+											<small class="refs" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G5565: sem">5565</a>
+											<span class="translit" title="chōris: without -- Ocorrências: 41.">chōris</span>
+											<span class="greek">χωρὶς</span>
+											<span class="translate">sem</span>
+											<small class="refs" title="Advérbio">Adv</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3588: o, a">3588</a>
+											<span class="translit" title="tōn: das [que] -- Ocorrências: 1218.">tōn</span>
+											<span class="greek">τῶν</span>
+											<span class="translate">das</span>
+											<small class="refs" title="Artigo - Genitivo Feminino Plural">Art-GFP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G2041: trabalho, obra, ação, ato">2041</a>
+											<span class="translit" title="ergōn: works -- Ocorrências: 43.">ergōn</span>
+											<span class="greek">ἔργων</span>
+											<span class="translate">actos</span>
+											<small class="refs" title="Substantivo - Genitivo Neutro Plural">S-GNP</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G3498: morto">3498</a>
+											<span class="translit" title="nekra: dead -- Ocorrências: 3.">nekra</span>
+											<span class="greek">νεκρά</span>
+											<span class="translate">mortos</span>
+											<small class="refs" title="Adjetivo - Nominativo Feminino Singular">Adj-NFS</small>
+										</span>
+									
+										<span class="token">
+											<a class="strongs" hreh="#" title="G1510: ser, estar, existir">1510</a>
+											<span class="translit" title="estin: ele(a) é, está -- Ocorrências: 903.">estin</span>
+											<span class="greek">ἐστιν</span>
+											<span class="translate">é</span>
+											<small class="refs" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+										</span>
+									
+								</div>
+							</li>
+						
+					</ul>
+				</section>
+			
+		
+	</div>
+
+        
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    var page = document.getElementById("app");
+
+    function toggleStrongs() {
+      page.classList.toggle("no_strongs");
+    }
+    function toggleTranslit() {
+      page.classList.toggle("no_translit");
+    }
+    function toggleGreek() {
+      page.classList.toggle("no_greek");
+    }
+    function toggleGrammar() {
+      page.classList.toggle("no_grammar");
+    }
+  </script>
+
+	<script>
+		(function () {
+			const toggleBtn = document.getElementById('toggleMenu');
+			const nav = document.querySelector('.main-nav');
+
+			if (!toggleBtn || !nav) return;
+
+			toggleBtn.setAttribute('aria-expanded', 'false');
+
+			toggleBtn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const opened = nav.classList.toggle('open');
+				toggleBtn.setAttribute('aria-expanded', String(opened));
+			});
+
+			// Click/touch outside to close
+			const closeIfOutside = (e) => {
+				if (!nav.classList.contains('open')) return;
+				if (nav.contains(e.target) || e.target === toggleBtn) return;
+				nav.classList.remove('open');
+				toggleBtn.setAttribute('aria-expanded', 'false');
+			};
+
+			document.addEventListener('click', closeIfOutside);
+			document.addEventListener('touchstart', closeIfOutside);
+
+			// Close with Escape
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && nav.classList.contains('open')) {
+					nav.classList.remove('open');
+					toggleBtn.setAttribute('aria-expanded', 'false');
+					toggleBtn.focus();
+				}
+			});
+		})();
+	</script>
+	<script 
+		src="/bereia/biblia/pagefind/pagefind-ui.js" 
+		onload="new PagefindUI({ element: '#search', showImages: false, translations: { placeholder: 'Busca', zero_results: 'Não encontrei [SEARCH_TERM]' }, many_results: '[COUNT] results for [SEARCH_TERM]', one_result: '[COUNT] result for [SEARCH_TERM]', });"></script>
+</body>
+</html>
