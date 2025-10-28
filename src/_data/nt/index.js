@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const dict = require('../greeknt_dict.json');
+const dict = require('../new_greeknt_dict.json');
 
 const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 

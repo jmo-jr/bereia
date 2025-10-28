@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Atualiza o campo `traducao` do dicionário grego com a flexão verbal em português.
 
-O script lê `greeknt_dict.json`, identifica entradas verbais e deriva a forma
+O script lê `nt_greek_dict.json`, identifica entradas verbais e deriva a forma
 flexionada a partir da morfologia (tempo, modo, voz, pessoa/número) presente em
 `desgram`. O resultado é gravado em um novo arquivo, tipicamente
-`new_greeknt_dict.json`, preservando as demais chaves.
+`new_nt_greek_dict.json`, preservando as demais chaves e adicionando a coluna
+`pt` com a forma flexionada principal.
 
 Uso sugerido (não execute automaticamente):
     python3 tools/flexiona_traducoes.py \
-        --input src/_data/greeknt_dict.json \
-        --output src/_data/new_greeknt_dict.json
+        --input src/_data/nt_greek_dict.json \
+        --output src/_data/new_nt_greek_dict.json
 """
 
 from __future__ import annotations
@@ -20,7 +21,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 
 # ---------------------------------------------------------------------------
@@ -42,6 +43,20 @@ def tidy_spaces(text: str) -> str:
     text = re.sub(r"\s+([,.;:?!)])", r"\1", text)
     text = re.sub(r"([(])\s+", r"\1", text)
     return text.strip()
+
+
+# Ordem preferencial de chaves dentro de cada entrada.
+ENTRY_KEY_ORDER = [
+    "strongs",
+    "grego",
+    "transliteracao",
+    "verbete",
+    "ocorrencia",
+    "traducao",
+    "pt",
+    "classegram",
+    "desgram",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -851,18 +866,18 @@ def split_phrases(base_text: str) -> List[str]:
     return [part.strip() for part in parts if part.strip()]
 
 
-def load_dictionary(path: Path) -> Dict[str, Dict[str, str]]:
+def load_dictionary(path: Path) -> Dict[str, Dict[str, Any]]:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
 
 
-def write_dictionary(path: Path, data: Dict[str, Dict[str, str]]) -> None:
+def write_dictionary(path: Path, data: Dict[str, Dict[str, Any]]) -> None:
     with path.open("w", encoding="utf-8") as handle:
-        json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
+        json.dump(data, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
 
 
-def build_translation_value(entry: Dict[str, str], conjugator: PortugueseConjugator) -> Optional[str]:
+def build_translation_value(entry: Dict[str, Any], conjugator: PortugueseConjugator) -> Optional[str]:
     verbete = entry.get("verbete")
     if not verbete:
         return None
@@ -879,18 +894,40 @@ def build_translation_value(entry: Dict[str, str], conjugator: PortugueseConjuga
     return ", ".join(rendered)
 
 
+def reorder_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
+    ordered: Dict[str, Any] = {}
+    for key in ENTRY_KEY_ORDER:
+        if key in payload:
+            ordered[key] = payload[key]
+    for key, value in payload.items():
+        if key not in ordered:
+            ordered[key] = value
+    return ordered
+
+
 def transform_dictionary(
-    data: Dict[str, Dict[str, str]], conjugator: PortugueseConjugator
-) -> Dict[str, Dict[str, str]]:
+    data: Dict[str, Dict[str, Any]], conjugator: PortugueseConjugator
+) -> Dict[str, Dict[str, Any]]:
     updated = {}
     for lemma, payload in data.items():
         new_payload = dict(payload)
         classegram = payload.get("classegram", "")
+        # Garante que verbete permaneça exatamente como veio do arquivo fonte.
+        if "verbete" in payload:
+            new_payload["verbete"] = payload["verbete"]
         if classegram.startswith("V"):
             new_traducao = build_translation_value(payload, conjugator)
             if new_traducao:
                 new_payload["traducao"] = new_traducao
-        updated[lemma] = new_payload
+
+        traducao_value = new_payload.get("traducao", "")
+        if isinstance(traducao_value, str) and traducao_value:
+            pt_value = traducao_value.split(",", 1)[0].strip()
+        else:
+            pt_value = ""
+        new_payload["pt"] = pt_value
+
+        updated[lemma] = reorder_payload(new_payload)
     return updated
 
 
@@ -904,13 +941,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        default=Path("src/_data/greeknt_dict.json"),
+        default=Path("src/_data/nt_greek_dict.json"),
         help="Arquivo JSON de origem.",
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("src/_data/new_greeknt_dict.json"),
+        default=Path("src/_data/nt_greek-pt_dict.json"),
         help="Arquivo JSON de destino com traduções flexionadas.",
     )
     parser.add_argument(
