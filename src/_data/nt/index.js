@@ -1,17 +1,31 @@
 const fs = require('fs');
 const path = require('path');
 
-const dict = require('../new_greeknt_dict.json');
+const dict = require('../nt_greek-pt_dict.json');
 
 const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 
-const DICT_FIELDS = ['transliteracao', 'traducao', 'verbete', 'desgram', 'classegram', 'ocorrencia', 'grego', 'strongs'];
+const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
+// Terms that should keep diacritics to avoid collapsing homographs.
+const NORMALIZATION_EXCEPTIONS = new Set(["εν", "η", "ου", "ει", "ως", "ος", "αν", "τις", "που", "πως", "αυτου", "δη", "ανω", "ημερα"]);
 
-const normalizeGreek = (value = '') =>
-  value
-    // .normalize('NFD')
-    // .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
+const normalizeGreek = (value = '') => {
+  const trimmed = String(value).trim();
+
+  if (!trimmed) {
+    return '';
+  }
+
+  const normalized = trimmed.normalize('NFD');
+  const stripped = normalized.replace(/[\u0300-\u036f]/g, '');
+  const lowered = stripped.toLowerCase();
+
+  if (NORMALIZATION_EXCEPTIONS.has(lowered)) {
+    return trimmed.toLowerCase().normalize('NFC');
+  }
+
+  return lowered;
+};
 
 const dictIndex = Object.entries(dict).reduce((acc, [key, entry]) => {
   const normalizedKey = normalizeGreek(key);

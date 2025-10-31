@@ -25,28 +25,6 @@ eleventyComputed:
 				<section class="pericope" id="{{ pericope.id | default: '' | downcase }}">
 					{% if pericope.title or pericope.start_verse or pericope.end_verse %}
 						<h2 class="pericope-title">{{ pericope.title }}</h2>
-							{% comment %}
-							{% if pericope.title %}
-								<h2 class="pericope-title">{{ pericope.title }}</h2>
-							{% endif %}
-							{% assign start = pericope.start_verse %}
-							{% assign end = pericope.end_verse %}
-							{% if start or end %}
-								<small class="pericope-range">
-									{% if start and end %}
-										{% if start == end %}
-											{{ start }}
-										{% else %}
-											{{ start }}–{{ end }}
-										{% endif %}
-									{% elsif start %}
-										{{ start }}
-									{% else %}
-										{{ end }}
-									{% endif %}
-								</small>
-							{% endif %}
-							{% endcomment %}
 					{% endif %}
 
 					<ul class="versiculos">
@@ -56,11 +34,11 @@ eleventyComputed:
 								<div class="interlinear">
 									{% for token in verse.tokens %}
 										<span class="token">
-											<a class="strongs" hreh="#" title="{{ token.verbete }}">{{ token.strongs }}</a>
-											<span class="translit" title="{{ token.ocorrencia }}">{{ token.transliteracao }}</span>
-											<span class="greek">{{ token.lemma }}</span>
-											<span class="translate">{{ token.traducao }}</span>
-											<small class="refs" title="{{ token.desgram }}">{{ token.classegram }}</small>
+											<a class="strongs" href="https://bibleapps-com.translate.goog/strongs/greek/{{ token.strongs | strip }}.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" target="_blank" title="{{ token.verbete }}">{{ token.strongs }}</a>
+											<span class="translit">{{ token.transliteracao }}</span>
+											<span class="greek" title="{{ token.traducao }} -- Ocorrências: {{ token.ocorrencias }}">{{ token.lemma }}</span>
+											<span class="translate">{{ token.pt }}</span>
+											<small class="refs" title="{{ token.morfologia }}">{{ token.abrev_morf }}</small>
 										</span>
 									{% endfor %}
 								</div>
