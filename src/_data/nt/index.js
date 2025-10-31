@@ -6,6 +6,7 @@ const dict = require('../nt_greek-pt_dict.json');
 const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 
 const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
+
 // Terms that should keep diacritics to avoid collapsing homographs.
 const NORMALIZATION_EXCEPTIONS = new Set(["εν", "η", "ου", "ει", "ως", "ος", "αν", "τις", "που", "πως", "αυτου", "δη", "ανω", "ημερα"]);
 
