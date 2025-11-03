@@ -8,11 +8,11 @@ indicado em `--output`, se fornecido), preservando as demais chaves e
 acrescentando a coluna `pt` com a forma flexionada principal.
 
 Uso sugerido (não execute automaticamente):
-    python3 tools/flexiona_traducoes_inplace.py \
+    python3 tools/flexiona_verbos.py \
         --input src/_data/nt_greek-pt_dict.json
 
 Para aplicar apenas a um código Strong específico:
-    python3 tools/flexiona_traducoes_inplace.py --input src/_data/nt_greek-pt_dict.json --strong 3004
+    python3 tools/flexiona_verbos.py --input src/_data/nt_greek-pt_dict.json --strong 3004
 """
 
 from __future__ import annotations
@@ -170,20 +170,24 @@ class MorphologyParser:
         if not chunk:
             return None, ""
 
-        lowered = strip_accents(chunk.lower())
-        matched_key = None
-        for key in sorted(self.VOICE_ALIASES, key=len, reverse=True):
-            if key in lowered:
-                matched_key = key
-                break
-        if not matched_key:
-            return None, chunk.strip()
+        tokens = re.findall(r"\S+", chunk)
+        normalized_tokens = [
+            strip_accents(re.sub(r"[^\w]+", "", token).lower()) for token in tokens
+        ]
 
-        voice = self.VOICE_ALIASES[matched_key]
-        pattern = re.compile(re.escape(matched_key), re.IGNORECASE)
-        leftover = pattern.sub("", lowered, count=1)
-        original_leftover = pattern.sub("", chunk, count=1)
-        return voice, original_leftover.strip()
+        for key in sorted(self.VOICE_ALIASES, key=len, reverse=True):
+            key_tokens = key.split()
+            key_tokens_norm = [strip_accents(part.lower()) for part in key_tokens]
+            window = len(key_tokens_norm)
+            for idx in range(len(tokens) - window + 1):
+                slice_norm = normalized_tokens[idx : idx + window]
+                if slice_norm == key_tokens_norm:
+                    voice = self.VOICE_ALIASES[key]
+                    remaining = tokens[:idx] + tokens[idx + window :]
+                    leftover = " ".join(remaining).strip()
+                    return voice, leftover
+
+        return None, chunk.strip()
 
     def _extract_mood_tense(self, chunk: str) -> Tuple[Optional[str], Optional[str]]:
         if not chunk:
@@ -270,6 +274,11 @@ FINITE_TENSE_MAP: Dict[Tuple[str, Optional[str]], str] = {
     ("subjuntivo", "futuro"): "futuro_subjuntivo",
     ("imperativo", "presente"): "imperativo",
     ("imperativo", "aoristo"): "imperativo",
+    ("optativo", "presente"): "presente_subjuntivo",
+    ("optativo", "aoristo"): "presente_subjuntivo",
+    ("optativo", "futuro"): "futuro_subjuntivo",
+    ("optativo", "perfeito"): "preterito_imperfeito_subjuntivo",
+    ("optativo", "imperfeito"): "preterito_imperfeito_subjuntivo",
 }
 
 FALLBACK_TENSE_ORDER = [
@@ -624,12 +633,8 @@ class PortugueseConjugator:
             return phrase
 
         index = self._person_index(morph.person, morph.number)
-        reflexive_pron = None
+        reflexive_pron = REFLEXIVE_PRONOUNS.get((morph.person, morph.number))
         needs_reflexive = self._needs_reflexive(lemma, morph)
-        if needs_reflexive:
-            reflexive_pron = REFLEXIVE_PRONOUNS.get(
-                (morph.person, morph.number)
-            )
 
         verb_form = self._conjugate_simple_verb(
             lemma.root.lower(), target_tense, index
@@ -644,15 +649,12 @@ class PortugueseConjugator:
             replacement = self._build_passive(
                 lemma.root.lower(), morph, index
             )
-        elif morph.voice == "media_passiva" and morph.person and morph.number:
-            # Prefer reflexiva por padrão.
-            replacement = self._attach_reflexive(
-                replacement, reflexive_pron
-            )
         elif needs_reflexive and reflexive_pron:
             replacement = self._attach_reflexive(
                 replacement, reflexive_pron
             )
+        elif needs_reflexive:
+            replacement = self._attach_reflexive(replacement, None)
 
         new_phrase = (
             phrase[: lemma.start]
@@ -710,8 +712,6 @@ class PortugueseConjugator:
     def _needs_reflexive(self, lemma: LemmaInfo, morph: Morphology) -> bool:
         if lemma.reflexive:
             return True
-        if morph.voice in {"media", "media_passiva"}:
-            return True
         return False
 
     def _map_finite_tense(self, morph: Morphology) -> Optional[str]:
@@ -724,6 +724,8 @@ class PortugueseConjugator:
             return "presente_subjuntivo"
         if morph.mood == "imperativo":
             return "imperativo"
+        if morph.mood == "optativo":
+            return "presente_subjuntivo"
         return None
 
     def _conjugate_simple_verb(self, lemma: str, tense: str, index: int) -> Optional[str]:
@@ -766,6 +768,9 @@ class PortugueseConjugator:
             ("subjuntivo", "presente"): "presente_subjuntivo",
             ("subjuntivo", "aoristo"): "presente_subjuntivo",
             ("subjuntivo", "futuro"): "futuro_subjuntivo",
+            ("optativo", "presente"): "presente_subjuntivo",
+            ("optativo", "aoristo"): "presente_subjuntivo",
+            ("optativo", "futuro"): "futuro_subjuntivo",
         }
         return mapping.get((morph.mood, morph.tense), "presente_indicativo")
 
