@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """Atualiza o campo `traducao` do dicionário grego com a flexão verbal em português.
 
-O script lê `nt_greek_dict.json`, identifica entradas verbais e deriva a forma
+O script lê o JSON informado, identifica entradas verbais e deriva a forma
 flexionada a partir da morfologia (tempo, modo, voz, pessoa/número) presente em
-`desgram`. O resultado é gravado em um novo arquivo, tipicamente
-`new_nt_greek_dict.json`, preservando as demais chaves e adicionando a coluna
-`pt` com a forma flexionada principal.
+`morfologia`. O resultado é gravado no próprio arquivo de entrada (ou no arquivo
+indicado em `--output`, se fornecido), preservando as demais chaves e
+acrescentando a coluna `pt` com a forma flexionada principal.
 
 Uso sugerido (não execute automaticamente):
-    python3 tools/flexiona_traducoes.py \
-        --input src/_data/nt_greek_dict.json \
-        --output src/_data/new_nt_greek_dict.json
+    python3 tools/flexiona_traducoes_inplace.py \
+        --input src/_data/nt_greek-pt_dict.json
+
+Para aplicar apenas a um código Strong específico:
+    python3 tools/flexiona_traducoes_inplace.py --input src/_data/nt_greek-pt_dict.json --strong 3004
 """
 
 from __future__ import annotations
@@ -21,7 +23,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 
 # ---------------------------------------------------------------------------
@@ -51,11 +53,11 @@ ENTRY_KEY_ORDER = [
     "grego",
     "transliteracao",
     "verbete",
-    "ocorrencia",
+    "ocorrencias",
     "traducao",
     "pt",
-    "classegram",
-    "desgram",
+    "abrev_morf",
+    "morfologia",
 ]
 
 
@@ -93,7 +95,7 @@ class Morphology:
 
 
 class MorphologyParser:
-    """Extrai características da string `desgram`."""
+    """Extrai características da string `morfologia`."""
 
     MOOD_ALIASES = {
         "indicativo": "indicativo",
@@ -259,7 +261,7 @@ FINITE_TENSE_MAP: Dict[Tuple[str, Optional[str]], str] = {
     ("indicativo", "presente"): "presente_indicativo",
     ("indicativo", "imperfeito"): "preterito_imperfeito",
     ("indicativo", "aoristo"): "preterito_perfeito",
-    ("indicativo", "perfeito"): "preterito_perfeito_composto",
+    ("indicativo", "perfeito"): "preterito_perfeito",
     ("indicativo", "futuro"): "futuro_presente",
     ("indicativo", "pluperfeito"): "mais_que_perfeito",
     ("subjuntivo", "presente"): "presente_subjuntivo",
@@ -528,7 +530,7 @@ PRONOUNS = {
     (2, "singular"): "tu",
     (3, "singular"): "ele(a)",
     (1, "plural"): "nós",
-    (2, "plural"): "vocês",
+    (2, "plural"): "vós",
     (3, "plural"): "eles(as)",
 }
 
@@ -885,7 +887,7 @@ def build_translation_value(entry: Dict[str, Any], conjugator: PortugueseConjuga
     if not base_part:
         return None
 
-    morphology = conjugator.morph_parser.parse(entry.get("desgram", ""))
+    morphology = conjugator.morph_parser.parse(entry.get("morfologia", ""))
     phrases = split_phrases(base_part)
     if not phrases:
         phrases = [base_part]
@@ -906,16 +908,21 @@ def reorder_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def transform_dictionary(
-    data: Dict[str, Dict[str, Any]], conjugator: PortugueseConjugator
+    data: Dict[str, Dict[str, Any]],
+    conjugator: PortugueseConjugator,
+    strong_filter: Optional[Set[str]] = None,
 ) -> Dict[str, Dict[str, Any]]:
     updated = {}
     for lemma, payload in data.items():
         new_payload = dict(payload)
-        classegram = payload.get("classegram", "")
+        abrev_morf = payload.get("abrev_morf", "")
+        strong_code = str(payload.get("strongs", "")).strip()
+        should_process = not strong_filter or strong_code in strong_filter
+
         # Garante que verbete permaneça exatamente como veio do arquivo fonte.
         if "verbete" in payload:
             new_payload["verbete"] = payload["verbete"]
-        if classegram.startswith("V"):
+        if abrev_morf.startswith("V") and should_process:
             new_traducao = build_translation_value(payload, conjugator)
             if new_traducao:
                 new_payload["traducao"] = new_traducao
@@ -941,14 +948,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        default=Path("src/_data/nt_greek_dict.json"),
+        default=Path("src/_data/nt_greek-pt_dict.json"),
         help="Arquivo JSON de origem.",
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("src/_data/nt_greek-pt_dict.json"),
-        help="Arquivo JSON de destino com traduções flexionadas.",
+        help="Arquivo JSON de destino. Se omitido, o próprio --input será sobrescrito.",
     )
     parser.add_argument(
         "--dry-run",
@@ -961,6 +967,13 @@ def parse_args() -> argparse.Namespace:
         default=5,
         help="Quantidade de exemplos exibidos em dry-run.",
     )
+    parser.add_argument(
+        "--strong",
+        dest="strongs",
+        action="append",
+        metavar="CODE",
+        help="Flexiona apenas entradas cujo código Strong (ex.: 3004) corresponda ao valor informado. Pode ser passado múltiplas vezes.",
+    )
     return parser.parse_args()
 
 
@@ -968,12 +981,16 @@ def main() -> None:
     args = parse_args()
     data = load_dictionary(args.input)
     conjugator = PortugueseConjugator()
-    transformed = transform_dictionary(data, conjugator)
+    strong_filter = {code.strip() for code in args.strongs if code} if args.strongs else None
+    transformed = transform_dictionary(data, conjugator, strong_filter)
+    output_path = args.output or args.input
 
     if args.dry_run:
         count = 0
         for lemma, payload in transformed.items():
-            if not payload.get("classegram", "").startswith("V"):
+            if strong_filter and str(payload.get("strongs", "")).strip() not in strong_filter:
+                continue
+            if not payload.get("abrev_morf", "").startswith("V"):
                 continue
             print(f"{lemma}: {payload.get('traducao', '')}")
             count += 1
@@ -981,7 +998,7 @@ def main() -> None:
                 break
         return
 
-    write_dictionary(args.output, transformed)
+    write_dictionary(output_path, transformed)
 
 
 if __name__ == "__main__":
