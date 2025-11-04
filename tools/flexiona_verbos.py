@@ -932,12 +932,15 @@ def transform_dictionary(
             if new_traducao:
                 new_payload["traducao"] = new_traducao
 
-        traducao_value = new_payload.get("traducao", "")
-        if isinstance(traducao_value, str) and traducao_value:
-            pt_value = traducao_value.split(",", 1)[0].strip()
+            traducao_value = new_payload.get("traducao", "")
+            if isinstance(traducao_value, str) and traducao_value:
+                pt_value = traducao_value.split(",", 1)[0].strip()
+            else:
+                pt_value = ""
+            new_payload["pt"] = pt_value
         else:
-            pt_value = ""
-        new_payload["pt"] = pt_value
+            # Mantém o valor original quando a entrada não é processada.
+            new_payload["pt"] = payload.get("pt", new_payload.get("traducao", ""))
 
         updated[lemma] = reorder_payload(new_payload)
     return updated
