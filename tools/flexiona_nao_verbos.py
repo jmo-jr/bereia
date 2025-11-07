@@ -192,7 +192,12 @@ class PortugueseNominalInflector:
         number = morph.number or "singular"
 
         inflected = self._inflect_phrase(canonical, gender, number)
-        inflected = self._apply_case_prefix(inflected, morph.case)
+        inflected = self._apply_case_prefix(
+            inflected,
+            morph.case,
+            morph.gender or gender,
+            morph.number or number,
+        )
         return [inflected]
 
     # ---- Heurísticas básicas ----------------------------------------------
@@ -226,11 +231,35 @@ class PortugueseNominalInflector:
         inflected = phrase[: match.start()] + transformed + phrase[match.end() :]
         return tidy_spaces(inflected)
 
-    def _apply_case_prefix(self, phrase: str, case: Optional[str]) -> str:
+    def _apply_case_prefix(
+        self,
+        phrase: str,
+        case: Optional[str],
+        gender: Optional[str],
+        number: Optional[str],
+    ) -> str:
         if case == "dativo":
-            return tidy_spaces(f"a {phrase}")
+            prefix_map = {
+                ("masculino", "singular"): "ao",
+                ("feminino", "singular"): "à",
+                ("neutro", "singular"): "a",
+                ("masculino", "plural"): "aos",
+                ("feminino", "plural"): "às",
+                ("neutro", "plural"): "aos",
+            }
+            prefix = prefix_map.get((gender, number), "a")
+            return tidy_spaces(f"{prefix} {phrase}")
         if case == "genitivo":
-            return tidy_spaces(f"de {phrase}")
+            prefix_map = {
+                ("masculino", "singular"): "do",
+                ("feminino", "singular"): "da",
+                ("neutro", "singular"): "de",
+                ("masculino", "plural"): "dos",
+                ("feminino", "plural"): "das",
+                ("neutro", "plural"): "dos",
+            }
+            prefix = prefix_map.get((gender, number), "de")
+            return tidy_spaces(f"{prefix} {phrase}")
         return phrase
 
     def _normalize_gender(self, gender: Optional[str]) -> str:
