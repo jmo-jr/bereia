@@ -8,7 +8,7 @@ const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
 
 // Terms that should keep diacritics to avoid collapsing homographs.
-const NORMALIZATION_EXCEPTIONS = new Set(["εν", "η", "ου", "ει", "ως", "ος", "αν", "τις", "που", "πως", "αυτου", "δη", "ανω", "ημερα"]);
+const NORMALIZATION_EXCEPTIONS = new Set(["εν", "η", "ης", "ην", "ητε", "ου", "ει", "ως", "ος", "αν", "τις", "που", "πως", "αυτου", "δη", "ανω", "ημερα", "εκτος"]);
 
 const normalizeGreek = (value = '') => {
   const trimmed = String(value).trim();
