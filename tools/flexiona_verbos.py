@@ -884,6 +884,16 @@ def write_dictionary(path: Path, data: Dict[str, Dict[str, Any]]) -> None:
         handle.write("\n")
 
 
+PRONOUN_PREFIX_RE = re.compile(
+    r"^(?:eu|tu|ele(?:\(a[s]?\))?|ela|n[óo]s|v[óo]s|eles(?:\(as\))?|elas)\s+",
+    re.IGNORECASE,
+)
+
+
+def strip_subject_pronoun(text: str) -> str:
+    return PRONOUN_PREFIX_RE.sub("", text).strip()
+
+
 def build_translation_value(entry: Dict[str, Any], conjugator: PortugueseConjugator) -> Optional[str]:
     verbete = entry.get("verbete")
     if not verbete:
@@ -935,6 +945,7 @@ def transform_dictionary(
             traducao_value = new_payload.get("traducao", "")
             if isinstance(traducao_value, str) and traducao_value:
                 pt_value = traducao_value.split(",", 1)[0].strip()
+                pt_value = strip_subject_pronoun(pt_value)
             else:
                 pt_value = ""
             new_payload["pt"] = pt_value

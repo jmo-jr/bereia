@@ -1,14 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const dict = require('../nt_greek-pt_dict.json');
-
+const DICT_PATH = path.join(__dirname, '..', 'nt_greek-pt_dict.json');
 const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 
 const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
 
 // Terms that should keep diacritics to avoid collapsing homographs.
 const NORMALIZATION_EXCEPTIONS = new Set(["εν", "η", "ης", "ην", "ητε", "ου", "ει", "ως", "ος", "αν", "τις", "που", "πως", "αυτου", "δη", "ανω", "ημερα", "εκτος"]);
+
+const loadJsonFile = filePath => JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
 const normalizeGreek = (value = '') => {
   const trimmed = String(value).trim();
@@ -28,36 +29,41 @@ const normalizeGreek = (value = '') => {
   return lowered;
 };
 
-const dictIndex = Object.entries(dict).reduce((acc, [key, entry]) => {
-  const normalizedKey = normalizeGreek(key);
-  if (normalizedKey && !acc[normalizedKey]) {
-    acc[normalizedKey] = entry;
-  }
-  return acc;
-}, {});
-
-const enhanceTokenWithDict = (token = {}) => {
-  const normalized = normalizeGreek(token.lemma || '');
-  const dictEntry = dictIndex[normalized];
-
-  if (!dictEntry) {
-    return { ...token };
-  }
-
-  const lexicon = DICT_FIELDS.reduce((acc, field) => {
-    if (dictEntry[field] !== undefined) {
-      acc[field] = dictEntry[field];
+const buildDictIndex = dict =>
+  Object.entries(dict).reduce((acc, [key, entry]) => {
+    const normalizedKey = normalizeGreek(key);
+    if (normalizedKey && !acc[normalizedKey]) {
+      acc[normalizedKey] = entry;
     }
     return acc;
   }, {});
 
-  return {
-    ...token,
-    ...lexicon,
+const createEnhanceTokenWithDict = dict => {
+  const dictIndex = buildDictIndex(dict);
+
+  return (token = {}) => {
+    const normalized = normalizeGreek(token.lemma || '');
+    const dictEntry = dictIndex[normalized];
+
+    if (!dictEntry) {
+      return { ...token };
+    }
+
+    const lexicon = DICT_FIELDS.reduce((acc, field) => {
+      if (dictEntry[field] !== undefined) {
+        acc[field] = dictEntry[field];
+      }
+      return acc;
+    }, {});
+
+    return {
+      ...token,
+      ...lexicon,
+    };
   };
 };
 
-const normalizePericope = (pericope = {}) => {
+const normalizePericope = (pericope = {}, enhanceTokenWithDict) => {
   const verses = (pericope.verses || []).map(verseEntry => ({
     number: Number(verseEntry.verse),
     tokens: (verseEntry.tokens || []).map(enhanceTokenWithDict),
@@ -71,9 +77,11 @@ const normalizePericope = (pericope = {}) => {
   };
 };
 
-const normalizeBookData = (bookContent = []) =>
+const normalizeBookData = (bookContent = [], enhanceTokenWithDict) =>
   bookContent.map(chapterEntry => {
-    const pericopes = (chapterEntry.pericopes || []).map(normalizePericope);
+    const pericopes = (chapterEntry.pericopes || []).map(pericope =>
+      normalizePericope(pericope, enhanceTokenWithDict),
+    );
     const verses = pericopes.flatMap(pericope => pericope.verses);
 
     return {
@@ -88,14 +96,17 @@ const loadAllBooks = () => {
     return {};
   }
 
+  const dict = loadJsonFile(DICT_PATH);
+  const enhanceTokenWithDict = createEnhanceTokenWithDict(dict);
+
   return fs
     .readdirSync(SOURCE_DIR)
     .filter(filename => filename.toLowerCase().endsWith('.json'))
     .reduce((acc, filename) => {
       const bookId = path.basename(filename, path.extname(filename));
-      const rawContent = require(path.join(SOURCE_DIR, filename));
+      const rawContent = loadJsonFile(path.join(SOURCE_DIR, filename));
 
-      acc[bookId] = normalizeBookData(rawContent);
+      acc[bookId] = normalizeBookData(rawContent, enhanceTokenWithDict);
       return acc;
     }, {});
 };
