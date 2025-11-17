@@ -668,7 +668,7 @@ class PortugueseConjugator:
         self, phrase: str, lemma: LemmaInfo, morph: Morphology
     ) -> str:
         root = lemma.root.lower()
-        if morph.tense in {"aoristo", "perfeito"}:
+        if morph.tense == "perfeito":
             verb_form = f"ter {self._past_participle(root)}"
         elif morph.tense == "futuro":
             verb_form = f"vir a {root}"
