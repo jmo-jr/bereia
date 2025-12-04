@@ -1,0 +1,8 @@
+$(document).ready(function () {
+  $('.tooltip').tooltipster({
+    theme: 'tooltipster-light',
+    animation: 'fade',
+    delay: 100,
+		maxWidth: 400
+  });
+});
