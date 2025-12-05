@@ -7,11 +7,11 @@ $(document).ready(function () {
 		trigger: 'custom',
     triggerOpen: {
         mouseenter: true,
-        tap: true
+        touchstart: true
     },
     triggerClose: {
         mouseleave: true,
-        tap: true
+        touchleave: true
     }
   });
 });
