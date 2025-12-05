@@ -6,11 +6,11 @@ $(document).ready(function () {
 		maxWidth: 400,
 		trigger: 'custom',
     triggerOpen: {
-        click: true,
+        mouseenter: true,
         tap: true
     },
     triggerClose: {
-        click: true,
+        mouseleave: true,
         tap: true
     }
   });
