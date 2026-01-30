@@ -1,3 +1,4 @@
+{% assign currentChapter = bookChapter | plus: 0 %}
 <div class="toolbar">
 	<div class="content">
 
@@ -31,7 +32,7 @@
 							{% for n in range %}
 								<option 
 									value="{{ book.permalink | url }}{{ n }}"
-									{% if chapter.number == n %}selected{% endif %}
+									{% if currentChapter == n %}selected{% endif %}
 								>
 									{{n}}
 								</option>
