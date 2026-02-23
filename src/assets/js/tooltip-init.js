@@ -4,6 +4,15 @@ $(document).ready(function () {
     animation: 'fade',
     delay: 100,
 		maxWidth: 400,
-		trigger: 'hover'
+		trigger: 'custom',
+    triggerOpen: {
+        mouseenter: true,
+        touchstart: true
+    },
+    triggerClose: {
+        click: true,
+        scroll: true,
+        tap: true
+    }
   });
 });
