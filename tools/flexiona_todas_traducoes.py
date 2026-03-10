@@ -28,6 +28,12 @@ PROJECT_ROOT = CURRENT_DIR.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from tools.preenche_strongs import (
+    load_dictionary as load_strongs_dictionary,
+    load_strongs,
+    transform_dictionary as transform_strongs_dictionary,
+)
+
 from tools.flexiona_verbos import (  # noqa: E402
     PortugueseConjugator,
     load_dictionary as load_verb_dictionary,
@@ -91,6 +97,9 @@ def main() -> None:
     )
 
     data = load_verb_dictionary(args.input)
+    
+    strongs = load_strongs()
+    data = transform_strongs_dictionary(data, strongs)
 
     if not args.skip_verbs:
         conjugator = PortugueseConjugator()
