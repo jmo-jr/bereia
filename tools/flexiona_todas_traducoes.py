@@ -71,8 +71,10 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--strong",
+        dest="strongs",
+        action="append",
         metavar="CODE",
-        help="Processa apenas o código Strong informado.",
+        help="Processa apenas os códigos Strong informados (argumento repetível).",
     )
     parser.add_argument(
         "--skip-verbs",
@@ -84,17 +86,30 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Pula a etapa de flexão para itens não verbais.",
     )
+    parser.add_argument(
+        "--nofill",
+        action="store_true",
+        help="Bypass o preenchimento"
+		)
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    strong_filter = {args.strong} if args.strong else None
+    strong_filter: Optional[Set[str]] = (
+        {code.strip() for code in args.strongs if code} if args.strongs else None
+    )
 
     data = load_verb_dictionary(args.input)
     
     strongs = load_strongs()
-    data = transform_strongs_dictionary(data, strongs, [args.strong] if args.strong else None)
+    
+    if not args.nofill:
+        if args.strongs:
+            data = transform_strongs_dictionary(data, strongs, "G" + args.strongs[0])
+        else:
+            for code in strongs.keys():
+                data = transform_strongs_dictionary(data, strongs, code)
 
     if not args.skip_verbs:
         conjugator = PortugueseConjugator()
