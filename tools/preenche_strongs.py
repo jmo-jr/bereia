@@ -1,47 +1,44 @@
 import json
 import re
 from pathlib import Path
+from typing import Optional, List
 
 STRONGS_FILE = Path("src/_data/strongs_greek_pt_defs.json")
-PATTERN = re.compile(r"(G\d{1,4}):\s*([^\";,]*)")
 
-def load_dictionary(path: Path):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+PATTERN = re.compile(r"(G\d{1,4})\s*:\s*(.*)")
+
 
 def load_strongs():
     with open(STRONGS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # garante mapa simples {G0001: definição}
-    return {k: v.split(":")[-1].strip() if ":" in v else v for k, v in data.items()}
+    # garante formato simples
+    strongs = {}
+    for k, v in data.items():
+        if isinstance(v, str):
+            strongs[k] = v.split(":")[-1].strip()
+    return strongs
 
-def transform_dictionary(data, strongs):
 
-    def process(value):
+def transform_dictionary(data, strongs, strong_targets: Optional[List[str]] = None):
 
-        if isinstance(value, dict):
-            for k in value:
-                value[k] = process(value[k])
-            return value
+    def process(node):
 
-        if isinstance(value, list):
-            return [process(v) for v in value]
-
-        if isinstance(value, str):
-
-            def repl(match):
-                codigo = match.group(1)
-                if codigo in strongs:
-                    return f"{codigo}: {strongs[codigo]}"
-                return match.group(0)
-
-            return PATTERN.sub(repl, value)
-
-        return value
+        if isinstance(node, dict):
+            if "verbete" in node and isinstance(node["verbete"], str):
+                texto = node["verbete"].strip()
+                match = PATTERN.match(texto)
+                if match:
+                    codigo = match.group(1)
+                    if strong_targets is None or codigo in strong_targets:
+                        definicao = strongs.get(codigo)
+                        if definicao:
+                            node["verbete"] = f"{codigo}: {definicao}"
+            for k, v in node.items():
+                node[k] = process(v)
+            return node
+        elif isinstance(node, list):
+            return [process(x) for x in node]
+        return node
 
     return process(data)
-
-def write_dictionary(data, path: Path):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)

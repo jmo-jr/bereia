@@ -29,7 +29,6 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from tools.preenche_strongs import (
-    load_dictionary as load_strongs_dictionary,
     load_strongs,
     transform_dictionary as transform_strongs_dictionary,
 )
@@ -72,10 +71,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--strong",
-        dest="strongs",
-        action="append",
         metavar="CODE",
-        help="Processa apenas os códigos Strong informados (argumento repetível).",
+        help="Processa apenas o código Strong informado.",
     )
     parser.add_argument(
         "--skip-verbs",
@@ -92,14 +89,12 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    strong_filter: Optional[Set[str]] = (
-        {code.strip() for code in args.strongs if code} if args.strongs else None
-    )
+    strong_filter = {args.strong} if args.strong else None
 
     data = load_verb_dictionary(args.input)
     
     strongs = load_strongs()
-    data = transform_strongs_dictionary(data, strongs)
+    data = transform_strongs_dictionary(data, strongs, [args.strong] if args.strong else None)
 
     if not args.skip_verbs:
         conjugator = PortugueseConjugator()
