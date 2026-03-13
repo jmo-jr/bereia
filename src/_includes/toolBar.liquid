@@ -1,4 +1,8 @@
 {% assign currentChapter = bookChapter | plus: 0 %}
+{% assign selected_permalink = livro.permalink %}
+{% if type %}
+  {% assign selected_permalink = livro.bkpermalink %}
+{% endif %}
 <div class="toolbar">
 	<div class="content">
 
@@ -17,29 +21,27 @@
 					<select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
 						{% for livro in bookList %}
 						<option 
-							value="{{ livro.permalink | url | append: '1' }}"
+							value="{{ selected_permalink | url | append: '1' }}"
 							{% if bookName == livro.name %}selected{% endif %}
 						>{{ livro.name }}</option>
 						{% endfor %}
 					</select>
 
 					<select name="chapter" class="drop" onchange="location.href = this.value;">
-
-					{% for book in bookList %}
-						{% if book.name == bookName %}
-							{% assign num = book.chapters %}
-							{% assign range = (1..num) %}
-							{% for n in range %}
-								<option 
-									value="{{ book.permalink | url }}{{ n }}"
-									{% if currentChapter == n %}selected{% endif %}
-								>
-									{{n}}
-								</option>
-							{% endfor %}
-						{% endif %}
-					{% endfor %}
-
+						{% for book in bookList %}
+							{% if book.name == bookName %}
+								{% assign num = book.chapters %}
+								{% assign range = (1..num) %}
+								{% for n in range %}
+									<option 
+										value="{{ selected_permalink | url }}{{ n }}"
+										{% if currentChapter == n %}selected{% endif %}
+									>
+										{{n}}
+									</option>
+								{% endfor %}
+							{% endif %}
+						{% endfor %}
 					</select>
 
 				</form>
