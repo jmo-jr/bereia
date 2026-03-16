@@ -1,5 +1,7 @@
 # BEREIA - Bíblia de Estudo com Recursos Exegéticos e Interlinear Analítico 
 
+## https://bereia.app.br
+
 Baseado no **Texto Majoritário**, com destaque para a *Família 35*
 
 ## Projeto baseado em 11ty
