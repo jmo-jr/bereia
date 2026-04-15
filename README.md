@@ -22,6 +22,8 @@ Substituir os links das definições em grego do Bibleapps.com:
 
 Find: `/greek/(\d{1,4})\.htm`
 
+Quebras de linha: `(\r?\n)+`
+
 Replace: `https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp`
 
 ## Auxílios para tradução:
