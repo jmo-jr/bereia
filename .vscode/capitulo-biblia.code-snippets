@@ -1,0 +1,105 @@
+{
+	"Novo Capítulo Bíblico": {
+		"scope": "html",
+		"prefix": "capitulo-biblia",
+		"description": "Template para criar um novo capítulo bíblico",
+		"body": [
+			"---",
+			"bookName: \"${1:Nome do Livro}\"",
+			"bookChapter: ${2:1}",
+			"permalink: \"/biblia/${3:livro_minusculo}/${2}/\"",
+			"bee: true",
+			"---",
+			"",
+			"<div class=\"page-header\">",
+			"\t<a href=\"{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | minus: 1 }}\"",
+			"\t\ttitle=\"{{ bookName }} {{ bookChapter | minus: 1 }}\">◄</a>",
+			"",
+			"\t<h3>{{bookName}} {{bookChapter}}</h3>",
+			"",
+			"\t<a href=\"{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | plus: 1 }}\"",
+			"\t\ttitle=\"{{ bookName }} {{ bookChapter | plus: 1 }}\">►</a>",
+			"</div>",
+			"",
+			"<div class=\"content-container\">",
+			"",
+			"\t<!-- SECÇÃO 1 -->",
+			"\t<h4 class=\"pericope title\">",
+			"\t\t${4:Título da Perícope}",
+			"\t\t<small class=\"pericope concordance\">${5:Livro Paralelo Capítulo:Versos}</small>",
+			"\t</h4>",
+			"",
+			"\t<div class=\"pericope text\">",
+			"\t\t<p>",
+			"\t\t\t<span id=\"${6:prefixo}_${2}-${7:1}\" class=\"verse\">",
+			"\t\t\t\t<span class=\"verse-number\">${7}</span>",
+			"\t\t\t\t<span class=\"verse-text\">${8:Texto do versículo}</span>",
+			"\t\t\t</span>",
+			"\t\t</p>",
+			"\t</div>",
+			"",
+			"\t<!-- SECÇÃO 2 (opcional) -->",
+			"\t<!-- <h4 class=\"pericope title\">",
+			"\t\tTítulo da Segunda Perícope",
+			"\t\t<small class=\"pericope concordance\">Referência</small>",
+			"\t</h4>",
+			"",
+			"\t<div class=\"pericope text\">",
+			"\t\t<p>",
+			"\t\t\t<span id=\"prefixo-numero\" class=\"verse\">",
+			"\t\t\t\t<span class=\"verse-number\">Número</span>",
+			"\t\t\t\t<span class=\"verse-text\">Texto</span>",
+			"\t\t\t</span>",
+			"\t\t</p>",
+			"\t</div> -->",
+			"",
+			"</div>",
+			"<footer class=\"chapter-footer\">",
+			"</footer>"
+		]
+	},
+	"Novo Versículo": {
+		"scope": "html",
+		"prefix": "verso",
+		"description": "Template para adicionar um novo versículo",
+		"body": [
+			"<span id=\"${1:prefixo}_${2:capitulo}-${3:numero}\" class=\"verse\">",
+			"\t<span class=\"verse-number\">${3}</span>",
+			"\t<span class=\"verse-text\">${4:Texto do versículo}</span>",
+			"</span>"
+		]
+	},
+	"Novo Parágrafo de Versículos": {
+		"scope": "html",
+		"prefix": "paragrafo-versos",
+		"description": "Template para agrupar múltiplos versículos em um parágrafo",
+		"body": [
+			"<p>",
+			"\t<span id=\"${1:prefixo}_${2:capitulo}-${3:numero}\" class=\"verse\">",
+			"\t\t<span class=\"verse-number\">${3}</span>",
+			"\t\t<span class=\"verse-text\">${4:Texto do versículo}</span>",
+			"\t</span>",
+			"\t<span id=\"${1}_${2}-${5}\" class=\"verse\">",
+			"\t\t<span class=\"verse-number\">${5}</span>",
+			"\t\t<span class=\"verse-text\">${6:Próximo versículo}</span>",
+			"\t</span>",
+			"</p>"
+		]
+	},
+	"Referência Cruzada": {
+		"scope": "html",
+		"prefix": "ref-cruzada",
+		"description": "Template para adicionar referência cruzada (tooltip)",
+		"body": [
+			"<sup class=\"ref tooltip\" title=\"${1:Livro Capítulo:Versos}\"> [ref]</sup>"
+		]
+	},
+	"Tooltip de Palavra": {
+		"scope": "html",
+		"prefix": "tooltip",
+		"description": "Template para destacar palavra com tooltip",
+		"body": [
+			"<span class=\"tooltip\" data-tooltip-content=\"#${1:id_tooltip}\">${2:Palavra}</span>"
+		]
+	}
+}
