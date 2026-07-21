@@ -43,11 +43,6 @@ Vozes e Tempos Verbais:
 - Aoristo Particípio Ativo (APA) = tendo visto
 - Aoristo Particípio Passivo (APP) = tendo sido visto
 
-Subjuntivo:
-- Presente: que ...
-- Pretérito Imperfeito: se/talvez ...
-- Futuro: quando/se ...
-
 ### Declinações do artigo definido
 
 |  				| ACUSATIVO | NOMINATIVO | DATIVO | GENITIVO |
