@@ -685,7 +685,17 @@ class PortugueseConjugator:
         if morph.tense in {"presente"}:
             form = self._gerund(root)
         elif morph.tense in {"aoristo", "perfeito"}:
-            form = f"tendo {self._past_participle(root)}"
+            partic = self._past_participle(root)
+            if morph.number == "plural"and not partic.endswith("s"):
+                partic = partic + "s"
+            if morph.voice in {"passiva", "passiva"}:
+              form = f"tendo sido {partic}"
+            elif morph.voice in {"passiva", "media"}:
+              form = f"tendo se {self._past_participle(root)}"
+            elif morph.voice in {"passiva", "media_passiva"}:
+              form = f"tendo se {self._past_participle(root)}"
+            else:
+              form = f"tendo {self._past_participle(root)}"
         elif morph.tense == "futuro":
             form = f"prestes a {root}"
         else:
