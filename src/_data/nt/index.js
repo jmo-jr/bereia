@@ -7,7 +7,7 @@ const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
 
 // Terms that should keep diacritics to avoid collapsing homographs.
-const NORMALIZATION_EXCEPTIONS = new Set(["α", "εν", "η", "ης", "ην", "ητε", "ου", "ει", "ως", "ο", "ος", "αν", "τις", "που", "πως", "αυτου", "αυτη", "δη", "ανω", "ημερα", "εκτος", "τι", "εις", "τινι", "γενεας", "ετερα", "τινες"]);
+const NORMALIZATION_EXCEPTIONS = new Set(["α", "εν", "η", "ης", "ην", "ητε", "ου", "ει", "ως", "ο", "ος", "αν", "τις", "που", "πως", "αυτου", "αυτη", "δη", "ανω", "ημερα", "εκτος", "τι", "εις", "τινι", "γενεας", "ετερα", "τινες", "ηλιου"]);
 
 const loadJsonFile = filePath => JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
