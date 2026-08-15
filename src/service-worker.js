@@ -4,7 +4,7 @@ self.addEventListener("install", evt => {
     caches.open(CACHE).then(cache => cache.addAll([
       "/bereia/",
       "/bereia/css/style.css",
-      "/bereia/js/tooltipster.bundle.min.js"
+      "/bereia/assets/js/tooltipster.bundle.min.js"
     ]))
   );
   self.skipWaiting();

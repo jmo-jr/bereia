@@ -8,6 +8,7 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/assets");
 	eleventyConfig.addPassthroughCopy("src/manifest.json");
 	eleventyConfig.addPassthroughCopy("src/assets/icons");
+	eleventyConfig.addPassthroughCopy("src/service-worker.js");
 
 	//PageFind search
 	eleventyConfig.on('eleventy.after', () => {
