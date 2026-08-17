@@ -3,6 +3,7 @@ const path = require('path');
 
 const DICT_PATH = path.join(__dirname, '..', 'nt_greek-pt_dict.json');
 const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
+const MISSING_LEMMAS_LOG_PATH = path.join(__dirname, '..', '..', '..', 'nt-missing-lemmas.log');
 
 const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
 
@@ -38,14 +39,85 @@ const buildDictIndex = dict =>
     return acc;
   }, {});
 
-const createEnhanceTokenWithDict = dict => {
+const createMissingLemmaTracker = () => {
+  const lemmas = new Map();
+
+  return {
+    record(token = {}, context = {}) {
+      const lemma = String(token.lemma || '').trim();
+
+      if (!lemma) {
+        return;
+      }
+
+      const normalized = normalizeGreek(lemma);
+      const key = `${lemma}\u0000${normalized}`;
+      const hasBook = context.bookId !== undefined && context.bookId !== '';
+      const hasChapter = context.chapterNumber !== undefined;
+      const hasVerse = context.verseNumber !== undefined;
+      const reference = [
+        hasBook ? context.bookId : undefined,
+        hasChapter && hasVerse ? `${context.chapterNumber}:${context.verseNumber}` : undefined,
+      ].filter(value => value !== undefined).join(' ');
+
+      if (!lemmas.has(key)) {
+        lemmas.set(key, {
+          lemma,
+          normalized,
+          occurrences: 0,
+          references: new Set(),
+        });
+      }
+
+      const entry = lemmas.get(key);
+      entry.occurrences += 1;
+
+      if (reference) {
+        entry.references.add(reference);
+      }
+    },
+
+    writeLog() {
+      const generatedAt = new Date().toISOString();
+      const entries = Array.from(lemmas.values())
+        .map(entry => ({
+          ...entry,
+          references: Array.from(entry.references).sort(),
+        }))
+        .sort((a, b) => a.normalized.localeCompare(b.normalized) || a.lemma.localeCompare(b.lemma));
+
+      const content = [
+        `Lemmas sem equivalentes no dicionario do NT`,
+        `Gerado em: ${generatedAt}`,
+        `Dicionario: ${path.relative(process.cwd(), DICT_PATH)}`,
+        `Origem: ${path.relative(process.cwd(), SOURCE_DIR)}`,
+        `Total de lemmas unicos: ${entries.length}`,
+        '',
+        entries.length
+          ? entries.map(entry => [
+              `lemma: ${entry.lemma}`,
+              `normalizado: ${entry.normalized}`,
+              `ocorrencias: ${entry.occurrences}`,
+              `referencias: ${entry.references.join(', ')}`,
+            ].join('\n')).join('\n\n')
+          : 'Nenhum lemma sem equivalente foi encontrado.',
+        '',
+      ].join('\n');
+
+      fs.writeFileSync(MISSING_LEMMAS_LOG_PATH, content, 'utf8');
+    },
+  };
+};
+
+const createEnhanceTokenWithDict = (dict, missingLemmaTracker) => {
   const dictIndex = buildDictIndex(dict);
 
-  return (token = {}) => {
+  return (token = {}, context = {}) => {
     const normalized = normalizeGreek(token.lemma || '');
     const dictEntry = dictIndex[normalized];
 
     if (!dictEntry) {
+      missingLemmaTracker.record(token, context);
       return { ...token };
     }
 
@@ -63,10 +135,13 @@ const createEnhanceTokenWithDict = dict => {
   };
 };
 
-const normalizePericope = (pericope = {}, enhanceTokenWithDict) => {
+const normalizePericope = (pericope = {}, enhanceTokenWithDict, context = {}) => {
   const verses = (pericope.verses || []).map(verseEntry => ({
     number: Number(verseEntry.verse),
-    tokens: (verseEntry.tokens || []).map(enhanceTokenWithDict),
+    tokens: (verseEntry.tokens || []).map(token => enhanceTokenWithDict(token, {
+      ...context,
+      verseNumber: Number(verseEntry.verse),
+    })),
   }));
 
   return {
@@ -77,15 +152,16 @@ const normalizePericope = (pericope = {}, enhanceTokenWithDict) => {
   };
 };
 
-const normalizeBookData = (bookContent = [], enhanceTokenWithDict) =>
+const normalizeBookData = (bookContent = [], enhanceTokenWithDict, bookId) =>
   bookContent.map(chapterEntry => {
+    const chapterNumber = Number(chapterEntry.chapter);
     const pericopes = (chapterEntry.pericopes || []).map(pericope =>
-      normalizePericope(pericope, enhanceTokenWithDict),
+      normalizePericope(pericope, enhanceTokenWithDict, { bookId, chapterNumber }),
     );
     const verses = pericopes.flatMap(pericope => pericope.verses);
 
     return {
-      number: Number(chapterEntry.chapter),
+      number: chapterNumber,
       pericopes,
       verses,
     };
@@ -97,18 +173,23 @@ const loadAllBooks = () => {
   }
 
   const dict = loadJsonFile(DICT_PATH);
-  const enhanceTokenWithDict = createEnhanceTokenWithDict(dict);
+  const missingLemmaTracker = createMissingLemmaTracker();
+  const enhanceTokenWithDict = createEnhanceTokenWithDict(dict, missingLemmaTracker);
 
-  return fs
+  const books = fs
     .readdirSync(SOURCE_DIR)
     .filter(filename => filename.toLowerCase().endsWith('.json'))
     .reduce((acc, filename) => {
       const bookId = path.basename(filename, path.extname(filename));
       const rawContent = loadJsonFile(path.join(SOURCE_DIR, filename));
 
-      acc[bookId] = normalizeBookData(rawContent, enhanceTokenWithDict);
+      acc[bookId] = normalizeBookData(rawContent, enhanceTokenWithDict, bookId);
       return acc;
     }, {});
+
+  missingLemmaTracker.writeLog();
+
+  return books;
 };
 
 module.exports = loadAllBooks;
