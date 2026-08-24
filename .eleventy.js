@@ -17,7 +17,7 @@ module.exports = function(eleventyConfig) {
 
   return {
     // ajuste para o prefixo do site hospedado (terminar com "/")
-    pathPrefix: "/bereia/",
+    pathPrefix: "/",
     dir: {
       input: "src",
       includes: "_includes",
