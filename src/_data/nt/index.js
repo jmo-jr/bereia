@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const DICT_PATH = path.join(__dirname, '..', 'nt_greek-pt_dict.json');
+// const DICT_PATH = path.join(__dirname, '..', 'nt_greek-pt_dict.json');
+const DICT_PATH = path.join(__dirname, '..', 'dict_flex_nt-lxx_greek-pt.json');
 const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 const MISSING_LEMMAS_LOG_PATH = path.join(__dirname, '..', '..', '..', 'nt-missing-lemmas.log');
 
