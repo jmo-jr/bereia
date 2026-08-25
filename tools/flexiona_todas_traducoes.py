@@ -50,8 +50,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        # default=Path("src/_data/nt_greek-pt_dict.json"),
-        default=Path("tools/nt-missing-lemmas.json"),
+        default=Path("src/_data/nt_greek-pt_dict.json"),
+        # default=Path("tools/nt-missing-lemmas.json"),
         help="Arquivo JSON de origem.",
     )
     parser.add_argument(
