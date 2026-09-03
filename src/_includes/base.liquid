@@ -16,6 +16,8 @@ title: Bíblia BEREIA
 	{% comment %} PWA {% endcomment %}
 	<link rel="manifest" href="{{ '/manifest.json' | url }}">
 	<meta name="theme-color" content="#4e0707">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
 	<link rel="icon" href="{{ '/img/logo.png' | url }}">
 	<script>
 	if ("serviceWorker" in navigator) {
@@ -23,37 +25,59 @@ title: Bíblia BEREIA
 	}
 
 	let deferredPrompt = null;
-	const installBanner = document.getElementById('install-banner');
-	const installButton = document.getElementById('install-button');
-	const dismissInstallButton = document.getElementById('dismiss-install');
+	let installBanner = null;
+
+	const isMobileDevice = () => window.matchMedia('(max-width: 767px)').matches;
+	const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+	const isIOS = () => /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+
+	const hideInstallBanner = () => {
+		if (installBanner) installBanner.classList.add('hidden');
+	};
+
+	const showInstallBanner = (ios = false) => {
+		if (!installBanner || !isMobileDevice() || isStandalone()) return;
+		if (localStorage.getItem('bereia-install-dismissed') === 'true') return;
+		if (ios) {
+			installBanner.classList.add('install-banner--ios');
+			installBanner.querySelector('.install-banner__message').textContent =
+				'Toque em Compartilhar e depois em “Adicionar à Tela de Início”.';
+			installBanner.querySelector('#install-button').classList.add('hidden');
+		}
+		installBanner.classList.remove('hidden');
+	};
 
 	window.addEventListener('beforeinstallprompt', (event) => {
 		event.preventDefault();
 		deferredPrompt = event;
-		if (installBanner) {
-			installBanner.classList.remove('hidden');
-		}
+		showInstallBanner();
 	});
 
-	const hideInstallBanner = () => {
-		if (installBanner) {
-			installBanner.classList.add('hidden');
-		}
-	};
+	document.addEventListener('DOMContentLoaded', () => {
+		installBanner = document.getElementById('install-banner');
+		const installButton = document.getElementById('install-button');
+		const dismissInstallButton = document.getElementById('dismiss-install');
 
-	if (installButton) {
-		installButton.addEventListener('click', async () => {
+		if (!installBanner || !isMobileDevice() || isStandalone()) return;
+		if (isIOS()) {
+			showInstallBanner(true);
+		} else if (deferredPrompt) {
+			showInstallBanner();
+		}
+
+		installButton?.addEventListener('click', async () => {
 			if (!deferredPrompt) return;
 			deferredPrompt.prompt();
 			await deferredPrompt.userChoice;
 			deferredPrompt = null;
 			hideInstallBanner();
 		});
-	}
 
-	if (dismissInstallButton) {
-		dismissInstallButton.addEventListener('click', hideInstallBanner);
-	}
+		dismissInstallButton?.addEventListener('click', () => {
+			localStorage.setItem('bereia-install-dismissed', 'true');
+			hideInstallBanner();
+		});
+	});
 
 	window.addEventListener('appinstalled', hideInstallBanner);
 	</script>
@@ -61,9 +85,9 @@ title: Bíblia BEREIA
 
 <body>
 
-  <div id="install-banner" class="install-banner hidden" role="dialog" aria-live="polite" aria-label="Instalar aplicativo">
+	  <div id="install-banner" class="install-banner hidden" role="dialog" aria-live="polite" aria-label="Instalar aplicativo">
     <div class="install-banner__content">
-      <p>Instale o BEREIA na sua tela inicial para abrir mais rápido no celular.</p>
+		  <p class="install-banner__message">Instale a BEREIA na sua tela inicial para abrir mais rápido no dispositivo.</p>
       <div class="install-banner__actions">
         <button id="install-button" type="button">Instalar</button>
         <button id="dismiss-install" type="button" class="secondary">Agora não</button>

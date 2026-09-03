@@ -1,8 +1,9 @@
-const CACHE = "bereia-v1";
+const CACHE = "bereia-v2";
 self.addEventListener("install", evt => {
   evt.waitUntil(
     caches.open(CACHE).then(cache => cache.addAll([
       "/",
+	  "/manifest.json",
       "/css/style.css",
       "/assets/js/tooltipster.bundle.min.js"
     ]))
