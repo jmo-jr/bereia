@@ -75,10 +75,12 @@ def corrigir_concordancia(pt):
 
 
 def main():
-    input_path = Path("src/_data/dict_flex_nt-lxx_greek-pt.json")
-    audit_csv = Path("auditoria_dict_flex_v5.csv")
-    output_json = Path("dict_flex_nt-lxx_greek-pt_corrigido.json")
-    output_csv = Path("correcoes_aplicadas.csv")
+    base_dir = Path(__file__).resolve().parent
+
+    input_path = base_dir / "dict.json"
+    audit_csv = base_dir / "auditoria_dict_flex_v5.csv"
+    output_json = base_dir / "dict_flex_nt-lxx_greek-pt_corrigido.json"
+    output_csv = base_dir / "correcoes_aplicadas.csv"
 
     with input_path.open(encoding="utf-8") as f:
         data = json.load(f)

@@ -884,7 +884,7 @@ def split_phrases(base_text: str) -> List[str]:
 
 
 def load_dictionary(path: Path) -> Dict[str, Dict[str, Any]]:
-    with path.open("r", encoding="utf-8") as handle:
+    with path.open("r", encoding="utf-8-sig") as handle:
         return json.load(handle)
 
 
