@@ -188,7 +188,7 @@ const loadAllBooks = () => {
       return acc;
     }, {});
 
-  missingLemmaTracker.writeLog();
+  //missingLemmaTracker.writeLog();
 
   return books;
 };
