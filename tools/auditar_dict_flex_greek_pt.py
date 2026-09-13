@@ -208,7 +208,7 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("auditoria_dict_flex_v5.csv"), help="CSV de sada")
     args = parser.parse_args()
 
-    with args.input.open(encoding="utf-8") as handle:
+    with args.input.open(encoding="utf-8-sig") as handle:
         data = json.load(handle)
     if not isinstance(data, dict):
         raise SystemExit("Esperado um objeto JSON indexado pela forma grega.")

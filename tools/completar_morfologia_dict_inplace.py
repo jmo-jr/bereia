@@ -122,7 +122,7 @@ def main():
     parser.add_argument("--all", action="store_true", help="Recalcula todas as morfologias")
     args = parser.parse_args()
 
-    with args.input.open(encoding="utf-8") as fh:
+    with args.input.open(encoding="utf-8-sig") as fh:
         data = json.load(fh)
 
     if not isinstance(data, dict):
