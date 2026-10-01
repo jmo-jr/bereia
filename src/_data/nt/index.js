@@ -10,11 +10,15 @@ const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrenci
 
 // Terms that should keep diacritics to avoid collapsing homographs.
 const NORMALIZATION_EXCEPTIONS = new Set(["α", "εν", "η", "ης", "ην", "ητε", "ου", "ον", "ους", "ει", "ως", "ω", "ο", "ος", "αν", "τις", "που", "πως", "αυτου", "αυτη", "δη", "ανω", "ημερα", "εκτος", "τι", "εις", "τινι", "γενεας", "ετερα", "τινες", "ηλιου", "φοβου", "προσευχη", "ωσιν"]);
+const SPECIAL_CASES = new Set(["ὦ"]);
 
 const loadJsonFile = filePath => JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
 const normalizeGreek = (value = '') => {
-  const trimmed = String(value).trim();
+	const original = String(value);
+  const trimmed = SPECIAL_CASES.has(original.trim())
+    ? original
+    : original.trim();
 
   if (!trimmed) {
     return '';
