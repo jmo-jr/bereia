@@ -9,7 +9,7 @@ const MISSING_LEMMAS_LOG_PATH = path.join(__dirname, '..', '..', '..', 'nt-missi
 const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
 
 // Terms that should keep diacritics to avoid collapsing homographs.
-const NORMALIZATION_EXCEPTIONS = new Set(["α", "εν", "η", "ης", "ην", "ητε", "ου", "ον", "ους", "ει", "ως", "ω", "ο", "ος", "αν", "τις", "που", "πως", "αυτου", "αυτη", "δη", "ανω", "ημερα", "εκτος", "τι", "εις", "τινι", "τινα", "γενεας", "ετερα", "τινες", "ηλιου", "φοβου", "προσευχη", "ωσιν", "κλεις", "ποτε"]);
+const NORMALIZATION_EXCEPTIONS = new Set(["α", "εν", "η", "ης", "ην", "ητε", "ου", "ον", "ους", "ει", "ως", "ω", "ων", "ο", "ος", "αν", "τις", "που", "πως", "αυτου", "αυτη", "δη", "ανω", "ημερα", "εκτος", "τι", "εις", "τινι", "τινα", "γενεας", "ετερα", "τινες", "ηλιου", "φοβου", "προσευχη", "ωσιν", "κλεις", "ποτε"]);
 const SPECIAL_CASES = new Set(["ὦ ", "Ὦ\u200B"]);
 
 const loadJsonFile = filePath => JSON.parse(fs.readFileSync(filePath, 'utf8'));
