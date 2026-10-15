@@ -1,10 +1,11 @@
-{% assign chapterNum = 1 %}
-{% if theBookChapter > 1 %}
 {% assign chapterNum = theBookChapter %}
+{% if chapterNum == 1 %}
+	{% assign nothingBefore = true %}
 {% endif %}
 
-<div id="left">
-	<a href="{{ '/interlinear/' | url }}{{ theBookName | downcase }}/{{ chapterNum | minus: 1 }}/"
+
+<div id="left" style="{% if nothingBefore %}display:none{% endif %}">
+	<a href="{{ theResource | url }}{{ theBookName | downcase }}/{{ chapterNum | minus: 1 }}/"
 		title="{{ theBookName }} {{ chapterNum | minus: 1 }}">
 		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
 			<path id="seta-esquerda" data-name="seta-esquerda"
@@ -15,7 +16,7 @@
 </div>
 
 <div id="right">
-	<a href="{{ '/interlinear/' | url }}{{ theBookName | downcase }}/{{ chapterNum | plus: 1 }}"
+	<a href="{{ theResource | url }}{{ theBookName | downcase }}/{{ chapterNum | plus: 1 }}"
 		title="{{ theBookName }} {{ chapterNum | plus: 1 }}">
 		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
 			<path id="seta-direita" data-name="seta-direita"

@@ -1,15 +1,20 @@
 ---
 bookName: "Mateus"
+bookAbbrev: "mt"
 bookChapter: 1
 permalink: "/biblia/mateus/1/"
 bee: true
 ---
+{% render '../../../../_includes/sideNav.liquid', theResource: '/biblia/', theBookName: bookName, theBookChapter: bookChapter %}
 
 <div class="page-header">
 	<a href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | minus: 1 }}"
 		title="{{ bookName }} {{ bookChapter | minus: 1 }}">◄</a>
 
-	<h3>{{bookName}} {{bookChapter}}</h3>
+	<div class="page-header_title">
+		<h3>{{bookName}} {{bookChapter}}</h3>
+		<small><a href="/interlinear/{{bookAbbrev}}/{{bookChapter}}">Versão interlinear</a></small>
+	</div>
 
 	<a href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | plus: 1 }}"
 		title="{{ bookName }} {{ bookChapter | plus: 1 }}">►</a>
