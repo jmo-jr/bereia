@@ -1,5 +1,37 @@
 # Snippet para Criação de Documentos Bíblicos
 
+## Fluxo recomendado para capítulos do NT
+
+Para novos capítulos de tradução, coloque o arquivo diretamente na pasta do livro, por exemplo `src/biblia/nt/mateus/1.md`, `src/biblia/nt/mateus/2.md` ou `src/biblia/nt/mateus/3.liquid`. O Eleventy descobre arquivos `.md` e `.liquid` recursivamente em `src/` e transforma cada arquivo diretamente na página final durante o build; não é preciso criar uma pasta por capítulo nem gerar HTML intermediário em `src/`.
+
+O front matter deve informar `bookName`, `bookAbbrev`, `bookChapter`, `permalink` e `bee`. Use o include de cabeçalho e os shortcodes Liquid `pericope` e `verse`:
+
+```liquid
+---
+bookName: "Mateus"
+bookAbbrev: "mt"
+bookChapter: 1
+permalink: "/biblia/mateus/1/"
+bee: true
+---
+{% render 'bibleChapterHeader.liquid', bookName: bookName, bookAbbrev: bookAbbrev, bookChapter: bookChapter %}
+
+{% pericope "A Genealogia de Jesus", "Lucas 3:23-38" %}
+{% verse bookAbbrev bookChapter 1 %}Livro da origem de Jesus <span class="tooltip" data-tooltip-content="#cristo">Cristo</span>, filho de Davi, filho de Abraão.{% endverse %}
+{% endpericope %}
+</div>
+```
+
+- O título e a concordância são escapados pelo shortcode; o conteúdo do versículo aceita HTML inline confiável, como tooltips, `<cite>` e referências.
+- Uma linha em branco entre grupos de shortcodes `verse` inicia outro parágrafo dentro da perícope; sem linha em branco, os versículos ficam no mesmo `<p>`.
+- O shortcode `verse` monta o ID no padrão `{abreviação}_{capítulo}-{versículo}` e rejeita números inválidos.
+- Compile com `npm run build`. A saída de Mateus 1, por exemplo, fica em `_site/biblia/mateus/1/index.html`.
+- A migração é gradual: páginas `.html` e `.liquid` ainda existentes continuam no fluxo atual.
+
+`tools/gera_capitulos_html.py` continua sendo um gerador manual separado para TXT simples; ele não faz parte do build do Eleventy nem preserva todas as marcações das páginas de tradução.
+
+## Fluxo legado para páginas ainda não migradas
+
 ## Arquivo Template
 `SNIPPET-BIBLIA-TEMPLATE.html` - Template base para novos capítulos bíblicos
 
