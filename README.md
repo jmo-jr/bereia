@@ -24,6 +24,8 @@ Find: `/greek/(\d{1,4})\.htm`
 
 Quebras de linha: `(\r?\n)+`
 
+Números:  (\d) -> \n$1
+
 Replace: `https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp`
 
 Data TR/LXX: `https://www.blueletterbible.org/lang/lexicon/inflections.cfm?strongs=G{numero_strong}&ot={TR/LXX}&word={grego_inflex}`
