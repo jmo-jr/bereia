@@ -1,9 +1,9 @@
 # Instruções para revisão do grego Koiné
 
-Para qualquer tarefa relacionada ao dicionário grego, leia e siga
+<!-- Para qualquer tarefa relacionada ao dicionário grego, leia e siga
 as regras estabelecidas em `AI-GREEK-REVIEW.md`.
 
-Não faça alterações no dicionário sem verificar as regras desse arquivo.
+Não faça alterações no dicionário sem verificar as regras desse arquivo. -->
 
 Para revisões em lote:
 1. analise primeiro;

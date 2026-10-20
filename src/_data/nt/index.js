@@ -9,7 +9,7 @@ const MISSING_LEMMAS_LOG_PATH = path.join(__dirname, '..', '..', '..', 'nt-missi
 const DICT_FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias', 'traducao', 'pt', 'morfologia', 'abrev_morf' ];
 
 // Terms that should keep diacritics to avoid collapsing homographs.
-const NORMALIZATION_EXCEPTIONS = new Set(["α", "αλλα", "εν", "η", "ης", "ην", "ητε", "ου", "ον", "ους", "ει", "ως", "ω", "ων", "ο", "ος", "αν", "τις", "που", "πως", "αυτου", "αυτη", "δη", "ανω", "ημερα", "εκτος", "τι", "τινος", "εις", "τινι", "τινα", "γενεας", "ετερα", "τινες", "ηλιου", "φοβου", "προσευχη", "ωσιν", "κλεις", "σης", "ποτε"]);
+const NORMALIZATION_EXCEPTIONS = new Set([ "α", "αλλα", "αν", "ανω", "αυτη", "αυτου", "γενεασ", "γενεας", "δη", "ει", "ειληφωσ", "εισ", "εις", "εκτοσ", "ελαιαι", "εν", "εξειλετο", "ετερα", "ετεραι", "ετοιμασομεν", "η", "ηι", "ηλιου", "ημερα", "ημεραι", "ην", "ησ", "ης", "ητε", "καπερναουμ", "κλεισ", "κλεις", "κραββατον", "μεριμναισ", "μοιχειαι", "μωραι", "ο", "ον", "οσ", "ος", "ου", "ουσ", "ους", "πονηριαι", "ποτε", "που", "προσευχη", "προσευχηι", "πωσ", "πως", "σησ", "σης", "στειραι", "ταλαντα", "ταλαντον", "τι", "τινα", "τινεσ", "τινες", "τινι", "τινοσ", "τινος", "τισ", "τις", "φοβου", "φρεναπαται", "ω", "ων", "ωσ", "ως", "ωσιν" ]);
 const SPECIAL_CASES = new Set(["ὦ ", "Ὦ\u200B"]);
 
 const loadJsonFile = filePath => JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -192,7 +192,7 @@ const loadAllBooks = () => {
       return acc;
     }, {});
 
-  //missingLemmaTracker.writeLog();
+  missingLemmaTracker.writeLog();
 
   return books;
 };

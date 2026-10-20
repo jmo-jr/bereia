@@ -28,7 +28,32 @@ bee: true
 - Compile com `npm run build`. A saída de Mateus 1, por exemplo, fica em `_site/biblia/mateus/1/index.html`.
 - A migração é gradual: páginas `.html` e `.liquid` ainda existentes continuam no fluxo atual.
 
-`tools/gera_capitulos_html.py` continua sendo um gerador manual separado para TXT simples; ele não faz parte do build do Eleventy nem preserva todas as marcações das páginas de tradução.
+O script `tools/gera_capitulos_html.py` é executado manualmente, separado do build do Eleventy. Ele reconhece `<rl>` como marcação especial; outros shortcodes Liquid ou HTML devem ser escritos diretamente no texto do versículo.
+
+## Gerar capítulos Liquid a partir de texto
+
+O script `tools/gera_capitulos_html.py` agora gera os arquivos `.liquid` que o Eleventy compila. O TXT de entrada usa uma linha por versículo; uma linha em branco começa outro parágrafo e uma linha contendo apenas `--` começa outra perícope:
+
+```text
+A purificação do leproso (Lc 5:12-16)
+1 Tendo ele descido da montanha, muitas multidões o seguiram.
+2 E eis que um leproso, vindo, prostrou-se diante dele.
+
+3 E Jesus, estendendo a mão, o tocou.
+--
+A fé do centurião
+5 Tendo ele entrado em Cafarnaum, aproximou-se dele um centurião.
+```
+
+O título e a concordância são separados pelo último par de parênteses da linha do título. A concordância é opcional. Dentro do texto do versículo, `<rl>...</rl>` marca o trecho em vermelho. Os versículos podem ser numerados como `1`, `2` etc. quando se informa `--chapter`, ou como `8:1`, `8:2` para indicar o capítulo em cada linha.
+
+Exemplo para um único capítulo:
+
+```sh
+python3 tools/gera_capitulos_html.py entrada.txt --book-name Mateus --book-abbrev mt --chapter 8
+```
+
+O resultado será `src/biblia/nt/mateus/8.liquid`, pronto para o build. Se o arquivo já existir, o script interrompe sem sobrescrevê-lo; use `--force` apenas quando quiser substituí-lo. Para várias perícopes/capítulos, a checagem de arquivos existentes é feita antes de qualquer escrita.
 
 ## Fluxo legado para páginas ainda não migradas
 
