@@ -34,15 +34,13 @@ Use o campo `morfologia` como contexto morfológico.
 
 ## Procedimento
 
-1. Antes de editar, crie backup:
-   `backups/dict_flex_nt-lxx_greek-pt_YYYY-MM-DD_HHMM.json`
-2. Processe somente o intervalo de entradas informado no chat.
-3. Apresente uma tabela com:
-   `chave_json | grego | campo | valor atual | valor sugerido | categoria | motivo | classificação`
+1. Processe somente o intervalo de entradas informado no chat.
+3. Apresente uma lista com:
+   `id_item | chave_json | campo | valor atual | valor sugerido | motivo | classificação`
 4. Não aplique nenhuma alteração antes da aprovação explícita.
 5. Após aprovação, aplique somente as alterações aprovadas.
 6. Gere ou atualize:
    `tools/relatorio_revisao_codex.csv`
    com as colunas:
-   `chave_json, grego, campo, valor_atual, valor_sugerido, categoria, motivo, classificacao, aprovado`
+   `chave_json, campo, abrev_morf, valor_atual, valor_sugerido, categoria, motivo, classificacao, aprovado`
 7. Não processe o arquivo inteiro em uma única execução.

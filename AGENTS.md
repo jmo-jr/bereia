@@ -43,8 +43,7 @@ Esses casos devem ser marcados como `INCERTO` e deixados para decisão humana.
 ## Fluxo de trabalho
 
 1. Leia apenas o intervalo de entradas solicitado.
-2. Apresente sugestões em tabela antes de editar.
+2. Apresente sugestões em lista antes de editar.
 3. Aguarde aprovação explícita.
 4. Aplique somente as alterações aprovadas.
 5. Gere relatório CSV das sugestões e decisões.
-6. Faça commit após cada lote aprovado.
