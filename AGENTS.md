@@ -39,10 +39,32 @@ Use `morfologia` como contexto para avaliar:
 Não automatize escolhas lexicais ou exegéticas dependentes de contexto.
 Esses casos devem ser marcados como `INCERTO` e deixados para decisão humana.
 
-## Fluxo de trabalho
+## Fluxo de trabalho — revisão do dicionário
 
 1. Leia apenas o intervalo de entradas solicitado.
 2. Apresente sugestões em lista antes de editar.
 3. Aguarde aprovação explícita.
 4. Aplique somente as alterações aprovadas.
 5. Gere relatório CSV das sugestões e decisões.
+
+## Tradução do Novo Testamento
+
+Esta atividade é distinta da revisão do dicionário.
+
+Para tarefas de tradução bíblica:
+
+1. Leia e siga `docs/protocolo-traducao.md`.
+2. Consulte `docs/decisoes-traducao.md`.
+3. Utilize o Texto Majoritário do projeto BEREIA.
+4. Utilize `src/_data/dict_flex_nt-lxx_greek-pt.json`
+   como dicionário definitivo.
+5. Preserve a consistência lexical e o estilo dos
+   capítulos anteriormente aprovados.
+6. Produza os capítulos em formato TXT, conforme o protocolo.
+7. Não modifique o dicionário nem outros capítulos.
+8. Não solicite aprovação a cada versículo.
+9. Entregue o capítulo completo para revisão humana.
+10. Registre separadamente as decisões lexicais relevantes.
+
+As regras do fluxo de revisão do dicionário não se aplicam
+à produção de capítulos bíblicos.
