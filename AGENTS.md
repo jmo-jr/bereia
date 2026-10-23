@@ -2,8 +2,7 @@
 
 ## Finalidade
 
-Este repositório contém recursos do projeto BEREIA, incluindo um dicionário
-grego-português usado para a construção de um Novo Testamento interlinear.
+Este repositório contém recursos do projeto BEREIA, incluindo um dicionário grego (koiné)-português usado para a construção de um Novo Testamento interlinear.
 
 ## Regras permanentes
 

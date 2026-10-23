@@ -42,5 +42,6 @@ Use o campo `morfologia` como contexto morfológico.
 6. Gere ou atualize:
    `tools/relatorio_revisao_codex.csv`
    com as colunas:
-   `chave_json, campo, abrev_morf, valor_atual, valor_sugerido, categoria, motivo, classificacao, aprovado`
+   `chave_json, campo, abrev_morf, valor_atual, valor_sugerido, categoria, motivo, classificacao, aprovado`, 
+	 apenas dos itens que não foram aplicados.
 7. Não processe o arquivo inteiro em uma única execução.
