@@ -187,7 +187,8 @@ O objetivo do dicionário é preservar a informação morfológica, e não reduz
 
 Uma mesma forma gráfica pode representar mais de uma análise morfológica.
 
-Isso deve ser **explicitamente sinalizado**.
+Isso deve ser identificado, mas a decisão de combinar, ignorar ou sinalizar
+segue as autorizações específicas de `docs/tarefa-revisao-dicionario.md`.
 
 Exemplos já identificados no projeto:
 
@@ -232,7 +233,10 @@ Sempre que uma sequência gráfica puder corresponder a mais de uma:
 - gênero;
 - função morfológica;
 
-registrar a ambiguidade.
+aplicar o tratamento de ambiguidades definido na tarefa: combinar
+automaticamente `1S/3P` e modos com mais de uma ocorrência; ignorar os
+casos sem impacto relevante em português e os casos únicos previstos;
+registrar as demais ambiguidades que exigem decisão humana.
 
 Não escolher arbitrariamente uma análise apenas porque uma delas é mais frequente.
 
@@ -676,11 +680,17 @@ Confiança:
 
 ### Etapa 3 — aprovação
 
-Aguardar aprovação humana quando houver alteração substantiva.
+Os itens `CORRIGIR`, erros técnicos comprovados (incluindo voz ausente) e
+combinações de análises previstas em `docs/tarefa-revisao-dicionario.md`
+já têm autorização permanente. Para `SUGERIR` e os demais `INCERTO`,
+aguardar aprovação humana.
 
 ### Etapa 4 — alteração
 
-Modificar somente as entradas aprovadas.
+Modificar somente as entradas aprovadas, incluindo as autorizações
+permanentes acima. Criar backup, informar as alterações em lista e registrar
+no CSV apenas pendências não aplicadas. Não registrar ambiguidades ignoradas
+pelos filtros da tarefa, nem limpar o histórico retroativamente sem pedido.
 
 ### Etapa 5 — validação
 
@@ -716,7 +726,10 @@ Não alterar automaticamente entradas com confiança baixa.
 
 # 31. Alterações proibidas sem confirmação
 
-Não fazer automaticamente:
+As autorizações permanentes de `AGENTS.md` e da tarefa prevalecem para
+correções técnicas comprovadas e combinações de análises. Elas não autorizam
+escolhas lexicais/exegéticas nem correções sem evidência. Fora dessas
+autorizações, não fazer automaticamente:
 
 - mudanças grandes de tradução;
 - mudança de Strong's;

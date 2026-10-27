@@ -9,8 +9,11 @@ Este repositório contém recursos do projeto BEREIA, incluindo um dicionário g
 - Preserve os valores originais e não faça alterações silenciosas.
 - Preserve a codificação UTF-8, os diacríticos gregos, a ordem das chaves
   e a formatação do JSON.
-- Não altere campos técnicos, como `chave_json`, `grego`, `strongs`,
-  `transliteracao`, `verbete`, `abrev_morf` e `morfologia`.
+- Corrija automaticamente erros objetivos comprovados em campos técnicos,
+  especialmente `abrev_morf` e `morfologia`, incluindo indicações de voz
+  ausentes. Preserve a consistência entre código, descrição e forma grega.
+- Não faça mudanças técnicas por preferência, nem renomeie, funda ou exclua
+  entradas automaticamente. Preserve campos sem erro comprovado.
 - Não reordene chaves nem reformate arquivos inteiros.
 - Não sobrescreva arquivos originais sem criar backup.
 - Diferencie sempre:
@@ -39,13 +42,39 @@ Use `morfologia` como contexto para avaliar:
 Não automatize escolhas lexicais ou exegéticas dependentes de contexto.
 Esses casos devem ser marcados como `INCERTO` e deixados para decisão humana.
 
+### Tratamento autorizado de ambiguidades
+
+- Formas que admitem primeira pessoa singular e terceira pessoa plural
+  (`1S/3P`): registre automaticamente ambas em `pt`, `traducao`,
+  `abrev_morf` e `morfologia`, seguindo os padrões do projeto, como
+  `ἔφερον` e `ἔφαγον`. Essa regra independe do número de ocorrências.
+  Não reproduza eventuais inconsistências de pessoa dos exemplos.
+- Mais de um modo possível: com apenas uma ocorrência, ignore a
+  ambiguidade, preservando a análise atual; com mais de uma ocorrência,
+  combine automaticamente as análises como em `εὐχαριστῶ`, sem escolher
+  uma delas nem atribuir uma leitura a uma ocorrência específica.
+- Ambiguidades de caso sem diferença relevante em português, como
+  nominativo/acusativo com a mesma tradução: ignore.
+- Outras ambiguidades nominais de caso, gênero ou número com apenas uma
+  ocorrência: ignore. A exceção verbal `1S/3P` continua válida.
+- Para esses limites, use o campo `ocorrencias` (NT), sem somar
+  `ocorrencias_lxx`. Contagem ausente ou inválida não equivale a uma
+  ocorrência: mantenha a questão pendente se depender dessa contagem.
+- Ignorar significa não alterar nem listar ou gravar no CSV somente por
+  essa ambiguidade; não significa deixar de corrigir um erro objetivo
+  independente de tradução ou de campo técnico.
+
 ## Fluxo de trabalho — revisão do dicionário
 
 1. Leia apenas o intervalo de entradas solicitado.
-2. Apresente sugestões em lista antes de editar.
-3. Aguarde aprovação explícita.
-4. Aplique somente as alterações aprovadas.
-5. Gere relatório CSV das sugestões e decisões.
+2. Apresente sugestões e alterações em lista, nunca em tabela.
+3. Aplique automaticamente os itens `CORRIGIR`, os erros técnicos
+   comprovados e as combinações de análises autorizadas acima, sem pedir
+   nova aprovação. Preserve backup e informe o que foi alterado.
+4. Aguarde aprovação para `SUGERIR` e para os demais `INCERTO`.
+5. Gere ou atualize o CSV somente com pendências não aplicadas; não
+   acrescente casos ignorados. Preserve o histórico sem limpeza retroativa
+   não solicitada. Não faça commit.
 
 ## Tradução do Novo Testamento
 
