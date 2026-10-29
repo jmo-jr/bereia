@@ -80,6 +80,17 @@ A forma grega deve ser preservada com sua ortografia correta, incluindo:
 
 Não remover diacríticos para "padronizar" as formas.
 
+Sempre que houver suspeita de correção gráfica, especialmente de
+diacríticos, consulte obrigatoriamente os JSONs do Texto Majoritário em
+`src/interlinear/nt` antes de propor ou aplicar qualquer correção.
+Compare a forma com as ocorrências pertinentes e registre as referências
+bíblicas e os arquivos consultados. Uma grafia diferente em fonte externa
+não basta para concluir que há erro no texto do projeto.
+
+Se a forma não for localizada ou a consulta não resolver a suspeita,
+preserve o original e encaminhe como `INCERTO`. Essa verificação não
+autoriza renomear, fundir ou excluir chaves automaticamente.
+
 A comparação sem diacríticos deve ser utilizada apenas para detectar possíveis homógrafos conforme as regras abaixo.
 
 ---

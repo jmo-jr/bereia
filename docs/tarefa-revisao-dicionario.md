@@ -27,6 +27,19 @@ técnicos objetivos comprovados, especialmente em `abrev_morf` e
 - Não faça escolha lexical exegética.
 - Preserve diacríticos gregos, UTF-8, indentação e ordem das chaves.
 
+### Suspeitas de correção gráfica
+
+Sempre que houver suspeita de erro gráfico na forma grega, especialmente
+em acentos, espíritos ou iota subscrito, consulte obrigatoriamente os
+JSONs do Texto Majoritário em `src/interlinear/nt` antes de propor ou
+aplicar a correção. Confira a grafia nas ocorrências pertinentes e
+registre as referências bíblicas e os arquivos consultados na análise.
+
+Não conclua que há erro apenas porque uma fonte externa usa outra grafia.
+Se a forma não for localizada ou a comparação não resolver a dúvida,
+classifique como `INCERTO` e preserve o original. A consulta não autoriza
+renomear, fundir ou excluir chaves automaticamente.
+
 ## Classificação obrigatória
 
 | Classificação | Significado |

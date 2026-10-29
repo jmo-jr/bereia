@@ -9,6 +9,11 @@ Este repositório contém recursos do projeto BEREIA, incluindo um dicionário g
 - Preserve os valores originais e não faça alterações silenciosas.
 - Preserve a codificação UTF-8, os diacríticos gregos, a ordem das chaves
   e a formatação do JSON.
+- Sempre que houver suspeita de correção gráfica do grego, especialmente
+  de diacríticos, consulte os JSONs do Texto Majoritário em
+  `src/interlinear/nt` antes de propor ou aplicar uma correção. Confira as
+  ocorrências e registre as referências que fundamentam a análise. Se a
+  consulta não resolver a dúvida, mantenha o item para revisão manual.
 - Corrija automaticamente erros objetivos comprovados em campos técnicos,
   especialmente `abrev_morf` e `morfologia`, incluindo indicações de voz
   ausentes. Preserve a consistência entre código, descrição e forma grega.
