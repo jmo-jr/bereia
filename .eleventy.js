@@ -1,7 +1,11 @@
 const { execSync } = require('child_process')
+const generateDictionary = require('./tools/dictionary/generate');
 //const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function(eleventyConfig) {
+  generateDictionary();
+  eleventyConfig.addWatchTarget('src/_data/dict_lex_nt-lxx_greek-pt.json');
+  eleventyConfig.on('eleventy.beforeWatch', () => generateDictionary());
   const escapeHtml = value => String(value)
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
