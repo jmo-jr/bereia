@@ -1,29 +1,37 @@
 #!/usr/bin/env python3
 """Gera flexões português-centradas para entradas não verbais do léxico grego.
 
-O script analisa `nt_greek-pt_dict.json`, identifica palavras que não são verbos
+O script analisa `dict_lex_nt-lxx_greek-pt.json`, identifica palavras que não são verbos
 e tenta declinar a tradução de acordo com gênero, número e caso informados em
-`morfologia`. A forma gerada sempre reflete exatamente a morfologia descrita;
+`morfologia`. As heurísticas existentes usam a morfologia descrita;
 casos dativo e genitivo recebem os prefixos `a` e `de`, respectivamente.
 
 Uso sugerido (não execute automaticamente):
     python3 tools/flexiona_nao_verbos.py \
-        --input src/_data/nt_greek-pt_dict.json
+        --input src/_data/dict_lex_nt-lxx_greek-pt.json
 
 Para limitar a um ou mais códigos Strong específicos:
     python3 tools/flexiona_nao_verbos.py \
-        --input src/_data/nt_greek-pt_dict.json --strong 537
+        --input src/_data/dict_lex_nt-lxx_greek-pt.json --strong 537
 """
 
 from __future__ import annotations
 
 import argparse
-import json
+import sys
+from copy import deepcopy
 import re
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from tools.flexiona_io import DEFAULT_INPUT, iter_entries, load_dictionary, preview, write_dictionary
 
 
 # ---------------------------------------------------------------------------
@@ -59,20 +67,6 @@ def unique_everseen(values: Iterable[str]) -> List[str]:
         ordered.append(clean)
         seen.add(clean)
     return ordered
-
-
-# Ordem preferencial das chaves em cada entrada.
-ENTRY_KEY_ORDER = [
-    "strongs",
-    "grego",
-    "transliteracao",
-    "verbete",
-    "ocorrencias",
-    "traducao",
-    "pt",
-    "abrev_morf",
-    "morfologia",
-]
 
 
 # ---------------------------------------------------------------------------
@@ -361,59 +355,27 @@ def extract_base_phrase(entry: Dict[str, Any]) -> str:
     return first
 
 
-def reorder_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
-    ordered: Dict[str, Any] = {}
-    for key in ENTRY_KEY_ORDER:
-        if key in payload:
-            ordered[key] = payload[key]
-    for key, value in payload.items():
-        if key not in ordered:
-            ordered[key] = value
-    return ordered
-
-
-def load_dictionary(path: Path) -> Dict[str, Dict[str, Any]]:
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
-
-
-def write_dictionary(path: Path, data: Dict[str, Dict[str, Any]]) -> None:
-    with path.open("w", encoding="utf-8") as handle:
-        json.dump(data, handle, ensure_ascii=False, indent=2)
-        handle.write("\n")
-
-
 def transform_dictionary(
     data: Dict[str, Dict[str, Any]],
     strong_filter: Optional[Set[str]],
     inflector: PortugueseNominalInflector,
 ) -> Dict[str, Dict[str, Any]]:
-    updated: Dict[str, Dict[str, Any]] = {}
-    for lemma, payload in data.items():
-        new_payload = dict(payload)
-        abrev_morf = payload.get("abrev_morf", "")
-
-        if abrev_morf.startswith("V"):
-            updated[lemma] = reorder_payload(new_payload)
+    updated = deepcopy(data)
+    for entry in iter_entries(updated):
+        payload, new_payload = entry.payload, entry.target
+        if payload.get("abrev_morf", "").startswith("V"):
             continue
-
-        strong_code = str(payload.get("strongs", "")).strip()
-        if strong_filter and strong_code not in strong_filter:
-            updated[lemma] = reorder_payload(new_payload)
+        if strong_filter and entry.strong not in strong_filter:
             continue
 
         base_phrase = extract_base_phrase(payload)
         morphology = inflector.parser.parse(payload.get("morfologia", ""))
         forms = inflector.expand_forms(base_phrase, morphology) if base_phrase else []
-
         if forms:
             new_payload["traducao"] = ", ".join(forms)
             new_payload["pt"] = forms[0]
         else:
             new_payload.setdefault("pt", new_payload.get("traducao", ""))
-
-        updated[lemma] = reorder_payload(new_payload)
-
     return updated
 
 
@@ -427,7 +389,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        default=Path("src/_data/nt_greek-pt_dict.json"),
+        default=DEFAULT_INPUT,
         help="Arquivo JSON de origem.",
     )
     parser.add_argument(
@@ -467,20 +429,10 @@ def main() -> None:
     output_path = args.output or args.input
 
     if args.dry_run:
-        shown = 0
-        for lemma, payload in transformed.items():
-            original = data.get(lemma, {})
-            if original.get("abrev_morf", "").startswith("V"):
-                continue
-            if strong_filter and str(original.get("strongs", "")).strip() not in strong_filter:
-                continue
-            print(f"{lemma}: {payload.get('traducao', '')}")
-            shown += 1
-            if shown >= args.limit:
-                break
+        preview(transformed, strong_filter, args.limit, verbs=False, nonverbs=True)
         return
 
-    write_dictionary(output_path, transformed)
+    write_dictionary(output_path, transformed, template_path=args.input)
 
 
 if __name__ == "__main__":

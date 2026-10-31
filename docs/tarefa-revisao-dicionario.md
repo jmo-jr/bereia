@@ -2,7 +2,31 @@
 
 ## Arquivo-alvo
 
-`src/_data/dict_flex_nt-lxx_greek-pt.json`
+`src/_data/dict_lex_nt-lxx_greek-pt.json`
+
+Esta é a fonte editável. `dict_flex_nt-lxx_greek-pt.json` e
+`dict_form_index_nt-lxx_greek-pt.json` são derivados: não os edite
+diretamente. Siga `docs/arquitetura-dicionario.md` para geração e validação.
+
+## Unidade, sequência e retomada
+
+- Cada registro no array `flexoes` conta como uma entrada. Um lote de 100
+  significa 100 flexões, não 100 grupos Strong, lemas ou formas distintas.
+- Siga a ordem textual dos grupos na fonte e, dentro de cada grupo, a ordem
+  do array `flexoes`. Não reordene grupos nem flexões. Não use apenas
+  `Object.keys` de um JSON comum para recuperar a ordem textual: JavaScript
+  enumera chaves inteiras antes de identificadores com espaços.
+- Preserve o Strong literal, incluindo espaços, sem aparar, consolidar ou
+  mover registros automaticamente entre grupos.
+- Identifique cada registro por Strong literal, índice em `flexoes`
+  (base zero), `grego` e análise morfológica. A linha é apenas referência
+  auxiliar; confirme a identidade antes de retomar.
+- A retomada após a migração começa depois de `κατασκευάζεται`, no Strong
+  `2680`, `flexoes[0]` (linha 123071 à época da indicação). Não recomece do
+  topo automaticamente. Registros que migraram para antes desse ponto
+  poderão ser abrangidos por uma segunda passagem solicitada pelo usuário.
+- Preserve a multiplicidade de homógrafos e análises. Consulte o léxico e
+  o índice, não apenas a primeira análise projetada no derivado.
 
 ## Escopo
 
@@ -14,6 +38,17 @@ A revisão de tradução concentra-se nos campos:
 Use o campo `morfologia` como contexto morfológico. Corrija também erros
 técnicos objetivos comprovados, especialmente em `abrev_morf` e
 `morfologia`, incluindo indicações de voz ausentes.
+
+Consulte `lema` e a `transliteracao` do grupo como referência lexical, mas
+não os altere nesta revisão. A `transliteracao` de cada flexão é um campo
+distinto e pode receber correções objetivas comprovadas.
+
+O `verbete` do grupo é compartilhado. Não o altere sem verificar o alcance
+em todas as flexões afetadas. Para correções restritas ao lote, edite o
+`verbete` específico da flexão ou acrescente essa substituição quando o
+grupo usar verbete comum, preservando a sequência dos campos fixos. Nos
+grupos com `verbetes`, mantenha a variante também nesse array, sem apagar
+variantes antigas ou alterar outras flexões automaticamente.
 
 ## Regras da revisão
 
@@ -64,11 +99,20 @@ renomear, fundir ou excluir chaves automaticamente.
    `tools/relatorio_revisao_codex.csv`
    com as colunas:
    `chave_json, campo, abrev_morf, valor_atual, valor_sugerido, categoria, motivo, classificacao, aprovado`, 
-   apenas dos itens que não foram aplicados e continuam pendentes. Não
+   Preserve essas colunas; use `grego` em `chave_json` e registre no motivo
+   o Strong literal e o índice `flexoes[n]`, pois a forma pode ter múltiplos
+   registros. Inclua apenas itens não aplicados que continuam pendentes. Não
    acrescente casos ignorados pelas regras abaixo. Preserve o histórico;
    não faça limpeza retroativa sem solicitação.
 7. Não processe o arquivo inteiro em uma única execução.
-8. Não faça commit. Informe a última entrada e a linha alcançada.
+8. Após editar a fonte, execute `npm run dict:generate`,
+   `npm run dict:check` e `npm test`. Confira também o diff dos derivados.
+   Preserve backups e hashes históricos. Documente separadamente as
+   alterações linguísticas autorizadas; não atualize referências de
+   migração apenas para fazer testes passarem. Informe falhas de auditoria,
+   distinguindo as preexistentes das introduzidas pelo lote.
+9. Não faça commit. Informe a última forma, Strong literal, índice em
+   `flexoes` e a linha alcançada na fonte lexical.
 
 ## Aplicação automática nos casos antes classificados como INCERTO
 

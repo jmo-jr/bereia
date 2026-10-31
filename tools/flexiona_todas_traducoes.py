@@ -9,17 +9,18 @@ os demais itens) e grava o resultado de volta no arquivo original — ou em
 
 Uso sugerido (não execute automaticamente):
     python3 tools/flexiona_todas_traducoes.py \
-        --input src/_data/nt_greek-pt_dict.json
+        --input src/_data/dict_lex_nt-lxx_greek-pt.json
 
 Também é possível limitar o processamento a códigos Strong específicos:
     python3 tools/flexiona_todas_traducoes.py \
-        --input src/_data/nt_greek-pt_dict.json --strong 1096
+        --input src/_data/dict_lex_nt-lxx_greek-pt.json --strong 1096
 """
 
 from __future__ import annotations
 
 import argparse
 import sys
+from copy import deepcopy
 from pathlib import Path
 from typing import Optional, Set
 
@@ -32,6 +33,7 @@ from tools.preenche_strongs import (
     load_strongs,
     transform_dictionary as transform_strongs_dictionary,
 )
+from tools.flexiona_io import DEFAULT_INPUT, preview
 
 from tools.flexiona_verbos import (  # noqa: E402
     PortugueseConjugator,
@@ -50,8 +52,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        # default=Path("src/_data/nt_greek-pt_dict.json"),
-        default=Path("src/_data/dict_flex_nt-lxx_greek-pt.json"),
+        default=DEFAULT_INPUT,
         help="Arquivo JSON de origem.",
     )
     parser.add_argument(
@@ -90,9 +91,26 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--nofill",
         action="store_true",
-        help="Bypass o preenchimento"
-		)
+        help="Preserva os verbetes atuais, sem preenchê-los pelas definições Strong.",
+    )
     return parser.parse_args()
+
+
+def fill_verbetes(data, strongs, strong_filter=None):
+    """Preenche também as variantes lexicais, sem escolher ou eliminar nenhuma."""
+    updated = deepcopy(data)
+    targets = ["G" + code for code in strong_filter] if strong_filter else None
+    for key, group in updated.items():
+        code = str(key if "flexoes" in group else group.get("strongs", "")).strip()
+        if strong_filter and code not in strong_filter:
+            continue
+        transform_strongs_dictionary(group, strongs, targets)
+        if "flexoes" in group and "verbetes" in group:
+            group["verbetes"] = [
+                transform_strongs_dictionary({"verbete": text}, strongs, targets)["verbete"]
+                for text in group["verbetes"]
+            ]
+    return updated
 
 
 def main() -> None:
@@ -102,15 +120,9 @@ def main() -> None:
     )
 
     data = load_verb_dictionary(args.input)
-    
-    strongs = load_strongs()
-    
+
     if not args.nofill:
-        if args.strongs:
-            data = transform_strongs_dictionary(data, strongs, "G" + args.strongs[0])
-        else:
-            for code in strongs.keys():
-                data = transform_strongs_dictionary(data, strongs, code)
+        data = fill_verbetes(data, load_strongs(), strong_filter)
 
     if not args.skip_verbs:
         conjugator = PortugueseConjugator()
@@ -121,18 +133,12 @@ def main() -> None:
         data = transform_nonverb_dictionary(data, strong_filter, inflector)
 
     if args.dry_run:
-        shown = 0
-        for lemma, payload in data.items():
-            if strong_filter and str(payload.get("strongs", "")).strip() not in strong_filter:
-                continue
-            print(f"{lemma}: {payload.get('traducao', '')}")
-            shown += 1
-            if shown >= args.limit:
-                break
+        preview(data, strong_filter, args.limit, verbs=not args.skip_verbs,
+                nonverbs=not args.skip_nonverbs)
         return
 
     output_path = args.output or args.input
-    write_dictionary(output_path, data)
+    write_dictionary(output_path, data, template_path=args.input)
 
 
 if __name__ == "__main__":

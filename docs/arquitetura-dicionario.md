@@ -61,9 +61,60 @@ antes das reconstruções em watch. Isso cobre os comandos build/dev e chamadas
 diretas ao Eleventy. Arquivos já atualizados não são regravados; a gravação usa
 arquivo temporário e rename. Não há novas dependências externas.
 
-As ferramentas antigas que escrevem no dicionário de flexões não foram convertidas
-em editores lexicais. Alterações diretas no derivado serão substituídas na próxima
-geração. Essas ferramentas deverão ser adaptadas antes de editar a fonte principal.
+Os scripts `flexiona_verbos.py`, `flexiona_nao_verbos.py` e
+`flexiona_todas_traducoes.py` já editam o léxico principal, como descrito abaixo.
+As demais ferramentas antigas que escrevem no dicionário de flexões precisam ser
+adaptadas antes de editar a fonte principal. Alterações diretas no derivado serão
+substituídas na próxima geração.
+
+## Scripts de flexão em português
+
+Os três scripts usam `src/_data/dict_lex_nt-lxx_greek-pt.json` por padrão e
+percorrem cada registro de `flexoes`, sem agrupar ou eliminar formas repetidas.
+O Strong vem da chave do grupo. Um `verbete` próprio da flexão prevalece sobre
+o verbete comum; grupos com `verbetes` exigem a indicação do verbete em cada flexão.
+Nenhuma variante é escolhida pela posição no array. O formato plano anterior
+também pode ser informado por `--input`.
+
+As regras heurísticas de flexão em português permanecem as existentes; esta
+adaptação não constitui revisão linguística nem resolução de ambiguidades.
+Confira a prévia antes de aplicar as saídas ao léxico revisado.
+
+Execute os exemplos a partir da raiz do projeto:
+
+```sh
+# Prévia verbal ou nominal, sem gravação.
+python3 tools/flexiona_verbos.py --strong 3004 --dry-run --limit 5
+python3 tools/flexiona_nao_verbos.py --strong 3056 --dry-run --limit 5
+
+# Combina as duas rotinas, preservando os verbetes já revisados.
+python3 tools/flexiona_todas_traducoes.py --strong 3004 --strong 3056 --nofill --dry-run
+
+# Grava uma cópia para revisão, mantendo intacto o arquivo de entrada.
+python3 tools/flexiona_todas_traducoes.py --strong 3004 --nofill --output /tmp/dict_lex-flexionado.json
+```
+
+Sem `--dry-run` e sem `--output`, o script atualiza a entrada. Se o destino já
+existir e mudar, ele cria antes um backup ao lado do arquivo, com sufixo
+`.bak-<data-hora-UTC>`, e informa seu caminho no terminal. Valores alterados são
+substituídos diretamente no JSON, preservando a ordem, os diacríticos e a
+formatação das partes não alteradas. A gravação usa arquivo temporário e rename.
+Se nada mudar, não há regravação nem backup adicional.
+
+`--strong` é repetível, com códigos numéricos como `3004`. A filtragem não altera
+os identificadores Strong armazenados. O script combinado oferece também
+`--skip-verbs` e `--skip-nonverbs`.
+
+O combinado mantém seu comportamento anterior de preencher os verbetes pelas
+definições de `strongs_greek_pt_defs.json` antes de flexionar. Isso pode substituir
+textos revisados, inclusive nas listas `verbetes` e nos verbetes específicos.
+Use `--nofill` para preservar os verbetes atuais. Os scripts individuais de
+verbos e não verbos não executam esse preenchimento.
+
+Depois de revisar e aplicar as alterações na fonte principal, execute
+`npm run dict:generate` para atualizar os derivados; o build também faz essa etapa.
+Os scripts Python não atualizam os derivados automaticamente, inclusive ao gravar
+em `--output`. Seus testes isolados podem ser executados com `npm run test:flexiona`.
 
 ## Consultas por forma e homógrafos
 

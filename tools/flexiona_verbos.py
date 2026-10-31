@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Atualiza o campo `traducao` do dicionário grego com a flexão verbal em português.
 
-O script lê o JSON informado, identifica entradas verbais e deriva a forma
+O script percorre as flexões do léxico por Strong, identifica entradas verbais e deriva a forma
 flexionada a partir da morfologia (tempo, modo, voz, pessoa/número) presente em
 `morfologia`. O resultado é gravado no próprio arquivo de entrada (ou no arquivo
 indicado em `--output`, se fornecido), preservando as demais chaves e
@@ -9,21 +9,29 @@ acrescentando a coluna `pt` com a forma flexionada principal.
 
 Uso sugerido (não execute automaticamente):
     python3 tools/flexiona_verbos.py \
-        --input src/_data/nt_greek-pt_dict.json
+        --input src/_data/dict_lex_nt-lxx_greek-pt.json
 
 Para aplicar apenas a um código Strong específico:
-    python3 tools/flexiona_verbos.py --input src/_data/nt_greek-pt_dict.json --strong 3004
+    python3 tools/flexiona_verbos.py --input src/_data/dict_lex_nt-lxx_greek-pt.json --strong 3004
 """
 
 from __future__ import annotations
 
 import argparse
-import json
+import sys
+from copy import deepcopy
 import re
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from tools.flexiona_io import DEFAULT_INPUT, iter_entries, load_dictionary, preview, write_dictionary
 
 
 # ---------------------------------------------------------------------------
@@ -45,20 +53,6 @@ def tidy_spaces(text: str) -> str:
     text = re.sub(r"\s+([,.;:?!)])", r"\1", text)
     text = re.sub(r"([(])\s+", r"\1", text)
     return text.strip()
-
-
-# Ordem preferencial de chaves dentro de cada entrada.
-ENTRY_KEY_ORDER = [
-    "strongs",
-    "grego",
-    "transliteracao",
-    "verbete",
-    "ocorrencias",
-    "traducao",
-    "pt",
-    "abrev_morf",
-    "morfologia",
-]
 
 
 # ---------------------------------------------------------------------------
@@ -883,17 +877,6 @@ def split_phrases(base_text: str) -> List[str]:
     return [part.strip() for part in parts if part.strip()]
 
 
-def load_dictionary(path: Path) -> Dict[str, Dict[str, Any]]:
-    with path.open("r", encoding="utf-8-sig") as handle:
-        return json.load(handle)
-
-
-def write_dictionary(path: Path, data: Dict[str, Dict[str, Any]]) -> None:
-    with path.open("w", encoding="utf-8") as handle:
-        json.dump(data, handle, ensure_ascii=False, indent=2)
-        handle.write("\n")
-
-
 PRONOUN_PREFIX_RE = re.compile(
     r"^(?:eu|tu|ele(?:\(a[s]?\))?|ela|n[óo]s|v[óo]s|eles(?:\(as\))?|elas)\s+",
     re.IGNORECASE,
@@ -921,49 +904,29 @@ def build_translation_value(entry: Dict[str, Any], conjugator: PortugueseConjuga
     return ", ".join(rendered)
 
 
-def reorder_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
-    ordered: Dict[str, Any] = {}
-    for key in ENTRY_KEY_ORDER:
-        if key in payload:
-            ordered[key] = payload[key]
-    for key, value in payload.items():
-        if key not in ordered:
-            ordered[key] = value
-    return ordered
-
-
 def transform_dictionary(
     data: Dict[str, Dict[str, Any]],
     conjugator: PortugueseConjugator,
     strong_filter: Optional[Set[str]] = None,
 ) -> Dict[str, Dict[str, Any]]:
-    updated = {}
-    for lemma, payload in data.items():
-        new_payload = dict(payload)
-        abrev_morf = payload.get("abrev_morf", "")
-        strong_code = str(payload.get("strongs", "")).strip()
-        should_process = not strong_filter or strong_code in strong_filter
+    updated = deepcopy(data)
+    for entry in iter_entries(updated):
+        payload, new_payload = entry.payload, entry.target
+        if strong_filter and entry.strong not in strong_filter:
+            continue
+        if not payload.get("abrev_morf", "").startswith("V"):
+            continue
 
-        # Garante que verbete permaneça exatamente como veio do arquivo fonte.
-        if "verbete" in payload:
-            new_payload["verbete"] = payload["verbete"]
-        if abrev_morf.startswith("V") and should_process:
-            new_traducao = build_translation_value(payload, conjugator)
-            if new_traducao:
-                new_payload["traducao"] = new_traducao
+        new_traducao = build_translation_value(payload, conjugator)
+        if new_traducao:
+            new_payload["traducao"] = new_traducao
 
-            traducao_value = new_payload.get("traducao", "")
-            if isinstance(traducao_value, str) and traducao_value:
-                pt_value = traducao_value.split(",", 1)[0].strip()
-                pt_value = strip_subject_pronoun(pt_value)
-            else:
-                pt_value = ""
-            new_payload["pt"] = pt_value
+        traducao_value = new_payload.get("traducao", "")
+        if isinstance(traducao_value, str) and traducao_value:
+            pt_value = strip_subject_pronoun(traducao_value.split(",", 1)[0].strip())
         else:
-            # Mantém o valor original quando a entrada não é processada.
-            new_payload["pt"] = payload.get("pt", new_payload.get("traducao", ""))
-
-        updated[lemma] = reorder_payload(new_payload)
+            pt_value = ""
+        new_payload["pt"] = pt_value
     return updated
 
 
@@ -977,7 +940,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        default=Path("src/_data/nt_greek-pt_dict.json"),
+        default=DEFAULT_INPUT,
         help="Arquivo JSON de origem.",
     )
     parser.add_argument(
@@ -1015,19 +978,10 @@ def main() -> None:
     output_path = args.output or args.input
 
     if args.dry_run:
-        count = 0
-        for lemma, payload in transformed.items():
-            if strong_filter and str(payload.get("strongs", "")).strip() not in strong_filter:
-                continue
-            if not payload.get("abrev_morf", "").startswith("V"):
-                continue
-            print(f"{lemma}: {payload.get('traducao', '')}")
-            count += 1
-            if count >= args.limit:
-                break
+        preview(transformed, strong_filter, args.limit, verbs=True, nonverbs=False)
         return
 
-    write_dictionary(output_path, transformed)
+    write_dictionary(output_path, transformed, template_path=args.input)
 
 
 if __name__ == "__main__":
