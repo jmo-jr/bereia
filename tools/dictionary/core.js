@@ -80,11 +80,11 @@ function records(lexicon) {
     if (!common) assert(Array.isArray(group.verbetes) && group.verbetes.length > 1, `Variantes inválidas: ${strong}`);
     for (const flex of group.flexoes) {
       for (const field of Object.keys(flex)) {
-        assert(FLEX_FIELDS.includes(field) || (!common && field === 'verbete'), `Campo de flexão desconhecido: ${field}`);
+        assert(FLEX_FIELDS.includes(field) || field === 'verbete', `Campo de flexão desconhecido: ${field}`);
       }
       for (const field of FLEX_FIELDS) assert(Object.hasOwn(flex, field), `Campo obrigatório ausente: ${strong}/${field}`);
       assert(typeof flex.grego === 'string' && flex.grego.length, 'Forma grega inválida');
-      const verbete = common ? group.verbete : flex.verbete;
+      const verbete = Object.hasOwn(flex, 'verbete') ? flex.verbete : (common ? group.verbete : undefined);
       assert.equal(typeof verbete, 'string', `Verbete ausente: ${strong}/${flex.grego}`);
       if (!common) assert(group.verbetes.includes(verbete), 'Verbete não registrado no grupo');
       rows.push(fixedEntry({ strongs: strong, ...flex, verbete }));

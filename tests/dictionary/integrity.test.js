@@ -28,7 +28,7 @@ test('estrutura simples, sequência fixa, verbete antes das flexões e pendênci
     if (Object.hasOwn(group, 'pendencias')) assert(group.pendencias.length > 0);
     assert(Object.keys(group).indexOf('verbete' in group ? 'verbete' : 'verbetes') < Object.keys(group).indexOf('flexoes'));
     for (const flex of group.flexoes) {
-      assert.deepEqual(Object.keys(flex), [...c.FLEX_FIELDS, ...('verbetes' in group ? ['verbete'] : [])]);
+      assert.deepEqual(Object.keys(flex), [...c.FLEX_FIELDS, ...('verbete' in flex ? ['verbete'] : [])]);
       assert(!Object.hasOwn(flex, '_origem'));
       assert(!Object.hasOwn(flex, 'campos'));
       assert(!Object.hasOwn(flex, 'chave_compatibilidade'));
@@ -99,4 +99,14 @@ test('multiplicidade não depende da ordenação e campos desconhecidos não sã
 test('derivados determinísticos e atualizados', () => {
   require('../../tools/dictionary/generate')({ check: true });
   assert.equal(c.serialize(c.flatten(JSON.parse(c.serializeLexicon(source)))), c.serialize(after));
+});
+
+test('verbete da flexão prevalece sobre o comum sem alterar as demais flexões', () => {
+  const flex = { ...Object.values(source)[0].flexoes[0] };
+  delete flex.verbete;
+  const lexicon = { '1': { lema: 'Α', transliteracao: 'Alpha', verbete: 'comum',
+    flexoes: [{ ...flex }, { ...flex, verbete: 'específico' }] } };
+  assert.deepEqual(c.records(lexicon).map(row => row.verbete), ['comum', 'específico']);
+  lexicon['1'].flexoes[1].verbete = 123;
+  assert.throws(() => c.records(lexicon), /Verbete ausente/);
 });

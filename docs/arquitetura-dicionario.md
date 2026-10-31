@@ -35,6 +35,8 @@ Cada flexão possui a sequência fixa de campos:
 9. `ocorrencias_lxx`
 
 O campo `verbete` também aparece na flexão quando há variantes no grupo.
+Uma flexão também pode definir `verbete` quando o grupo usa um verbete comum:
+nesse caso, o valor da flexão tem precedência, e as demais herdam o valor do grupo.
 A transliteração do lema é distinta da transliteração da flexão.
 As três flexões sem `ocorrencias_lxx` receberam o valor 0 por autorização
 expressa. Os demais campos e valores, incluindo traduções e análises combinadas,
