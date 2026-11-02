@@ -93,8 +93,9 @@ renomear, fundir ou excluir chaves automaticamente.
    combinações de análises autorizadas na seção abaixo. Essas alterações
    já estão aprovadas; não solicite confirmação a cada lote.
 4. Para `SUGERIR` e demais `INCERTO`, aguarde aprovação explícita.
-5. Antes de sobrescrever arquivos, crie backup. Preserve UTF-8, formatação,
-   ordem das chaves e alterações manuais; valide o JSON e o diff.
+5. Preserve UTF-8, formatação, ordem das chaves e alterações manuais;
+   valide o JSON e o diff. Não crie novos backups nem arquivos `.bak`:
+   o histórico de alterações é mantido pelo Git.
 6. Gere ou atualize:
    `tools/relatorio_revisao_codex.csv`
    com as colunas:

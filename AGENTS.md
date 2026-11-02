@@ -20,7 +20,8 @@ Este repositório contém recursos do projeto BEREIA, incluindo um dicionário g
 - Não faça mudanças técnicas por preferência, nem renomeie, funda ou exclua
   entradas automaticamente. Preserve campos sem erro comprovado.
 - Não reordene chaves nem reformate arquivos inteiros.
-- Não sobrescreva arquivos originais sem criar backup.
+- Não crie novos backups nem arquivos `.bak` durante a revisão; o histórico
+  de alterações é mantido pelo Git. Preserve os backups históricos existentes.
 - Diferencie sempre:
   - erro objetivo;
   - alternativa de tradução aceitável;
@@ -75,7 +76,7 @@ Esses casos devem ser marcados como `INCERTO` e deixados para decisão humana.
 2. Apresente sugestões e alterações em lista, nunca em tabela.
 3. Aplique automaticamente os itens `CORRIGIR`, os erros técnicos
    comprovados e as combinações de análises autorizadas acima, sem pedir
-   nova aprovação. Preserve backup e informe o que foi alterado.
+   nova aprovação. Informe o que foi alterado, sem criar novos backups.
 4. Aguarde aprovação para `SUGERIR` e para os demais `INCERTO`.
 5. Gere ou atualize o CSV somente com pendências não aplicadas; não
    acrescente casos ignorados. Preserve o histórico sem limpeza retroativa

@@ -699,7 +699,8 @@ aguardar aprovação humana.
 ### Etapa 4 — alteração
 
 Modificar somente as entradas aprovadas, incluindo as autorizações
-permanentes acima. Criar backup, informar as alterações em lista e registrar
+permanentes acima. Não criar novos backups nem arquivos `.bak`; o histórico
+de alterações é mantido pelo Git. Informar as alterações em lista e registrar
 no CSV apenas pendências não aplicadas. Não registrar ambiguidades ignoradas
 pelos filtros da tarefa, nem limpar o histórico retroativamente sem pedido.
 

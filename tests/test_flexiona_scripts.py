@@ -53,11 +53,19 @@ class AdaptationTests(unittest.TestCase):
         self.assertEqual(restored, self.original)
         self.assertEqual(self.data, self.original)
 
-    def test_verbs_inherit_common_and_respect_override_without_collapsing_forms(self):
+    def test_verbs_use_common_verbete_even_when_flexion_has_its_own(self):
         changed = verbs.transform_dictionary(self.data, verbs.PortugueseConjugator())
-        self.assertEqual([f["pt"] for f in changed["2212"]["flexoes"]], ["buscarás", "procurarás"])
+        self.assertEqual([f["pt"] for f in changed["2212"]["flexoes"]], ["buscarás", "buscarás"])
         self.assertEqual(changed["2570"], self.data["2570"])
         self.assert_only_translations_changed(changed)
+
+    def test_nominals_use_common_verbete_without_erasing_flexion_verbetes(self):
+        self.data["2570"].pop("verbetes")
+        self.data["2570"]["verbete"] = "G2570: bom"
+        changed = nonverbs.transform_dictionary(self.data, None, nonverbs.PortugueseNominalInflector())
+        self.assertEqual([f["pt"] for f in changed["2570"]["flexoes"]], ["dos bons", "dos bons"])
+        self.assertEqual(changed["2570"]["flexoes"][1]["verbete"], "G2570: mau")
+        self.assertEqual(self.data["2570"]["flexoes"][1]["pt"], "original")
 
     def test_nominals_keep_variants_and_metadata(self):
         changed = nonverbs.transform_dictionary(self.data, None, nonverbs.PortugueseNominalInflector())
@@ -135,7 +143,7 @@ class WriterTests(unittest.TestCase):
             self.assertIn('"traducao"', text)
             self.assertLess(text.index('"traducao"'), text.index('"pt"'))
 
-    def test_in_place_backup_noop_and_output_template(self):
+    def test_in_place_write_without_backup_noop_and_output_template(self):
         with tempfile.TemporaryDirectory() as folder:
             source = Path(folder) / "lex.json"
             raw = '{ "κ": {"traducao":"a", "pt":"b"} }\n'
@@ -146,13 +154,30 @@ class WriterTests(unittest.TestCase):
             storage.write_dictionary(output, updated, template_path=source)
             self.assertEqual(source.read_text(), raw)
             self.assertEqual(output.read_text(), raw.replace('"b"', '"c"'))
-            with contextlib.redirect_stderr(io.StringIO()):
+            source.chmod(0o640)
+            permissions = source.stat().st_mode
+            stderr = io.StringIO()
+            with contextlib.redirect_stderr(stderr):
                 storage.write_dictionary(source, updated)
-            backups = list(Path(folder).glob("lex.json.bak-*"))
-            self.assertEqual(len(backups), 1)
-            self.assertEqual(backups[0].read_text(), raw)
-            storage.write_dictionary(source, updated)
-            self.assertEqual(len(list(Path(folder).glob("lex.json.bak-*"))), 1)
+            self.assertEqual(source.read_text(), raw.replace('"b"', '"c"'))
+            self.assertEqual(source.stat().st_mode, permissions)
+            self.assertEqual(stderr.getvalue(), "")
+            self.assertEqual(set(Path(folder).iterdir()), {source, output})
+            with patch.object(storage.os, "replace") as replace:
+                storage.write_dictionary(source, updated)
+                replace.assert_not_called()
+            self.assertEqual(set(Path(folder).iterdir()), {source, output})
+
+    def test_failed_replace_preserves_original_and_cleans_temporary_file(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "lex.json"
+            raw = '{"pt":"original"}\n'
+            source.write_text(raw, encoding="utf-8")
+            with patch.object(storage.os, "replace", side_effect=OSError("replace failed")):
+                with self.assertRaisesRegex(OSError, "replace failed"):
+                    storage.write_dictionary(source, {"pt": "alterada"})
+            self.assertEqual(source.read_text(), raw)
+            self.assertEqual(list(Path(folder).iterdir()), [source])
 
     def test_refuse_structural_losses_and_duplicate_json_keys(self):
         with self.assertRaisesRegex(ValueError, "remover ou adicionar análises"):
@@ -184,6 +209,17 @@ class CliTests(unittest.TestCase):
                 self.assertEqual(result["2212"]["lema"], "ζητέω")
                 self.assertNotIn("strongs", result["2212"]["flexoes"][0])
                 self.assertEqual(source.read_bytes(), original)
+
+    def test_all_three_clis_update_in_place_without_backups(self):
+        for script in ("flexiona_verbos.py", "flexiona_nao_verbos.py", "flexiona_todas_traducoes.py"):
+            with self.subTest(script=script), tempfile.TemporaryDirectory() as folder:
+                source = Path(folder) / "lex.json"
+                source.write_text(json.dumps(fixture(), ensure_ascii=False, indent=2) + "\n")
+                extra = ["--nofill"] if script == "flexiona_todas_traducoes.py" else []
+                run = self.run_cli(script, "--input", source, *extra)
+                self.assertNotEqual(storage.load_dictionary(source), fixture())
+                self.assertNotIn("Backup:", run.stderr)
+                self.assertEqual(list(Path(folder).iterdir()), [source])
 
     def test_dry_run_and_skip_flags_do_not_write_or_create_backups(self):
         with tempfile.TemporaryDirectory() as folder:

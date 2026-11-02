@@ -45,10 +45,12 @@ chave de compatibilidade ou `origem_lexical` nos registros.
 
 ## Geração e edição
 
-1. Faça backup da fonte lexical antes de editá-la.
-2. Edite o grupo lexical ou a flexão correspondente.
-3. Execute `npm run dict:generate`.
-4. Execute `npm run dict:check` e `npm test`.
+1. Edite o grupo lexical ou a flexão correspondente.
+2. Execute `npm run dict:generate`.
+3. Execute `npm run dict:check` e `npm test`.
+
+Na revisão assistida, não crie novos backups nem arquivos `.bak`: o histórico
+de alterações é mantido pelo Git. Preserve os backups históricos de auditoria.
 
 Para adicionar uma flexão, preencha os campos fixos no array do Strong correto;
 não é preciso cadastrar metadados de origem. Quando o grupo possuir `verbetes`,
@@ -71,8 +73,11 @@ substituídas na próxima geração.
 
 Os três scripts usam `src/_data/dict_lex_nt-lxx_greek-pt.json` por padrão e
 percorrem cada registro de `flexoes`, sem agrupar ou eliminar formas repetidas.
-O Strong vem da chave do grupo. Um `verbete` próprio da flexão prevalece sobre
-o verbete comum; grupos com `verbetes` exigem a indicação do verbete em cada flexão.
+O Strong vem da chave do grupo. Nas rotinas Python de flexão, quando o lema possui
+`verbete`, esse texto é usado para todas as flexões, desconsiderando seus verbetes
+próprios sem apagá-los. Grupos com `verbetes` continuam usando o verbete indicado
+em cada flexão. Essa regra dos scripts não altera a precedência do gerador Node.js
+descrita na seção de estrutura.
 Nenhuma variante é escolhida pela posição no array. O formato plano anterior
 também pode ser informado por `--input`.
 
@@ -94,12 +99,11 @@ python3 tools/flexiona_todas_traducoes.py --strong 3004 --strong 3056 --nofill -
 python3 tools/flexiona_todas_traducoes.py --strong 3004 --nofill --output /tmp/dict_lex-flexionado.json
 ```
 
-Sem `--dry-run` e sem `--output`, o script atualiza a entrada. Se o destino já
-existir e mudar, ele cria antes um backup ao lado do arquivo, com sufixo
-`.bak-<data-hora-UTC>`, e informa seu caminho no terminal. Valores alterados são
-substituídos diretamente no JSON, preservando a ordem, os diacríticos e a
-formatação das partes não alteradas. A gravação usa arquivo temporário e rename.
-Se nada mudar, não há regravação nem backup adicional.
+Sem `--dry-run` e sem `--output`, o script atualiza a entrada, sem criar backups
+nem arquivos `.bak`. Valores alterados são substituídos diretamente no JSON,
+preservando a ordem, os diacríticos e a formatação das partes não alteradas.
+A gravação usa arquivo temporário e rename, preservando as permissões do destino.
+Se nada mudar, não há regravação.
 
 `--strong` é repetível, com códigos numéricos como `3004`. A filtragem não altera
 os identificadores Strong armazenados. O script combinado oferece também

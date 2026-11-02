@@ -4,10 +4,8 @@ from __future__ import annotations
 import json
 import os
 import shutil
-import sys
 import tempfile
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterator, Optional, Set
 
@@ -37,7 +35,7 @@ def iter_entries(data: Dict[str, Any]) -> Iterator[Entry]:
                 raise ValueError(f"Flexão inválida: {key}[{index}]")
             payload = dict(flex)
             payload["strongs"] = key
-            if "verbete" not in payload and "verbete" in group:
+            if "verbete" in group:
                 payload["verbete"] = group["verbete"]
             if not isinstance(payload.get("verbete"), str):
                 raise ValueError(f"Verbete não definido para {key}[{index}]; informe-o na flexão ou no grupo.")
@@ -185,11 +183,6 @@ def write_dictionary(path: Path, data: Dict[str, Any], template_path: Optional[P
     content = text.encode("utf-8")
     if path.exists() and path.read_bytes() == content:
         return
-    if path.exists():
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-        backup = path.with_name(path.name + ".bak-" + stamp)
-        shutil.copy2(path, backup)
-        print(f"Backup: {backup}", file=sys.stderr)
     temporary = None
     try:
         with tempfile.NamedTemporaryFile(dir=path.parent, prefix=path.name + ".", suffix=".tmp", delete=False) as handle:
