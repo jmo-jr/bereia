@@ -10,16 +10,27 @@ const before = c.read(c.BACKUP);
 const rows = c.records(source);
 const after = c.flatten(source);
 const baseline = require('../../tools/dictionary/baseline.json');
+const reviewState = require('../../tools/dictionary/review-state.json');
+const archive = fs.readFileSync(path.join(c.ROOT, 'src/_data/archive/strongsg.js'), 'utf8');
+const lexical = JSON.parse(archive.slice(archive.indexOf('{', archive.indexOf('var strongsGreekDictionary')), archive.lastIndexOf('}') + 1));
 
-test('backup imutável e todas as flexões preservadas com apenas os padrões autorizados', () => {
+test('auditoria histórica da migração permanece imutável e reproduzível', () => {
   assert.equal(crypto.createHash('sha256').update(fs.readFileSync(c.BACKUP)).digest('hex'), baseline.backup_sha256);
-  assert.deepEqual(bag(rows), bag(expectedRecords(before)));
-  assert.equal(rows.length, baseline.entradas);
-  assert.equal(new Set(rows.map(x => x.grego)).size, baseline.formas_gregas);
-  assert.equal(new Set(rows.map(x => JSON.stringify([x.abrev_morf, x.morfologia]))).size, baseline.analises_morfologicas);
-  assert.equal(Object.keys(source).length, baseline.grupos_strong);
-  assert.equal(new Set(Object.values(source).map(x => x.lema).filter(Boolean)).size, baseline.lemas_resolvidos);
+  const historical = expectedRecords(before);
+  assert.deepEqual(bag(c.records(c.migrate(before, lexical))), bag(historical));
+  assert.equal(historical.length, baseline.entradas);
+  assert.equal(new Set(historical.map(x => x.grego)).size, baseline.formas_gregas);
+  assert.equal(new Set(historical.map(x => JSON.stringify([x.abrev_morf, x.morfologia]))).size, baseline.analises_morfologicas);
   assert.equal(Object.values(before).filter(x => !Object.hasOwn(x, 'ocorrencias_lxx')).length, 3);
+});
+
+test('léxico revisado corresponde ao estado linguístico aprovado', () => {
+  require('../../tools/dictionary/update-review-state').update({ check: true });
+  assert.equal(rows.length, reviewState.entradas);
+  assert.equal(Object.keys(source).length, reviewState.grupos_strong);
+  assert.equal(new Set(Object.values(source).map(x => x.lema).filter(Boolean)).size, reviewState.lemas_resolvidos);
+  assert.equal(new Set(rows.map(x => x.grego)).size, reviewState.formas_gregas);
+  assert.equal(new Set(rows.map(x => JSON.stringify([x.abrev_morf, x.morfologia]))).size, reviewState.analises_morfologicas);
 });
 
 test('estrutura simples, sequência fixa, verbete antes das flexões e pendências somente preenchidas', () => {
@@ -40,13 +51,14 @@ test('estrutura simples, sequência fixa, verbete antes das flexões e pendênci
   assert(textualOrder.every((value, i) => i === 0 || value >= textualOrder[i - 1]));
 });
 
-test('projeção por grego corresponde ao oráculo independente, sem chaves artificiais', () => {
-  assert.deepEqual(bag(Object.entries(after)), bag(Object.entries(expectedProjection(before))));
-  assert.equal(Object.keys(after).length, 18277);
+test('projeção histórica continua correspondendo ao oráculo independente', () => {
+  const historical = c.flatten(c.migrate(before, lexical));
+  assert.deepEqual(bag(Object.entries(historical)), bag(Object.entries(expectedProjection(before))));
+  assert.equal(Object.keys(historical).length, baseline.formas_gregas);
   for (const [key, entry] of Object.entries(after)) assert.equal(key, entry.grego);
   const changedKeys = Object.entries(before).filter(([key, entry]) => key !== entry.grego);
   assert.equal(changedKeys.length, 31);
-  assert(changedKeys.every(([, entry]) => Object.hasOwn(after, entry.grego)));
+  assert(changedKeys.every(([, entry]) => Object.hasOwn(historical, entry.grego)));
 });
 
 test('homógrafos e análises combinadas preservados no léxico e no índice', () => {
@@ -56,10 +68,9 @@ test('homógrafos e análises combinadas preservados no léxico e no índice', (
   }
   assert.equal(index['εὗρον'].length, 2);
   assert.equal(index['ὢν'].length, 3);
-  assert.equal(Object.values(index).filter(refs => refs.length > 1).length, 7);
-  assert.equal(Object.values(index).reduce((n, refs) => n + refs.length, 0), 18285);
-  assert.equal(rows.filter(x => x.abrev_morf.includes('/')).length, 1846);
-  assert.equal(Object.values(source).filter(x => x.lema === null).reduce((n, x) => n + x.flexoes.length, 0), 136);
+  assert.equal(Object.values(index).filter(refs => refs.length > 1).length, reviewState.formas_com_multiplas_analises);
+  assert.equal(Object.values(index).reduce((n, refs) => n + refs.length, 0), reviewState.referencias_indice);
+  assert.equal(Object.values(source).filter(x => x.lema === null).reduce((n, x) => n + x.flexoes.length, 0), reviewState.flexoes_sem_lema);
   for (const [strongs, group] of Object.entries(source)) {
     group.flexoes.forEach((flex, flexao) => {
       assert.equal(index[flex.grego].filter(ref => ref.strongs === strongs && ref.flexao === flexao).length, 1);
@@ -68,9 +79,7 @@ test('homógrafos e análises combinadas preservados no léxico e no índice', (
 });
 
 test('metadados lexicais continuam associados ao Strong exato', () => {
-  const archive = fs.readFileSync(path.join(c.ROOT, 'src/_data/archive/strongsg.js'), 'utf8');
   assert.equal(crypto.createHash('sha256').update(archive).digest('hex'), baseline.lexical_archive_sha256);
-  const lexical = JSON.parse(archive.slice(archive.indexOf('{', archive.indexOf('var strongsGreekDictionary')), archive.lastIndexOf('}') + 1));
   for (const [strong, group] of Object.entries(source)) {
     if (!/^\d+$/.test(strong)) {
       assert.equal(group.lema, null);

@@ -106,12 +106,13 @@ renomear, fundir ou excluir chaves automaticamente.
    acrescente casos ignorados pelas regras abaixo. Preserve o histórico;
    não faça limpeza retroativa sem solicitação.
 7. Não processe o arquivo inteiro em uma única execução.
-8. Após editar a fonte, execute `npm run dict:generate`,
-   `npm run dict:check` e `npm test`. Confira também o diff dos derivados.
-   Preserve backups e hashes históricos. Documente separadamente as
-   alterações linguísticas autorizadas; não atualize referências de
-   migração apenas para fazer testes passarem. Informe falhas de auditoria,
-   distinguindo as preexistentes das introduzidas pelo lote.
+8. Após editar a fonte, execute `npm run dict:generate` e atualize o estado
+   linguístico aprovado com `npm run dict:review-state`. Em seguida, execute
+   `npm run dict:check`, `npm run dict:review-state:check` e `npm test`.
+   Confira também o diff dos derivados. Atualize o estado linguístico somente
+   depois de alterações autorizadas e documentadas. Preserve backups, hashes,
+   baseline e relatório histórico da migração; não os atualize para fazer
+   testes passarem. Informe qualquer falha introduzida pelo lote.
 9. Não faça commit. Informe a última forma, Strong literal, índice em
    `flexoes` e a linha alcançada na fonte lexical.
 

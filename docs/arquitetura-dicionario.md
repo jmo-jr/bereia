@@ -47,7 +47,15 @@ chave de compatibilidade ou `origem_lexical` nos registros.
 
 1. Edite o grupo lexical ou a flexão correspondente.
 2. Execute `npm run dict:generate`.
-3. Execute `npm run dict:check` e `npm test`.
+3. Após alterações linguísticas autorizadas e documentadas, execute
+   `npm run dict:review-state`.
+4. Execute `npm run dict:check`, `npm run dict:review-state:check` e
+   `npm test`.
+
+`tools/dictionary/review-state.json` registra o hash e as contagens do estado
+linguístico aprovado. Ele é independente do baseline e dos relatórios da
+migração, que permanecem congelados. O comando de atualização não deve ser
+usado para aceitar alterações não revisadas ou apenas para silenciar testes.
 
 Na revisão assistida, não crie novos backups nem arquivos `.bak`: o histórico
 de alterações é mantido pelo Git. Preserve os backups históricos de auditoria.

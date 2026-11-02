@@ -77,3 +77,13 @@ bookChapter: 1
 `{% render './_includes/sideNav', theBookName: bookName, theBookChapter: bookChapter %}`
 
 Novo Tooltip: https://calebjacob.github.io/tooltipster/#demos
+
+## Detalhes sobre o NT de Estudo
+
+- Tradução priorizando a literalidade, secundariamente a legibilidade
+- Coerência de tradução de palavras sempre que possível
+- Comentários tooltip com tradução alternativa (dinâmica), notas, etc.
+- Palavras-chave do NT (grego e detalhe sobre a palavra) tooltip
+- Parágrafos baseados na NVI
+- Negrito nas referências ao AT, tanto diretas, quanto indiretas (consultar Bíbllia Judaica Comentada)
+- Palavras de Jesus em vermelho 

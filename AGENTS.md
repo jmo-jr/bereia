@@ -81,6 +81,9 @@ Esses casos devem ser marcados como `INCERTO` e deixados para decisão humana.
 5. Gere ou atualize o CSV somente com pendências não aplicadas; não
    acrescente casos ignorados. Preserve o histórico sem limpeza retroativa
    não solicitada. Não faça commit.
+6. Depois de aplicar alterações aprovadas, atualize explicitamente o estado
+   linguístico com `npm run dict:review-state`. Não altere o baseline, os
+   backups nem o relatório histórico da migração para fazer testes passarem.
 
 ## Tradução do Novo Testamento
 

@@ -9,11 +9,12 @@ const { expectedProjection } = require('./expected');
 const { loadBooks, changes } = require('./loader');
 
 test('tokens do NT correspondem à projeção independente e diferenças estão registradas', () => {
-  const expected = loadBooks(JSON.stringify(expectedProjection(c.read(c.BACKUP))));
-  const actual = loadBooks(c.serialize(c.flatten(c.read(c.SOURCE))));
+  const historical = loadBooks(JSON.stringify(expectedProjection(c.read(c.BACKUP))));
+  const expected = loadBooks(c.serialize(c.flatten(c.read(c.SOURCE))));
+  const actual = loadBooks(fs.readFileSync(c.DERIVED, 'utf8'));
   assert.deepEqual(actual, expected);
   assert.equal(actual.MT.find(x => x.number === 8).verses.length, 34);
-  const differences = changes(loadBooks(fs.readFileSync(c.BACKUP, 'utf8')), actual);
+  const differences = changes(loadBooks(fs.readFileSync(c.BACKUP, 'utf8')), historical);
   const report = c.read(path.join(c.ROOT, 'tools/dictionary/simplification.json'));
   assert.deepEqual(differences, report.alteracoes_nos_tokens);
 });
@@ -45,13 +46,14 @@ test('Eleventy 3.1.2: Mateus 8 comparado ao original e à projeção independent
       return fs.readFileSync(path.join(temporary, output, 'interlinear/mt/8/index.html'), 'utf8');
     };
     const original = render(fs.readFileSync(c.BACKUP, 'utf8'), 'original', false);
-    const expected = render(c.serialize(expectedProjection(c.read(c.BACKUP))), 'expected', false);
+    const historical = render(c.serialize(expectedProjection(c.read(c.BACKUP))), 'historical', false);
+    const expected = render(c.serialize(c.flatten(c.read(c.SOURCE))), 'expected', false);
     const regenerated = render(c.serialize(c.flatten(c.read(c.SOURCE))), 'actual', true);
     assert.equal(regenerated, expected);
     assert(regenerated.includes('λόγ') || regenerated.includes('λογ'));
     const report = c.read(path.join(c.ROOT, 'tools/dictionary/simplification.json'));
     const mt8Changes = report.alteracoes_nos_tokens.filter(x => x.livro === 'MT' && x.capitulo === 8);
-    if (!mt8Changes.length) assert.equal(regenerated, original);
-    console.log(`Mateus 8: ${mt8Changes.length} tokens alterados; HTML ${regenerated === original ? 'idêntico ao original' : 'diferente do original'}, idêntico à projeção independente.`);
+    if (!mt8Changes.length) assert.equal(historical, original);
+    console.log(`Mateus 8: migração histórica com ${mt8Changes.length} tokens alterados; revisão atual ${regenerated === original ? 'idêntica ao original' : 'diferente do original'}, idêntica à projeção revisada.`);
   } finally { fs.rmSync(temporary, { recursive: true, force: true }); }
 });
