@@ -162,6 +162,13 @@ Use `ocorrencias`, a contagem do NT. Não some `ocorrencias_lxx`. Valores
 ausentes, vazios ou inválidos não devem ser presumidos como 1; se a decisão
 depender da contagem, registre a informação insuficiente para revisão.
 
+Quando todas as ocorrências da forma no Texto Majoritário sustentarem a mesma
+análise morfológica, adote essa análise contextual e ignore alternativas
+meramente formais que não ocorram no corpus. Não crie item na lista nem linha
+no CSV apenas por essas possibilidades. Mantenha a revisão manual quando não
+houver ocorrência no Texto Majoritário, quando as ocorrências divergirem ou
+quando o contexto não resolver objetivamente a análise.
+
 Ignorar uma ambiguidade significa preservar os valores atuais e não criar
 item na lista nem linha no CSV apenas por essa possibilidade. Continue
 corrigindo erros objetivos independentes, mesmo nas entradas com uma só
