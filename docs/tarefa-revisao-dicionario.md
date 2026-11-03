@@ -116,6 +116,23 @@ renomear, fundir ou excluir chaves automaticamente.
 9. Não faça commit. Informe a última forma, Strong literal, índice em
    `flexoes` e a linha alcançada na fonte lexical.
 
+## Manifesto de cobertura
+
+`tools/dictionary/review-coverage.json` registra individualmente todas as
+flexões presentes ao encerrar a passagem, distinguindo as revisadas das que
+ficaram antes do ponto de retomada. A identidade estável combina o Strong
+literal, a forma grega exata e o ordinal do homógrafo dentro do grupo. Índice,
+código e descrição morfológica são snapshots auxiliares, pois podem mudar em
+uma reestruturação.
+
+Antes de uma mudança estrutural, preserve o manifesto existente. Depois da
+mudança, execute `npm run dict:review-coverage:check`: o comando informa formas
+novas, removidas ou não localizadas e análises morfológicas alteradas. Só execute
+`npm run dict:review-coverage` para estabelecer deliberadamente uma nova linha
+de base após examinar essas diferenças; não o use para ocultar itens ainda não
+revisados. Divergências entre a quantidade declarada nos relatórios históricos
+e o tamanho atual de seus intervalos permanecem registradas no manifesto.
+
 ## Aplicação automática nos casos antes classificados como INCERTO
 
 ### Primeira pessoa singular e terceira pessoa plural

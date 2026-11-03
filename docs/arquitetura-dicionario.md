@@ -57,6 +57,14 @@ linguístico aprovado. Ele é independente do baseline e dos relatórios da
 migração, que permanecem congelados. O comando de atualização não deve ser
 usado para aceitar alterações não revisadas ou apenas para silenciar testes.
 
+`tools/dictionary/review-coverage.json` é o inventário individual da passagem
+de revisão assistida. Ele registra também as flexões que ficaram fora dela e
+usa Strong literal, grego exato e ordinal do homógrafo como identidade estável.
+Execute `npm run dict:review-coverage:check` depois de mudanças estruturais para
+localizar entradas novas, ausentes ou com morfologia alterada. A atualização da
+linha de base é explícita com `npm run dict:review-coverage` e só deve ocorrer
+depois da análise das diferenças.
+
 Na revisão assistida, não crie novos backups nem arquivos `.bak`: o histórico
 de alterações é mantido pelo Git. Preserve os backups históricos de auditoria.
 
