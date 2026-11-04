@@ -1,12 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Cardo");
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@100..900&display=swap');
 
 :root {
   --textColor: rgba(0, 0, 0, 0.85);
   --brandColor: #560219;
   --sans-font: "Open Sans", Arial, sans-serif;
   --serif-font: "Merriweather", Georgia, "Times New Roman", Times, serif;
+	--greek: "Cardo", "GentiumAlt", "Galilee Unicode Gk", "Galatia SIL", "Palatino Linotype", Arial, Helvetica, sans-serif;
+	--hebrew: "Noto Sans Hebrew", sans-serif;
 }
 
 body {
@@ -545,7 +548,7 @@ table.tablefloatleft td {
   font-size: 21px;
   color: #242424;
   line-height: 32px;
-  font-family: "Cardo", "GentiumAlt", "Galilee Unicode Gk", "Galatia SIL", "Palatino Linotype", Arial, Helvetica, Sans-serif;
+  font-family: var(--greek);
 
 	&:hover {
 		color: blue;
@@ -1094,4 +1097,68 @@ cite {
 
 .redletter {
 	color: #e60000 !important;
+}
+
+/* Definições Lexicais */
+
+aside.side-drawer {
+    position: fixed;
+    background: floralwhite;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    width: 40%;
+    padding: 0 24px;
+		font-family: var(--sans-font);
+		overflow-y: auto;
+    box-shadow: -4px 4px 7px rgba(0, 0, 0, .1);
+    /* transform: translateX(100%); */
+
+		& .close-drawer {
+			position: absolute;
+			top: 8px;
+			right: 8px;
+		}
+
+		& .greek-term {
+			font-family: var(--greek);
+			font-size: 20px;
+		}
+
+		& h1 {
+			font-size: 20px;
+		}
+
+		& h2 {
+			font-size: 17px;
+		}
+
+		& h3 {
+			font-size: 14px;
+			text-transform: uppercase;
+			margin: 16px 0 6px;
+			color: indianred;
+		}
+
+		& ul {
+			margin-top: 0;
+			padding-left: 0;
+			list-style: none;
+			font-size: 15px;
+		}
+
+		& strong {
+			font-weight: 600;
+		}
+
+		& p {
+			font-size: 15px;
+			margin-top: 0;
+		}
+
+		& .hebrew-words {
+			font-family: var(--hebrew);
+			font-size: 16px;
+		}
 }
