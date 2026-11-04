@@ -165,6 +165,13 @@ PLURAL_EXCEPTIONS: Dict[str, str] = {
     "cidadão": "cidadãos",
     "mau": "maus",
     "mauzão": "mauzões",
+    "ancião": "anciãos",
+    "anciã": "anciãs",
+    "céu": "céus",
+    "mês": "meses",
+    "país": "países",
+    "gentil": "gentis",
+    "aceitável": "aceitáveis",
 }
 
 MASC_EXCEPTIONS: Dict[str, str] = {
@@ -181,18 +188,52 @@ class PortugueseNominalInflector:
     # ---- Interface principal ----------------------------------------------
     def expand_forms(self, base_phrase: str, morph: NominalMorphology) -> List[str]:
         """Retorna a frase traduzida compatível com a morfologia."""
-        canonical = self._canonical_phrase(base_phrase)
+        # O gênero do substantivo português não é determinado pelo grego.
+        if morph.pos == "substantivo":
+            head = WORD_RE.search(base_phrase)
+            if not head:
+                return [base_phrase]
+            word = head.group()
+            # Nomes próprios não recebem plural nem artigos inferidos.
+            if word[0].isupper():
+                return [self._apply_case_prefix(base_phrase, morph.case, None, None)]
+            gender = self.noun_gender(word)
+            phrase = base_phrase
+            if morph.number == "plural":
+                phrase = phrase[:head.start()] + self._to_plural(word) + phrase[head.end():]
+            return [self._apply_case_prefix(phrase, morph.case, gender, morph.number)]
+        if morph.pos not in {"adjetivo", "artigo", "numeral"}:
+            return [base_phrase]
         gender = self._normalize_gender(morph.gender)
         number = morph.number or "singular"
+        inflected = self._inflect_phrase(base_phrase, gender, number)
+        return [self._apply_case_prefix(inflected, morph.case, gender, number)]
 
-        inflected = self._inflect_phrase(canonical, gender, number)
-        inflected = self._apply_case_prefix(
-            inflected,
-            morph.case,
-            morph.gender or gender,
-            morph.number or number,
-        )
-        return [inflected]
+    @staticmethod
+    def noun_gender(word: str) -> Optional[str]:
+        """Casos lexicais explícitos; gênero desconhecido usa a/de sem artigo."""
+        masculine = {"dia", "mapa", "problema", "profeta", "poeta", "mês", "pai",
+                     "povo", "espírito", "caminho", "amor", "temor", "tremor",
+                     "altar", "costume", "azeite", "enxofre", "fim", "governante",
+                     "mestre", "servente", "comandante", "traquete", "tribunal",
+                     "arrecadador", "tetrarca", "hipócrita", "israelita", "rei",
+                     "ventre", "trabalhador", "oeste", "lugar", "tessalonicense",
+                     "sistema", "poema", "espinho", "aguilhão", "coração", "pão",
+                     "cireneu", "galileu", "saduceu", "fariseu", "praticante", "céu"}
+        feminine = {"mão", "tribo", "libido", "carne", "semente", "corrente",
+                    "cruz", "voz", "fonte", "coorte", "lei", "ordem", "testemunha",
+                    "opinião", "religião", "região", "multidão", "escuridão",
+                    "vontade", "veste", "plenitude", "bênção", "entranhas"}
+        low = word.lower()
+        if low in masculine:
+            return "masculino"
+        if low in feminine:
+            return "feminino"
+        if low.endswith(("ção", "são", "dade", "gem", "ez", "a")):
+            return "feminino"
+        if low.endswith(("o", "mento")):
+            return "masculino"
+        return None
 
     # ---- Heurísticas básicas ----------------------------------------------
     def _canonical_phrase(self, phrase: str) -> str:
@@ -214,13 +255,11 @@ class PortugueseNominalInflector:
 
         if gender == "feminino":
             transformed = self._to_feminine(transformed)
-        else:
-            transformed = self._to_masculine_singular(transformed)
+        elif transformed.lower() in MASC_EXCEPTIONS:
+            transformed = self._restore_case(transformed, MASC_EXCEPTIONS[transformed.lower()])
 
         if number == "plural":
             transformed = self._to_plural(transformed)
-        else:
-            transformed = self._to_singular(transformed)
 
         inflected = phrase[: match.start()] + transformed + phrase[match.end() :]
         return tidy_spaces(inflected)
@@ -232,6 +271,11 @@ class PortugueseNominalInflector:
         gender: Optional[str],
         number: Optional[str],
     ) -> str:
+        if phrase in {"o", "a", "os", "as"}:
+            if case == "genitivo":
+                return {"o": "do", "a": "da", "os": "dos", "as": "das"}[phrase]
+            if case == "dativo":
+                return {"o": "ao", "a": "à", "os": "aos", "as": "às"}[phrase]
         if case == "dativo":
             prefix_map = {
                 ("masculino", "singular"): "ao",
@@ -268,6 +312,8 @@ class PortugueseNominalInflector:
         lower = word.lower()
         if lower in FEMININE_EXCEPTIONS:
             return self._restore_case(word, FEMININE_EXCEPTIONS[lower])
+        if lower == "ancião":
+            return self._restore_case(word, "anciã")
         if lower.endswith("o"):
             return self._restore_case(word, lower[:-1] + "a")
         if lower.endswith("or"):
@@ -300,6 +346,8 @@ class PortugueseNominalInflector:
             return self._restore_case(word, lower[:-2] + "ões")
         if lower.endswith("al"):
             return self._restore_case(word, lower[:-2] + "ais")
+        if lower.endswith(("ável", "ível")):
+            return self._restore_case(word, lower[:-1] + "is")
         if lower.endswith("el"):
             return self._restore_case(word, lower[:-2] + "éis")
         if lower.endswith("ol"):
@@ -351,6 +399,8 @@ def extract_base_phrase(entry: Dict[str, Any]) -> str:
         verbete = entry.get("traducao", "")
     if not verbete:
         return ""
+    # Comentários não são material flexionável, inclusive vírgulas internas.
+    verbete = re.sub(r"\([^()]*\)", "", verbete)
     first = re.split(r"[;,]", verbete)[0].strip()
     return first
 
@@ -370,6 +420,8 @@ def transform_dictionary(
 
         base_phrase = extract_base_phrase(payload)
         morphology = inflector.parser.parse(payload.get("morfologia", ""))
+        if morphology.pos not in {"substantivo", "adjetivo", "artigo", "numeral"}:
+            continue
         forms = inflector.expand_forms(base_phrase, morphology) if base_phrase else []
         if forms:
             new_payload["traducao"] = ", ".join(forms)

@@ -750,7 +750,18 @@ class PortugueseConjugator:
 
         radical = self._radical(lemma_norm, group)
         endings = REGULAR_ENDINGS[tense][group]
-        return radical + endings[index]
+        ending = endings[index]
+        # Preserva o som do radical diante da vogal da desinência.
+        if ending.startswith(("e", "é")) and group == "ar":
+            if radical.endswith("c"):
+                radical = radical[:-1] + "qu"
+            elif radical.endswith("g"):
+                radical += "u"
+            elif radical.endswith("ç"):
+                radical = radical[:-1] + "c"
+        elif ending.startswith(("a", "o")) and group == "er" and radical.endswith("c"):
+            radical = radical[:-1] + "ç"
+        return radical + ending
 
     def _build_passive(self, lemma: str, morph: Morphology, index: int) -> str:
         aux_tense = self._passive_aux_tense(morph)
@@ -759,6 +770,10 @@ class PortugueseConjugator:
             aux_forms = IRREGULAR_BASES["ser"]["presente_indicativo"]
         auxiliar = aux_forms[index]
         partic = self._past_participle(lemma)
+        if morph.gender == "feminino" and partic.endswith("o"):
+            partic = partic[:-1] + "a"
+        if morph.number == "plural":
+            partic += "s"
         return f"{auxiliar} {partic}"
 
     def _passive_aux_tense(self, morph: Morphology) -> str:
