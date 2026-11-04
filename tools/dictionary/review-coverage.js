@@ -11,7 +11,9 @@ const OUTPUT = path.join(ROOT, 'tools/dictionary/review-coverage.json');
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');
 
 function textualStrongKeys(source) {
-  return [...source.matchAll(/^  "([^"]+)": \{$/gm)].map(match => match[1]);
+  // Some manually maintained top-level groups use one tab instead of two spaces.
+  // Nested objects are more deeply indented, so this still selects only Strong keys.
+  return [...source.matchAll(/^(?:  |\t)"([^"]+)": \{$/gm)].map(match => match[1]);
 }
 
 function flexions(source) {
