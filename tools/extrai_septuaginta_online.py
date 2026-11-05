@@ -4,15 +4,17 @@
 import argparse
 import json
 import re
+import unicodedata
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 
 URL_BASE = "https://www.septuaginta.online/"
 LETRAS = (
-    "alfa beta gama delta epsilon zeta eta theta iota kappa lambda mi ni xi "
-    "omicron pi rho sigma tau upsilon phi chi psi omega"
+    "alfa beta gama delta epsylon dzêta êta thêta iota kapa lambda mu nu cópia-nu "
+    "omicron pi rho sigma tau ypsilon phi chi psi ômega adjetivos advérbios"
 ).split()
 BLOCO_HTML = {"p", "li", "h1", "h2", "h3", "h4", "h5", "h6"}
 GREGO = r"[\u0370-\u03ff\u1f00-\u1fff\u0300-\u036f]+"
@@ -165,9 +167,10 @@ def main():
     parser.add_argument("--html", type=Path, help="usar um HTML salvo em vez de baixar a página")
     parser.add_argument("-o", "--saida", type=Path, help="arquivo JSON de saída")
     args = parser.parse_args()
-    if not re.fullmatch(r"[a-z0-9-]+", args.pagina):
+    args.pagina = unicodedata.normalize("NFC", args.pagina)
+    if not re.fullmatch(r"[^\W_]+(?:-[^\W_]+)*", args.pagina):
         parser.error("use um caminho simples, como alfa ou beta")
-    url = URL_BASE + args.pagina
+    url = URL_BASE + quote(args.pagina, safe="")
     saida = args.saida or Path(f"septuaginta-online-{args.pagina}.json")
     try:
         if args.html:

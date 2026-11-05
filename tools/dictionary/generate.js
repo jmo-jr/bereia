@@ -5,7 +5,7 @@ function generate({ check = false } = {}) {
   const source = c.read(c.SOURCE);
   const products = [
     [c.DERIVED, c.serialize(c.flatten(source))],
-    [path.join(c.ROOT, 'src/_data/dict_form_index_nt-lxx_greek-pt.json'), c.serialize(c.buildFormIndex(source))],
+    [path.join(c.ROOT, 'src/_data/nt/dict_form_index_nt-lxx_greek-pt.json'), c.serialize(c.buildFormIndex(source))],
   ];
   for (const [file, content] of products) {
     if (check) {

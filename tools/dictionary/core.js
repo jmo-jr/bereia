@@ -3,8 +3,8 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 
 const ROOT = path.resolve(__dirname, '../..');
-const SOURCE = path.join(ROOT, 'src/_data/dict_lex_nt-lxx_greek-pt.json');
-const DERIVED = path.join(ROOT, 'src/_data/dict_flex_nt-lxx_greek-pt.json');
+const SOURCE = path.join(ROOT, 'src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
+const DERIVED = path.join(ROOT, 'src/_data/nt/dict_flex_nt-lxx_greek-pt.json');
 const BACKUP = path.join(ROOT, 'tools/backups/dictionary-migration/dict_flex_nt-lxx_greek-pt.json');
 const FIELDS = ['strongs', 'grego', 'transliteracao', 'verbete', 'ocorrencias',
   'traducao', 'pt', 'abrev_morf', 'morfologia', 'lxx', 'ocorrencias_lxx'];
