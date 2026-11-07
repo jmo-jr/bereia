@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Cardo");
+@import url("https://fonts.googleapis.com/css?family=Cardo:ital,wght@0,400;0,700;1,400");
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght,wdth@0,300..800,75..100;1,300..800,75..100&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@100..900&display=swap');
 
 :root {
@@ -1103,47 +1103,80 @@ cite {
 
 aside.side-drawer {
     position: fixed;
-    background: floralwhite;
-    top: 0;
+    background: #ffffff;
+    top: 116px;
     right: 0;
-    bottom: 0;
+    bottom: 4px;
+		display: block;
     z-index: 1000;
     width: 40%;
-    padding: 0 24px;
+    padding: 0;
 		font-family: var(--sans-font);
-		overflow-y: auto;
+		overflow-y: hidden;
     box-shadow: -4px 4px 7px rgba(0, 0, 0, .1);
+		transition: all .5s ease;
     transform: translateX(100%);
+
+		& header {
+			padding: 24px;
+			background-color: #313131;
+			color: #e7dbdd;
+		}
 
 		& .close-drawer {
 			position: absolute;
-			top: 8px;
-			right: 8px;
+			top: 12px;
+			right: 12px;
+			background: none;
+			border: none;
+			padding: 8px;
+			cursor: pointer;
+		}
+
+		& .drawer-body {
+			height: calc(100vh - 230px);
+			padding: 24px 20px;
+			overflow-y: auto;
 		}
 
 		& .greek-term {
 			font-family: var(--greek);
-			font-size: 20px;
+			font-size: 22px;
 		}
 
 		& h1 {
-			font-size: 20px;
+			margin: 0;
+			font-size: 24px;
+			font-weight: 500;
+		}
+
+		& .strong-chip {
+			margin-right: 8px;
+			color: indianred;
+			font-size: 14px;
+			font-stretch: condensed;
+			vertical-align: top;
 		}
 
 		& h2 {
+			margin-bottom: 24px;
 			font-size: 17px;
 		}
 
 		& h3 {
+			margin: 24px 0 8px;
+			padding: 4px 8px;
+			background: #ebebeb;
+			border-radius: 4px;
+			color: var(--brandColor);
 			font-size: 14px;
+			font-weight: 600;
 			text-transform: uppercase;
-			margin: 16px 0 6px;
-			color: indianred;
 		}
 
 		& ul {
 			margin-top: 0;
-			padding-left: 0;
+			padding-left: 6px;
 			list-style: none;
 			font-size: 15px;
 		}
@@ -1155,10 +1188,16 @@ aside.side-drawer {
 		& p {
 			font-size: 15px;
 			margin-top: 0;
+			margin-left: 6px;
 		}
 
 		& .hebrew-words {
 			font-family: var(--hebrew);
-			font-size: 16px;
+			font-size: 15px;
 		}
+}
+
+aside.side-drawer.is-open { transform: translateX(0); }
+@media (max-width: 700px) {
+  aside.side-drawer { width: 100%; box-sizing: border-box; }
 }
