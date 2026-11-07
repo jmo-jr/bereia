@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterator, Optional, Set
 
-DEFAULT_INPUT = Path(__file__).resolve().parent.parent / "src/_data/dict_lex_nt-lxx_greek-pt.json"
+DEFAULT_INPUT = Path(__file__).resolve().parent.parent / "src/_data/nt/dict_lex_nt-lxx_greek-pt.json"
 
 
 @dataclass

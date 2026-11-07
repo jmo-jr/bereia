@@ -154,6 +154,7 @@ class TranslationTests(unittest.TestCase):
                 "OPENAI_API_KEY": "fake-test-key", "OPENAI_MODEL": "unused-model"}), \
                 patch.object(t, "call_api", side_effect=AssertionError("Rede proibida")) as api:
             options = ["--chapters", "14", "--output", tmp, "--resume"]
+            (Path(tmp) / "14").mkdir()  # Regressão: pasta existe sem manifesto.
             t.run(t.parser().parse_args(options))
             folder = Path(tmp) / "14"
             manifest = json.loads((folder / "manifest.json").read_text())
@@ -163,6 +164,19 @@ class TranslationTests(unittest.TestCase):
             self.assertTrue((folder / "alinhamento.json").is_file())
             t.run(t.parser().parse_args(options))
             api.assert_not_called()
+
+    def test_resume_preserves_populated_folder_without_manifest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            existing = folder / "14.txt"
+            existing.write_bytes(b"texto a preservar")
+            with self.assertRaisesRegex(ValueError, "não possui manifest.json"):
+                t.verify_resume(folder, "unused")
+            self.assertEqual(existing.read_bytes(), b"texto a preservar")
+
+    def test_resume_empty_folder_is_not_complete(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertFalse(t.verify_resume(Path(tmp), "unused"))
 
     def test_mechanical_draft_marks_ambiguous_and_missing_forms(self):
         dictionary = {"λόγος": {"pt": "palavra"}, "θεός": {"pt": "deus"},

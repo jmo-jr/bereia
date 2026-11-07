@@ -347,12 +347,22 @@ def mechanical_draft(chapter, dictionary, index, morphology):
 
 
 def verify_resume(folder, fingerprint):
-    manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+    if not folder.is_dir():
+        raise ValueError(f"{folder}: o destino existe e não é uma pasta.")
+    if not any(folder.iterdir()):
+        return False  # Pasta vazia ainda não é um capítulo concluído.
+    manifest_path = folder / "manifest.json"
+    if not manifest_path.is_file():
+        raise ValueError(f"{folder}: contém arquivos, mas não possui manifest.json. "
+                         "Nada foi sobrescrito; use outra pasta --output ou mova "
+                         "esta pasta para inspeção antes de tentar novamente.")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if manifest.get("fingerprint") != fingerprint or manifest.get("status") != "rascunho_validado":
         raise ValueError(f"{folder}: fontes/configuração diferentes ou execução incompleta.")
     for name, checksum in manifest["files"].items():
         if Path(name).name != name or digest((folder / name).read_bytes()) != checksum:
             raise ValueError(f"{folder}: artefato alterado; não será sobrescrito.")
+    return True
 
 
 def parser():
@@ -433,9 +443,13 @@ def run(args):
         if not args.prepare_only and folder.exists():
             if not args.resume:
                 raise ValueError(f"{folder} já existe; use --resume ou outra pasta.")
-            verify_resume(folder, fingerprint)
-            print(f"{args.book_name} {number}: rascunho intacto, pulado.", flush=True)
-            continue
+            if verify_resume(folder, fingerprint):
+                print(f"{args.book_name} {number}: rascunho intacto, pulado.", flush=True)
+                continue
+            # rmdir só remove uma pasta vazia; se outro processo gravou algo,
+            # falha em vez de apagar conteúdo ou permitir sobrescrita.
+            folder.rmdir()
+            print(f"{args.book_name} {number}: pasta vazia; iniciando geração.", flush=True)
         if args.prepare_only:
             prepared = output / "preparacao"
             prepared.mkdir(exist_ok=True)

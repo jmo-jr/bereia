@@ -128,7 +128,9 @@ reports/traducao/mateus/14/
 Respostas recusadas, incompletas ou estruturalmente inválidas são preservadas em
 `falhas/`, sem gerar um TXT aceito. Corrija a causa e execute novamente. Nenhum reparo
 linguístico ou nova chamada é feito silenciosamente. Em caso de interrupção durante
-a gravação, uma pasta incompleta pode permanecer; escolha outra pasta `--output`
+a gravação, uma pasta incompleta pode permanecer. Pastas vazias são reaproveitadas
+automaticamente com `--resume`. Se houver arquivos sem manifesto, eles são preservados;
+escolha outra pasta `--output`
 ou mova a pasta incompleta para inspeção antes de tentar de novo. Não use `--resume`
 para ignorar arquivos editados manualmente.
 
