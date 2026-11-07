@@ -7,21 +7,21 @@ O script recusa sobrescrever arquivos existentes; para atualizar, remova
 explicitamente o relatório anterior antes de executar novamente.
 
 - `formas_tm_ausentes`: formas literais de `tokens[].lemma` não encontradas
-  em `flexoes[].grego`, com todas as ocorrências (arquivo, capítulo,
-  versículo e posição do token).
+  em `flexoes[].grego`, com a contagem de ocorrências, sem arrays de referências.
 - `candidatos`: formas do léxico com as mesmas letras após remover marcas
-  Unicode e ignorar maiúsculas. A diferença é classificada como diacríticos,
-  representação Unicode canonicamente equivalente ou maiúsculas e/ou
-  diacríticos. Todas as entradas homógrafas são preservadas, com Strong e
+  Unicode e ignorar maiúsculas. A diferença é classificada como diacríticos.
+  Diferenças apenas de caixa ou representação Unicode são ignoradas. Todas as entradas homógrafas são preservadas, com Strong e
   índice da flexão (a partir de zero).
 - `presente_exatamente_no_tm`: informa se o próprio candidato também ocorre
-  literalmente no TM; isso impede confundir uma variante textual existente
+  no TM segundo o mesmo critério de igualdade; isso impede confundir uma variante textual existente
   com uma forma que precisaria ser substituída.
 - `formas_lexico_sem_ocorrencia_exata_tm`: inventário inverso, para avaliar
   quais formas não pertencem ao conjunto exato do TM.
 
-A igualdade exata não aplica normalização Unicode, conversão de caixa,
-remoção de pontuação nem espaços. Candidatos não são confirmação de
+A igualdade exata ignora maiúsculas e representação Unicode canonicamente
+equivalente (NFC na chave de comparação). Preserva diacríticos, pontuação e
+espaços, sem trim ou alteração das formas originais. As contagens de formas
+do TM e do léxico continuam contando as grafias originais distintas. Candidatos não são confirmação de
 identidade lexical: remover diacríticos também remove o iota subscrito e
 pode reunir palavras diferentes. Alterações de letras (inclusive sigma
 final) não entram como diferenças de diacríticos.

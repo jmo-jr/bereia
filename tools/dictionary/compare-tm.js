@@ -3,7 +3,8 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 
 const ROOT = path.resolve(__dirname, '../..');
-// Only used to find candidates. Exact membership never normalizes the source.
+// Comparison keys never change the original forms stored in the report.
+const exactKey = form => form.toLowerCase().normalize('NFC');
 const withoutMarks = form => form.normalize('NFD').replace(/\p{M}/gu, '');
 
 function collectTM(books) {
@@ -46,28 +47,30 @@ function compare(tm, lexicon) {
       lex.get(form).push({ strong, lema: entry.lema, flexao: index });
     });
   }
+  const lexKeys = new Set([...lex.keys()].map(exactKey));
+  const tmKeys = new Set([...tm.keys()].map(exactKey));
   const missing = [];
   for (const [form, references] of tm) {
-    if (lex.has(form)) continue;
+    if (lexKeys.has(exactKey(form))) continue;
     missing.push({
-      forma_tm: form, ocorrencias: references.length, referencias: references,
+      forma_tm: form, ocorrencias: references.length,
       candidatos: (candidates.get(withoutMarks(form).toLowerCase()) || []).map(candidate => ({
         forma_lexico: candidate,
-        diferenca: form.normalize('NFC') === candidate.normalize('NFC')
-          ? 'representacao_unicode'
-          : withoutMarks(form) === withoutMarks(candidate) ? 'diacriticos' : 'maiusculas_e_ou_diacriticos',
-        presente_exatamente_no_tm: tm.has(candidate),
+        diferenca: 'diacriticos',
+        presente_exatamente_no_tm: tmKeys.has(exactKey(candidate)),
         entradas: lex.get(candidate),
       })),
     });
   }
-  const unused = [...lex].filter(([form]) => !tm.has(form)).map(([form, entries]) => ({ forma_lexico: form, entradas: entries }));
+  const unused = [...lex].filter(([form]) => !tmKeys.has(exactKey(form))).map(([form, entries]) => ({ forma_lexico: form, entradas: entries }));
   return {
     criterios: {
-      exato: 'Igualdade literal, sensível a maiúsculas e à representação Unicode; sem trim ou normalização.',
+      exato: 'Igualdade literal, insensível a maiúsculas e à representação Unicode; sem trim ou normalização.',
+      representacao_unicode: 'Equivalência canônica NFC somente na chave de comparação; sem remoção de diacríticos ou alteração das formas originais.',
+      contagens: 'formas_tm e formas_lexico contam grafias originais distintas, inclusive variantes de caixa e representação Unicode.',
       candidatos: 'Mesmas letras após NFD, remoção de marcas Unicode e conversão para minúsculas. Não prova identidade lexical.',
       escopo: 'tokens[].lemma do TM versus flexoes[].grego; lemas de verbetes não são formas textuais por si só.',
-      revisao: 'Formas ausentes do TM podem pertencer à LXX. Nenhuma entrada é alterada ou excluída. flexao usa índice a partir de zero; token a partir de um.',
+      revisao: 'Formas ausentes do TM podem pertencer à LXX. Nenhuma entrada é alterada ou excluída. flexao usa índice a partir de zero.',
     },
     resumo: {
       tokens_tm: [...tm.values()].reduce((total, refs) => total + refs.length, 0),
