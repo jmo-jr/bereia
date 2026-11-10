@@ -24,6 +24,7 @@ module.exports = () => {
     const meta = BOOK_META[bookId] || {};
     const slug = meta.slug || bookId.toLowerCase();
     const name = meta.name || bookId;
+		const namelized = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const heading = meta.heading || name;
     const permalink = meta.permalink || `/interlinear/${slug}/`;
 
@@ -31,6 +32,7 @@ module.exports = () => {
       bookId,
       bookSlug: slug,
       bookName: name,
+			bookNameSlug: namelized,
       bookHeading: heading,
       chapter,
       permalink,
