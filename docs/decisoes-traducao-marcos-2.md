@@ -1,7 +1,7 @@
 # Marcos 2 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** `src/interlinear/nt/MC.json`, capítulo 2; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** `src/interlinear/nt/MC.json`, capítulo 2; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Consultados o padrão aprovado de Mateus 8 e as propostas de Mateus 9, 12 e Marcos 1 para consistência, sem lhes atribuir aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/2.txt`, com 28 versículos e quatro perícopes. Mantidos títulos e intervalos do JSON. Dicionário e demais capítulos preservados.
 

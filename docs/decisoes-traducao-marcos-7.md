@@ -1,7 +1,7 @@
 # Marcos 7 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 7 de `src/interlinear/nt/MC.json`; morfologia de `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 7 de `src/interlinear/nt/MC.json`; morfologia de `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta segundo `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Consistência com as propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/7.txt`, com 37 versículos e quatro perícopes. Dicionário e outros capítulos preservados. Sem concordâncias editoriais acrescentadas.
 - **Título ajustado:** “A cura de um surdo e gago” passou a “A cura de um surdo com dificuldade de fala”, correspondente à solução contextual para μογγιλάλος; preservado o intervalo do JSON.

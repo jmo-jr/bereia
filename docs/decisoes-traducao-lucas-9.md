@@ -1,7 +1,7 @@
 # Lucas 9 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 9 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, sua localização atual.
+- **Fontes:** capítulo 9 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, sua localização atual.
 - **Método:** tradução direta conforme o protocolo e o registro geral de decisões; consistência com os capítulos anteriores, sem harmonização dos relatos ou API de geração.
 - **Entrega:** `src/biblia/nt/lucas/9.txt`, com 62 versículos e doze perícopes. Títulos e intervalos do JSON preservados, sem concordâncias acrescentadas. Dicionário e demais capítulos preservados.
 

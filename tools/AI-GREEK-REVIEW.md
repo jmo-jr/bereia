@@ -765,7 +765,7 @@ Dar preferência a:
 
 1. texto grego utilizado pelo projeto;
 2. dados morfológicos do projeto;
-3. MorphGNT e recursos equivalentes;
+3. TMNT/with-parsing e recursos equivalentes;
 4. léxicos gregos confiáveis;
 5. outras fontes acadêmicas.
 

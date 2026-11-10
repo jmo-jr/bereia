@@ -1,7 +1,7 @@
 # Marcos 14 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 14 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 14 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Consistência com propostas anteriores, especialmente Mateus 26, sem aprovação automática ou harmonização dos relatos.
 - **Entrega:** `src/biblia/nt/marcos/14.txt`, com 72 versículos e dez perícopes. Títulos e intervalos do JSON preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 

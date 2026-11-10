@@ -1,7 +1,7 @@
 # Marcos 6 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 6 de `src/interlinear/nt/MC.json`; morfologia de `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 6 de `src/interlinear/nt/MC.json`; morfologia de `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Mantida a continuidade das propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/6.txt`, com 56 versículos e seis perícopes. Dicionário, outros capítulos e arquivos de publicação preservados.
 - **Títulos e concordâncias:** mantidos os títulos e intervalos do JSON. Consultado também `html-srcs/nt/marcos/06.html`; não foram encontradas referências paralelas nesses materiais. O responsável confirmou que não dispõe das concordâncias que imaginava presentes. Nenhuma referência editorial foi acrescentada como se viesse do TM.

@@ -1,7 +1,7 @@
 # Mateus 11 — decisões para revisão humana
 
 **Estado:** tradução proposta; aprovação editorial pendente.
-**Fontes:** `src/interlinear/nt/MT.json` e `tools/tm_with-parsing/MAT.csv`, capítulo 11; dicionário definitivo `src/_data/dict_flex_nt-lxx_greek-pt.json`.
+**Fontes:** `src/interlinear/nt/MT.json` e `tools/tmnt/with-parsing/MAT.csv`, capítulo 11; dicionário definitivo `src/_data/dict_flex_nt-lxx_greek-pt.json`.
 **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e os capítulos anteriores, especialmente o TXT aprovado de Mateus 8. A continuidade de produção de Mateus 9–10 não foi tomada como consolidação automática de suas escolhas lexicais.
 
 O dicionário e os demais capítulos não foram alterados. As escolhas abaixo são contextuais ou editoriais; não são propostas de correção do JSON. Nenhuma nova regra geral está consolidada.

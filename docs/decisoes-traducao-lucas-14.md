@@ -1,7 +1,7 @@
 # Lucas 14 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 14 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
+- **Fontes:** capítulo 14 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, com conferência lexical e morfológica e consistência com os capítulos anteriores. Sem rascunho mecânico ou API de geração.
 - **Entrega:** `src/biblia/nt/lucas/14.txt`, com 35 versículos e cinco perícopes. Títulos e intervalos preservados, sem concordâncias acrescentadas. Dicionário, fontes e outros capítulos preservados.
 

@@ -1,7 +1,7 @@
 # Marcos 11 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 11 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado. Para 11:26, conferido também `html-srcs/nt/marcos/11.html`.
+- **Fontes:** capítulo 11 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado. Para 11:26, conferido também `html-srcs/nt/marcos/11.html`.
 - **Método:** tradução direta segundo `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Continuidade das propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/11.txt`, com 33 versículos e quatro perícopes. Títulos preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos não foram alterados.
 

@@ -1,7 +1,7 @@
 # Mateus 13 — decisões para revisão humana
 
 **Estado:** tradução proposta; aprovação editorial pendente.
-**Fontes:** `src/interlinear/nt/MT.json` e `tools/tm_with-parsing/MAT.csv`, capítulo 13; `src/_data/dict_flex_nt-lxx_greek-pt.json`.
+**Fontes:** `src/interlinear/nt/MT.json` e `tools/tmnt/with-parsing/MAT.csv`, capítulo 13; `src/_data/dict_flex_nt-lxx_greek-pt.json`.
 **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e capítulos anteriores, especialmente o TXT aprovado de Mateus 8. As traduções propostas de Mateus 9–12 não foram tratadas como decisões gerais consolidadas.
 
 O JSON e os demais capítulos não foram alterados. As decisões abaixo permanecem sujeitas à revisão humana; são soluções contextuais ou alternativas editoriais, não uma revisão do dicionário.

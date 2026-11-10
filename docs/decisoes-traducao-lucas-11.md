@@ -1,7 +1,7 @@
 # Lucas 11 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 11 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
+- **Fontes:** capítulo 11 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
 - **Método:** tradução direta conforme o protocolo e o registro geral de decisões, com consulta lexical e consistência com os capítulos anteriores. Sem rascunho mecânico ou API de geração.
 - **Entrega:** `src/biblia/nt/lucas/11.txt`, com 54 versículos e sete perícopes. Títulos e intervalos preservados, sem concordâncias acrescentadas. Dicionário, fontes e demais capítulos preservados.
 

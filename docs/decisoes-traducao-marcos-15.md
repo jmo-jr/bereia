@@ -1,7 +1,7 @@
 # Marcos 15 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 15 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 15 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta segundo `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Referência de estilo: TXT aprovado de Mateus 8; continuidade das propostas anteriores, sem aprovação automática ou harmonização com Mateus 27.
 - **Entrega:** `src/biblia/nt/marcos/15.txt`, com 47 versículos e cinco perícopes. Títulos e intervalos do JSON preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 

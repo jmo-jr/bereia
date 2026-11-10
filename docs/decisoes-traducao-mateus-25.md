@@ -1,7 +1,7 @@
 # Mateus 25 — revisão do rascunho mecânico
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 25 de `src/interlinear/nt/MT.json`, morfologia de `tools/tm_with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
+- **Fontes:** capítulo 25 de `src/interlinear/nt/MT.json`, morfologia de `tools/tmnt/with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
 - **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e estilo do TXT aprovado de Mateus 8. A continuidade das propostas anteriores não constitui aprovação editorial.
 - **Preparação:** consultados o TXT mecânico, `alinhamento.json` e `decisoes.md` de `reports/traducao/mateus/25/`. Os arquivos dessa pasta foram preservados. Não houve chamada à API de geração.
 - **Entrega:** `src/biblia/nt/mateus/25.txt`, com 46 versículos e três perícopes. Dicionários e outros capítulos não foram alterados.

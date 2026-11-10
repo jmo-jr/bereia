@@ -8,7 +8,7 @@ from pathlib import Path
 from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parent.parent
-MORPHGNT_DIR = ROOT / "tools" / "morphgnt"
+MORPHGNT_DIR = ROOT / "tools" / "tmnt" / "with-parsing"
 
 DEFAULT_INPUT = ROOT / "tools" / "nt_greek-pt_dict.json"
 DEFAULT_OUTPUT = ROOT / "tools" / "nt_greek-pt_dict2.json"
@@ -127,7 +127,7 @@ def main():
         sys.exit(1)
 
     if not MORPHGNT_DIR.exists():
-        print(f"Pasta morphgnt não encontrada: {MORPHGNT_DIR}")
+        print(f"Pasta 'morphgnt' não encontrada: {MORPHGNT_DIR}")
         sys.exit(1)
 
     data = load_json(input_path)

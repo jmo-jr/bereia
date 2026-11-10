@@ -1,7 +1,7 @@
 # Lucas 5 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 5 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 5 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Continuidade das propostas anteriores, sem aprovação automática ou harmonização dos relatos.
 - **Entrega:** `src/biblia/nt/lucas/5.txt`, com 39 versículos e cinco perícopes. Títulos e intervalos do JSON preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 

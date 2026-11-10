@@ -1,7 +1,7 @@
 # Marcos 16 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 16 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 16 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta segundo `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Consistência com as propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/16.txt`, com 20 versículos e quatro perícopes. Títulos e intervalos do JSON preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 

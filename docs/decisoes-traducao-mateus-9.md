@@ -1,7 +1,7 @@
 # Mateus 9 — decisões para revisão humana
 
 **Estado:** tradução proposta; aprovação editorial pendente.
-**Fontes:** `src/interlinear/nt/MT.json`, capítulo 9; `tools/tm_with-parsing/MAT.csv`, capítulo 9; dicionário definitivo `src/_data/dict_flex_nt-lxx_greek-pt.json`.
+**Fontes:** `src/interlinear/nt/MT.json`, capítulo 9; `tools/tmnt/with-parsing/MAT.csv`, capítulo 9; dicionário definitivo `src/_data/dict_flex_nt-lxx_greek-pt.json`.
 **Referências editoriais:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md`, Mateus 1–7 existentes e `src/biblia/nt/mateus/8.txt`.
 
 Este registro complementa o registro geral sem consolidar novas regras antes da aprovação. O dicionário e os demais capítulos não foram alterados. As opções abaixo são alternativas de tradução ou soluções contextuais; não constituem uma revisão dos registros lexicais.

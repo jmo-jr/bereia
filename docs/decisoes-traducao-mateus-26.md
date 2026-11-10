@@ -1,7 +1,7 @@
 # Mateus 26 — revisão do rascunho mecânico
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 26 de `src/interlinear/nt/MT.json`, morfologia de `tools/tm_with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
+- **Fontes:** capítulo 26 de `src/interlinear/nt/MT.json`, morfologia de `tools/tmnt/with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
 - **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e estilo do TXT aprovado de Mateus 8. A continuidade de escolhas anteriores não as torna automaticamente aprovadas.
 - **Preparação:** consultados o TXT mecânico, `alinhamento.json` e `decisoes.md` de `reports/traducao/mateus/26/`. Os arquivos dessa pasta foram preservados. Não houve chamada à API de geração.
 - **Entrega:** `src/biblia/nt/mateus/26.txt`, com 75 versículos e dez perícopes. Dicionários e outros capítulos não foram alterados.

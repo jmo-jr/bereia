@@ -12,7 +12,7 @@ A tradução não é uma transcrição palavra por palavra do interlinear: é um
 
 ## 2. Fontes e precedência
 
-1. **Texto grego:** Texto Majoritário (TM) adotado no interlinear BEREIA, preservando suas variantes e escolhas textuais. O material em `src/interlinear/nt/` e `tools/tm_with-parsing/` auxilia a conferência das formas e da análise morfológica.
+1. **Texto grego:** Texto Majoritário (TM) adotado no interlinear BEREIA, preservando suas variantes e escolhas textuais. O material em `src/interlinear/nt/` e `tools/tmnt/with-parsing/` auxilia a conferência das formas e da análise morfológica.
 2. **Dicionário definitivo:** `src/_data/dict_flex_nt-lxx_greek-pt.json`. Consultar a tradução associada a cada forma, o lema, a morfologia e as demais informações disponíveis.
 3. **Referência editorial:** Mateus 1–8, com Mateus 8 como primeiro capítulo experimental aprovado. Os capítulos existentes servem como referência de estilo, não como autoridade superior ao texto grego.
 4. **Decisões editoriais posteriores:** correções expressamente aprovadas pelo responsável pelo projeto têm precedência sobre preferências anteriores, sem alterar o texto grego.

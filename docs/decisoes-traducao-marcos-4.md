@@ -1,7 +1,7 @@
 # Marcos 4 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 4 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 4 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Referência de estilo: TXT aprovado de Mateus 8; propostas de Mateus 13 e Marcos 1–3 consultadas para continuidade, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/4.txt`, com 41 versículos e nove perícopes. Preservados os títulos e intervalos do JSON. Dicionário e outros capítulos não foram alterados.
 

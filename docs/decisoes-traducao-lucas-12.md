@@ -1,7 +1,7 @@
 # Lucas 12 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 12 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
+- **Fontes:** capítulo 12 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
 - **Método:** tradução direta conforme o protocolo e o registro geral de decisões, com conferência lexical e morfológica. Sem rascunho mecânico ou API de geração.
 - **Entrega:** `src/biblia/nt/lucas/12.txt`, com 59 versículos e nove perícopes. Intervalos preservados, sem concordâncias acrescentadas. Dicionário, fontes e capítulos anteriores preservados.
 

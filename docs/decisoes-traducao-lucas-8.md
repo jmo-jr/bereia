@@ -1,7 +1,7 @@
 # Lucas 8 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 8 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 8 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Consistência com propostas anteriores, sem aprovação automática ou harmonização dos relatos.
 - **Entrega:** `src/biblia/nt/lucas/8.txt`, com 56 versículos e nove perícopes. Intervalos preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 - **Título ajustado:** “O endemoninhado geraseno” passou a “O endemoninhado gadareno”, conforme Γαδαρηνῶν em 26 e 37; o JSON não foi alterado.

@@ -1,7 +1,7 @@
 # Mateus 12 — decisões para revisão humana
 
 **Estado:** tradução proposta; aprovação editorial pendente.
-**Fontes:** `src/interlinear/nt/MT.json` e `tools/tm_with-parsing/MAT.csv`, capítulo 12; `src/_data/dict_flex_nt-lxx_greek-pt.json`.
+**Fontes:** `src/interlinear/nt/MT.json` e `tools/tmnt/with-parsing/MAT.csv`, capítulo 12; `src/_data/dict_flex_nt-lxx_greek-pt.json`.
 **Orientação editorial:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e os capítulos anteriores, especialmente o TXT aprovado de Mateus 8. A continuidade de produção não foi tomada como aprovação automática de Mateus 9–11.
 
 O dicionário e os demais capítulos não foram alterados. Este registro contém escolhas contextuais e alternativas editoriais, sem consolidar equivalências gerais nem propor correções no JSON. Todas as decisões têm **aprovação editorial pendente**.

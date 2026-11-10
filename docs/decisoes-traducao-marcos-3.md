@@ -1,7 +1,7 @@
 # Marcos 3 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** `src/interlinear/nt/MC.json`, capítulo 3; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** `src/interlinear/nt/MC.json`, capítulo 3; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta segundo `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Mantida a continuidade lexical com Marcos 1–2 e as propostas de Mateus, sem aprovação automática dessas escolhas.
 - **Entrega:** `src/biblia/nt/marcos/3.txt`, com 35 versículos e cinco perícopes. Preservados os títulos e intervalos do JSON, inclusive a ida para casa em 19. Dicionário e outros capítulos não foram alterados.
 

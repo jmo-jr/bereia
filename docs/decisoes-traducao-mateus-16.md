@@ -2,7 +2,7 @@
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
 - **Material de partida:** `reports/traducao/mateus/16/16.txt`, `alinhamento.json` e `decisoes.md`. Todos os arquivos da pasta foram preservados.
-- **Texto-base:** capítulo 16 de `src/interlinear/nt/MT.json`, conferido com `tools/tm_with-parsing/MAT.csv`.
+- **Texto-base:** capítulo 16 de `src/interlinear/nt/MT.json`, conferido com `tools/tmnt/with-parsing/MAT.csv`.
 - **Dicionário:** `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado, sem usar cópias históricas.
 - **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e estilo do TXT aprovado de Mateus 8. A continuidade com as propostas anteriores não equivale a aprovação automática de suas escolhas.
 - **Entrega:** `src/biblia/nt/mateus/16.txt`. Não foram alterados dicionários, capítulos anteriores ou rascunhos mecânicos. Não houve chamada à API de geração.

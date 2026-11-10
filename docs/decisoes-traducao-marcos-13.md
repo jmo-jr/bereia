@@ -1,7 +1,7 @@
 # Marcos 13 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 13 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 13 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Consistência com propostas anteriores, especialmente Mateus 24, sem aprovação automática ou harmonização das diferenças.
 - **Entrega:** `src/biblia/nt/marcos/13.txt`, com 37 versículos e cinco perícopes. Dicionário, JSON e outros capítulos preservados. Sem concordâncias editoriais acrescentadas.
 

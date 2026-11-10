@@ -1,7 +1,7 @@
 # Marcos 1 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 1 de `src/interlinear/nt/MC.json`, morfologia de `tools/tm_with-parsing/MAR.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
+- **Fontes:** capítulo 1 de `src/interlinear/nt/MC.json`, morfologia de `tools/tmnt/with-parsing/MAR.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
 - **Método:** tradução direta, sem gerar ou utilizar rascunho mecânico; observados `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e o estilo do TXT aprovado de Mateus 8. As propostas posteriores de Mateus auxiliam a consistência, sem constituir aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/1.txt`, com 45 versículos e nove perícopes. Dicionário, capítulos de Mateus e arquivos de publicação preservados. Sem chamada à API de geração.
 

@@ -1,7 +1,7 @@
 # Marcos 10 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 10 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 10 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Mantida a continuidade com as propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/10.txt`, com 52 versículos e seis perícopes. Mantidos os títulos e intervalos do JSON, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 

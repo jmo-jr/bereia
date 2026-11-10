@@ -2,7 +2,7 @@
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
 - **Material de partida:** `reports/traducao/mateus/23/23.txt`, `alinhamento.json` e `decisoes.md`; todos os arquivos dessa pasta foram preservados.
-- **Texto-base:** capítulo 23 de `src/interlinear/nt/MT.json`, conferido com `tools/tm_with-parsing/MAT.csv`.
+- **Texto-base:** capítulo 23 de `src/interlinear/nt/MT.json`, conferido com `tools/tmnt/with-parsing/MAT.csv`.
 - **Dicionário:** `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado, sem uso de cópias históricas.
 - **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e estilo do TXT aprovado de Mateus 8. A continuidade de escolhas propostas não é aprovação editorial automática.
 - **Entrega:** `src/biblia/nt/mateus/23.txt`. Não foram alterados dicionários, capítulos anteriores ou rascunhos mecânicos. Não houve chamada à API de geração.

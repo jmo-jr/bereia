@@ -2,7 +2,7 @@
 """
 Preenche a chave "abrev_morf" do arquivo destino (nt-missing-lemmas-FINAL.json)
 com o dado morfológico (conteúdo entre colchetes, ex: N-NSM) encontrado nos
-arquivos CSV de origem em tools/tm_with-parsing, cruzando pelo termo grego
+arquivos CSV de origem em tools/tmnt/with-parsing, cruzando pelo termo grego
 normalizado (sem acentos/diacríticos, minúsculo, sigma final normalizado).
 
 Apenas entradas com "abrev_morf" VAZIO (ausente, None ou string vazia) são
@@ -23,7 +23,7 @@ from pathlib import Path
 from collections import Counter, defaultdict
 
 BASE_DIR = Path(__file__).resolve().parent
-SRC_DIR = BASE_DIR / "tm_with-parsing"
+SRC_DIR = BASE_DIR / "tmnt/with-parsing"
 DST_FILE = BASE_DIR / "nt-missing-lemmas-FINAL.json"
 OUT_FILE = BASE_DIR / "nt-missing-lemmas-FINAL.json"
 BACKUP_FILE = BASE_DIR / "nt-missing-lemmas-FINAL.backup.json"

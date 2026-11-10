@@ -1,7 +1,7 @@
 # Lucas 6 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 6 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 6 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Consistência com propostas anteriores, sem aprovação automática ou harmonização com Mateus.
 - **Entrega:** `src/biblia/nt/lucas/6.txt`, com 49 versículos e oito perícopes. Intervalos preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 - **Título ajustado:** “A casa sobre a rocha e sobre a areia” passou a “A casa sobre a rocha e sobre a terra sem fundamento”. Lucas 6:49 traz γῆ, “terra”, e χωρὶς θεμελίου, “sem fundamento”; areia não é nomeada. O JSON não foi alterado.

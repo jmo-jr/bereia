@@ -1,7 +1,7 @@
 # Mateus 27 — revisão do rascunho mecânico
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 27 de `src/interlinear/nt/MT.json`, morfologia de `tools/tm_with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
+- **Fontes:** capítulo 27 de `src/interlinear/nt/MT.json`, morfologia de `tools/tmnt/with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
 - **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e estilo do TXT aprovado de Mateus 8. Repetir uma proposta anterior não equivale à sua aprovação editorial.
 - **Preparação:** consultados o TXT mecânico, `alinhamento.json` e `decisoes.md` de `reports/traducao/mateus/27/`; os arquivos dessa pasta foram preservados. Não houve chamada à API de geração.
 - **Entrega:** `src/biblia/nt/mateus/27.txt`, com 66 versículos e nove perícopes. Dicionários e outros capítulos não foram alterados.

@@ -1,7 +1,7 @@
 # Mateus 10 — decisões para revisão humana
 
 **Estado:** tradução proposta; aprovação editorial pendente.
-**Fontes:** `src/interlinear/nt/MT.json` e `tools/tm_with-parsing/MAT.csv`, capítulo 10; `src/_data/dict_flex_nt-lxx_greek-pt.json`.
+**Fontes:** `src/interlinear/nt/MT.json` e `tools/tmnt/with-parsing/MAT.csv`, capítulo 10; `src/_data/dict_flex_nt-lxx_greek-pt.json`.
 **Orientação editorial:** `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`; comparação com os capítulos anteriores, especialmente o TXT aprovado de Mateus 8. Mateus 9 foi consultado como tradução proposta, sem pressupor aprovação editorial.
 
 Este registro separa escolhas contextuais, alternativas aceitáveis e pendências de revisão. Nenhuma nova regra geral foi consolidada. O dicionário e os demais capítulos não foram alterados.

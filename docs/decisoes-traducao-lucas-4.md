@@ -1,7 +1,7 @@
 # Lucas 4 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 4 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 4 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Continuidade das propostas anteriores, sem aprovação automática ou harmonização dos relatos.
 - **Entrega:** `src/biblia/nt/lucas/4.txt`, com 44 versículos e cinco perícopes. Intervalos preservados, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 - **Título ajustado:** “Jesus prega pelas cidades da Judeia” passou a “Jesus prega pelas cidades da Galileia”: 4:44 traz Γαλιλαίας, confirmado no CSV. O JSON não foi alterado.

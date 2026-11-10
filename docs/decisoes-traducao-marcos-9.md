@@ -1,7 +1,7 @@
 # Marcos 9 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 9 de `src/interlinear/nt/MC.json`; `tools/tm_with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 9 de `src/interlinear/nt/MC.json`; `tools/tmnt/with-parsing/MAR.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta segundo `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Continuidade com as propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/marcos/9.txt`, com 50 versículos e seis perícopes. Dicionário e outros capítulos preservados. Sem concordâncias editoriais acrescentadas.
 - **Título ajustado:** “Quem não é contra nós é por nós” passou a “Quem não é contra vocês é por vocês”, pois 9:40 traz ὑμῶν nas duas posições, confirmado no CSV. Mantidos os demais títulos e todos os intervalos, inclusive 1 na primeira perícope e 9–13 na segunda.

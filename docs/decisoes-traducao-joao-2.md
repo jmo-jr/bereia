@@ -1,7 +1,7 @@
 # João 2 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 2 de `src/interlinear/nt/JO.json`; `tools/tm_with-parsing/JOH.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
+- **Fontes:** capítulo 2 de `src/interlinear/nt/JO.json`; `tools/tmnt/with-parsing/JOH.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
 - **Método:** tradução direta conforme o protocolo e o registro geral de decisões, com conferência lexical e morfológica e consistência com João 1 e os Evangelhos anteriores. Sem rascunho mecânico ou API de geração.
 - **Entrega:** `src/biblia/nt/joao/2.txt`, com 25 versículos e três perícopes. Títulos e intervalos preservados, sem concordâncias acrescentadas. Dicionário, fontes e outros capítulos preservados.
 

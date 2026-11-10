@@ -1,7 +1,7 @@
 # Lucas 1 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 1 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 1 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Referência de estilo: TXT aprovado de Mateus 8; continuidade das propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/lucas/1.txt`, com 80 versículos e oito perícopes. Mantidos títulos e intervalos do JSON, sem concordâncias editoriais acrescentadas. “Magnificat” e “Benedictus” são subtítulos presentes na fonte, não referências paralelas. Dicionário e outros capítulos preservados.
 

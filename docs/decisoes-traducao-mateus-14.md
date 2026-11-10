@@ -2,7 +2,7 @@
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
 - **Material de partida:** `reports/traducao/mateus/14/14.txt`, `alinhamento.json` e `decisoes.md`; preservados integralmente, assim como os demais arquivos da pasta.
-- **Texto-base:** capítulo 14 de `src/interlinear/nt/MT.json`, conferido com `tools/tm_with-parsing/MAT.csv`.
+- **Texto-base:** capítulo 14 de `src/interlinear/nt/MT.json`, conferido com `tools/tmnt/with-parsing/MAT.csv`.
 - **Dicionário consultado:** `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado. O caminho antigo continua citado no protocolo; nenhuma cópia histórica foi usada para substituí-lo.
 - **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e estilo do TXT aprovado de Mateus 8. As propostas de Mateus 9–13 não foram promovidas automaticamente a decisões consolidadas.
 - **Entrega:** `src/biblia/nt/mateus/14.txt`. O JSON e os demais capítulos não foram alterados. Não houve chamada à API de geração.

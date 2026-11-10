@@ -1,7 +1,7 @@
 # Lucas 10 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 10 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
+- **Fontes:** capítulo 10 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, com conferência lexical e comparação de estilo com os capítulos anteriores. Sem rascunho mecânico ou API de geração.
 - **Entrega:** `src/biblia/nt/lucas/10.txt`, com 42 versículos e cinco perícopes. Títulos e intervalos preservados, sem concordâncias acrescentadas. O título fonte usa “Corazim”; o corpo segue “Corazin”, forma do dicionário e de Mateus 11. Nenhum JSON ou outro capítulo foi alterado.
 

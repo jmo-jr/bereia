@@ -1,7 +1,7 @@
 # Lucas 3 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 3 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 3 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Continuidade das propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/lucas/3.txt`, com 38 versículos e três perícopes. Intervalos preservados; “O batismo de Jesus” passou editorialmente a “A imersão de Jesus”, conforme o vocabulário adotado. Sem concordâncias acrescentadas. Dicionário e outros capítulos preservados.
 

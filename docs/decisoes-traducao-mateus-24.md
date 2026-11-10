@@ -1,7 +1,7 @@
 # Mateus 24 — revisão do rascunho mecânico
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 24 de `src/interlinear/nt/MT.json`, morfologia de `tools/tm_with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
+- **Fontes:** capítulo 24 de `src/interlinear/nt/MT.json`, morfologia de `tools/tmnt/with-parsing/MAT.csv` e dicionário definitivo em sua localização atual, `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`.
 - **Orientação:** `docs/protocolo-traducao.md`, `docs/decisoes-traducao.md` e estilo do TXT aprovado de Mateus 8. A continuidade de propostas anteriores não equivale à aprovação das escolhas.
 - **Preparação:** consultados o TXT mecânico, o alinhamento e as pendências de `reports/traducao/mateus/24/`; esses arquivos foram preservados. Não houve chamada à API de geração.
 - **Entrega:** `src/biblia/nt/mateus/24.txt`, com 51 versículos e sete perícopes. Dicionário e outros capítulos não foram alterados.

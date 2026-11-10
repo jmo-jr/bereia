@@ -369,7 +369,7 @@ def parser():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--chapters", required=True, help="14-28, 14,16-18 ou all")
     p.add_argument("--source", type=Path, default=ROOT / "src/interlinear/nt/MT.json")
-    p.add_argument("--morphology", type=Path, default=ROOT / "tools/tm_with-parsing/MAT.csv")
+    p.add_argument("--morphology", type=Path, default=ROOT / "tools/tmnt/with-parsing/MAT.csv")
     p.add_argument("--dictionary", type=Path,
                    help="Dicionário flexionado; detecta a localização atual ou a antiga")
     p.add_argument("--book-name", default="Mateus")

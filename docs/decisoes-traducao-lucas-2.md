@@ -1,7 +1,7 @@
 # Lucas 2 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 2 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
+- **Fontes:** capítulo 2 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual do derivado.
 - **Método:** tradução direta conforme `docs/protocolo-traducao.md` e `docs/decisoes-traducao.md`, sem rascunho mecânico ou API de geração. Mantida a continuidade com as propostas anteriores, sem aprovação automática.
 - **Entrega:** `src/biblia/nt/lucas/2.txt`, com 52 versículos e seis perícopes. Mantidos títulos e intervalos do JSON, inclusive 39–40 na última perícope, sem concordâncias editoriais acrescentadas. Dicionário e outros capítulos preservados.
 

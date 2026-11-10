@@ -1,7 +1,7 @@
 # Lucas 17 — tradução direta
 
 - **Estado:** tradução contínua proposta; aprovação editorial pendente.
-- **Fontes:** capítulo 17 de `src/interlinear/nt/LC.json`; `tools/tm_with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
+- **Fontes:** capítulo 17 de `src/interlinear/nt/LC.json`; `tools/tmnt/with-parsing/LUK.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`, localização atual.
 - **Método:** tradução direta conforme o protocolo e o registro geral de decisões, com conferência lexical e morfológica. Sem rascunho mecânico ou API de geração.
 - **Entrega:** `src/biblia/nt/lucas/17.txt`, com 36 versículos traduzidos e uma indicação editorial na posição 36, em quatro perícopes. Dicionário, fontes e outros capítulos preservados. Sem concordâncias acrescentadas.
 
