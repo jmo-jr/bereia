@@ -247,7 +247,7 @@ def render_chapter(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("input", type=Path, help="Arquivo TXT de entrada")
+    parser.add_argument("input", type=Path, help="Arquivo TXT ou pasta de entrada")
     parser.add_argument(
         "--book-name",
         required=True,
@@ -263,6 +263,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--chapter",
         type=int,
         help="Capitulo padrao quando os versiculos nao incluem capitulo:",
+    )
+    parser.add_argument(
+        "--batch",
+        action="store_true",
+        help="Varre recursivamente os TXT da pasta; cada nome de arquivo deve ser o numero do capitulo",
     )
     parser.add_argument(
         "--destination",
@@ -283,27 +288,64 @@ def main() -> int:
     if args.chapter is not None and args.chapter < 1:
         raise ValueError("--chapter deve ser maior que zero.")
 
+    if args.batch:
+        if not args.input.is_dir():
+            raise ValueError("Com --batch, informe uma pasta de entrada.")
+        if args.chapter is not None:
+            raise ValueError("--chapter nao pode ser usado com --batch.")
+        input_files = sorted(
+            path
+            for path in args.input.rglob("*")
+            if path.is_file() and path.suffix.lower() == ".txt"
+        )
+        if not input_files:
+            raise ValueError(f"Nenhum arquivo TXT encontrado em {args.input}.")
+    else:
+        if not args.input.is_file():
+            raise ValueError(
+                "Informe um arquivo TXT; para processar uma pasta, use --batch."
+            )
+        input_files = [args.input]
+
     book_slug = slugify(args.book_name)
     book_abbrev = (args.book_abbrev or book_slug).lower()
     if not re.fullmatch(r"[a-z0-9]+", book_abbrev, flags=re.IGNORECASE):
         raise ValueError("--book-abbrev deve conter apenas letras e numeros.")
 
-    chapters = parse_source(args.input.read_text(encoding="utf-8"), args.chapter)
     book_destination = args.destination / book_slug
-    rendered_chapters = [
-        (
-            chapter,
-            book_destination / f"{chapter}.liquid",
-            render_chapter(
-                args.book_name,
-                book_abbrev,
-                book_slug,
-                chapter,
-                pericopes,
-            ),
+    rendered_chapters = []
+    for input_path in input_files:
+        default_chapter = args.chapter
+        if args.batch:
+            if not input_path.stem.isdigit() or int(input_path.stem) < 1:
+                raise ValueError(
+                    f"O nome do arquivo TXT deve ser o numero do capitulo: {input_path}"
+                )
+            default_chapter = int(input_path.stem)
+
+        chapters = parse_source(
+            input_path.read_text(encoding="utf-8"),
+            default_chapter,
         )
-        for chapter, pericopes in chapters.items()
-    ]
+        for chapter, pericopes in chapters.items():
+            output_path = book_destination / f"{chapter}.liquid"
+            rendered_chapters.append(
+                (
+                    chapter,
+                    output_path,
+                    render_chapter(
+                        args.book_name,
+                        book_abbrev,
+                        book_slug,
+                        chapter,
+                        pericopes,
+                    ),
+                )
+            )
+
+    output_paths = [output_path for _, output_path, _ in rendered_chapters]
+    if len(output_paths) != len(set(output_paths)):
+        raise ValueError("Mais de um TXT gera o mesmo capitulo Liquid.")
 
     existing_targets = [
         output_path

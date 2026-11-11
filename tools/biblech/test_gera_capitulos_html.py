@@ -4,13 +4,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.gera_capitulos_html import (
+from tools.biblech.gera_capitulos_html import (
     convert_redletter,
     parse_source,
     render_chapter,
 )
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 
 
 class ParseSourceTests(unittest.TestCase):
@@ -117,7 +117,7 @@ class CommandLineTests(unittest.TestCase):
             )
             command = [
                 sys.executable,
-                str(REPOSITORY_ROOT / "tools" / "gera_capitulos_html.py"),
+                str(REPOSITORY_ROOT / "tools" / "biblech" / "gera_capitulos_html.py"),
                 str(input_path),
                 "--book-name",
                 "Mateus",
@@ -151,6 +151,82 @@ class CommandLineTests(unittest.TestCase):
             )
             self.assertNotEqual(second_run.returncode, 0)
             self.assertIn("Arquivos Liquid ja existem", second_run.stderr)
+
+    def test_batch_generates_liquid_for_all_chapter_txt_files(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            temporary_path = Path(temporary_directory)
+            input_directory = temporary_path / "chapters"
+            input_directory.mkdir()
+            (input_directory / "1.txt").write_text(
+                "Primeira perícope\n1 Texto do primeiro capítulo.",
+                encoding="utf-8",
+            )
+            nested_directory = input_directory / "revisado"
+            nested_directory.mkdir()
+            (nested_directory / "2.TXT").write_text(
+                "Segunda perícope\n1 Texto do segundo capítulo.",
+                encoding="utf-8",
+            )
+            destination = temporary_path / "output"
+            command = [
+                sys.executable,
+                str(REPOSITORY_ROOT / "tools" / "biblech" / "gera_capitulos_html.py"),
+                str(input_directory),
+                "--batch",
+                "--book-name",
+                "Mateus",
+                "--book-abbrev",
+                "mt",
+                "--destination",
+                str(destination),
+            ]
+
+            result = subprocess.run(
+                command,
+                cwd=REPOSITORY_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            first_output = destination / "mateus" / "1.liquid"
+            second_output = destination / "mateus" / "2.liquid"
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertTrue(first_output.is_file())
+            self.assertTrue(second_output.is_file())
+            self.assertIn("bookChapter: 1", first_output.read_text(encoding="utf-8"))
+            self.assertIn("bookChapter: 2", second_output.read_text(encoding="utf-8"))
+
+    def test_batch_requires_chapter_numbers_in_txt_filenames(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            temporary_path = Path(temporary_directory)
+            input_directory = temporary_path / "chapters"
+            input_directory.mkdir()
+            (input_directory / "chapter-one.txt").write_text(
+                "Perícope\n1 Texto.",
+                encoding="utf-8",
+            )
+            command = [
+                sys.executable,
+                str(REPOSITORY_ROOT / "tools" / "biblech" / "gera_capitulos_html.py"),
+                str(input_directory),
+                "--batch",
+                "--book-name",
+                "Mateus",
+                "--destination",
+                str(temporary_path / "output"),
+            ]
+
+            result = subprocess.run(
+                command,
+                cwd=REPOSITORY_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("nome do arquivo TXT deve ser o numero", result.stderr)
 
 
 if __name__ == "__main__":
