@@ -14,8 +14,8 @@ Formato:
 
 Uma linha em branco inicia outro parágrafo; ``--`` inicia outra perícope.
 Versículos podem usar ``capítulo:versículo`` ou apenas ``versículo`` quando
-``--chapter`` foi informado. O marcador ``<rl>...</rl>`` vira uma marcação
-``<span class="redletter">...</span>`` no conteúdo.
+``--chapter`` foi informado. 
+O marcador ``<rl>...</rl>`` vira uma marcação ``<span class="redletter">...</span>`` no conteúdo.
 """
 
 from __future__ import annotations
