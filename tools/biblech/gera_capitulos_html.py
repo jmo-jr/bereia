@@ -15,12 +15,16 @@ Formato:
 Uma linha em branco inicia outro parágrafo; ``--`` inicia outra perícope.
 Versículos podem usar ``capítulo:versículo`` ou apenas ``versículo`` quando
 ``--chapter`` foi informado. 
-O marcador ``<rl>...</rl>`` vira uma marcação ``<span class="redletter">...</span>`` no conteúdo.
+O marcador ``<rl>...</rl>`` vira uma marcação ``<span class="redletter">...</span>``;
+``<ref>[referência]</ref>`` vira uma nota superscrita e outros ``<ref>...</ref>``
+viram tooltips, podendo informar o texto do tooltip em ``<ref "comentário">``.
+As marcações ``<cite>...</cite>`` são preservadas.
 """
 
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import unicodedata
@@ -31,6 +35,8 @@ from pathlib import Path
 VERSE_RE = re.compile(r"^\s*(?:(\d+)\s*:\s*)?(\d+)\s+(.+?)\s*$")
 PERICOPE_CONCORDANCE_RE = re.compile(r"^(.*?)\s*\(([^()]*)\)\s*$")
 REDLETTER_TAG_RE = re.compile(r"</?rl>", re.IGNORECASE)
+REF_TAG_RE = re.compile(r'<ref(?:\s+"([^"]*)")?>|</ref>')
+REF_BLOCK_RE = re.compile(r'<ref(?:\s+"([^"]*)")?>(.*?)</ref>', re.DOTALL)
 SLUG_SEPARATOR_RE = re.compile(r"[^a-z0-9]+")
 
 
@@ -194,6 +200,39 @@ def convert_redletter(text: str, line_description: str) -> str:
     )
 
 
+def convert_reference(text: str, line_description: str) -> str:
+    depth = 0
+    for match in REF_TAG_RE.finditer(text):
+        if match.group().startswith("</"):
+            depth -= 1
+            if depth < 0:
+                raise ValueError(
+                    f"{line_description}: marcador </ref> sem <ref> correspondente."
+                )
+        else:
+            depth += 1
+            if depth > 1:
+                raise ValueError(
+                    f"{line_description}: marcadores <ref> nao podem ser aninhados."
+                )
+
+    if depth:
+        raise ValueError(f"{line_description}: marcador <ref> sem fechamento </ref>.")
+
+    def replace_reference(match: re.Match[str]) -> str:
+        comment, content = match.groups()
+        if content.startswith("[") and content.endswith("]"):
+            reference = html.escape(content[1:-1].strip(), quote=True)
+            return f'<sup class="ref tooltip" title="{reference}">[*]</sup>'
+        tooltip_content = html.escape(comment or "", quote=True)
+        return (
+            f'<span class="tooltip" data-tooltip-content="{tooltip_content}">'
+            f"{content}</span>"
+        )
+
+    return REF_BLOCK_RE.sub(replace_reference, text)
+
+
 def liquid_string(value: str) -> str:
     return json.dumps(value, ensure_ascii=False)
 
@@ -216,6 +255,10 @@ def render_chapter(
             for verse in paragraph:
                 text = convert_redletter(
                     verse.text,
+                    f"Capitulo {chapter}, versiculo {verse.number}",
+                )
+                text = convert_reference(
+                    text,
                     f"Capitulo {chapter}, versiculo {verse.number}",
                 )
                 lines.append(

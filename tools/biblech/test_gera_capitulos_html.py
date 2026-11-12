@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from tools.biblech.gera_capitulos_html import (
+    convert_reference,
     convert_redletter,
     parse_source,
     render_chapter,
@@ -78,9 +79,42 @@ class RenderingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "sem <rl> correspondente"):
             convert_redletter("Texto</rl>", "versículo 1")
 
+    def test_reference_markers_render_as_scripture_note_or_tooltip(self):
+        text = (
+            '<cite>Texto citado</cite> <ref>[Is 40:3]</ref> '
+            '<ref>leproso</ref> <ref "Algum comentário">conteúdo explicado</ref>'
+        )
+
+        self.assertEqual(
+            convert_reference(text, "versículo 1"),
+            '<cite>Texto citado</cite> '
+            '<sup class="ref tooltip" title="Is 40:3">[*]</sup> '
+            '<span class="tooltip" data-tooltip-content="">leproso</span> '
+            '<span class="tooltip" data-tooltip-content="Algum comentário">'
+            "conteúdo explicado</span>",
+        )
+
+    def test_reference_note_escapes_title_attribute_and_rejects_unbalanced_tags(self):
+        self.assertEqual(
+            convert_reference('<ref>[A "B"]</ref>', "versículo 1"),
+            '<sup class="ref tooltip" title="A &quot;B&quot;">[*]</sup>',
+        )
+        self.assertEqual(
+            convert_reference(
+                '<ref "A & B">texto</ref>',
+                "versículo 1",
+            ),
+            '<span class="tooltip" data-tooltip-content="A &amp; B">texto</span>',
+        )
+        with self.assertRaisesRegex(ValueError, "sem fechamento"):
+            convert_reference("<ref>texto", "versículo 1")
+        with self.assertRaisesRegex(ValueError, "sem <ref> correspondente"):
+            convert_reference("texto</ref>", "versículo 1")
+
     def test_renders_flat_liquid_chapter_with_shortcodes(self):
         pericope = parse_source(
-            "A perícope (Lc 1:2)\n1 <rl>Texto</rl>.\n\n2 Segundo parágrafo.",
+            'A perícope (Lc 1:2)\n1 <rl>Texto</rl> <cite>citado</cite> '
+            "<ref>[Is 40:3]</ref>.\n\n2 Segundo parágrafo.",
             default_chapter=3,
         )[3]
 
@@ -91,7 +125,8 @@ class RenderingTests(unittest.TestCase):
         self.assertIn("{% pericope \"A perícope\", \"Lc 1:2\" %}", output)
         self.assertIn(
             '{% verse bookAbbrev bookChapter 1 %}'
-            '<span class="redletter">Texto</span>.{% endverse %}',
+            '<span class="redletter">Texto</span> <cite>citado</cite> '
+            '<sup class="ref tooltip" title="Is 40:3">[*]</sup>.{% endverse %}',
             output,
         )
         self.assertIn(
