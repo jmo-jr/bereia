@@ -2,7 +2,7 @@
 {% if entry.lxx %}
 <div id="movebox2" class="page-header">
   {% if entry.previousUrl %}<a href="{{ entry.previousUrl | url }}" title="Capítulo anterior">◄</a>{% endif %}
-  <div class="page-header_title"><h3>{{ entry.bookName }} {{ chapter.number }}</h3></div>
+  <div class="page-header_title"><h3>{{ entry.bookHeading | default: entry.bookName | escape }} {{ chapter.number }}</h3></div>
   {% if entry.nextUrl %}<a href="{{ entry.nextUrl | url }}" title="Próximo capítulo">►</a>{% endif %}
 </div>
 {% else %}
@@ -37,11 +37,13 @@
 												title="{{ token.verbete | escape }}"
 												data-strong="G{{ token.strongs }}"
 											>{{ token.strongs }}</a>
+                                            {% else %}
+                                            <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             {% endif %}
-											<span class="translit">{{ token.transliteracao }}</span>
+											<span class="translit">{{ token.transliteracao | escape }}</span>
 											<span class="greek tooltip" title="{{ token.traducao | escape }} | Ocorrências: {{ token.ocorrencias }}">{{ token.lemma | escape }}</span>
-											<span class="translate">{{ token.pt }}</span>
-											<small class="refs tooltip" title="{{ token.morfologia }}">{{ token.abrev_morf }}</small>
+											<span class="translate">{{ token.pt | escape }}</span>
+											<small class="refs tooltip" title="{{ token.morfologia | escape }}">{{ token.abrev_morf }}</small>
 										</span>
 									{% endfor %}
 								</div>
@@ -58,7 +60,7 @@
 						<div class="interlinear">
 							{% for token in verse.tokens %}
 								<span class="token">
-									<a class="strongs" href="https://biblehub.com/greek/{{ token.strongs | strip }}.htm" data-strong="G{{ token.strongs }}" title="{{ token.verbete | escape }}:">{{ token.strongs }}</a>
+									{% if token.strongs != blank %}<a class="strongs" href="https://biblehub.com/greek/{{ token.strongs | strip }}.htm" data-strong="G{{ token.strongs }}" title="{{ token.verbete | escape }}:">{{ token.strongs }}</a>{% else %}<a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>{% endif %}
 									<span class="translit" title="{{ token.ocorrencia }}">{{ token.transliteracao }}</span>
 									<span class="greek">{{ token.lemma | escape }}</span>
 									<span class="translate">{{ token.traducao | escape }}</span>
@@ -69,5 +71,14 @@
 					</li>
 				{% endfor %}
 			</ul>
+		{% endif %}
+
+		{% if entry.lxx %}
+        <p class="source-credit"><small>Fontes lexicais complementares:
+          <a href="https://github.com/STEPBible/STEPBible-Data/tree/master/Lexicons">TBESG — Tyndale House e STEPBible.org</a>
+          (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>),
+          <a href="https://www.septuaginta.online">Septuaginta Online</a> e BEREIA.
+          Traduções e flexões complementares adaptadas para a versão beta.
+        </small></p>
 		{% endif %}
 	</div>
