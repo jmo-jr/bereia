@@ -20,64 +20,6 @@ automaticamente pelo Eleventy. Para gerar e verificar manualmente, use
 `npm run dict:generate`, `npm run dict:check` e `npm test`.
 Consulte [a arquitetura e o fluxo de atualização](docs/arquitetura-dicionario.md).
 
-## Regex para pesquisa de expressões:
-
-Caracteres especiais devem ser acrescentados após a vírgula
-
-`\b[\w\s\[\],áàãéêíóõôúç()]+` (\b = limite de palavra; \w = letra; \s = espaço; \ = escapa carac. espec.; + = um ou mais)
-
-Substituir os links das definições em grego do Bibleapps.com:
-
-Find: `/greek/(\d{1,4})\.htm`
-
-Quebras de linha: `(\r?\n)+`
-
-Números:  (\d) -> \n$1
-
-Replace: `https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp`
-
-Data TR/LXX: `https://www.blueletterbible.org/lang/lexicon/inflections.cfm?strongs=G{numero_strong}&ot={TR/LXX}&word={grego_inflex}`
-
-## Auxílios para tradução:
-
-Glifos: ē, ō
-
-Vozes e Tempos Verbais:
-- Nominativo = A pesoa ...
-- Acusativo = ... a coisa
-- Dativo = (indireto) a, para; (instrumento) com, por meio de; (lugar) em, sobre
-- Genitivo = do
-- Vocativo = Mestre!
-
-- Aoristo Indicativo = Pretérito Perfeito Simples (eles foram)
-- Presente Particípio Ativo (PPA) = Gerúndio (vendo)
-- Presente Particípio Passivo (PPP) = sendo visto
-- Aoristo Particípio Ativo (APA) = tendo visto
-- Aoristo Particípio Passivo (APP) = tendo sido visto
-
-### Declinações do artigo definido
-
-|  				| ACUSATIVO | NOMINATIVO | DATIVO | GENITIVO |
-|----------|----------|----------|----------|----------|
-| Masculino  | τὸν, τοὺς | ὁ, οἱ | τῷ, τοῖς | τοῦ, τῶν |
-| Feminino  | τὴν, τὰς | ἡ, αἱ | τῇ, ταῖς | τῆς, τῶν |
-| Neutro  | τὸ, τὰ | τὸ, τὰ | τῷ, τοῖς | τοῦ, τῶν |
-
-## Templates para páginas
-
-``` 
----
-bookName: "Mateus"
-bookChapter: 1
----
-```
-
-`{% render './_includes/bookNav', bookName: bookName, bookChapter: bookChapter %}`
-
-`{% render './_includes/sideNav', theBookName: bookName, theBookChapter: bookChapter %}`
-
-Novo Tooltip: https://calebjacob.github.io/tooltipster/#demos
-
 ## Detalhes sobre o NT de Estudo
 
 - Tradução priorizando a literalidade, secundariamente a legibilidade
@@ -87,3 +29,11 @@ Novo Tooltip: https://calebjacob.github.io/tooltipster/#demos
 - Parágrafos baseados na NVI
 - Negrito nas referências ao AT, tanto diretas, quanto indiretas (consultar Bíbllia Judaica Comentada)
 - Palavras de Jesus em vermelho 
+
+## Ferramentas e repositórios utilizados
+
+Tooltipster: https://calebjacob.github.io/tooltipster
+Texto da Septuaginta (Rahlfs): https://github.com/OpenScriptorium/lxx-morph
+Texto Majoritário (Bizantino): https://github.com/byztxt/byzantine-majority-text
+https://biblehub.com/
+https://septuaginta.online/
