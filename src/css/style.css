@@ -321,9 +321,17 @@ button.square {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+.content-wrapper {
+	position: relative;
+	display: flex;
+	margin-top: 116px;
+	overflow: hidden;
+}
+
 .main-content {
-  margin-top: 116px;
   padding-bottom: 40px;
+	flex: 1;
+	overflow-y: auto;
 }
 
 .home.main-content {
@@ -1128,25 +1136,23 @@ cite {
 /* Definições Lexicais */
 
 aside.side-drawer {
-    position: fixed;
-    background: #ffffff;
-    top: 116px;
-    right: 0;
-    bottom: 4px;
-		display: block;
-    z-index: 1000;
-    width: 40%;
+    display: block;
+    width: 0;
+		margin: 8px;
     padding: 0;
+    background: #ffffff;
+		border: solid 1px #e6e1da;
+		border-radius: 16px;
 		font-family: var(--sans-font);
 		overflow-y: hidden;
-    box-shadow: -4px 4px 7px rgba(0, 0, 0, .1);
-		transition: all .5s ease;
     transform: translateX(100%);
+		transition: all .5s ease;
+    z-index: 1000;
 
 		& header {
 			padding: 24px;
-			background-color: #313131;
-			color: #e7dbdd;
+			background-color: #f9f9f9;
+			border-bottom: solid 1px #e6e1da;
 		}
 
 		& .close-drawer {
@@ -1172,13 +1178,18 @@ aside.side-drawer {
 
 		& h1 {
 			margin: 0;
+			font-family: Georgia, 'Times New Roman', Times, serif;
 			font-size: 24px;
 			font-weight: 500;
 		}
 
 		& .strong-chip {
 			margin-right: 8px;
+			padding: 3px 6px;
+			background-color: #cd5c5c26;
+			border-radius: 6px;
 			color: indianred;
+			font-family: var(--sans-font);
 			font-size: 14px;
 			font-stretch: condensed;
 			vertical-align: top;
@@ -1223,7 +1234,10 @@ aside.side-drawer {
 		}
 }
 
-aside.side-drawer.is-open { transform: translateX(0); }
+aside.side-drawer.is-open { 
+	width: 35%;
+	transform: translateX(0); 
+}
 @media (max-width: 700px) {
   aside.side-drawer { width: 100%; box-sizing: border-box; }
 }
