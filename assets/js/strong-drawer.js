@@ -101,6 +101,7 @@
     const link = event.target.closest('a[data-strong]');
     if (!link || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
+    if (!link.dataset.strong.trim()) return;
     trigger?.setAttribute('aria-expanded', 'false');
     trigger = link;
     const current = ++revision;
