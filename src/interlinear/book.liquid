@@ -1,0 +1,16 @@
+---
+pagination:
+  data: ntChapterPages
+  size: 1
+  alias: entry
+permalink: "interlinear/{{ entry.bookSlug }}/{{ entry.chapter.number }}/index.html"
+layout: "page.liquid"
+bee: false
+eleventyComputed:
+  greekBookName: "{{ entry.bookHeading }}" 
+  bookName: "{{ entry.bookName }}"
+  bookNameSlug: "{{ entry.bookNameSlug }}"
+  bookNameAbbr: "{{ entry.bookSlug }}"
+  bookChapter: "{{ entry.chapter.number }}"
+---
+{% render 'interlinearChapter', entry: entry, bookNameSlug: bookNameSlug, greekBookName: greekBookName, bookName: bookName, bookNameAbbr: bookNameAbbr %}

@@ -5,7 +5,7 @@
 		{% if type == true %}
 		<h2 class="show-mobile">Bíblia de Estudo Exegético</h2>
 		{% else %}
-		<h2 class="show-mobile">NT Interlinear Analítico</h2>
+		<h2 class="show-mobile">{% if lxx %}LXX Interlinear Analítico{% else %}NT Interlinear Analítico{% endif %}</h2>
 		{% endif %}
 
 		<div class="d-flex justify-between align-items-center flex-wrap">
@@ -21,7 +21,7 @@
 							{% assign selected_permalink = livro.bkpermalink %}
 						{% endif %}
 						<option 
-							value="{{ selected_permalink | url | append: '1' }}"
+							value="{{ selected_permalink | url }}{% if livro.chapterNumbers != blank %}{{ livro.chapterNumbers.first }}{% else %}1{% endif %}"
 							{% if bookName == livro.name %}selected{% endif %}
 						>{{ livro.name }}</option>
 						{% endfor %}
@@ -36,6 +36,7 @@
 							{% if book.name == bookName %}
 								{% assign num = book.chapters %}
 								{% assign range = (1..num) %}
+                                {% if book.chapterNumbers != blank %}{% assign range = book.chapterNumbers %}{% endif %}
 								{% for n in range %}
 									<option 
 										value="{{ selected_permalink | url }}{{ n }}"
@@ -55,7 +56,7 @@
 			{% if type %}
 			<h2 class="show-desktop">Bíblia de Estudo Exegético</h2>
 			{% else %}
-			<h2 class="show-desktop">NT Interlinear Analítico</h2>
+			<h2 class="show-desktop">{% if lxx %}LXX Interlinear Analítico{% else %}NT Interlinear Analítico{% endif %}</h2>
 			{% endif %}
 
 			{% comment %} Configurações de tela {% endcomment %}

@@ -5,6 +5,7 @@ const generateDictionary = require('./tools/dictionary/generate');
 module.exports = function(eleventyConfig) {
   generateDictionary();
   eleventyConfig.addWatchTarget('src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
+  eleventyConfig.addWatchTarget('src/interlinear/at/*.json');
   eleventyConfig.on('eleventy.beforeWatch', () => generateDictionary());
   const escapeHtml = value => String(value)
     .replaceAll('&', '&amp;')

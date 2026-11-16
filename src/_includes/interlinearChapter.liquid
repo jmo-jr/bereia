@@ -1,22 +1,15 @@
----
-pagination:
-  data: ntChapterPages
-  size: 1
-  alias: entry
-permalink: "interlinear/{{ entry.bookSlug }}/{{ entry.chapter.number }}/index.html"
-layout: "page.liquid"
-bee: false
-eleventyComputed:
-  greekBookName: "{{ entry.bookHeading }}" 
-  bookName: "{{ entry.bookName }}"
-  bookNameSlug: "{{ entry.bookNameSlug }}"
-  bookNameAbbr: "{{ entry.bookSlug }}"
-  bookChapter: "{{ entry.chapter.number }}"
----
 {% assign chapter = entry.chapter %}
-{% render '../../_includes/bookNav', bookNameSlug: bookNameSlug, greekBookName: greekBookName, bookName: bookName, bookChapter: chapter.number, bookAbbr: bookNameAbbr %}
+{% if entry.lxx %}
+<div id="movebox2" class="page-header">
+  {% if entry.previousUrl %}<a href="{{ entry.previousUrl | url }}" title="Capítulo anterior">◄</a>{% endif %}
+  <div class="page-header_title"><h3>{{ entry.bookName }} {{ chapter.number }}</h3></div>
+  {% if entry.nextUrl %}<a href="{{ entry.nextUrl | url }}" title="Próximo capítulo">►</a>{% endif %}
+</div>
+{% else %}
+{% render 'bookNav', bookNameSlug: bookNameSlug, greekBookName: greekBookName, bookName: bookName, bookChapter: chapter.number, bookAbbr: bookNameAbbr %}
 
-{% render '../../_includes/sideNav', theResource: '/interlinear/', theBookName: bookNameAbbr, theBookChapter: chapter.number %}
+{% render 'sideNav', theResource: '/interlinear/', theBookName: bookNameAbbr, theBookChapter: chapter.number %}
+{% endif %}
 
 	<div class="chapter-wrapper">
 		{% comment %} <h1 class="vheading" data-pagefind-meta="title">{{ greekBookName }} {{ chapter.number }}</h1> {% endcomment %}
@@ -25,7 +18,7 @@ eleventyComputed:
 		{% if pericopes and pericopes.size > 0 %}
 			{% for pericope in pericopes %}
 				<section class="pericope" id="{{ pericope.id | default: '' | downcase }}">
-					{% if pericope.title or pericope.start_verse or pericope.end_verse %}
+					{% if pericope.title != blank %}
 						<h2 class="pericope-title">{{ pericope.title }}</h2>
 					{% endif %}
 
@@ -36,15 +29,17 @@ eleventyComputed:
 								<div class="interlinear">
 									{% for token in verse.tokens %}
 										<span class="token">
+											{% if token.strongs != blank %}
 											<a 
 												class="strongs tooltip" 
 												href="https://bibleapps-com.translate.goog/strongs/greek/{{ token.strongs | strip }}.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" 
 												target="_blank" 
-												title="{{ token.verbete }}"
+												title="{{ token.verbete | escape }}"
 												data-strong="G{{ token.strongs }}"
 											>{{ token.strongs }}</a>
+                                            {% endif %}
 											<span class="translit">{{ token.transliteracao }}</span>
-											<span class="greek tooltip" title="{{ token.traducao }} | Ocorrências: {{ token.ocorrencias }}">{{ token.lemma }}</span>
+											<span class="greek tooltip" title="{{ token.traducao | escape }} | Ocorrências: {{ token.ocorrencias }}">{{ token.lemma | escape }}</span>
 											<span class="translate">{{ token.pt }}</span>
 											<small class="refs tooltip" title="{{ token.morfologia }}">{{ token.abrev_morf }}</small>
 										</span>
@@ -63,11 +58,11 @@ eleventyComputed:
 						<div class="interlinear">
 							{% for token in verse.tokens %}
 								<span class="token">
-									<a class="strongs" href="https://biblehub.com/greek/{{ token.strongs | strip }}.htm" data-strong="G{{ token.strongs }}" title="{{ token.verbete }}:">{{ token.strongs }}</a>
+									<a class="strongs" href="https://biblehub.com/greek/{{ token.strongs | strip }}.htm" data-strong="G{{ token.strongs }}" title="{{ token.verbete | escape }}:">{{ token.strongs }}</a>
 									<span class="translit" title="{{ token.ocorrencia }}">{{ token.transliteracao }}</span>
-									<span class="greek">{{ token.lemma }}</span>
-									<span class="translate">{{ token.traducao }}</span>
-									<small class="refs" title="{{ token.desgram }}">{{ token.morph }}</small>
+									<span class="greek">{{ token.lemma | escape }}</span>
+									<span class="translate">{{ token.traducao | escape }}</span>
+									<small class="refs" title="{{ token.morfologia | escape }}">{{ token.abrev_morf }}</small>
 								</span>
 							{% endfor %}
 						</div>

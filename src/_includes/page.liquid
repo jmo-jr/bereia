@@ -40,7 +40,14 @@ title: Bíblia BEREIA
 
     {% render 'siteHeader' %}
 
-		{% render 'toolBar', bookList: ntBooks, bookName: bookName, bookChapter: bookChapter, type: bee | default: false %}
+		{% assign interlinearBooks = ntBooks %}
+		{% assign isLxxInterlinear = false %}
+		{% assign routeParts = page.url | split: '/' %}
+		{% if routeParts[1] == 'interlinear' %}
+			{% assign interlinearBooks = atBooks | concat: ntBooks %}
+			{% if entry.lxx == true %}{% assign isLxxInterlinear = true %}{% endif %}
+		{% endif %}
+		{% render 'toolBar', lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookChapter: bookChapter, type: bee | default: false %}
 
 		<div class="content-wrapper">
 			<main class="main-content">
