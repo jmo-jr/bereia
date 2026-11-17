@@ -192,3 +192,37 @@ nem alteração dos lemas gregos. Nomes próprios não são elegíveis. Todas as
 traduções das etapas anteriores são preservadas; só as lacunas são preenchidas.
 O relatório `lxx-beta-etapa3.json` registra as formas e referências aplicadas.
 Não execute novamente uma etapa anterior para atualizar o suplemento atual.
+
+## Revisão editorial por forma e contexto — etapa 4
+
+```sh
+python3 -B tools/lxx/generate_beta.py /caminho/lxx_morph --audit tools/relatorios/lxx-tbesg-cobertura-etapa4.json --bases tools/lxx/tbesg_bases_pt.json --aliases tools/lxx/tbesg_aliases_pt.json --stage 4 --reviewed tools/lxx/reviewed_step4.json
+```
+
+`reviewed_step4.json` contém decisões editoriais explícitas para gentílicos e
+φοβέομαι. As traduções portuguesas foram registradas por forma/análise, sem
+reescrever os lemas gregos ou a morfologia. A aplicação exige o hash da auditoria,
+as referências e contagens revisadas; contextos novos exigem nova revisão.
+Nomes próprios e verbetes bloqueados INCERTO não podem ser liberados por esse
+cadastro. Grupos que misturam sentidos ficam pendentes, com justificativa no
+CSV. As 394 novas ocorrências e suas fontes são registradas em
+`lxx-beta-etapa4.json` e `lxx-beta-etapa4-resumo.md`.
+
+A reprodução da etapa 4 mantém todas as traduções anteriores à etapa e refaz
+somente os preenchimentos da própria etapa. A revisão registrada é provisória
+para a beta; as 1.046 lacunas restantes continuam disponíveis no CSV de pendências.
+
+## AncientBible aprovado — etapa 5
+
+A aprovação explícita do arquivo `lxx-ancientbible-en-revisao.json` permite
+aplicar as 44 propostas (41 lemas / 112 ocorrências) ao suplemento beta.
+`prepare_ancientbible_application.py` prepara as decisões por forma/análise;
+`reviewed_step5.json` registra a aprovação, o hash das propostas e as evidências.
+O gerador aceita `--stage 5 --reviewed tools/lxx/reviewed_step5.json`, mantendo
+os demais argumentos da etapa 4. As alternativas são conservadas em vez de
+selecionadas. Três ocorrências incompatíveis/incompletas exibem só a glosa base.
+
+Casos INCERTO só são liberados quando a decisão traz candidatos aprovados
+para aquele lema e o hash do arquivo aprovado confere. O cadastro original
+e seu bloqueio geral são preservados. O relatório `lxx-beta-etapa5-resumo.md`
+detalha as adaptações gramaticais, os fallbacks e as ressalvas semânticas.

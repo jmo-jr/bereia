@@ -78,6 +78,10 @@ module.exports = function(eleventyConfig) {
 		});
 	});
 
+	eleventyConfig.addFilter("addZeros", function(value) {
+		return String(value).padStart(4, "0");
+  });
+
   return {
     // ajuste para o prefixo do site hospedado (terminar com "/")
     pathPrefix: "/",

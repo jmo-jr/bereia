@@ -31,15 +31,15 @@
 										<span class="token">
 											{% if token.strongs != blank %}
 											<a 
-												class="strongs tooltip" 
-												href="https://bibleapps-com.translate.goog/strongs/greek/{{ token.strongs | strip }}.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" 
+												class="strongs tooltip"
+												href="https://theancientbible-org.translate.goog/word/g{{ token.strongs | addZeros }}/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" 
 												target="_blank" 
 												title="{{ token.verbete | escape }}"
 												data-strong="G{{ token.strongs }}"
 											>{{ token.strongs }}</a>
-                                            {% else %}
-                                            <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
-                                            {% endif %}
+											{% else %}
+											<a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
+											{% endif %}
 											<span class="translit">{{ token.transliteracao | escape }}</span>
 											<span class="greek tooltip" title="{{ token.traducao | escape }} | Ocorrências: {{ token.ocorrencias }}">{{ token.lemma | escape }}</span>
 											<span class="translate">{{ token.pt | escape }}</span>
