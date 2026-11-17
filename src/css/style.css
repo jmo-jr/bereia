@@ -136,6 +136,20 @@ q {
     & a {
       color: rgba(255, 255, 255, 0.85) !important;
     }
+
+		&:after {
+			content: "Beta";
+			background: green;
+			padding: 2px 4px;
+			margin-left: 6px;
+			font-size: 10px;
+			font-family: var(--sans-font);
+			font-weight: normal;
+			text-transform: uppercase;
+			border-radius: 4px;
+			vertical-align: text-top;
+			letter-spacing: 10%;
+		}
   }
 }
 
@@ -234,11 +248,41 @@ select.drop {
   font-size: 14px;
 }
 
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 4px;
-  min-width: 198px;
+.options-container {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.options-group {
+  position: relative;
+
+	& .options-dropdown, .options-dropdown2 {
+		display: none;
+		position: absolute;
+		top: 120%;
+		right: 0;
+		width: 160px;
+		padding: 12px;
+		background-color: white;
+		border-radius: 6px;
+		font: 14px var(--sans-font);
+		box-shadow: 0 0 7px rgba(0, 0, 0, .2);
+		z-index: 100;
+
+		&.open {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		& input {
+			margin: 12px 4px 12px 0;
+			vertical-align: middle;
+		}
+
+		& label { vertical-align: middle; }
+	}
 }
 
 button.square {
@@ -249,6 +293,17 @@ button.square {
   background-color: var(--brandColor);
   color: white;
   cursor: pointer;
+}
+
+button.large {
+	width: 166px;
+	padding: 10px 12px;
+	background-color: var(--brandColor);
+	border: none;
+	border-radius: 4px;
+	color: white;
+	text-align: left;
+	cursor: pointer;
 }
 
 .no_strongs #strongBt,
@@ -469,6 +524,7 @@ ul.versiculos {
 .page-header h3 {
   font-family: var(--serif-font);
   font-weight: bold;
+	text-transform: uppercase;
 }
 
 #movebox2 a,
@@ -1133,11 +1189,27 @@ cite {
 	color: #e60000 !important;
 }
 
-/* Definições Lexicais */
+.places {
+	color: #0ca10c;
+}
+
+.characters {
+	color: #1554ec;
+}
+
+.no_redletter .redletter,
+.no_greenplaces .places,
+.no_bluecharacters .characters {
+	color: #262626 !important;
+}
+
+/* 
+ * Definições Lexicais 
+ */
 
 aside.side-drawer {
     display: block;
-    width: 0;
+		width: 0;
 		margin: 8px;
     padding: 0;
     background: #ffffff;
@@ -1146,7 +1218,8 @@ aside.side-drawer {
 		font-family: var(--sans-font);
 		overflow-y: hidden;
     transform: translateX(100%);
-		transition: all .5s ease;
+		transition: all 1s ease;
+		opacity: 0;
     z-index: 1000;
 
 		& header {
@@ -1237,6 +1310,7 @@ aside.side-drawer {
 aside.side-drawer.is-open { 
 	width: 35%;
 	transform: translateX(0); 
+	opacity: 1;
 }
 @media (max-width: 700px) {
   aside.side-drawer { width: 100%; box-sizing: border-box; }

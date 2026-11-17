@@ -114,7 +114,7 @@ const createMissingLemmaTracker = () => {
   };
 };
 
-const createEnhanceTokenWithDict = (dict, missingLemmaTracker) => {
+const createEnhanceTokenWithDict = (dict, missingLemmaTracker, extraFields = []) => {
   const dictIndex = buildDictIndex(dict);
 
   return (token = {}, context = {}) => {
@@ -126,7 +126,7 @@ const createEnhanceTokenWithDict = (dict, missingLemmaTracker) => {
       return { ...token };
     }
 
-    const lexicon = DICT_FIELDS.reduce((acc, field) => {
+    const lexicon = [...DICT_FIELDS, ...extraFields].reduce((acc, field) => {
       if (dictEntry[field] !== undefined) {
         acc[field] = dictEntry[field];
       }
@@ -198,3 +198,6 @@ const loadAllBooks = () => {
 };
 
 module.exports = loadAllBooks;
+
+// Reutilizado pela LXX sem executar o carregamento nem gravar o log do NT.
+module.exports.createEnhanceTokenWithDict = createEnhanceTokenWithDict;

@@ -5,6 +5,7 @@ const generateDictionary = require('./tools/dictionary/generate');
 module.exports = function(eleventyConfig) {
   generateDictionary();
   eleventyConfig.addWatchTarget('src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
+  eleventyConfig.addWatchTarget('src/interlinear/at/*.json');
   eleventyConfig.on('eleventy.beforeWatch', () => generateDictionary());
   const escapeHtml = value => String(value)
     .replaceAll('&', '&amp;')
@@ -76,6 +77,10 @@ module.exports = function(eleventyConfig) {
 			encoding: 'utf-8'
 		});
 	});
+
+	eleventyConfig.addFilter("addZeros", function(value) {
+		return String(value).padStart(4, "0");
+  });
 
   return {
     // ajuste para o prefixo do site hospedado (terminar com "/")
