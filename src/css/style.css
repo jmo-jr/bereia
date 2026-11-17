@@ -234,11 +234,41 @@ select.drop {
   font-size: 14px;
 }
 
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 4px;
-  min-width: 198px;
+.options-container {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.options-group {
+  position: relative;
+
+	& .options-dropdown {
+		display: none;
+		position: absolute;
+		top: 120%;
+		right: 0;
+		width: 160px;
+		padding: 12px;
+		background-color: white;
+		border-radius: 6px;
+		font: 14px var(--sans-font);
+		box-shadow: 0 0 7px rgba(0, 0, 0, .2);
+		z-index: 100;
+
+		&.open {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		& input {
+			margin: 12px 4px 12px 0;
+			vertical-align: middle;
+		}
+
+		& label { vertical-align: middle; }
+	}
 }
 
 button.square {
@@ -249,6 +279,17 @@ button.square {
   background-color: var(--brandColor);
   color: white;
   cursor: pointer;
+}
+
+button.large {
+	width: 166px;
+	padding: 10px 12px;
+	background-color: var(--brandColor);
+	border: none;
+	border-radius: 4px;
+	color: white;
+	text-align: left;
+	cursor: pointer;
 }
 
 .no_strongs #strongBt,

@@ -126,3 +126,69 @@ dicionário derivado também são verificados durante a geração.
 As páginas atribuem os dados a Tyndale House/STEPBible.org (CC BY 4.0),
 Septuaginta Online e BEREIA, identificando as adaptações da versão beta.
 O léxico original, os livros gregos e os relatórios históricos são preservados.
+
+## Bases portuguesas por identificador TBESG — etapa 1
+
+```sh
+python3 -B tools/lxx/prepare_tbesg_bases.py
+python3 -B -m unittest discover -s tests -p test_lxx_bases.py -v
+```
+
+As propostas editoriais estão em `tbesg_base_translations.tsv`, com uma base
+por identificador completo dStrong. Não se usa a glosa inglesa como chave.
+O preparador cruza somente as ocorrências ainda sem tradução nos livros
+existentes e gera `tools/lxx/tbesg_bases_pt.json`, preservando lema, definição,
+classe, identificadores e linha da TBESG, além da frequência e referências.
+
+`BASE_BETA` é uma escolha lexical provisória, ainda não flexionada ou aplicada.
+Os casos `INCERTO` possuem proposta, justificativa e `base_pt: null`, para impedir
+uso automático; também aparecem em `tools/relatorios/lxx-bases-pt-pendencias.csv`.
+Eventuais discordâncias de classe da fonte são registradas separadamente,
+sem corrigir os campos originais. Os hashes dos artefatos de entrada e dos
+livros ativos são conferidos para evitar preparar bases a partir de dados
+desatualizados. O gerador da beta não consome este cadastro nesta etapa.
+
+## Flexões das bases por identificador — etapa 2
+
+```sh
+node tools/lxx/audit_tbesg.js "tools/lxx/fontes/TBESG - Translators Brief lexicon of Extended Strongs for Greek - STEPBible.org CC BY.txt" /caminho/lxx_morph tools/relatorios/lxx-tbesg-cobertura-etapa2.json
+python3 -B tools/lxx/generate_beta.py /caminho/lxx_morph --audit tools/relatorios/lxx-tbesg-cobertura-etapa2.json --bases tools/lxx/tbesg_bases_pt.json
+npm run build
+```
+
+`--bases` habilita o cadastro da etapa 1. O identificador completo dStrong e a
+grafia do lema devem coincidir com a mesma versão da TBESG. Entradas INCERTO
+continuam bloqueadas. As traduções da beta anterior são preservadas; apenas as
+lacunas são preenchidas. A etapa 2 pode ser repetida para refinar suas próprias
+flexões, sem retraduzir os preenchimentos anteriores à etapa.
+
+O gerador reconhece `ptc`, mantém alternativas de voz e distingue particípios
+ativos e passivos. O particípio em composto com `ter` fica invariável, enquanto
+a passiva concorda em gênero/número quando a análise traz essas informações.
+A tradução portuguesa usa voz ativa para os verbos intransitivos explicitamente
+listados em `inflect_beta.py`, mesmo quando a análise grega é passiva; o parsing
+original permanece no relatório. Análises não reconhecidas e verbos sem dados
+suficientes ficam pendentes em vez de receber uma flexão presumida.
+
+`lxx-beta-etapa2.json` registra os preenchimentos desta etapa e sua procedência;
+`lxx-beta-pendencias.csv` contém apenas lacunas não aplicadas. Nomes próprios não
+recebem automaticamente a base de um substantivo comum com o mesmo identificador.
+Nenhum identificador é exposto como Strong no suplemento de apresentação.
+
+Uma auditoria já referenciada pelo relatório de aplicação deve ser preservada.
+Se as fontes mudarem, gere a nova auditoria com outro nome e passe-a em `--audit`.
+Isso permite comparar a geração atual com a anterior sem criar backups dos livros.
+
+## Correspondências explícitas — etapa 3
+
+```sh
+python3 -B tools/lxx/generate_beta.py /caminho/lxx_morph --audit tools/relatorios/lxx-tbesg-cobertura-etapa2.json --bases tools/lxx/tbesg_bases_pt.json --aliases tools/lxx/tbesg_aliases_pt.json --stage 3
+```
+
+`tbesg_aliases_pt.json` registra 11 correspondências editoriais, suas bases
+portuguesas, classes admitidas e evidência integral da TBESG. A fonte e cada
+verbete são conferidos antes da aplicação. Não há busca aproximada automática
+nem alteração dos lemas gregos. Nomes próprios não são elegíveis. Todas as
+traduções das etapas anteriores são preservadas; só as lacunas são preenchidas.
+O relatório `lxx-beta-etapa3.json` registra as formas e referências aplicadas.
+Não execute novamente uma etapa anterior para atualizar o suplemento atual.

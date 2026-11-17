@@ -80,55 +80,64 @@ title: Bíblia BEREIA
   <script>
     var page = document.getElementById("app");
 
-    function toggleStrongs() {
-      page.classList.toggle("no_strongs");
+    function toggleStrongs(checkbox) {
+      page.classList.toggle("no_strongs", checkbox.checked);
     }
-    function toggleTranslit() {
-      page.classList.toggle("no_translit");
+    function toggleTranslit(checkbox) {
+      page.classList.toggle("no_translit", checkbox.checked);
     }
-    function toggleGreek() {
-      page.classList.toggle("no_greek");
+    function toggleGreek(checkbox) {
+      page.classList.toggle("no_greek", checkbox.checked);
     }
-    function toggleGrammar() {
-      page.classList.toggle("no_grammar");
+    function toggleGrammar(checkbox) {
+      page.classList.toggle("no_grammar", checkbox.checked);
     }
-  </script>
-
-	<script>
-		(function () {
-			const toggleBtn = document.getElementById('toggleMenu');
-			const nav = document.querySelector('.main-nav');
-
+		
+		function toggleText(checkbox, class) {
+      page.classList.toggle(class, checkbox.checked);
+    }
+		
+		function toggleMenu(nav, toggleBtn) {
 			if (!toggleBtn || !nav) return;
 
-			toggleBtn.setAttribute('aria-expanded', 'false');
+			const opened = nav.classList.toggle('open');
+			toggleBtn.setAttribute('aria-expanded', String(opened));
+		}
 
-			toggleBtn.addEventListener('click', (e) => {
-				e.stopPropagation();
-				const opened = nav.classList.toggle('open');
-				toggleBtn.setAttribute('aria-expanded', String(opened));
-			});
+		const mainNav = document.querySelector('.main-nav');
+		const optionsDropdown = document.querySelector('.options-dropdown');
+		const optionsDropdown2 = document.querySelector('.options-dropdown2');
+		const menuControls = [
+			{ nav: mainNav, button: document.getElementById('toggleMenu') },
+			{ nav: optionsDropdown, button: document.getElementById('optionsBt') },
+			{ nav: optionsDropdown2, button: document.getElementById('optionsBt2') }
+		].filter(({ nav, button }) => nav && button);
 
-			// Click/touch outside to close
-			const closeIfOutside = (e) => {
-				if (!nav.classList.contains('open')) return;
-				if (nav.contains(e.target) || e.target === toggleBtn) return;
+		menuControls.forEach(({ button }) => button.setAttribute('aria-expanded', 'false'));
+
+		const closeMenusIfOutside = (event) => {
+			menuControls.forEach(({ nav, button }) => {
+				if (!nav.classList.contains('open')
+					|| nav.contains(event.target)
+					|| button.contains(event.target)) return;
+
 				nav.classList.remove('open');
-				toggleBtn.setAttribute('aria-expanded', 'false');
-			};
-
-			document.addEventListener('click', closeIfOutside);
-			document.addEventListener('touchstart', closeIfOutside);
-
-			// Close with Escape
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape' && nav.classList.contains('open')) {
-					nav.classList.remove('open');
-					toggleBtn.setAttribute('aria-expanded', 'false');
-					toggleBtn.focus();
-				}
+				button.setAttribute('aria-expanded', 'false');
 			});
-		})();
+		};
+
+		document.addEventListener('click', closeMenusIfOutside);
+		document.addEventListener('touchstart', closeMenusIfOutside);
+		document.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape') return;
+
+			menuControls.forEach(({ nav, button }) => {
+				if (!nav.classList.contains('open')) return;
+				nav.classList.remove('open');
+				button.setAttribute('aria-expanded', 'false');
+				button.focus();
+			});
+		});
 	</script>
 	<script 
 		src="{{ '/biblia/pagefind/pagefind-ui.js' | url }}" 
