@@ -42,7 +42,7 @@
 			<h1><a href="/">B.E.R.E.I.A.</a></h1>
 		</div>
 
-		<button type="button" id="toggleMenu">
+		<button type="button" id="toggleMenu" onclick="toggleMenu(mainNav, this)">
 			<div class="burger-icon">
 				<div class="burger-layer"></div>
 				<div class="burger-layer"></div>
@@ -1544,13 +1544,21 @@
 
 			
 			
-			<div class="button-group">
-				<button id="strongBt" class="square" type="button" title="Ocultar números Strong" onclick="toggleStrongs()">#</button>
-				<button id="translitBt" class="square" type="button" title="Ocultar transliteração" onclick="toggleTranslit()"><em>A</em></button>
-				
-				<button id="greekBt" class="square" type="button" title="Ocultar texto grego" onclick="toggleGreek()">&alpha;</button>
-				
-				<button id="gramBt" class="square" type="button" title="Ocultar gramática" onclick="toggleGrammar()">{a}</button>
+			<div class="options-container">
+				<div id="search" class="search"></div>
+				<div class="options-group">
+					<button id="optionsBt2" class="square" type="button" title="Opções de exibição" onclick="toggleMenu(optionsDropdown2, this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 128C78.3 128 64 142.3 64 160C64 177.7 78.3 192 96 192L182.7 192C195 220.3 223.2 240 256 240C288.8 240 317 220.3 329.3 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L329.3 128C317 99.7 288.8 80 256 80C223.2 80 195 99.7 182.7 128L96 128zM96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L342.7 352C355 380.3 383.2 400 416 400C448.8 400 477 380.3 489.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L489.3 288C477 259.7 448.8 240 416 240C383.2 240 355 259.7 342.7 288L96 288zM96 448C78.3 448 64 462.3 64 480C64 497.7 78.3 512 96 512L150.7 512C163 540.3 191.2 560 224 560C256.8 560 285 540.3 297.3 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L297.3 448C285 419.7 256.8 400 224 400C191.2 400 163 419.7 150.7 448L96 448z" fill="white"/></svg></button>
+
+					<div class="options-dropdown2">
+						<div><input id="strongBt" name="strongs" type="checkbox" title="Desmarque para ocultar números Strong" onclick="toggleStrongs(this)" checked> <label for="strongs">Exibir Strongs</label></div>
+
+						<div><input id="translitBt" type="checkbox" title="Desmarque para ocultar transliteração" onclick="toggleTranslit(this)" checked> <label>Exibir transliteração</label></div>
+						
+						<div><input id="greekBt" type="checkbox" title="Desmarque para ocultar traduções" onclick="toggleGreek(this)" checked> <label>Exibir traduções</label></div>
+						
+						<div><input id="gramBt" type="checkbox" title="Desmarque para ocultar morfologia" onclick="toggleGrammar(this)" checked> <label></label>Exibir morfolofia</label></div>
+					</div>
+				</div>
 			</div>
 			
 
@@ -1673,8 +1681,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaias</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="cortinas | Ocorrências: ">αὐλαίας</span>
+											<span class="translate">cortinas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Plural">S</small>
 										</span>
 									
@@ -1845,8 +1853,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">hyphantou</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ὑφάντου</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="do tecelão | Ocorrências: ">ὑφάντου</span>
+											<span class="translate">do tecelão</span>
 											<small class="refs tooltip" title="Substantivo - Masculino Genitivo Singular">S</small>
 										</span>
 									
@@ -1926,8 +1934,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaias</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="da cortina | Ocorrências: ">αὐλαίας</span>
+											<span class="translate">da cortina</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Genitivo Singular">S</small>
 										</span>
 									
@@ -2094,8 +2102,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaia</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαία</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="cortina | Ocorrências: ">αὐλαία</span>
+											<span class="translate">cortina</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Nominativo Singular / Substantivo - Feminino Vocativo Singular / Substantivo - Feminino Acusativo Singular">S</small>
 										</span>
 									
@@ -2248,8 +2256,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaiais</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίαις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="às cortinas | Ocorrências: ">αὐλαίαις</span>
+											<span class="translate">às cortinas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Dativo Plural">S</small>
 										</span>
 									
@@ -2297,8 +2305,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaiai</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαῖαι</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="cortinas | Ocorrências: ">αὐλαῖαι</span>
+											<span class="translate">cortinas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Nominativo Plural">S</small>
 										</span>
 									
@@ -2477,8 +2485,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaiai</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαῖαι</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="cortinas | Ocorrências: ">αὐλαῖαι</span>
+											<span class="translate">cortinas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Nominativo Plural">S</small>
 										</span>
 									
@@ -2616,8 +2624,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">agkylas</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀγκύλας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="laçadas | Ocorrências: ">ἀγκύλας</span>
+											<span class="translate">laçadas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Plural">S</small>
 										</span>
 									
@@ -2694,8 +2702,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaias</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="da cortina | Ocorrências: ">αὐλαίας</span>
+											<span class="translate">da cortina</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Genitivo Singular">S</small>
 										</span>
 									
@@ -2832,8 +2840,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">symbolēn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">συμβολὴν</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="encontro | Ocorrências: ">συμβολὴν</span>
+											<span class="translate">encontro</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Singular">S</small>
 										</span>
 									
@@ -2948,8 +2956,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaias</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="da cortina | Ocorrências: ">αὐλαίας</span>
+											<span class="translate">da cortina</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Genitivo Singular">S</small>
 										</span>
 									
@@ -3016,8 +3024,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">symbolē</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">συμβολῇ</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="ao encontro | Ocorrências: ">συμβολῇ</span>
+											<span class="translate">ao encontro</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Dativo Singular">S</small>
 										</span>
 									
@@ -3081,8 +3089,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">agkylas</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀγκύλας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="laçadas | Ocorrências: ">ἀγκύλας</span>
+											<span class="translate">laçadas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Plural">S</small>
 										</span>
 									
@@ -3123,8 +3131,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaia</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίᾳ</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="à cortina | Ocorrências: ">αὐλαίᾳ</span>
+											<span class="translate">à cortina</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Dativo Singular">S</small>
 										</span>
 									
@@ -3197,8 +3205,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">agkylas</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀγκύλας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="laçadas | Ocorrências: ">ἀγκύλας</span>
+											<span class="translate">laçadas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Plural">S</small>
 										</span>
 									
@@ -3287,8 +3295,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaias</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="da cortina | Ocorrências: ">αὐλαίας</span>
+											<span class="translate">da cortina</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Genitivo Singular">S</small>
 										</span>
 									
@@ -3329,8 +3337,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">symbolēn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">συμβολὴν</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="encontro | Ocorrências: ">συμβολὴν</span>
+											<span class="translate">encontro</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Singular">S</small>
 										</span>
 									
@@ -3371,8 +3379,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">antiprosōpoi</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀντιπρόσωποι</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="fronteiros / fronteiras | Ocorrências: ">ἀντιπρόσωποι</span>
+											<span class="translate">fronteiros / fronteiras</span>
 											<small class="refs tooltip" title="Adjetivo - Masculino Nominativo Plural / Adjetivo - Masculino Vocativo Plural / Adjetivo - Feminino Nominativo Plural / Adjetivo - Feminino Vocativo Plural">Adj</small>
 										</span>
 									
@@ -3472,8 +3480,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">krikous</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">κρίκους</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="argolas | Ocorrências: ">κρίκους</span>
+											<span class="translate">argolas</span>
 											<small class="refs tooltip" title="Substantivo - Masculino Acusativo Plural">S</small>
 										</span>
 									
@@ -3556,8 +3564,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">aulaias</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">αὐλαίας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="cortinas | Ocorrências: ">αὐλαίας</span>
+											<span class="translate">cortinas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Plural">S</small>
 										</span>
 									
@@ -3630,8 +3638,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">krikois</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">κρίκοις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="às argolas | Ocorrências: ">κρίκοις</span>
+											<span class="translate">às argolas</span>
 											<small class="refs tooltip" title="Substantivo - Masculino Dativo Plural">S</small>
 										</span>
 									
@@ -4511,8 +4519,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">epidiplōseis</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἐπιδιπλώσεις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="duplicarás | Ocorrências: ">ἐπιδιπλώσεις</span>
+											<span class="translate">duplicarás</span>
 											<small class="refs tooltip" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V</small>
 										</span>
 									
@@ -4682,8 +4690,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">agkylas</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀγκύλας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="laçadas | Ocorrências: ">ἀγκύλας</span>
+											<span class="translate">laçadas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Plural">S</small>
 										</span>
 									
@@ -4872,8 +4880,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">symbolēn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">συμβολὴν</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="encontro | Ocorrências: ">συμβολὴν</span>
+											<span class="translate">encontro</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Singular">S</small>
 										</span>
 									
@@ -4914,8 +4922,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">agkylas</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀγκύλας</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="laçadas | Ocorrências: ">ἀγκύλας</span>
+											<span class="translate">laçadas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Plural">S</small>
 										</span>
 									
@@ -5105,8 +5113,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">krikous</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">κρίκους</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="argolas | Ocorrências: ">κρίκους</span>
+											<span class="translate">argolas</span>
 											<small class="refs tooltip" title="Substantivo - Masculino Acusativo Plural">S</small>
 										</span>
 									
@@ -5183,8 +5191,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">krikous</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">κρίκους</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="argolas | Ocorrências: ">κρίκους</span>
+											<span class="translate">argolas</span>
 											<small class="refs tooltip" title="Substantivo - Masculino Acusativo Plural">S</small>
 										</span>
 									
@@ -5225,8 +5233,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">agkylōn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀγκυλῶν</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="das laçadas | Ocorrências: ">ἀγκυλῶν</span>
+											<span class="translate">das laçadas</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Genitivo Plural">S</small>
 										</span>
 									
@@ -5552,8 +5560,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">hypokalypseis</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ὑποκαλύψεις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="encobrirás | Ocorrências: ">ὑποκαλύψεις</span>
+											<span class="translate">encobrirás</span>
 											<small class="refs tooltip" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V</small>
 										</span>
 									
@@ -5646,8 +5654,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">hypokalypseis</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ὑποκαλύψεις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="encobrirás | Ocorrências: ">ὑποκαλύψεις</span>
+											<span class="translate">encobrirás</span>
 											<small class="refs tooltip" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V</small>
 										</span>
 									
@@ -6049,8 +6057,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">plagia</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">πλάγια</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="laterais | Ocorrências: ">πλάγια</span>
+											<span class="translate">laterais</span>
 											<small class="refs tooltip" title="Adjetivo - Neutro Nominativo Plural / Adjetivo - Neutro Vocativo Plural / Adjetivo - Neutro Acusativo Plural">Adj</small>
 										</span>
 									
@@ -6204,8 +6212,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">katakalymma</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">κατακάλυμμα</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="cobertura | Ocorrências: ">κατακάλυμμα</span>
+											<span class="translate">cobertura</span>
 											<small class="refs tooltip" title="Substantivo - Neutro Nominativo Singular / Substantivo - Neutro Vocativo Singular / Substantivo - Neutro Acusativo Singular">S</small>
 										</span>
 									
@@ -6266,9 +6274,9 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">ērythrodanōmena</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἠρυθροδανωμένα</span>
-											<span class="translate"></span>
-											<small class="refs tooltip" title=""></small>
+											<span class="greek tooltip" title="tendo tingido de vermelho / tendo sido tingidos de vermelho | Ocorrências: ">ἠρυθροδανωμένα</span>
+											<span class="translate">tendo tingido de vermelho / tendo sido tingidos de vermelho</span>
+											<small class="refs tooltip" title="Verbo - Perfeito Particípio Média - Neutro Nominativo Plural / Verbo - Perfeito Particípio Média - Neutro Vocativo Plural / Verbo - Perfeito Particípio Média - Neutro Acusativo Plural / Verbo - Perfeito Particípio Passiva - Neutro Nominativo Plural / Verbo - Perfeito Particípio Passiva - Neutro Vocativo Plural / Verbo - Perfeito Particípio Passiva - Neutro Acusativo Plural">V</small>
 										</span>
 									
 										<span class="token">
@@ -6445,8 +6453,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">asēptōn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀσήπτων</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="dos incorruptíveis | Ocorrências: ">ἀσήπτων</span>
+											<span class="translate">dos incorruptíveis</span>
 											<small class="refs tooltip" title="Adjetivo - Neutro Genitivo Plural">Adj</small>
 										</span>
 									
@@ -6755,8 +6763,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">agkōniskous</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀγκωνίσκους</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="articulações | Ocorrências: ">ἀγκωνίσκους</span>
+											<span class="translate">articulações</span>
 											<small class="refs tooltip" title="Substantivo - Masculino Acusativo Plural">S</small>
 										</span>
 									
@@ -7883,8 +7891,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">argyras</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀργυρᾶς</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="de prata | Ocorrências: ">ἀργυρᾶς</span>
+											<span class="translate">de prata</span>
 											<small class="refs tooltip" title="Adjetivo - Feminino Acusativo Plural">Adj</small>
 										</span>
 									
@@ -8661,8 +8669,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">opisthiōn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ὀπισθίων</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="dos posteriores | Ocorrências: ">ὀπισθίων</span>
+											<span class="translate">dos posteriores</span>
 											<small class="refs tooltip" title="Adjetivo - Neutro Genitivo Plural">Adj</small>
 										</span>
 									
@@ -8736,8 +8744,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">katōthen</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">κάτωθεν</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="de baixo | Ocorrências: ">κάτωθεν</span>
+											<span class="translate">de baixo</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
 									
@@ -8878,8 +8886,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">symblēsin</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">σύμβλησιν</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="junção | Ocorrências: ">σύμβλησιν</span>
+											<span class="translate">junção</span>
 											<small class="refs tooltip" title="Substantivo - Feminino Acusativo Singular">S</small>
 										</span>
 									
@@ -9544,8 +9552,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">asēptōn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀσήπτων</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="dos incorruptíveis / das incorruptíveis | Ocorrências: ">ἀσήπτων</span>
+											<span class="translate">dos incorruptíveis / das incorruptíveis</span>
 											<small class="refs tooltip" title="Adjetivo - Masculino Genitivo Plural / Adjetivo - Feminino Genitivo Plural / Adjetivo - Neutro Genitivo Plural">Adj</small>
 										</span>
 									
@@ -9957,8 +9965,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">opisthiō</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ὀπισθίῳ</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="ao posterior | Ocorrências: ">ὀπισθίῳ</span>
+											<span class="translate">ao posterior</span>
 											<small class="refs tooltip" title="Adjetivo - Neutro Dativo Singular">Adj</small>
 										</span>
 									
@@ -10387,8 +10395,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">katachrysōseis</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">καταχρυσώσεις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="dourarás | Ocorrências: ">καταχρυσώσεις</span>
+											<span class="translate">dourarás</span>
 											<small class="refs tooltip" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V</small>
 										</span>
 									
@@ -10571,8 +10579,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">katachrysōseis</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">καταχρυσώσεις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="dourarás | Ocorrências: ">καταχρυσώσεις</span>
+											<span class="translate">dourarás</span>
 											<small class="refs tooltip" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V</small>
 										</span>
 									
@@ -10754,7 +10762,7 @@
 											<span class="translit">dedeigmenon</span>
 											<span class="greek tooltip" title=" | Ocorrências: ">δεδειγμένον</span>
 											<span class="translate"></span>
-											<small class="refs tooltip" title=""></small>
+											<small class="refs tooltip" title="Verbo - Perfeito Particípio Média - Neutro Nominativo Singular / Verbo - Perfeito Particípio Média - Neutro Vocativo Singular / Verbo - Perfeito Particípio Média - Neutro Acusativo Singular / Verbo - Perfeito Particípio Passiva - Neutro Nominativo Singular / Verbo - Perfeito Particípio Passiva - Neutro Vocativo Singular / Verbo - Perfeito Particípio Passiva - Neutro Acusativo Singular">V</small>
 										</span>
 									
 										<span class="token">
@@ -11007,9 +11015,9 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">nenēsmenēs</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">νενησμένης</span>
-											<span class="translate"></span>
-											<small class="refs tooltip" title=""></small>
+											<span class="greek tooltip" title="tendo fiado / tendo sido fiada | Ocorrências: ">νενησμένης</span>
+											<span class="translate">tendo fiado / tendo sido fiada</span>
+											<small class="refs tooltip" title="Verbo - Perfeito Particípio Média - Feminino Genitivo Singular / Verbo - Perfeito Particípio Passiva - Feminino Genitivo Singular">V</small>
 										</span>
 									
 										<span class="token">
@@ -11182,8 +11190,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">asēptōn</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἀσήπτων</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="dos incorruptíveis / das incorruptíveis | Ocorrências: ">ἀσήπτων</span>
+											<span class="translate">dos incorruptíveis / das incorruptíveis</span>
 											<small class="refs tooltip" title="Adjetivo - Masculino Genitivo Plural / Adjetivo - Feminino Genitivo Plural / Adjetivo - Neutro Genitivo Plural">Adj</small>
 										</span>
 									
@@ -11659,8 +11667,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">dioriei</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">διοριεῖ</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="delimitará | Ocorrências: ">διοριεῖ</span>
+											<span class="translate">delimitará</span>
 											<small class="refs tooltip" title="Verbo - Futuro Indicativo Ativa - 3ª Pessoa Singular">V</small>
 										</span>
 									
@@ -12632,8 +12640,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">epispastron</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ἐπίσπαστρον</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="cortina | Ocorrências: ">ἐπίσπαστρον</span>
+											<span class="translate">cortina</span>
 											<small class="refs tooltip" title="Substantivo - Neutro Nominativo Singular / Substantivo - Neutro Vocativo Singular / Substantivo - Neutro Acusativo Singular">S</small>
 										</span>
 									
@@ -12794,8 +12802,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">poikiltou</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">ποικιλτοῦ</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="de bordador | Ocorrências: ">ποικιλτοῦ</span>
+											<span class="translate">de bordador</span>
 											<small class="refs tooltip" title="Substantivo - Masculino Genitivo Singular">S</small>
 										</span>
 									
@@ -13037,8 +13045,8 @@
                                             <a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
                                             
 											<span class="translit">chōneuseis</span>
-											<span class="greek tooltip" title=" | Ocorrências: ">χωνεύσεις</span>
-											<span class="translate"></span>
+											<span class="greek tooltip" title="fundirás | Ocorrências: ">χωνεύσεις</span>
+											<span class="translate">fundirás</span>
 											<small class="refs tooltip" title="Verbo - Futuro Indicativo Ativa - 2ª Pessoa Singular">V</small>
 										</span>
 									
@@ -13144,55 +13152,64 @@
   <script>
     var page = document.getElementById("app");
 
-    function toggleStrongs() {
-      page.classList.toggle("no_strongs");
+    function toggleStrongs(checkbox) {
+      page.classList.toggle("no_strongs", checkbox.checked);
     }
-    function toggleTranslit() {
-      page.classList.toggle("no_translit");
+    function toggleTranslit(checkbox) {
+      page.classList.toggle("no_translit", checkbox.checked);
     }
-    function toggleGreek() {
-      page.classList.toggle("no_greek");
+    function toggleGreek(checkbox) {
+      page.classList.toggle("no_greek", checkbox.checked);
     }
-    function toggleGrammar() {
-      page.classList.toggle("no_grammar");
+    function toggleGrammar(checkbox) {
+      page.classList.toggle("no_grammar", checkbox.checked);
     }
-  </script>
-
-	<script>
-		(function () {
-			const toggleBtn = document.getElementById('toggleMenu');
-			const nav = document.querySelector('.main-nav');
-
+		
+		function toggleText(checkbox, class) {
+      page.classList.toggle(class, checkbox.checked);
+    }
+		
+		function toggleMenu(nav, toggleBtn) {
 			if (!toggleBtn || !nav) return;
 
-			toggleBtn.setAttribute('aria-expanded', 'false');
+			const opened = nav.classList.toggle('open');
+			toggleBtn.setAttribute('aria-expanded', String(opened));
+		}
 
-			toggleBtn.addEventListener('click', (e) => {
-				e.stopPropagation();
-				const opened = nav.classList.toggle('open');
-				toggleBtn.setAttribute('aria-expanded', String(opened));
-			});
+		const mainNav = document.querySelector('.main-nav');
+		const optionsDropdown = document.querySelector('.options-dropdown');
+		const optionsDropdown2 = document.querySelector('.options-dropdown2');
+		const menuControls = [
+			{ nav: mainNav, button: document.getElementById('toggleMenu') },
+			{ nav: optionsDropdown, button: document.getElementById('optionsBt') },
+			{ nav: optionsDropdown2, button: document.getElementById('optionsBt2') }
+		].filter(({ nav, button }) => nav && button);
 
-			// Click/touch outside to close
-			const closeIfOutside = (e) => {
-				if (!nav.classList.contains('open')) return;
-				if (nav.contains(e.target) || e.target === toggleBtn) return;
+		menuControls.forEach(({ button }) => button.setAttribute('aria-expanded', 'false'));
+
+		const closeMenusIfOutside = (event) => {
+			menuControls.forEach(({ nav, button }) => {
+				if (!nav.classList.contains('open')
+					|| nav.contains(event.target)
+					|| button.contains(event.target)) return;
+
 				nav.classList.remove('open');
-				toggleBtn.setAttribute('aria-expanded', 'false');
-			};
-
-			document.addEventListener('click', closeIfOutside);
-			document.addEventListener('touchstart', closeIfOutside);
-
-			// Close with Escape
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape' && nav.classList.contains('open')) {
-					nav.classList.remove('open');
-					toggleBtn.setAttribute('aria-expanded', 'false');
-					toggleBtn.focus();
-				}
+				button.setAttribute('aria-expanded', 'false');
 			});
-		})();
+		};
+
+		document.addEventListener('click', closeMenusIfOutside);
+		document.addEventListener('touchstart', closeMenusIfOutside);
+		document.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape') return;
+
+			menuControls.forEach(({ nav, button }) => {
+				if (!nav.classList.contains('open')) return;
+				nav.classList.remove('open');
+				button.setAttribute('aria-expanded', 'false');
+				button.focus();
+			});
+		});
 	</script>
 	<script 
 		src="/biblia/pagefind/pagefind-ui.js" 
