@@ -8,7 +8,8 @@ module.exports = () => {
   const directory = path.join(__dirname, '../interlinear/at');
   if (!fs.existsSync(directory)) return [];
   // Leitura nova também permite atualizar os metadados no modo watch.
-  const metadata = JSON.parse(fs.readFileSync(path.join(__dirname, 'atBooks.json'), 'utf8'));
+  // A subpasta evita que o Eleventy una o JSON à lista global atBooks deste JS.
+  const metadata = JSON.parse(fs.readFileSync(path.join(__dirname, 'lxx/atBooks.json'), 'utf8'));
   const files = fs.readdirSync(directory).filter(file => file.endsWith('.json'));
   const available = new Set(files.map(file => path.basename(file, '.json')));
   const ntSlugs = new Set(require('./ntBooks.json').map(book => book.permalink.split('/').filter(Boolean).pop()));
