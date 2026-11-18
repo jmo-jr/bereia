@@ -16,8 +16,10 @@ Uma linha em branco inicia outro parágrafo; ``--`` inicia outra perícope.
 Versículos podem usar ``capítulo:versículo`` ou apenas ``versículo`` quando
 ``--chapter`` foi informado. 
 O marcador ``<rl>...</rl>`` vira uma marcação ``<span class="redletter">...</span>``;
-``<ref>[referência]</ref>`` vira uma nota superscrita e outros ``<ref>...</ref>``
-viram tooltips, podendo informar o texto do tooltip em ``<ref "comentário">``.
+``<person>...</person>`` e ``<place>...</place>`` marcam personagens e lugares;
+``<ref>[referência]</ref>`` vira uma nota superscrita. Em outros tooltips,
+``<ref "comentário">`` define o atributo ``title`` e
+``<ref "#identificador">`` define ``data-tooltip-content``.
 As marcações ``<cite>...</cite>`` são preservadas.
 """
 
@@ -37,6 +39,8 @@ PERICOPE_CONCORDANCE_RE = re.compile(r"^(.*?)\s*\(([^()]*)\)\s*$")
 REDLETTER_TAG_RE = re.compile(r"</?rl>", re.IGNORECASE)
 REF_TAG_RE = re.compile(r'<ref(?:\s+"([^"]*)")?>|</ref>')
 REF_BLOCK_RE = re.compile(r'<ref(?:\s+"([^"]*)")?>(.*?)</ref>', re.DOTALL)
+ENTITY_TAG_RE = re.compile(r"</?(person|place)>")
+ENTITY_SPAN_CLASSES = {"person": "characters", "place": "places"}
 SLUG_SEPARATOR_RE = re.compile(r"[^a-z0-9]+")
 
 
@@ -224,13 +228,40 @@ def convert_reference(text: str, line_description: str) -> str:
         if content.startswith("[") and content.endswith("]"):
             reference = html.escape(content[1:-1].strip(), quote=True)
             return f'<sup class="ref tooltip" title="{reference}">[*]</sup>'
-        tooltip_content = html.escape(comment or "", quote=True)
-        return (
-            f'<span class="tooltip" data-tooltip-content="{tooltip_content}">'
-            f"{content}</span>"
-        )
+        if comment is not None and not comment.startswith("#"):
+            tooltip_title = html.escape(comment, quote=True)
+            return f'<span class="tooltip" title="{tooltip_title}">{content}</span>'
+        tooltip_id = html.escape(comment or "", quote=True)
+        return f'<span class="tooltip" data-tooltip-content="{tooltip_id}">{content}</span>'
 
     return REF_BLOCK_RE.sub(replace_reference, text)
+
+
+def convert_entity_markers(text: str, line_description: str) -> str:
+    open_tags: list[str] = []
+    for match in ENTITY_TAG_RE.finditer(text):
+        tag = match.group(1)
+        if match.group().startswith("</"):
+            if not open_tags or open_tags[-1] != tag:
+                raise ValueError(
+                    f"{line_description}: marcador </{tag}> sem <{tag}> correspondente."
+                )
+            open_tags.pop()
+        else:
+            open_tags.append(tag)
+
+    if open_tags:
+        tag = open_tags[-1]
+        raise ValueError(f"{line_description}: marcador <{tag}> sem fechamento </{tag}>.")
+
+    return ENTITY_TAG_RE.sub(
+        lambda match: (
+            f'<span class="{ENTITY_SPAN_CLASSES[match.group(1)]}">'
+            if not match.group().startswith("</")
+            else "</span>"
+        ),
+        text,
+    )
 
 
 def liquid_string(value: str) -> str:
@@ -258,6 +289,10 @@ def render_chapter(
                     f"Capitulo {chapter}, versiculo {verse.number}",
                 )
                 text = convert_reference(
+                    text,
+                    f"Capitulo {chapter}, versiculo {verse.number}",
+                )
+                text = convert_entity_markers(
                     text,
                     f"Capitulo {chapter}, versiculo {verse.number}",
                 )

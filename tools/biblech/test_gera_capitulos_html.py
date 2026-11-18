@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from tools.biblech.gera_capitulos_html import (
+    convert_entity_markers,
     convert_reference,
     convert_redletter,
     parse_source,
@@ -79,10 +80,32 @@ class RenderingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "sem <rl> correspondente"):
             convert_redletter("Texto</rl>", "versículo 1")
 
+    def test_entity_markers_become_character_and_place_spans(self):
+        self.assertEqual(
+            convert_entity_markers(
+                "<person>Jesus</person> foi a <place>Jerusalém</place>.",
+                "versículo 1",
+            ),
+            '<span class="characters">Jesus</span> foi a '
+            '<span class="places">Jerusalém</span>.',
+        )
+
+    def test_entity_markers_must_be_well_nested_and_closed(self):
+        with self.assertRaisesRegex(ValueError, "sem fechamento"):
+            convert_entity_markers("<person>Jesus", "versículo 1")
+        with self.assertRaisesRegex(ValueError, "sem <person> correspondente"):
+            convert_entity_markers("Jesus</person>", "versículo 1")
+        with self.assertRaisesRegex(ValueError, "sem <person> correspondente"):
+            convert_entity_markers(
+                "<person>Jesus<place>Jerusalém</person></place>",
+                "versículo 1",
+            )
+
     def test_reference_markers_render_as_scripture_note_or_tooltip(self):
         text = (
             '<cite>Texto citado</cite> <ref>[Is 40:3]</ref> '
-            '<ref>leproso</ref> <ref "Algum comentário">conteúdo explicado</ref>'
+            '<ref>leproso</ref> <ref "Algum comentário">conteúdo explicado</ref> '
+            '<ref "#identificador">termo explicado</ref>'
         )
 
         self.assertEqual(
@@ -90,8 +113,9 @@ class RenderingTests(unittest.TestCase):
             '<cite>Texto citado</cite> '
             '<sup class="ref tooltip" title="Is 40:3">[*]</sup> '
             '<span class="tooltip" data-tooltip-content="">leproso</span> '
-            '<span class="tooltip" data-tooltip-content="Algum comentário">'
-            "conteúdo explicado</span>",
+            '<span class="tooltip" title="Algum comentário">conteúdo explicado</span> '
+            '<span class="tooltip" data-tooltip-content="#identificador">'
+            "termo explicado</span>",
         )
 
     def test_reference_note_escapes_title_attribute_and_rejects_unbalanced_tags(self):
@@ -104,7 +128,14 @@ class RenderingTests(unittest.TestCase):
                 '<ref "A & B">texto</ref>',
                 "versículo 1",
             ),
-            '<span class="tooltip" data-tooltip-content="A &amp; B">texto</span>',
+            '<span class="tooltip" title="A &amp; B">texto</span>',
+        )
+        self.assertEqual(
+            convert_reference(
+                '<ref "#id&x">texto</ref>',
+                "versículo 1",
+            ),
+            '<span class="tooltip" data-tooltip-content="#id&amp;x">texto</span>',
         )
         with self.assertRaisesRegex(ValueError, "sem fechamento"):
             convert_reference("<ref>texto", "versículo 1")
@@ -114,7 +145,8 @@ class RenderingTests(unittest.TestCase):
     def test_renders_flat_liquid_chapter_with_shortcodes(self):
         pericope = parse_source(
             'A perícope (Lc 1:2)\n1 <rl>Texto</rl> <cite>citado</cite> '
-            "<ref>[Is 40:3]</ref>.\n\n2 Segundo parágrafo.",
+            '<ref>[Is 40:3]</ref> <person>Jesus</person> em '
+            "<place>Jerusalém</place>.\n\n2 Segundo parágrafo.",
             default_chapter=3,
         )[3]
 
@@ -126,7 +158,9 @@ class RenderingTests(unittest.TestCase):
         self.assertIn(
             '{% verse bookAbbrev bookChapter 1 %}'
             '<span class="redletter">Texto</span> <cite>citado</cite> '
-            '<sup class="ref tooltip" title="Is 40:3">[*]</sup>.{% endverse %}',
+            '<sup class="ref tooltip" title="Is 40:3">[*]</sup> '
+            '<span class="characters">Jesus</span> em '
+            '<span class="places">Jerusalém</span>.{% endverse %}',
             output,
         )
         self.assertIn(
