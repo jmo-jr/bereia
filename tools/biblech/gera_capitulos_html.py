@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Gera fontes Liquid de capítulos bíblicos a partir de um TXT.
 
+Ex: python3 tools/biblech/gera_capitulos_html.py src/biblia/nt/mateus --batch --book-name Mateus --book-abbrev mt --force
+
 Formato:
 
     A purificação do leproso (Lc 5:12-16)
