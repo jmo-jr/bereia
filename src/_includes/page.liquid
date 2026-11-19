@@ -47,6 +47,7 @@ title: Bíblia BEREIA
 			{% assign interlinearBooks = atBooks | concat: ntBooks %}
 			{% if entry.lxx == true %}{% assign isLxxInterlinear = true %}{% endif %}
 		{% endif %}
+
 		{% render 'toolBar', lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookChapter: bookChapter, type: bee | default: false %}
 
 		<div class="content-wrapper">
@@ -76,6 +77,17 @@ title: Bíblia BEREIA
 
   </div>
 
+	<div class="feedback-component">
+		<button type="button" onclick="toggleMenu(feedbackWindow, this)">📢 Feedback</button>
+
+		<div class="feedback-options">
+			<p>Queremos te ouvir!</p>
+			<button id="bugReport" type="button">🚨 Relate um erro</button>
+			<button id="featureRequest" type="button">🌟 Sugira uma funcionalidade</button>
+			<button id="helpUs" type="button">🫰 Apoie nosso trabalho</button>
+		</div>
+	</div>
+
   <!-- SCRIPTS -->
   <script>
     var page = document.getElementById("app");
@@ -94,6 +106,7 @@ title: Bíblia BEREIA
 		const mainNav = document.querySelector('.main-nav');
 		const optionsDropdown = document.querySelector('.options-dropdown');
 		const optionsDropdown2 = document.querySelector('.options-dropdown2');
+		const feedbackWindow = document.querySelector('.feedback-options');
 		const menuControls = [
 			{ nav: mainNav, button: document.getElementById('toggleMenu') },
 			{ nav: optionsDropdown, button: document.getElementById('optionsBt') },
@@ -141,7 +154,8 @@ title: Bíblia BEREIA
 			}
 		});">
 	</script>
-
+	{% if bee %}
 	{% render 'notes' %}
+	{% endif %}
 </body>
 </html>
