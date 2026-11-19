@@ -2,16 +2,16 @@
 <div class="toolbar">
 	<div class="content">
 
-		{% if type == true %}
+		{% comment %} {% if type == true %}
 		<h2 class="show-mobile">Bíblia de Estudo Exegético</h2>
 		{% else %}
 		<h2 class="show-mobile">{% if lxx %}LXX Interlinear Analítico{% else %}NT Interlinear Analítico{% endif %}</h2>
-		{% endif %}
+		{% endif %} {% endcomment %}
 
 		<div class="d-flex justify-between align-items-center flex-wrap">
 
-			{% comment %} Navegador dos livros {% endcomment %}
-			<div class="input-group">
+			{% comment %} Linha 1: Navegador dos livros {% endcomment %}
+			<div class="input-group d-flex">
 
 				<form>
 					<select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
@@ -51,6 +51,12 @@
 
 				</form>
 
+				<div class="chapters-nav">
+					{% comment %} {{ theResource | url }}{{ theBookName | downcase }}/{{ chapterNum | minus: 1 }}/ {% endcomment %}
+					<button type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
+
+					<button type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></button>
+				</div>
 			</div>
 
 			{% if type %}
@@ -59,7 +65,7 @@
 			<h2 class="show-desktop">{% if lxx %}AT Grego (LXX) Interlinear Analítico{% else %}NT Majoritário Interlinear Analítico{% endif %}</h2>
 			{% endif %}
 
-			{% comment %} Configurações de tela {% endcomment %}
+			{% comment %} Linha 2: Configurações de tela {% endcomment %}
 			{% if type %}
 			<div class="options-container">
 				<div id="search" class="search"></div>
@@ -94,6 +100,14 @@
 				</div>
 			</div>
 			{% endif %}
+
+			<div class="tool-selector">
+				<div class="button-group">
+					<a class="group-button {% if type %}active{% endif %}" href="{{ '/biblia/mateus/1/' | url }}">NT de Estudo</a>
+
+					<a class="group-button {% unless type %}active{% endunless %}" href="{{ '/interlinear/mt/1/' | url }}">Bíblia Interlinear</a>
+				</div>
+			</div>
 
 		</div>
 

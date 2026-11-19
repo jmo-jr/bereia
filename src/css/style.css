@@ -4,8 +4,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@100..900&display=swap');
 
 :root {
-  --textColor: rgba(0, 0, 0, 0.85);
   --brandColor: #560219;
+	--brandTextColor: #7b0000;
+  --textColor: rgba(0, 0, 0, 0.85);
+	--burgerColor: rgb(101 79 85);
+	--flatBgColor: white;
+	--toolBarBg: #fafafb;
+	--inputBorder: #eeeeee;
+	--labelColor: #11162D;
+	--activeLabelColor: #1873E0;
+	--activeBtnBg: #D3E7FD;
+	--linkColor: #107AF7;
+	--titleColor: #051E3C;
   --sans-font: "Open Sans", Arial, sans-serif;
   --serif-font: "Merriweather", Georgia, "Times New Roman", Times, serif;
 	--greek: "Cardo", "GentiumAlt", "Galilee Unicode Gk", "Galatia SIL", "Palatino Linotype", Arial, Helvetica, sans-serif;
@@ -25,7 +35,7 @@ a:link,
 a:visited,
 a:active {
   text-decoration: none;
-  color: #0092f2;
+  color: var(--linkColor);
 }
 
 a:hover {
@@ -118,9 +128,10 @@ q {
   right: 0;
   height: 50px;
   padding: 6px 0;
-  background-color: var(--brandColor);
+  background-color: var(--flatBgColor);
   color: white;
   text-align: center;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .1);
   z-index: 1000;
 
   & > .content {
@@ -134,7 +145,7 @@ q {
     font-weight: bold;
 
     & a {
-      color: rgba(255, 255, 255, 0.85) !important;
+      color: var(--brandColor);
     }
 
 		&:after {
@@ -187,7 +198,8 @@ q {
   left: 0;
   right: 0;
   padding: 12px;
-  background-color: #ebebeb;
+  background-color: var(--toolBarBg);
+	box-shadow: 0 0 5px rgba(0, 0, 0, .1);
   z-index: 999;
 
   & h2 {
@@ -199,12 +211,14 @@ q {
 
 	.search {
     min-width: 200px;
+		flex: 1;
 	}	
 
   & input.pagefind-ui__search-input.svelte-e9gkc3 {
     width: 200px;
     height: 36px;
     padding: 0 27px;
+		border-width: 1px;
     font-size: 14px;
     font-weight: normal;
   }
@@ -242,17 +256,37 @@ q {
 }
 
 select.drop {
-  padding: 6px;
-  background-color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 8px;
+	background-color: white;
+	border: solid 1px #eeeeee;
+	border-radius: 8px;
+	font-family: var(--serif-font);
+	font-size: 14px;
+}
+
+.chapters-nav {
+	display: flex;
+	gap: 4px;
+
+	& button {
+		background: white;
+		border: solid 1px var(--inputBorder);
+		width: 38px;
+		height: 38px;
+		border-radius: 8px;
+
+		svg {
+			height: 14px;
+			fill: var(--labelColor);
+		}
+	}
 }
 
 .options-container {
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	width: 96%;
 }
 
 .options-group {
@@ -492,9 +526,10 @@ ul.versiculos {
   width: 100%;
   padding-top: 32px;
   padding-bottom: 24px;
+	/* background: linear-gradient(0deg, #fefdfd, #e3eefa); */
+  color: var(--titleColor);
   font-size: 1.05em;
   font-weight: 700;
-  color: #7b0000;
   text-align: center;
 }
 
@@ -532,13 +567,13 @@ ul.versiculos {
 #topheading a {
   padding: 4px;
   border-radius: 50px;
-  color: #00a7ff;
+  color: var(--linkColor);
   opacity: 0.3;
 }
 
 #movebox2 a:hover,
 #topheading a:hover {
-  background-color: #e5e5e5;
+  background-color: var(--link);
   opacity: 1;
 }
 
@@ -552,7 +587,7 @@ ul.versiculos {
   margin-bottom: 10px;
   font-size: 16px;
   font-weight: 700;
-  color: #7b0000;
+  color: var(--brandTextColor);
   text-align: center;
 }
 
@@ -585,7 +620,7 @@ table.tablefloatleft td {
 .refmain {
 	margin-top: 62px;
   font-size: 15px;
-  color: #7b0000;
+  color: var(--brandTextColor);
   line-height: 8px;
   font-weight: 700;
 
@@ -597,7 +632,7 @@ table.tablefloatleft td {
 .strongs {
 	display: block;
   font-size: 15px;
-  color: #0092f2;
+  color: var(--linkColor);
   line-height: 26px;
   font-family: Arial, Helvetica, Sans-serif;
   text-decoration: none;
@@ -611,7 +646,7 @@ table.tablefloatleft td {
 .strongs a,
 .strongs {
   font-size: 12px;
-  color: #0092f2;
+  color: var(--linkColor);
   line-height: 24px;
   font-family: Arial, Helvetica, Sans-serif;
 }
@@ -631,7 +666,7 @@ table.tablefloatleft td {
 
 .punct {
   font-size: 20px;
-  color: #7b0000;
+  color: var(--brandTextColor);
   line-height: 1;
   font-family: Ariel Black, Arial, Helvetica, Sans-serif;
   font-weight: 700;
@@ -641,7 +676,7 @@ table.tablefloatleft td {
 
 .eng, .translate {
   font-size: 16px;
-  color: #7b0000;
+  color: var(--brandTextColor);
   font-style: italic;
   line-height: 26px;
 }
@@ -745,11 +780,11 @@ table.tablefloatleft td {
 }
 
 #left a:hover #seta-esquerda {
-  fill: #0092f2;
+  fill: var(--linkColor);
 }
 
 #right a:hover #seta-direita {
-  fill: #0092f2;
+  fill: var(--linkColor);
 }
 
 #botright {
@@ -760,7 +795,7 @@ table.tablefloatleft td {
 }
 
 #botright a:hover #seta-acima {
-  fill: #0092f2;
+  fill: var(--linkColor);
 }
 
 /*-------------------------------------------------*/
@@ -1002,12 +1037,12 @@ table.tablefloatleft td {
     & .burger-icon {
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      width: 24px;
+      gap: 4px;
+      width: 20px;
 
       & .burger-layer {
-        height: 3px;
-        background-color: rgba(255, 255, 255, 0.85);
+        height: 2.5px;
+        background-color: var(--burgerColor);
       }
     }
   }
@@ -1031,11 +1066,15 @@ table.tablefloatleft td {
   }
 
 	.content-wrapper {
-		margin-top: 206px;
+		margin-top: 217px;
 	}
 
   .main-content {
     /* margin-top: 90px; */
+
+		> .content {
+			padding: 0 !important;
+		}
   }
 
   .toolbar {
@@ -1044,6 +1083,7 @@ table.tablefloatleft td {
 			flex-direction: column;
 			align-items: center;
 			gap: 16px;
+			padding: 0;
 
 			& h1 {
 				font-size: 22px;
@@ -1067,16 +1107,38 @@ table.tablefloatleft td {
 
 			& > .d-flex {
 				justify-content: center;
-				gap: 12px;
+				gap: 8px;
 			}
 
 			& .input-group, .search {
 				width: auto;
+				gap: 12px;
 			}
 
 			& .button-group {
-				margin-top: 12px;
-    		justify-content: center;
+				display: flex;
+				/* margin-top: 12px;
+    		justify-content: center; */
+			}
+			& .tool-selector {
+				width: calc(100% - 20px);
+
+				& a.group-button {
+					padding: 9px 14px;
+					border-radius: 6px;
+					font-family: var(--sans-font);
+					font-size: 14px;
+					font-weight: 500;
+					display: inline-block;
+					flex: 1;
+					text-align: center;
+					color: var(--labelColor);
+
+					&.active {
+						background: var(--activeBtnBg);
+						color: var(--activeLabelColor);
+					}
+				}
 			}
 		}
   }
@@ -1088,11 +1150,14 @@ table.tablefloatleft td {
 
 	.page-header {
   	justify-content: space-between;
+		background: url('/img/bg_int.png') no-repeat center bottom;
+		background-size: cover;
 	}
 
 	.chapter-wrapper {
 		width: auto;
-		margin: 0 8px;
+		margin: 0 20px;
+		padding-top: 8px;
 	}
 
   .pericope {
@@ -1116,7 +1181,7 @@ table.tablefloatleft td {
   }
 
 	.content-container {
-    width: 100%;
+    width: 90%;
     margin: 16px auto 0;
 	}
 
