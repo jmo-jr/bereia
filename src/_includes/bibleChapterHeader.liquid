@@ -1,8 +1,14 @@
 {% render 'sideNav.liquid', theResource: '/biblia/', theBookName: bookName, theBookChapter: bookChapter %}
 
 <div class="page-header bee">
-	<a href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | minus: 1 }}"
-		title="{{ bookName }} {{ bookChapter | minus: 1 }}">◄</a>
+	{% if bookChapter > 1 %}
+	<a 
+		href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | minus: 1 }}"
+		title="{{ bookName }} {{ bookChapter | minus: 1 }}">
+	◄</a>
+	{% else %}
+	<a href="#">&nbsp;</a>
+	{% endif %}
 	<div class="page-header_title">
 		<h3>{{bookName}} {{bookChapter}}</h3>
 		<small><a href="/interlinear/{{bookAbbrev}}/{{bookChapter}}">Versão interlinear</a></small>

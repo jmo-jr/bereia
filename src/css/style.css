@@ -166,6 +166,7 @@ q {
     list-style: none;
 
     & li a {
+			padding: 0 10px;
       color: rgba(255, 255, 255, 0.85);
       font-size: 15px;
 
@@ -956,6 +957,11 @@ table.tablefloatleft td {
 
   .app-bar {
     padding: 6px 12px;
+
+		& > .content {
+			height: 100%;
+			padding: 0 6px;
+		}
   }
 
   h2.show-mobile {
@@ -965,10 +971,10 @@ table.tablefloatleft td {
 
   nav.main-nav {
     position: absolute;
-    background-color: #560219;
-    right: 0;
-    top: 100%;
-    padding: 12px 24px;
+    background-color: #560219de;
+    right: -4px;
+    top: 112%;
+    padding: 4px 16px;
     display: none;
 
     & ul {
@@ -976,7 +982,10 @@ table.tablefloatleft td {
       text-align: left;
 
       & li {
+				padding: 6px 0;
         line-height: 2.3;
+
+				&:not(:last-child) { border-bottom: solid 1px rgba(255, 255, 255, .3); }
       }
     }
 
@@ -1021,8 +1030,12 @@ table.tablefloatleft td {
     margin-top: 56px;
   }
 
+	.content-wrapper {
+		margin-top: 206px;
+	}
+
   .main-content {
-    margin-top: 205px;
+    /* margin-top: 90px; */
   }
 
   .toolbar {
@@ -1069,7 +1082,7 @@ table.tablefloatleft td {
   }
 
   .d-flex.flex-wrap > div {
-    width: 100%;
+    /* width: 100%; */
     line-height: 1.6;
   }
 
@@ -1313,7 +1326,16 @@ aside.side-drawer.is-open {
 	opacity: 1;
 }
 @media (max-width: 700px) {
-  aside.side-drawer { width: 100%; box-sizing: border-box; }
+  aside.side-drawer { 
+		box-sizing: border-box; 
+		width: 0;
+		margin: 0;
+
+		&.is-open { 
+			width: 100%;
+			margin: 8px;
+		}
+	}
 }
 
 /* FEEDBACK */
