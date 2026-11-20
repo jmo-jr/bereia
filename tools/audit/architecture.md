@@ -212,3 +212,93 @@ Esse teste também confronta a emulação Python com o loader JavaScript para
 todas as grafias do TM. Relatórios em `reports/audit/aplicacao-arche/` registram
 referências, hashes, verificações de preservação e diferenças antes/depois da
 consulta. A auditoria e a triagem continuam sendo operações somente leitura.
+
+## Lote de agudo/grave
+
+```sh
+python3 -B -m tools.audit.audit_accents
+python3 -B -m unittest tools.audit.test_audit_accents -v
+```
+
+O lote seleciona somente formas ainda ausentes, com candidato que difere por
+agudo/grave na mesma posição, conforme a triagem. A comparação gráfica conserva
+espíritos, trema, circunflexo e iota subscrito; caixa é documentada como diferença
+adicional. Candidatos de outras categorias não são descartados: bloqueiam uma
+minuta de inclusão automática.
+
+Em `reports/audit/agudo-grave/`, `revisao.json` registra cada candidato, seus
+campos originais, Strong literal, índice de flexão, códigos e referências por
+evidência. `sugestoes.md` apresenta minutas completas para revisão de glosas;
+`incertos.md` e `divergencias.md` apresentam as pendências em listas, sem tabelas.
+O script não aplica nada nem atualiza o estado linguístico. Aprovação do piloto
+ἀρχῇ não se estende a esse lote.
+
+Uma minuta SUGERIR exige candidato único, parsing alinhado em todas as ocorrências,
+compatibilidade em todas as análises comparáveis, descrição coerente e ausência
+de outros candidatos por marcas. Mesmo assim, as glosas são apenas propostas
+copiadas do candidato para aprovação; identidade lexical não é inferida de acento.
+As contagens NT e LXX da minuta são recalculadas para a grafia original; vínculos
+LXX do candidato não são copiados. A contagem LXX não atribui Strong aos tokens.
+
+Os adaptadores cobrem substantivos/adjetivos simples, classes invariáveis
+explicitamente relacionadas e verbos simples com voz explícita. A ordem dos
+campos difere entre BEREIA e Robinson; a fonte é mantida integralmente, incluindo
+prefixos de segundo paradigma. Vozes deponentes, códigos incompletos, códigos
+combinados e análises que exigem interpretação permanecem não comparáveis.
+Sincretismo neutro nominativo/acusativo não cria uma pendência própria.
+
+Na execução inicial, 636 formas (26.554 tokens do TM) produziram 255 minutas
+SUGERIR (672 tokens) e 381 casos INCERTO. Os grupos principais são exclusivos;
+os sinais secundários podem se sobrepor. Os oito casos com divergência de Strong
+e os 41 com análises morfológicas diferentes não são declarados erros objetivos.
+Por exemplo, δωρεὰν apresenta G1432/ADV e G1431/N-ASF nas evidências: um candidato
+gráfico único não basta para escolher uma análise ou tradução para toda a forma.
+
+O relatório inclui hashes dos JSONs consultados da LXX, além das fontes do
+inventário e da implementação. A execução recusa inventário desatualizado e
+confere os hashes ao final. O teste de integração recria o inventário em área
+temporária, compara duas execuções byte a byte e verifica fontes intactas.
+
+## Aplicação aprovada das 255 minutas
+
+O usuário aprovou as 255 minutas SUGERIR do relatório original de agudo/grave.
+A aprovação, vinculada ao SHA256 desse relatório e aos hashes do léxico antes e
+depois, está em `tools/audit/approvals/agudo-grave-255.json`. O manifesto registra
+todos os valores aprovados, Strong literais, novos índices e referências.
+`decisions.json` aponta para o manifesto, sem ampliar a aprovação aos INCERTO.
+
+A aplicação em `apply_approved_accents.py` é separada da auditoria. Ela verifica
+o manifesto, o relatório e as fontes, acrescenta somente as minutas ao final de
+cada grupo e recusa conflitos, formas já cobertas literalmente/NFC e alterações
+nos candidatos originais. Não usa remoção de marcas para criar associações.
+O posicionamento textual é obtido pelo parser JSON, sem reformatar o arquivo.
+Uma reversão em memória comprova a preservação de todos os bytes anteriores.
+Repetir a aplicação com a mesma fonte final é uma operação sem escrita.
+
+```sh
+python3 -B -m tools.audit.apply_approved_accents --approval tools/audit/approvals/agudo-grave-255.json --check
+python3 -B -m unittest tools.audit.test_apply_approved_accents -v
+node --test tools/audit/approved_accents.test.js
+```
+
+Foram acrescentadas 255 flexões em 188 grupos, cobrindo literalmente 672 tokens
+do TM. Nenhuma entrada ou índice anterior foi alterado. Os derivados foram
+regenerados e o estado linguístico atualizado explicitamente. A auditoria passou
+de 2.773 para 2.518 grafias sem cobertura literal/NFC; o fallback legado continua
+ativo para as lacunas restantes. A auditoria geral também passou a respeitar o
+sincretismo neutro nominativo/acusativo já aceito na revisão do lote, evitando
+classificar `δεσμά` como divergência apenas por esse caso.
+
+O relatório original `reports/audit/agudo-grave/revisao.json` permanece intacto,
+como evidência da aprovação. A execução atual foi gravada em `pendentes/`, sem
+sobrescrevê-lo. Os 381 INCERTO originais permanecem em
+`reports/audit/aplicacao-agudo-grave/pendencias.json` e `pendencias.csv`; o CSV
+contém somente pendências não aplicadas. Desses casos, 26 agora são classificados
+como diferenças apenas de caixa, pois a inclusão de outra grafia tornou visível
+esse candidato mais próximo. Não foram aplicados nem excluídos do histórico.
+Os outros 355 continuam no grupo agudo/grave da auditoria atual.
+
+`reports/audit/aplicacao-agudo-grave/` contém o recibo, hashes, conferência de
+preservação, comparação da consulta antes/depois, testes e resumo da aplicação.
+Nenhum backup, baseline, relatório histórico de migração ou capítulo bíblico foi
+alterado pela aplicação; nenhum commit foi criado.

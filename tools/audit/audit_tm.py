@@ -109,6 +109,12 @@ def compatibility(rows, strong, morph):
     signatures = [noun_signature(r['abrev_morf']) for r in same]
     if expected and expected in signatures:
         return 'substantivo_compativel'
+    if expected and expected[1] == 'N' and expected[0] in {'N', 'A'} and any(
+            signature and signature[1:] == expected[1:] and signature[0] in {'N', 'A'}
+            for signature in signatures):
+        # Regra do projeto: não gerar pendência apenas pelo sincretismo neutro
+        # nominativo/acusativo com a mesma tradução.
+        return 'substantivo_compativel_nom_acus_neutro'
     if expected and signatures and all(signatures):
         return 'morfologia_divergente'
     return 'nao_comparavel'  # Nunca confundir convenções distintas com erro.
@@ -281,7 +287,7 @@ def main():
         'ausente': 'Sem flexão literal/NFC; candidatos por caixa ou marcas não são correspondências.',
         'ambiguidades': 'Múltiplas entradas literais/NFC preservadas; não são erros por si só.',
         'evidencia': 'CSV local alinhado por versículo inteiro; grafia sem diacríticos não prova identidade morfológica.',
-        'morfologia': 'Código idêntico ou mapeamento explícito N-caso-número-gênero → S-caso-gênero-número. Demais convenções: não comparável.',
+        'morfologia': 'Código idêntico ou mapeamento explícito N-caso-número-gênero → S-caso-gênero-número; sincretismo neutro nominativo/acusativo não cria divergência própria. Demais convenções: não comparável.',
         'inconsistencias': 'Divergências entre fontes, sujeitas a revisão; sem correção automática.',
         'contagens': 'Comparações contam grupos forma/Strong/parsing/resultado, não tokens. Referências usam token iniciado em 1.',
         'incremental': 'Cache por livro e SHA256; relatório completo recalculado. --books restringe explicitamente o escopo.'}

@@ -58,6 +58,9 @@ class AuditTests(unittest.TestCase):
         self.assertEqual(compatibility(rows, '746', 'N-NSF'), 'morfologia_divergente')
         self.assertEqual(compatibility(rows, '746 ', 'N-DSF'), 'strong_divergente')
         self.assertEqual(compatibility(rows, '746', 'V-PAI-3S'), 'nao_comparavel')
+        neuter = [{'strong': '1199', 'abrev_morf': 'S-ANP'}]
+        self.assertEqual(compatibility(neuter, '1199', 'N-NPN'), 'substantivo_compativel_nom_acus_neutro')
+        self.assertEqual(compatibility(neuter, '1199', 'N-APM'), 'morfologia_divergente')
 
     def test_legacy_wrong_association_is_reported_without_mutation(self):
         lex = lexical()

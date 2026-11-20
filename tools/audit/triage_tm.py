@@ -180,8 +180,8 @@ def apply_gloss_decision(case, contextual, proposals, decisions):
     """Atualiza a proposta em memória, nunca o léxico nem outras flexões."""
     if case.get('estado') == 'fora_do_escopo':
         return
-    matches = [d for d in decisions['decisoes'] if d['strong'] == '746'
-               and d['forma'] == 'ἀρχῇ' and d['estado'] == 'APROVADO']
+    matches = [d for d in decisions['decisoes'] if d.get('strong') == '746'
+               and d.get('forma') == 'ἀρχῇ' and d['estado'] == 'APROVADO']
     if not matches:
         return
     if len(matches) != 1:

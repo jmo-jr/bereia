@@ -13,6 +13,16 @@ linguístico e corrigir a consulta do piloto. Preserve todas as flexões anterio
 inclusive `ἀρχή`, e registre as referências e o resultado da aplicação. Os scripts
 de auditoria continuam somente leitura. Não estenda a aprovação aos demais casos.
 
+## Aplicação do lote agudo/grave aprovada pelo usuário
+
+O usuário aprovou explicitamente as 255 minutas SUGERIR do relatório
+`reports/audit/agudo-grave/revisao.json`. É permitido aplicar somente essas
+minutas, acrescentando-as ao final das flexões dos respectivos Strong literais,
+regenerar os derivados e atualizar o estado linguístico. Registre a aprovação
+vinculada ao hash do relatório. Preserve todos os registros e índices anteriores;
+os 381 INCERTO não estão aprovados. A aplicação deve validar as fontes, preservar
+a formatação e recusar conflitos. Não faça commit nem crie backups.
+
 - Grave código em tools/audit e relatórios/cache em reports/audit.
 - Preserve grafias, referências, identificadores Strong literais e índices de
   flexão; nunca funda homógrafos ou selecione a primeira análise como verdade.
