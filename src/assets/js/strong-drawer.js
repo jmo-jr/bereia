@@ -6,8 +6,6 @@
   let request;
   let trigger;
   let revision = 0;
-  const normalizeGreek = value =>
-    value.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('el');
 
   function load() {
     if (!request) {
@@ -127,9 +125,11 @@
       title.append(document.createTextNode(' ' + entry.lema));
       body.replaceChildren();
 			// Dados do array 'flexoes'
+      // Marcas identificam flexões distintas; candidatos sem marcas não são
+      // análises da ocorrência. Preservar todas as análises literais/NFC.
       const forms = entry.flexoes.filter(
-				form => word && normalizeGreek(form.grego) === normalizeGreek(word)
-			);
+        form => word && form.grego.normalize('NFC') === word.normalize('NFC')
+      );
 
       for (const form of forms) {
 				// Forma (Transliteração)

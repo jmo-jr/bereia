@@ -137,13 +137,17 @@ def classify(form, indexes):
     return 'ausente', []
 
 
-def audit(verses, sources, lexicon, flat, exceptions):
+def audit(verses, sources, lexicon, flat, exceptions, prefer_exact=False):
     indexes = index_lexicon(lexicon)
     forms = {}
     alignment = []
     legacy = {}
+    exact, canonical = {}, {}
     for key, entry in flat.items():
-        legacy.setdefault(legacy_key(key, exceptions), {'chave': key, **{k: entry.get(k) for k in ('strongs', 'grego', 'abrev_morf', 'morfologia')}})
+        selected = {'chave': key, **{k: entry.get(k) for k in ('strongs', 'grego', 'abrev_morf', 'morfologia')}}
+        exact[key] = selected
+        canonical.setdefault(nfc(key), selected)
+        legacy.setdefault(legacy_key(key, exceptions), selected)
     for verse in verses:
         aux = sources.get((verse['ref'].split()[0], verse['chapter'], verse['verse']))
         status = align(verse, aux)
@@ -152,6 +156,8 @@ def audit(verses, sources, lexicon, flat, exceptions):
             if form not in forms:
                 category, entries = classify(form, indexes)
                 selected = legacy.get(legacy_key(form, exceptions))
+                if prefer_exact:
+                    selected = exact.get(form) or canonical.get(nfc(form)) or selected
                 forms[form] = {'forma_tm': form, 'classe': category, 'referencias': [],
                                'entradas': entries,
                                'candidatos_sem_diacriticos': indexes[3].get(folded(form), []),
@@ -252,7 +258,10 @@ def main():
     missing_sources = [str(p.relative_to(ROOT)) for p in paths.values() if not p.exists()]
     manifest = {str(p.relative_to(ROOT)): digest(p) for p in paths.values() if p.exists()}
     lexicon, flat = read(paths['lexico']), read(paths['derivado'])
-    report = audit(verses, sources, lexicon, flat, exceptions_from(paths['consulta'].read_text(encoding='utf-8')))
+    lookup_source = paths['consulta'].read_text(encoding='utf-8')
+    prefer_exact = 'const canonicalDictIndex = new Map();' in lookup_source
+    report = audit(verses, sources, lexicon, flat, exceptions_from(lookup_source), prefer_exact=prefer_exact)
+    report['consulta_modo'] = 'literal_nfc_antes_do_fallback_legado' if prefer_exact else 'normalizacao_legada'
     expected_flat, expected_index = {}, defaultdict(list)
     for strong, group in lexicon.items():
         for i, f in enumerate(group['flexoes']):
@@ -284,6 +293,10 @@ def main():
     write(output / 'inconsistencias.json', dump({'schema_version': VERSION, 'formas': issues}))
     case = [r for r in report['formas'] if nfc(r['forma_tm'].lower()) in {'ἀρχῇ', 'ἀρχή', 'ἀρχὴ'}]
     write(output / 'caso-arche.json', dump({'schema_version': VERSION, 'formas': case, 'grupo_746': lexicon.get('746')}))
+    dative = next((r for r in case if r['forma_tm'] == 'ἀρχῇ'), None)
+    pilot_status = ('A flexão própria ἀρχῇ está no dicionário e a consulta atual a retorna separadamente de ἀρχή.'
+                    if dative and dative['entradas'] and dative['consulta_atual'] and dative['consulta_atual']['grego'] == 'ἀρχῇ'
+                    else 'A consulta atual exige revisão: confira a cobertura e a entrada retornada para ἀρχῇ em caso-arche.json.')
     lines = ['# Auditoria do TM — etapa 1', '', f"Escopo: {', '.join(report['escopo'])}.", '',
         'Dados originais preservados. Hashes, critérios e referências em inventario.json.', '',
         *[f'- {k}: {json.dumps(v, ensure_ascii=False)}' for k, v in report['resumo'].items()],
@@ -291,8 +304,8 @@ def main():
         f'- Produtos derivados: {json.dumps(report["produtos"], ensure_ascii=False)}',
         f'- Formas com divergências nas fontes ou na consulta atual: {len(issues)}.', '',
         '## Caso ἀρχῇ / ἀρχή', '',
-        'A consulta atual remove marcas e seleciona a primeira entrada da chave αρχη. '
-        'O grupo 746 contém ἀρχή (S-NFS), mas não ἀρχῇ. Em JO 1:1#2 e JO 1:2#4, '
+        pilot_status + ' Historicamente, a consulta removia marcas e selecionava ἀρχή para a chave αρχη. '
+        'Em JO 1:1#2 e JO 1:2#4, '
         'o CSV alinhado informa G746 / N-DSF (dativo singular feminino). A associação '
         'ao nominativo perde o iota subscrito. NFC preserva essa distinção. Veja caso-arche.json.', '',
         '## Limites e proposta de correção', '',
@@ -303,7 +316,7 @@ def main():
         '- Divergências de parsing são evidências para revisão. Códigos verbais e compostos sem adaptador ficam não comparáveis.',
         '- Substituir futuramente a consulta por índice literal/NFC multianálise, mantendo identificadores Strong e flexão. Em ambiguidade, conservar todas as análises.',
         '- Usar candidatos sem diacríticos somente na revisão; não os usar como fallback automático. Validar cobertura e regressões antes de retirar exceções.',
-        '- Incluir futuramente ἀρχῇ como flexão própria após revisão humana da evidência; não renomear ἀρχή nem transferir sua tradução.',
+        '- Acompanhar a aplicação aprovada de ἀρχῇ em tools/audit/decisions.json; não renomear ἀρχή nem transferir sua tradução.',
         '- Aplicar a mesma distinção no painel Strong. A projeção plana perde análises adicionais; usar o índice e a fonte completa.',
         '- Etapa 2: propostas separadas por lema/Strong literal e por flexão, com IDs strong + flexao, hashes, referências e decisão humana. Nenhuma consolidação nesta etapa.', '']
     write(output / 'resumo.md', '\n'.join(lines))

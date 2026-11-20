@@ -81,6 +81,8 @@ console.log(JSON.stringify(['ἀρχῇ','ἡ','ἢ'].map(lemma => lookup({lemma
 """
         result = subprocess.run(['node', '-e', code], cwd=ROOT, check=True, capture_output=True, text=True)
         rows = json.loads(result.stdout)
+        # Fixture sem a flexão dativa: documenta o fallback legado, ainda
+        # preservado durante a migração. A regressão com o léxico real é separada.
         self.assertEqual([r['grego'] for r in rows], ['ἀρχή', 'ἡ', 'ἢ'])
         self.assertIn('η', exceptions_from((ROOT / 'src/_data/nt/index.js').read_text()))
 

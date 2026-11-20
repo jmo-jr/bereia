@@ -116,10 +116,18 @@ const createMissingLemmaTracker = () => {
 
 const createEnhanceTokenWithDict = (dict, missingLemmaTracker, extraFields = []) => {
   const dictIndex = buildDictIndex(dict);
+  const canonicalDictIndex = new Map();
+  for (const [form, entry] of Object.entries(dict)) {
+    const key = form.normalize('NFC');
+    if (!canonicalDictIndex.has(key)) canonicalDictIndex.set(key, entry);
+  }
 
   return (token = {}, context = {}) => {
-    const normalized = normalizeGreek(token.lemma || '');
-    const dictEntry = dictIndex[normalized];
+    const form = String(token.lemma || '');
+    // Prioridade segura para formas cobertas. O fallback legado permanece
+    // somente durante a migração de cobertura, sob acompanhamento da auditoria.
+    const dictEntry = Object.hasOwn(dict, form) ? dict[form] :
+      canonicalDictIndex.get(form.normalize('NFC')) || dictIndex[normalizeGreek(form)];
 
     if (!dictEntry) {
       missingLemmaTracker.record(token, context);
