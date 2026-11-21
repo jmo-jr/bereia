@@ -1,9 +1,18 @@
 const { execSync } = require('child_process')
 const generateDictionary = require('./tools/dictionary/generate');
+const { createRenderer } = require('./src/lib/bible-alignment');
+const { scan, report } = require('./tools/bible-alignment');
 //const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function(eleventyConfig) {
   generateDictionary();
+  let renderAlignedVerse = createRenderer();
+  eleventyConfig.addWatchTarget('src/alinhamentos/', { resetConfig: true });
+  eleventyConfig.on('eleventy.before', () => { renderAlignedVerse = scan(createRenderer()); });
+  eleventyConfig.on('eleventy.after', () => {
+    const result = report(renderAlignedVerse);
+    if (result.pendingVerses) console.warn(`Tooltips: ${result.pendingVerses} versículo(s) com pendências; consulte reports/bible-alignment.json.`);
+  });
   eleventyConfig.addWatchTarget('src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
   eleventyConfig.addWatchTarget('src/interlinear/at/*.json');
   eleventyConfig.on('eleventy.beforeWatch', () => generateDictionary());
@@ -35,7 +44,7 @@ module.exports = function(eleventyConfig) {
     const number = positiveInteger(verseNumber, 'versículo');
 		const redletter = red ? 'redletter' : '';
 
-    return `<span id="${abbreviation}_${chapterNumber}-${number}" class="verse"><span class="verse-number">${number}</span><span class="verse-text ${redletter}">${content.trim()}</span></span>`;
+    return `<span id="${abbreviation}_${chapterNumber}-${number}" class="verse"><span class="verse-number">${number}</span><span class="verse-text ${redletter}">${renderAlignedVerse(content.trim(), abbreviation.toLowerCase(), chapterNumber, number)}</span></span>`;
   });
 
 	/*
