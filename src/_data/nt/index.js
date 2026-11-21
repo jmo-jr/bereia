@@ -201,3 +201,7 @@ module.exports = loadAllBooks;
 
 // Reutilizado pela LXX sem executar o carregamento nem gravar o log do NT.
 module.exports.createEnhanceTokenWithDict = createEnhanceTokenWithDict;
+
+// Shared with consumers that must preserve these distinctions in Greek lookups.
+module.exports.canNormalizeGreekVariant = form => !SPECIAL_CASES.has(form) &&
+  !NORMALIZATION_EXCEPTIONS.has(form.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase());
