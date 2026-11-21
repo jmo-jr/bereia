@@ -90,7 +90,7 @@ function createPilot() {
   function reports() {
     const totals = {
       portugueseTokens: 0, automaticallyResolved: 0, resolvedByException: 0,
-      multipleAssociations: 0, noGreekEquivalent: 0, lexicalPending: 0,
+      multipleAssociations: 0, noGreekEquivalent: 0, lexicalPending: 0, contextPending: 0,
       unresolvedAmbiguities: 0, exceptionsPending: 0, blockedByMarkup: 0,
       unidentifiedGreekTokens: 0, coveragePercent: 0,
     };
@@ -112,6 +112,7 @@ function createPilot() {
         if (status === 'resolved_automatically') totals.automaticallyResolved += 1;
         if (status === 'resolved_by_exception') totals.resolvedByException += 1;
         if (status === 'no_greek_equivalent') totals.noGreekEquivalent += 1;
+        if (status === 'pending_context_review') totals.contextPending += 1;
         if (status === 'exception_requires_review') totals.exceptionsPending += 1;
         if (association.length > 1) totals.multipleAssociations += 1;
         if (association.length && result.renderingBlocked) totals.blockedByMarkup += 1;
@@ -129,7 +130,7 @@ function createPilot() {
             unidentifiedGreek: unidentified,
           });
         }
-        if (candidates.length > 1 || exception) {
+        if (candidates.length > 1 || exception || status === 'pending_context_review') {
           if (!association.length && candidates.length > 1) totals.unresolvedAmbiguities += 1;
           ambiguities.push({
             ...record,

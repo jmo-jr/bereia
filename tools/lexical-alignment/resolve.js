@@ -1,5 +1,7 @@
 const { normalizePortuguese, words } = require('./verse-html');
 
+const ambiguousGrammaticalForms = new Set(['a', 'as', 'o', 'os', 'nos']);
+
 function append(map, key, value) {
   if (!map.has(key)) map.set(key, []);
   map.get(key).push(value);
@@ -92,9 +94,11 @@ function createLexicon(dictionary, formIndex, { allowVariant = () => true } = {}
         const key = JSON.stringify([spelling, entry.strong, entry.morphologyCode, entry.morphology,
           entry.meaning, entry.phrases, entry.preferred]);
         if (!present.has(key)) {
-          present.set(key, { ...entry, form, observedForms: new Set(), dictionaryForm: entry.form, identity: key });
+          present.set(key, { ...entry, form, observedForms: new Set(), positions: new Set(), dictionaryForm: entry.form, identity: key });
         }
-        present.get(key).observedForms.add(form);
+        const observed = present.get(key);
+        observed.observedForms.add(form);
+        observed.positions.add(index);
       }
     }
     return { entries: [...present.values()], suggestions, unidentified };
@@ -195,17 +199,33 @@ function resolveException(exception, token, entries, candidates, signature, appr
   };
 }
 
+function contextReviewReason(token, candidate, portugueseOccurrences) {
+  if (ambiguousGrammaticalForms.has(token.key)) return 'grammatical_role_needs_context';
+  if (candidate.morphologyCode?.startsWith('V-') && portugueseOccurrences > candidate.positions.size) {
+    return 'repeated_verb_needs_context';
+  }
+  return null;
+}
+
 function resolveVerse(verse, greekTokens, lexicon, references, exceptions, approvedSignature,
   isGrammatical = () => false) {
   const { entries, suggestions, unidentified } = lexicon.forVerse(greekTokens);
   const matches = matchPhrases(verse.tokens, entries);
   const preferred = matchPhrases(verse.tokens, entries, 'preferred');
+  const portugueseOccurrences = new Map();
+  for (const token of verse.tokens) {
+    if (!token.editorial) {
+      portugueseOccurrences.set(token.key, (portugueseOccurrences.get(token.key) || 0) + 1);
+    }
+  }
   const results = verse.tokens.map((token, index) => {
     const reference = references + ':' + token.position;
     const matchedForms = new Set(matches[index].flatMap(entry => [...entry.observedForms]));
     const candidates = entries.filter(entry => [...entry.observedForms].some(form => matchedForms.has(form)));
     const grammaticalAlternative = isGrammatical(token.key) && !preferred[index].length;
-    const automatic = candidates.length === 1 && !grammaticalAlternative;
+    const contextReason = candidates.length === 1 ?
+      contextReviewReason(token, candidates[0], portugueseOccurrences.get(token.key)) : null;
+    const automatic = candidates.length === 1 && !grammaticalAlternative && !contextReason;
     const exception = exceptions.get(reference);
     const result = {
       word: token.text,
@@ -230,7 +250,10 @@ function resolveVerse(verse, greekTokens, lexicon, references, exceptions, appro
       result.status = 'no_greek_equivalent';
       result.reason = 'marked_editorial_insertion';
     } else if (candidates.length === 1) {
-      if (!automatic) {
+      if (contextReason) {
+        result.status = 'pending_context_review';
+        result.reason = contextReason;
+      } else if (!automatic) {
         result.reason = 'grammatical_alternative_needs_context';
         result.suggestions = candidates.map(entry => ({ ...entry, evidence: 'traducao' }));
       } else {

@@ -21,6 +21,7 @@ const dictionary = {
   '2532': group('καί', { ...flex('καί', 'e/também', 'Conj'), traducao: 'e, também, que' }),
   '3588': group('ὁ', flex('ὁ', 'o', 'T-NSM'), flex('τό', 'o', 'T-NSN')),
   '1510': group('εἰμί', flex('ἦν', 'existia, estava, era', 'V-IAI-3S')),
+  '4160': group('ποιέω', flex('ποίησον', 'faz', 'V-AMA-2S')),
   '2511': group('καθαρίζω', flex('καθαρίσαι', 'tornar limpo', 'V-AAN')),
   '575': group('ἀπό', flex('ἀπό', 'de', 'Prep')),
   '746': { ...group('ἀρχή', flex('ἀρχή', 'princípio', 'N-NSF')), verbete: 'começo' },
@@ -126,6 +127,26 @@ test('valida referências repetidas, incompatíveis e formas ausentes do TM', ()
   assert.equal(run('O', ['ὁ'], { o: { 'τό': ['Mt 8:2:1'] } }).results[0].reason, 'greek_form_not_identified');
 });
 
+test('pede contexto quando a mesma grafia portuguesa pode exercer funções gramaticais diferentes', () => {
+  const { results } = run('Jesus o tocou', ['ὁ']);
+  assert.equal(results[1].reason, 'grammatical_role_needs_context');
+  assert.deepEqual(results[1].association, []);
+  assert.deepEqual(results[1].candidates.map(entry => entry.form), ['ὁ']);
+});
+
+test('uma ocorrência verbal grega não confirma duas ocorrências da mesma palavra portuguesa', () => {
+  const greek = ['Ποίησον', 'ποιεῖ'];
+  const original = run('faz isto e faz', greek);
+  for (const index of [0, 3]) {
+    assert.equal(original.results[index].reason, 'repeated_verb_needs_context');
+    assert.deepEqual(original.results[index].association, []);
+  }
+  const reviewed = run('faz isto e faz', greek, { faz: { 'Ποίησον': ['Mt 8:2:1'] } });
+  assert.equal(reviewed.results[0].status, 'resolved_by_exception');
+  assert.equal(reviewed.results[3].status, 'pending_context_review');
+  assert.equal(run('faz e faz', ['Ποίησον', 'ποίησον']).results[2].status, 'resolved_automatically');
+});
+
 test('o piloto usa as fontes versionadas e resolve os exemplos do Liquid', () => {
   const pilot = createPilot();
   const liquid = fs.readFileSync(path.join(ROOT, 'src/biblia/nt/mateus/8.liquid'), 'utf8');
@@ -140,7 +161,15 @@ test('o piloto usa as fontes versionadas e resolve os exemplos do Liquid', () =>
   assert.match(aligned(1).details, /ἀπὸ.*τοῦ/);
   assert.match(aligned(2).details, /λεπρὸς.*Nominativo Masculino Singular/);
   assert.match(aligned(2).details, /ἐὰν/);
+  const third = readVerse(aligned(3).body);
+  assert.equal(third.tokens.find(token => token.position === 7).key, 'o');
+  assert.ok(!third.tokens.find(token => token.position === 7).segments.some(segment => segment.interactive));
   const ninth = aligned(9);
+  const byPosition = readVerse(ninth.body).tokens;
+  assert.equal(byPosition[34].key, 'faz');
+  assert.ok(byPosition[34].segments.some(segment => segment.interactive));
+  assert.equal(byPosition[37].key, 'faz');
+  assert.ok(!byPosition[37].segments.some(segment => segment.interactive));
   assert.match(ninth.details, /Πορεύθητι.*πορεύεται/);
   assert.equal(parseFragment(ninth.body).childNodes
     .filter(node => node.tagName === 'button' && node.childNodes[0]?.value === 'vai').length, 2);

@@ -47,6 +47,11 @@ atualizar o piloto após alterar os dados lexicais.
   mesma flexão. Alternativas de uma palavra separadas por barra são
   reconhecidas. Palavras gramaticais que só coincidem com uma alternativa
   em `traducao` exigem revisão contextual. O verbete oferece sugestões.
+- As grafias `a`, `as`, `o`, `os` e `nos` exigem revisão da função
+  gramatical antes de receber um tooltip. Uma candidata verbal também
+  exige revisão quando a mesma palavra portuguesa aparece mais vezes que
+  essa análise grega no versículo. O relatório de ambiguidades inclui
+  esses casos, mesmo que haja apenas uma candidata lexical.
 - A consulta começa pela grafia exata. Caixa e alternância entre grave e
   agudo são admitidas fora das exceções do projeto. Outras diferenças de
   diacríticos podem gerar sugestões, sempre sem confirmação automática.
@@ -84,18 +89,26 @@ atualizar o piloto após alterar os dados lexicais.
 |---|---:|
 | Versículos | 34 |
 | Tokens portugueses | 797 |
-| Associações automáticas | 540 |
-| Associações pelo JSON | 6 |
+| Associações automáticas | 477 |
+| Associações pelo JSON | 7 |
 | Tokens ligados a mais de um termo grego | 1 |
 | Inserções editoriais sem equivalente | 3 |
-| Pendências lexicais | 158 |
+| Pendências lexicais | 156 |
+| Pendências de contexto com uma candidata | 64 |
 | Ambiguidades em aberto | 90 |
 | Ocorrências gregas sem flexão identificada | 40 |
-| Cobertura confirmada | 68,51% |
+| Cobertura confirmada | 60,73% |
 
 As associações manuais de teste incluem `da` em Mt 8:1:5 → `ἀπὸ` +
 `τοῦ`, e os dois `vai` em Mt 8:9:18 e 8:9:20 → `Πορεύθητι` e
 `πορεύεται`. `leproso` em Mt 8:2:5 → `λεπρὸς` é automático.
-A cobertura contabiliza o resultado das regras do piloto e das seis
+A cobertura contabiliza o resultado das regras do piloto e das sete
 exceções conferidas. A auditoria lexical das demais ocorrências continua
 em aberto.
+
+Em Mt 8:3:7, o pronome em “o tocou” corresponde a `αὐτοῦ`. O
+dicionário registra “dele” para essa flexão. Em Mt 8:9:38, o segundo
+“faz” corresponde a `ποιεῖ`, flexão ausente do índice. Ambas as
+ocorrências ficam sem tooltip até a revisão lexical. O primeiro “faz”
+em Mt 8:9:35 corresponde ao imperativo `Ποίησον` e tem exceção
+confirmada.
