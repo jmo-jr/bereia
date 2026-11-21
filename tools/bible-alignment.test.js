@@ -7,7 +7,7 @@ const { createRenderer } = require('../src/lib/bible-alignment');
 const alignment = require('../src/alinhamentos/jo/1.json');
 const render = createRenderer();
 
-test('o piloto preserva o texto e distingue cada ocorrência grega', () => {
+test('João 1 preserva o texto e distingue cada ocorrência grega', () => {
   const ids = new Set();
   for (const [verse, entry] of Object.entries(alignment.verses)) {
     const html = render(entry.text, 'jo', 1, Number(verse));
@@ -38,14 +38,17 @@ test('expressões e contrações podem apontar para um ou vários tokens', () =>
 test('um texto alterado suspende vínculos incertos, e versos sem alinhamento são preservados', () => {
   assert.equal(render('Texto diferente', 'jo', 1, 1), 'Texto diferente');
   assert.ok(render.records.get('jo 1:1').pending.length);
-  assert.equal(render('<em>Texto</em>', 'jo', 1, 6), '<em>Texto</em>');
+  assert.equal(render('<em>Texto</em>', 'jo', 2, 1), '<em>Texto</em>');
   assert.equal(render('Texto', 'mt', 1, 1), 'Texto');
 });
 
-test('os cinco textos esperados correspondem aos capítulos publicados', () => {
+test('os 51 versículos esperados correspondem ao capítulo publicado', () => {
   const liquid = fs.readFileSync('src/biblia/nt/joao/1.liquid', 'utf8');
-  for (const [verse, entry] of Object.entries(alignment.verses)) {
-    assert.ok(liquid.includes(`{% verse bookAbbrev bookChapter ${verse} %}${entry.text}{% endverse %}`));
+  for (const verse of Object.keys(alignment.verses)) {
+    const expression = new RegExp('\\{% verse bookAbbrev bookChapter ' + verse + ' %\\}([\\s\\S]*?)\\{% endverse %\\}');
+    const match = expression.exec(liquid);
+    assert.ok(match, `Jo 1:${verse}: versículo não encontrado`);
+    assert.equal(visible(render(match[1], 'jo', 1, Number(verse))), match[1]);
   }
 });
 
@@ -115,7 +118,7 @@ test('o shortcode verse integra o alinhamento sem mudar outros versículos', () 
   const first = findAll(node => node.attribs?.class?.startsWith('verse-text'), [paragraphs[0]])[0];
   findAll(node => node.attribs?.role === 'dialog', [first]).forEach(removeElement);
   assert.equal(textContent(first), alignment.verses['1'].text);
-  assert.equal(verse(' Texto comum ', 'jo', 1, 6), '<span id="jo_1-6" class="verse"><span class="verse-number">6</span><span class="verse-text ">Texto comum</span></span>');
+  assert.equal(verse(' Texto comum ', 'jo', 2, 1), '<span id="jo_2-1" class="verse"><span class="verse-number">1</span><span class="verse-text ">Texto comum</span></span>');
 });
 
 const { reconcile, mandatoryMatches } = require('../src/lib/bible-reconcile');
@@ -181,7 +184,7 @@ test('relatório é determinístico, restrito à cobertura existente e tem modo 
     const renderer = scan();
     const filename = path.join(directory, 'report.json');
     const result = report(renderer, filename);
-    assert.equal(result.verses.length, 5);
+    assert.equal(result.verses.length, 51);
     assert.equal(result.pendingVerses, 0);
     const first = fs.readFileSync(filename, 'utf8');
     report(renderer, filename);
@@ -225,9 +228,75 @@ test('modo estrito da CLI passa para o alinhamento aprovado atual', () => {
 
 
 test('forma sem correspondência exata não herda morfologia ou transliteração de outra flexão', () => {
-  const html = render(alignment.verses['1'].text, 'jo', 1, 1);
+  // Simula um dicionário sem a forma dativa, mesmo que ela já tenha sido
+  // corrigida na develop. A proteção deve continuar sendo testada.
+  const path = require('node:path');
+  const vm = require('node:vm');
+  const { createRequire } = require('node:module');
+  const filename = path.resolve('src/lib/bible-alignment.js');
+  const localRequire = createRequire(filename);
+  const dictionary = { 'ἀρχή': { grego: 'ἀρχή', transliteracao: 'archē', morfologia: 'Substantivo - Nominativo Feminino Singular', verbete: 'G746: princípio, início; principado', strongs: '746' } };
+  const sandbox = { module: { exports: {} }, __dirname: path.dirname(filename),
+    require(name) {
+      if (name !== 'node:fs') return localRequire(name);
+      return { ...fs, readFileSync(file, ...args) {
+        return String(file).endsWith('/nt/dict_flex_nt-lxx_greek-pt.json') ? JSON.stringify(dictionary) : fs.readFileSync(file, ...args);
+      } };
+    },
+  };
+  vm.runInNewContext(fs.readFileSync(filename, 'utf8'), sandbox, { filename });
+  const isolated = sandbox.module.exports.createRenderer();
+  const html = isolated(alignment.verses['1'].text, 'jo', 1, 1);
   const doc = parseDocument(html);
   const details = findAll(node => node.attribs?.class === 'bible-original-details', doc.children);
   assert.equal(textContent(details[1]), 'ἀρχῇ\nMorfologia não confirmada para esta forma\nG746: princípio, início; principado');
-  assert.ok(render.records.get('jo 1:1').lexicalWarnings.some(item => item.greek === 'ἀρχῇ'));
+  assert.ok(isolated.records.get('jo 1:1').lexicalWarnings.some(item => item.greek === 'ἀρχῇ'));
+});
+
+
+test('o capítulo completo cobre cada token e palavra ou documenta sua ausência de vínculo', () => {
+  const source = require('../src/interlinear/nt/JO.json')[0].pericopes.flatMap(p => p.verses);
+  assert.equal(Object.keys(alignment.verses).length, 51);
+  for (const [verse, entry] of Object.entries(alignment.verses)) {
+    assert.deepEqual(entry.greek, source.find(item => item.verse === Number(verse)).tokens.map(item => item.lemma));
+    const used = entry.segments.flatMap(segment => segment.tokens);
+    assert.equal(new Set(used).size, used.length, `Jo 1:${verse}: token grego duplicado`);
+    const unused = (entry.untranslatedTokens || []).map(item => item.position);
+    assert.deepEqual([...used, ...unused].sort((a, b) => a - b), entry.greek.map((_, index) => index + 1), `Jo 1:${verse}: token não documentado`);
+    const words = [...entry.text.matchAll(/[\p{L}\p{N}][\p{L}\p{M}\p{N}]*/gu)];
+    const unlinked = entry.unlinkedPortuguese || [];
+    for (const item of unlinked) {
+      assert.equal(entry.text.slice(item.start, item.start + item.text.length), item.text);
+      assert.ok(item.reason);
+      assert.ok(!entry.segments.some(segment => item.start < segment.start + segment.text.length && segment.start < item.start + item.text.length), `Jo 1:${verse}: nota sobreposta a vínculo`);
+    }
+    for (const word of words) {
+      const covered = [...entry.segments, ...unlinked].filter(item => word.index >= item.start && word.index + word[0].length <= item.start + item.text.length);
+      assert.equal(covered.length, 1, `Jo 1:${verse}: palavra sem vínculo ou justificativa: ${word[0]}`);
+    }
+  }
+});
+
+test('vínculos complexos mantêm palavras gregas, hífens e sujeitos supridos distintos', () => {
+  const segment = (verse, text) => alignment.verses[verse].segments.find(item => item.text === text);
+  assert.deepEqual(segment('12', 'deu-lhes').tokens, [5, 6]);
+  assert.deepEqual(segment('25', 'lhe').tokens, [3, 6]);
+  assert.deepEqual(segment('27', 'de quem').tokens, [11, 18]);
+  assert.deepEqual(segment('33', 'você vir').tokens, [17, 18]);
+  assert.deepEqual(segment('43', 'Siga-me').tokens, [16, 17]);
+  assert.ok(!alignment.verses['23'].segments.some(item => item.text === 'Eu sou'));
+  assert.equal(alignment.verses['23'].unlinkedPortuguese[0].text, 'sou');
+});
+
+test('a revisão de João 1:51 presente na develop preserva todos os vínculos', () => {
+  const text = alignment.verses['51'].text.replace('digo a vocês', 'lhes digo');
+  assert.notEqual(text, alignment.verses['51'].text);
+  const html = render(text, 'jo', 1, 51);
+  assert.equal(visible(html), text);
+  const record = render.records.get('jo 1:51');
+  assert.equal(record.pending.length, 0);
+  assert.equal(record.rendered, alignment.verses['51'].segments.length);
+  const item = record.segments.find(item => item.text === 'lhes digo');
+  assert.deepEqual(item.tokens, [6, 7]);
+  assert.equal(item.status, 'equivalencia-aprovada');
 });
