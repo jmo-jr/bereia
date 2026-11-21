@@ -3,6 +3,8 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { parseDocument } = require('htmlparser2');
 const { findAll } = require('domutils');
+const { readSource, readIndex } = require('../bible-reverse-index');
+const { occurrenceRelations } = require('./relations');
 const { createLexicon, propose, evaluate, words } = require('./engine');
 const projectRoot = path.resolve(__dirname, '../..');
 const hash = content => crypto.createHash('sha256').update(content).digest('hex');
@@ -148,24 +150,27 @@ function safeOutput(root, directory) {
 
 function generate(options = {}) {
   const root = options.root || projectRoot;
-  const output = safeOutput(root, options.out || path.join(root, 'reports/bible-alignment-proposals'));
+  const output = safeOutput(root, options.out || path.join(root, 'reports/bible-occurrence-relations'));
   const dictionaryFile = path.join(root, 'src/_data/nt/dict_flex_nt-lxx_greek-pt.json');
-  const dictionary = readJSON(dictionaryFile);
+  const source = readSource(root);
+  const dictionary = source.dictionary;
+  const reverseIndex = readIndex({ root, source });
   const approved = readApproved(root), inventory = readChapters(root, options);
   const approvedByRef = new Map(approved.examples.map(example => [example.reference, example]));
-  const lexicon = createLexicon(dictionary, approved.examples);
-  const inputs = [...new Set([path.join(root, 'src/_data/ntBooks.json'), dictionaryFile, ...approved.files, ...inventory.files, ...[__filename, path.join(__dirname, 'engine.js')].filter(file => file.startsWith(root + path.sep))])].sort().map(file => ({ file: path.relative(root, file), sha256: hash(fs.readFileSync(file)) }));
+  const lexicon = createLexicon(dictionary, approved.examples, reverseIndex);
+  const inputs = [...new Set([path.join(root, 'src/_data/ntBooks.json'), dictionaryFile, path.join(root, 'reports/bible-reverse-index.json'), ...approved.files, ...inventory.files, ...[__filename, path.join(__dirname, 'engine.js'), path.join(__dirname, 'lexical.js'), path.join(__dirname, 'relations.js'), path.join(__dirname, '../bible-reverse-index.js')].filter(file => file.startsWith(root + path.sep))])].sort().map(file => ({ file: path.relative(root, file), sha256: hash(fs.readFileSync(file)) }));
   const inputDigest = hash(JSON.stringify(inputs));
-  const summary = { version: 1, status: 'PROPOSTAS_NAO_APROVADAS', inputDigest, options: { book: options.book || null, chapter: options.chapter || null, includeApproved: Boolean(options.includeApproved), evaluate: Boolean(options.evaluate) },
-    sources: inputs, chapters: [], missing: inventory.missing, totals: { chapters: 0, unavailableChapters: inventory.missing.length, verses: 0, skippedApproved: 0, candidates: 0, uniqueCandidates: 0, ambiguousCandidates: 0, incompleteVerses: 0, missingTranslationVerses: inventory.chapters.reduce((count, chapter) => count + chapter.missingTranslations.length, 0), unmatchedPortuguese: 0, unmatchedGreek: 0 },
+  const summary = { version: 2, type: 'RELACOES_POR_OCORRENCIA', status: 'ARQUIVO_DE_REVISAO', inputDigest, options: { book: options.book || null, chapter: options.chapter || null, includeApproved: Boolean(options.includeApproved), evaluate: Boolean(options.evaluate) },
+    reverseIndex: { file: 'reports/bible-reverse-index.json', dictionaryHash: reverseIndex.source.sha256 },
+    sources: inputs, chapters: [], missing: inventory.missing, totals: { chapters: 0, unavailableChapters: inventory.missing.length, verses: 0, skippedApproved: 0, candidates: 0, uniqueCandidates: 0, ambiguousCandidates: 0, incompleteVerses: 0, missingTranslationVerses: inventory.chapters.reduce((count, chapter) => count + chapter.missingTranslations.length, 0), unmatchedPortuguese: 0, unmatchedGreek: 0, proposedRelations: 0, approvedRelations: 0, pendingRelations: 0 },
     evaluation: options.evaluate ? { approvedSegments: 0, candidates: 0, matchedApprovedSegments: 0, uniqueCandidates: 0, uniqueMatches: 0, excludedStaleVerses: 0 } : undefined };
   const outputs = [];
   for (const chapter of inventory.chapters) {
-    const document = { version: 1, status: 'PROPOSTA_NAO_APROVADA', inputDigest, sourceBook: chapter.sourceBook, sourceFile: chapter.file, sourceFormat: chapter.format,
+    const document = { version: 2, type: 'RELACOES_POR_OCORRENCIA', status: 'ARQUIVO_DE_REVISAO', inputDigest, sourceBook: chapter.sourceBook, sourceFile: chapter.file, sourceFormat: chapter.format,
       book: chapter.book, chapter: chapter.chapter, missingTranslations: chapter.missingTranslations, verses: {} };
     for (const verse of chapter.verses) {
       const reference = `${chapter.book} ${chapter.chapter}:${verse.number}`, gold = approvedByRef.get(reference);
-      if (gold && !options.includeApproved && !options.evaluate) { summary.totals.skippedApproved++; continue; }
+      if (gold && !gold.entry.pendingReview?.length && !options.includeApproved && !options.evaluate) { summary.totals.skippedApproved++; continue; }
       if (options.evaluate && !gold) continue;
       if (!verse.greek) {
         document.verses[verse.number] = { status: 'PROPOSTA_NAO_APROVADA', text: verse.text, greek: [], candidates: [], issues: ['Versículo grego não encontrado.'], unmatchedPortuguese: words(verse.text).map(word => ({ start: word.start, text: verse.text.slice(word.start, word.end), reason: 'Versículo grego não encontrado.' })), unmatchedGreek: [] };
@@ -190,21 +195,40 @@ function generate(options = {}) {
       summary.totals.incompleteVerses += proposal.issues.length ? 1 : 0;
       summary.totals.unmatchedPortuguese += proposal.unmatchedPortuguese.length;
       summary.totals.unmatchedGreek += proposal.unmatchedGreek.length;
+      const record = occurrenceRelations(reference, proposal, options.evaluate ? undefined : gold?.entry);
+      document.verses[verse.number] = record;
+      for (const relation of [...record.relations, ...record.notes]) {
+        const field = relation.status === 'APROVADA' ? 'approvedRelations' : relation.status === 'PENDENTE' ? 'pendingRelations' : 'proposedRelations';
+        summary.totals[field]++;
+      }
     }
     if (!Object.keys(document.verses).length) continue;
     const filename = `${chapter.book}/${chapter.chapter}.json`;
-    summary.chapters.push({ file: filename, sourceFile: chapter.file, verses: Object.keys(document.verses).length });
+    summary.chapters.push({ file: filename, sourceFile: chapter.file, verses: Object.keys(document.verses).length, sha256: hash(JSON.stringify(document, null, 2) + '\n') });
     outputs.push([filename, document]);
   }
   summary.totals.chapters = outputs.length;
   // Compute everything before writing. Proposals have no "segments" field and
   // cannot be mistaken for approved renderer input.
+  const manifest = path.join(output, 'summary.json');
+  const previous = fs.existsSync(manifest) ? readJSON(manifest) : undefined;
+  const previousHashes = new Map(Object.entries(previous?.fileHashes || {}));
+  for (const chapter of previous?.version === 2 ? previous.chapters : []) {
+    if (!previousHashes.has(chapter.file)) previousHashes.set(chapter.file, chapter.sha256);
+  }
+  const allHashes = new Map(previousHashes);
+  for (const chapter of summary.chapters) allHashes.set(chapter.file, chapter.sha256);
+  summary.fileHashes = Object.fromEntries([...allHashes].sort(([a], [b]) => a.localeCompare(b)));
   const planned = [...outputs, ['summary.json', summary]];
   for (const [filename] of planned) {
     const destination = path.join(output, filename);
     // Reject existing symlinked book folders as well as symlinked output roots.
     safeOutput(root, path.dirname(destination));
     if (fs.existsSync(destination) && fs.lstatSync(destination).isSymbolicLink()) throw Error(`Saída é link simbólico: ${destination}`);
+    if (filename !== 'summary.json' && fs.existsSync(destination)) {
+      const expected = previousHashes.get(filename);
+      if (!expected || hash(fs.readFileSync(destination)) !== expected) throw Error(`Arquivo de revisão editado ou sem manifesto válido: ${destination}. Preservado; use --out com outra pasta.`);
+    }
   }
   for (const [filename, document] of planned) {
     const destination = path.join(output, filename);

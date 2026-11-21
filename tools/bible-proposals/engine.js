@@ -1,17 +1,6 @@
-const canonicalGreek = value => String(value).toLowerCase().normalize('NFD').replace(/\u0300/g, '\u0301').normalize('NFC');
-const looseGreek = value => canonicalGreek(value).normalize('NFD').replace(/\p{M}/gu, '');
-const words = text => [...text.matchAll(/[\p{L}\p{N}][\p{L}\p{M}\p{N}]*/gu)].map(match => ({
-  value: match[0].normalize('NFC').toLocaleLowerCase('pt-BR'), start: match.index, end: match.index + match[0].length,
-}));
+const { canonicalGreek, looseGreek, normalizePortuguese, words, phrases } = require('./lexical');
 
-function phrases(value) {
-  if (typeof value !== 'string' || /[()[\]{}]/u.test(value)) return [];
-  // Do not expand grammatical notation such as eu/ele(a), bracketed text or gloss notes.
-  return [...new Set(value.split(/[,;/]/u).map(part => part.trim()).filter(part =>
-    part && part.length <= 120 && !(value.includes('/') && /^(eu|tu|ele|ela|nós|vós|vocês|eles|elas)$/iu.test(part)) && !/[()[\]{}:=\d]/u.test(part) && /^[\p{L}\p{M}\s’'–-]+$/u.test(part)))];
-}
-
-function createLexicon(dictionary, approved = []) {
+function createLexicon(dictionary, approved = [], reverseIndex) {
   const exact = new Map(), loose = new Map(), learned = new Map();
   for (const [form, entry] of Object.entries(dictionary)) {
     const data = { form, entry };
@@ -39,7 +28,18 @@ function createLexicon(dictionary, approved = []) {
       }
     }
   }
-  return { exact, loose, learned };
+  let reverse;
+  if (reverseIndex) {
+    reverse = new Map();
+    for (const [phrase, references] of Object.entries(reverseIndex.terms)) {
+      for (const ref of references) {
+        const entry = dictionary[ref.dictionaryKey];
+        if (!entry || !['pt', 'traducao'].includes(ref.field) || normalizePortuguese(ref.text) !== phrase || !phrases(entry[ref.field]).includes(ref.text)) throw Error(`Referência inválida no índice reverso: ${ref.dictionaryKey}. Regenere o índice.`);
+      }
+      reverse.set(phrase, references);
+    }
+  }
+  return { exact, loose, learned, reverse, maxPhraseWords: reverse ? [...reverse.keys()].reduce((max, phrase) => Math.max(max, words(phrase).length), 1) : 0 };
 }
 
 function propose({ text, greek, reference, lexicon, excludeReference, maxCandidates = 500 }) {
@@ -69,8 +69,9 @@ function propose({ text, greek, reference, lexicon, excludeReference, maxCandida
     phraseCache.set(key, found);
     return found;
   }
-  function offer(phrase, positions, evidence) {
+  function offer(phrase, positions, evidence, onlyStart) {
     for (const match of occurrences(phrase)) {
+      if (onlyStart !== undefined && match.start !== onlyStart) continue;
       const key = `${match.start}:${match.text.length}:${positions.join(',')}`;
       if (!candidates.has(key)) {
         if (candidates.size >= maxCandidates) { truncated = true; continue; }
@@ -80,11 +81,27 @@ function propose({ text, greek, reference, lexicon, excludeReference, maxCandida
       if (!candidate.evidence.some(item => JSON.stringify(item) === JSON.stringify(evidence))) candidate.evidence.push(evidence);
     }
   }
+  if (lexicon.reverse) {
+    const positions = new Map();
+    greek.forEach((form, index) => {
+      const key = canonicalGreek(form);
+      if (!positions.has(key)) positions.set(key, []);
+      positions.get(key).push(index + 1);
+    });
+    for (let i = 0; i < pt.length; i++) for (let count = 1; count <= lexicon.maxPhraseWords && i + count <= pt.length; count++) {
+      const phrase = normalizePortuguese(text.slice(pt[i].start, pt[i + count - 1].end));
+      for (const ref of lexicon.reverse.get(phrase) || []) {
+        for (const position of positions.get(canonicalGreek(ref.dictionaryKey)) || []) {
+          offer(ref.text, [position], { kind: 'indice-reverso-forma-exata', dictionaryKey: ref.dictionaryKey, field: ref.field, phrase: ref.text }, pt[i].start);
+        }
+      }
+    }
+  }
   greek.forEach((form, index) => {
     const key = canonicalGreek(form);
     const exact = lexicon.exact.get(key);
     const entries = exact || lexicon.loose.get(looseGreek(form)) || [];
-    for (const { form: dictionaryForm, entry } of entries) {
+    if (!lexicon.reverse) for (const { form: dictionaryForm, entry } of entries) {
       for (const field of ['pt', 'traducao']) for (const phrase of phrases(entry[field])) {
         offer(phrase, [index + 1], { kind: exact ? 'dicionario-forma-exata' : 'dicionario-forma-aproximada', form: dictionaryForm, field, phrase });
       }

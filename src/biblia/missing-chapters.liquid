@@ -1,0 +1,15 @@
+---
+pagination:
+  data: bibleMissingChapterPages
+  size: 1
+  alias: entry
+permalink: "{{ entry.permalink }}"
+layout: page.liquid
+bee: true
+eleventyComputed:
+  bookName: "{{ entry.bookName }}"
+  bookAbbrev: "{{ entry.book }}"
+  bookChapter: "{{ entry.chapter }}"
+---
+{% render 'bibleChapterHeader.liquid', bookName: bookName, bookAbbrev: bookAbbrev, bookChapter: bookChapter %}
+{{ entry.html }}

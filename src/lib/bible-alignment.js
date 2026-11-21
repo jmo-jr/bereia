@@ -44,6 +44,7 @@ function createRenderer() {
       end = segment.start + segment.text.length;
     }
     const result = reconcile(entry, text);
+    result.pending.push(...(entry.pendingReview || []));
     records.set(ref, { reference: ref, status: result.pending.length ? 'pendente' : 'atualizado', rendered: result.segments.length,
       segments: result.segments.map(({ start, text, tokens, status, alternatives }) => ({ start, text, tokens, status, ...(alternatives ? { alternatives } : {}) })), pending: result.pending });
     if (!enhance) {

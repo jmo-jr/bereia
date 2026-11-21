@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { generateIndex } = require('../bible-reverse-index');
 const { generate, readChapters, safeOutput, argumentsFrom } = require('./generate');
 
 function fixture() {
@@ -16,6 +17,7 @@ function fixture() {
   write('src/biblia/nt/joao/1.liquid', '---\nbookAbbrev: "jo"\nbookChapter: 1\n---\n{% verse bookAbbrev bookChapter 1 %}Palavra{% endverse %}');
   write('src/biblia/nt/joao/1.txt', '1 NÃO USAR ESTA VERSÃO');
   write('src/biblia/nt/joao/2.txt', 'Título\n1 Palavra\n2 <rl>Palavra</rl>\n');
+  generateIndex({ root });
   return { root, write, remove() { fs.rmSync(root, { recursive: true }); } };
 }
 function snapshots(directory) {
@@ -40,7 +42,9 @@ test('lote prefere Liquid, usa TXT sem template e não altera fontes ou aprovado
     assert.equal(chapter.sourceFormat, 'txt');
     assert.equal(chapter.verses[1].text, 'Palavra');
     assert.equal(chapter.verses[1].segments, undefined);
-    assert.equal(chapter.verses[1].status, 'PROPOSTA_NAO_APROVADA');
+    assert.equal(chapter.type, 'RELACOES_POR_OCORRENCIA');
+    assert.equal(chapter.version, 2);
+    assert.ok(chapter.verses[1].relations.length);
     assert.deepEqual(snapshots(path.join(f.root, 'src')), before);
     const first = snapshots(output);
     generate({ root: f.root });
@@ -55,7 +59,7 @@ test('escopo de livro/capítulo e avaliação excluem a própria referência', (
     assert.equal(result.summary.evaluation.approvedSegments, 1);
     assert.equal(result.summary.evaluation.matchedApprovedSegments, 1);
     const doc = JSON.parse(fs.readFileSync(path.join(result.output, 'jo/1.json'), 'utf8'));
-    assert.ok(doc.verses[1].candidates.every(candidate => candidate.evidence.every(evidence => evidence.kind.startsWith('dicionario'))));
+    assert.ok(doc.verses[1].relations.every(candidate => candidate.evidence.every(evidence => evidence.kind === 'indice-reverso-forma-exata')));
     assert.throws(() => readChapters(f.root, { book: 'mt' }), /Livro desconhecido/);
     assert.throws(() => readChapters(f.root, { book: 'jo', chapter: 3 }), /Capítulo inexistente/);
   } finally { f.remove(); }
@@ -124,5 +128,57 @@ test('continuações TXT são preservadas e sinalizadas, sem absorver a próxima
     assert.equal(chapter.verses[1].text, 'Palavra');
     const result = generate({ root: f.root, book: 'jo', chapter: 2 });
     assert.equal(result.summary.totals.incompleteVerses, 1);
+  } finally { f.remove(); }
+});
+
+test('gerador exige índice atual e não o regenera silenciosamente', () => {
+  const f = fixture();
+  try {
+    fs.unlinkSync(path.join(f.root, 'reports/bible-reverse-index.json'));
+    assert.throws(() => generate({ root: f.root }), /bible:index/);
+    generateIndex({ root: f.root });
+    fs.appendFileSync(path.join(f.root, 'src/_data/nt/dict_flex_nt-lxx_greek-pt.json'), ' ');
+    assert.throws(() => generate({ root: f.root }), /desatualizado/);
+  } finally { f.remove(); }
+});
+
+test('regeneração preserva arquivo de revisão editado, inclusive status alterado manualmente', () => {
+  const f = fixture();
+  try {
+    const result = generate({ root: f.root, book: 'jo', chapter: 2 });
+    const filename = path.join(result.output, 'jo/2.json');
+    const document = JSON.parse(fs.readFileSync(filename, 'utf8'));
+    document.verses[1].relations[0].status = 'APROVADA';
+    fs.writeFileSync(filename, JSON.stringify(document));
+    const edited = fs.readFileSync(filename, 'utf8');
+    assert.throws(() => generate({ root: f.root, book: 'jo', chapter: 2 }), /Arquivo de revisão editado/);
+    assert.equal(fs.readFileSync(filename, 'utf8'), edited);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(f.root, 'src/alinhamentos/jo/1.json'), 'utf8')).verses[2], undefined);
+  } finally { f.remove(); }
+});
+
+test('inclusão de aprovados preserva decisões e avaliação nunca exporta aprovações', () => {
+  const f = fixture();
+  try {
+    const first = generate({ root: f.root, book: 'jo', chapter: 1, includeApproved: true });
+    const filename = path.join(first.output, 'jo/1.json');
+    let document = JSON.parse(fs.readFileSync(filename, 'utf8'));
+    assert.equal(document.verses[1].relations[0].status, 'APROVADA');
+    assert.equal(first.summary.totals.approvedRelations, 1);
+    const evaluated = generate({ root: f.root, book: 'jo', chapter: 1, evaluate: true });
+    document = JSON.parse(fs.readFileSync(path.join(evaluated.output, 'jo/1.json'), 'utf8'));
+    assert.ok(document.verses[1].relations.every(item => item.status !== 'APROVADA'));
+  } finally { f.remove(); }
+});
+
+test('filtros sucessivos mantêm hashes dos outros arquivos sem confundir geração com edição manual', () => {
+  const f = fixture();
+  try {
+    generate({ root: f.root, includeApproved: true });
+    generate({ root: f.root, book: 'jo', chapter: 1, includeApproved: true });
+    const result = generate({ root: f.root, book: 'jo', chapter: 2 });
+    assert.equal(result.summary.chapters.length, 1);
+    assert.ok(result.summary.fileHashes['jo/1.json']);
+    assert.ok(result.summary.fileHashes['jo/2.json']);
   } finally { f.remove(); }
 });

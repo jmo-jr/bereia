@@ -102,10 +102,13 @@ test('interação abre por foco, toque e mouse e fecha com Escape, fora e rolage
 
 test('o shortcode verse integra o alinhamento sem mudar outros versículos', () => {
   const shortcodes = new Map();
+  const priorOverride = process.env.BEREIA_VERSE_OVERRIDES;
+  process.env.BEREIA_VERSE_OVERRIDES = '1';
   require('../.eleventy.js')({
-    addWatchTarget() {}, on() {}, addPassthroughCopy() {}, addFilter() {},
+    addWatchTarget() {}, on() {}, addPassthroughCopy() {}, addFilter() {}, addTransform() {},
     addPairedShortcode(name, handler) { shortcodes.set(name, handler); },
   });
+  if (priorOverride === undefined) delete process.env.BEREIA_VERSE_OVERRIDES; else process.env.BEREIA_VERSE_OVERRIDES = priorOverride;
   const verse = shortcodes.get('verse');
   const html = verse(alignment.verses['1'].text, 'jo', 1, 1, true);
   assert.match(html, /id="jo_1-1"/);

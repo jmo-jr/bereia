@@ -35,7 +35,7 @@ test('Eleventy gera o capítulo após revisão sem alterar seu texto ou parágra
     };`);
     const run = spawnSync(process.execPath, [path.join(root, 'node_modules/@11ty/eleventy/cmd.cjs'), `--config=${config}`], {
       cwd: root, encoding: 'utf8', timeout: 20000,
-      env: { ...process.env, BEREIA_BIBLE_ALIGNMENT_REPORT: path.join(temp, 'report.json') },
+      env: { ...process.env, BEREIA_VERSE_OVERRIDES: '1', BEREIA_BIBLE_ALIGNMENT_REPORT: path.join(temp, 'report.json') },
     });
     assert.equal(run.status, 0, `${run.error || ''}\n${run.stdout}\n${run.stderr}`);
     const html = fs.readFileSync(path.join(output, 'biblia/joao/1/index.html'), 'utf8');

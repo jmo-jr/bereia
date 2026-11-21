@@ -1,9 +1,122 @@
-# Original grego no texto da Bíblia
+# Tooltips globais do Novo Testamento
 
-A feature gera painéis por palavra ou expressão durante o build do Eleventy.
-A tradução, o Texto Majoritário, o dicionário e os alinhamentos aprovados não
-são regravados pelo build. A cobertura inicial é **João 1 completo (51 versículos)**. A infraestrutura
-funciona para novos capítulos, mas não inventa seus primeiros alinhamentos.
+## Fluxo principal — uma fonte para o NT inteiro
+
+O build aplica a busca lexical a todos os capítulos do NT, sem exigir revisão
+ou aprovação de cada capítulo. Não é necessário executar `bible:propose` nem
+preencher os CSVs por versículo para ter os tooltips. Esses recursos antigos
+ficam disponíveis apenas para exceções opcionais.
+
+As relações globais são compostas pelo dicionário definitivo e pelas regras de
+`src/tooltip-relations.json`. O CSV `reports/bible-global.csv` oferece uma visão
+única e completa dessa fonte, com uma linha por termo ou expressão portuguesa.
+O arquivo inicial tem 20.438 linhas de termos. Suas alterações em uma linha
+valem para todas as ocorrências correspondentes no NT.
+
+### Para apenas usar o site
+
+```bash
+npm run dev -- --port=8091
+# ou
+npm run build
+```
+
+O build busca palavras e expressões na fonte global e filtra as formas gregas
+pelo Texto Majoritário de cada versículo. Expressões maiores têm preferência
+sobre fragmentos menores que se sobreponham. Formas repetidas iguais aparecem
+uma vez no tooltip; formas diferentes possíveis aparecem como alternativas,
+conforme a preferência do usuário. Isso é uma correspondência lexical, não uma
+certificação de que cada alternativa seja a leitura contextual daquela palavra.
+
+O processamento funciona sobre o HTML gerado, preservando as marcações e o
+texto visível. Citações e palavras em cores continuam funcionando. Notas e
+controles que já têm tooltip não recebem outro tooltip aninhado. A ausência
+de uma relação global não bloqueia a página; você pode acrescentar essa relação
+uma única vez na fonte global e reutilizá-la em todo o NT.
+
+### Para revisar a fonte global
+
+O CSV inicial já está em `reports/bible-global.csv`. Para exportar outra rodada:
+
+```bash
+npm run bible:global:export -- --file reports/revisao-global-2.csv
+```
+
+Mantenha o CSV e o `.global.json` de mesmo nome juntos. O segundo arquivo
+registra a base da revisão; não deve ser editado. O exportador preserva arquivos
+que já tenham conteúdo diferente, para não apagar uma revisão em andamento.
+
+Edite somente as relações que quiser corrigir. Não há uma coluna para aprovar
+cada linha e não é necessário confirmar os termos que já vêm do dicionário.
+
+- `termo_pt`: palavra ou expressão portuguesa. A busca não remove acentos.
+- `formas_gregas`: formas alternativas, separadas por ` | `.
+- `grupos_gregos`: formas que, juntas, traduzem uma expressão, separadas por
+  ` + `. Use ` || ` entre grupos alternativos.
+- `ativo`: `sim` ou `não`. Desativar uma linha suprime a relação no NT inteiro.
+- `observacao`: sua justificativa global, guardada na fonte de regras.
+- `origem` e `id`: referências; não altere essas colunas nas linhas existentes.
+
+Exemplo: se você ajustar as formas associadas a “palavra”, a seleção valerá em
+todos os capítulos, sempre limitada às formas presentes no respectivo versículo.
+Para incluir um termo novo, acrescente uma linha com `id` e `origem` vazios.
+Para retirar uma relação, use `ativo = não`; apagar ou filtrar uma linha do CSV
+não exclui a relação silenciosamente. Renomear um termo desativa o nome antigo
+e cria o novo na fonte global, sem alterar o dicionário ou a tradução.
+
+Salve como CSV UTF-8, preservando os diacríticos. Primeiro confira sem gravar:
+
+```bash
+npm run bible:global:import -- --file reports/bible-global.csv
+```
+
+Depois aplique suas alterações:
+
+```bash
+npm run bible:global:import -- --file reports/bible-global.csv --apply
+npm run build
+```
+
+Só a aplicação escreve em `src/tooltip-relations.json`. Não escreve no
+dicionário, nos capítulos ou em arquivos de alinhamento por capítulo. Uma
+mudança de observação não muda o texto bíblico nem os metadados gregos.
+Formas gregas desconhecidas do dicionário e do Texto Majoritário são rejeitadas.
+Mudança na fonte global ou no dicionário durante a revisão exige nova exportação.
+Após importar uma rodada, exporte outra para alterações posteriores.
+
+O build lê as alterações globais automaticamente. O navegador recebe apenas os
+dados de seus tooltips, não o índice inteiro. Os metadados são buscados no
+dicionário atual; se a flexão não estiver disponível, isso é informado em vez
+de exibir a análise de uma flexão diferente.
+
+### Relatórios e páginas em TXT
+
+`reports/bible-global-tooltips.json` resume cobertura, alternativas, uso por
+termo e problemas de referências. Ele serve para priorizar revisões globais,
+não constitui uma lista de capítulos que precisam ser aprovados.
+
+Os 19 capítulos de Mateus disponíveis apenas em TXT passam a ter páginas
+renderizadas durante o build, usando o conversor já existente. Nenhum TXT ou
+Liquid de capítulo é regravado. Esse adaptador requer Python 3, sem pacotes
+adicionais; `BEREIA_PYTHON` pode indicar outro executável Python.
+`reports/bible-generated-pages.json` registra avisos de marcação. O fechamento
+malformado `/rl>` em Mateus 16:18 é tratado como `</rl>` no HTML e registrado;
+o TXT permanece intacto. Outros erros de marcação são exibidos literalmente e
+sinalizados, sem adivinhar uma tradução ou apagar o conteúdo.
+
+### Exceções por ocorrência são opcionais
+
+Por padrão, a fonte global governa todas as páginas, inclusive João 1. Os
+alinhamentos anteriores são preservados em disco, mas não são exigidos pelo
+fluxo principal. Para ativar exceções locais deliberadamente, use
+`useVerseOverrides: true` na fonte JSON ou `BEREIA_VERSE_OVERRIDES=1` no ambiente.
+Nessa modalidade, os vínculos locais têm prioridade nos trechos correspondentes.
+
+Os capítulos e comandos documentados abaixo descrevem esse fluxo opcional e
+os estágios de desenvolvimento anteriores. Eles **não são pré-requisitos**
+para os tooltips globais.
+
+## Fluxo opcional de alinhamento por ocorrência
 
 ## Uso cotidiano
 
@@ -163,74 +276,181 @@ Os campos `notes` de cada versículo explicam esses agrupamentos. Os testes
 conferem a cobertura dos 51 versículos contra o Texto Majoritário, preservação
 do português e ausência de vínculos duplicados ou palavras sem justificativa.
 
-## Gerador de propostas em lote
-
-O gerador auxilia o primeiro alinhamento dos demais capítulos. É uma etapa
-separada do build de publicação: seus resultados **não são aprovados nem
-consumidos pelo renderizador**.
+## Índice reverso português → grego — passo 1
 
 ```bash
-# Demais capítulos do NT; ignora versículos já cadastrados em src/alinhamentos
+npm run bible:index
+npm run bible:index:check
+npm run bible:lookup -- palavra
+npm run bible:lookup -- palavra --book jo --chapter 1 --verse 1
+npm run bible:lookup -- "por meio de"
+npm run test:bible:index
+```
+
+`bible:index` gera `reports/bible-reverse-index.json` a partir dos campos `pt`
+e `traducao` do dicionário definitivo. O arquivo contém termos portugueses,
+referências à chave grega e ao campo de origem, estatísticas e pendências de
+indexação. Não copia os metadados morfológicos e lexicais: a consulta os lê da
+entrada original referenciada, preservando seus valores.
+
+Alternativas simples separadas por vírgula, ponto e vírgula ou barra entram
+separadamente no índice. Expressões de várias palavras permanecem inteiras.
+A busca uniformiza caixa, Unicode NFC e espaços, sem remover acentos
+portugueses, lematizar ou escolher sinônimos. Notações como `eu/ele(a) era`,
+complementos entre parênteses e trechos não reconhecidos ficam em `pending`,
+com o valor original e a justificativa. Uma pendência significa limitação da
+indexação, não um erro de tradução ou uma correção a aplicar no dicionário.
+
+O índice inicial desta branch tem 20.342 termos/expressões, 43.365 referências
+a campos e 4.774 pendências. Esses números mudam conforme o dicionário evolui.
+O arquivo é regenerável e fica fora da publicação. Seu versionamento depende
+do `.gitignore`; não deve ser usado como lugar definitivo para decisões de alinhamento.
+
+Sem referência bíblica, `bible:lookup` lista as entradas gregas que contêm o
+termo consultado. Com `--book`, `--chapter` e `--verse`, filtra essas entradas
+pelas formas presentes no Texto Majoritário daquele versículo. Preserva todas
+as ocorrências repetidas, sem atribuir uma delas a uma palavra portuguesa.
+Por exemplo, “palavra” em João 1:1 retorna λόγος nas posições 5, 8 e 17.
+A comparação grega aceita caixa, NFC e alternância grave/agudo, mas não ignora
+outros diacríticos nem confunde flexões como ἀρχή e ἀρχῇ. A ausência de uma
+forma exata pode resultar em nenhum candidato; isso não autoriza corrigi-la.
+
+O SHA-256 do dicionário de origem fica registrado no índice. Se o dicionário
+mudar, a consulta exige executar `npm run bible:index` novamente.
+`bible:index:check` verifica sem escrever e retorna saída 1 quando o índice
+está ausente ou desatualizado. A geração não modifica fontes, capítulos,
+dicionário ou relações aprovadas e não cria backups.
+
+O índice persistente é usado pelo gerador de relações do passo 2, descrito
+abaixo. Ele não é lido pelo navegador. Não é necessário gerá-lo em cada build:
+regenere após mudanças no dicionário. O gerador exige um índice atual e não o
+reconstrói silenciosamente.
+
+## Relações por ocorrência — passo 2
+
+O comando do gerador agora consulta o índice reverso persistido: primeiro
+localiza palavras e expressões portuguesas e depois filtra suas entradas pelos
+tokens gregos daquele versículo. Não usa fallback sem diacríticos nesse
+caminho. Expressões de vários tokens previamente cadastradas continuam sendo
+fontes de sugestões quando os tokens gregos são contíguos.
+
+```bash
+npm run bible:index
 npm run bible:propose
 
-# Um livro ou capítulo (abreviações jo, mt, 1co etc.)
+# Um livro ou capítulo
 npm run bible:propose -- --book jo
 npm run bible:propose -- --book jo --chapter 2
 
-# Inspecionar propostas também para versículos cadastrados
-npm run bible:propose -- --book jo --chapter 1 --include-approved --out reports/propostas-jo1
+# Incluir os vínculos já aprovados na visão de revisão
+npm run bible:propose -- --book jo --chapter 1 --include-approved --out reports/revisao-jo1
 
-# Avaliar contra João 1 sem usar o próprio versículo como exemplo
-npm run bible:propose -- --book jo --chapter 1 --evaluate --out reports/bible-proposals-evaluation
+# Avaliação sem usar o próprio versículo como exemplo ou exportar sua aprovação
+npm run bible:propose -- --book jo --chapter 1 --evaluate --out reports/bible-occurrence-relations-evaluation
 
 npm run test:bible:proposals
 ```
 
-A saída padrão fica em `reports/bible-alignment-proposals/`, fora da publicação
-e do Git. `summary.json` lista os arquivos desta execução, contagens, origens,
-hashes SHA-256 dos insumos e diagnósticos de capítulos não processados. Os
-arquivos `<livro>/<capítulo>.json` guardam o texto português, todos os tokens
-gregos e os candidatos. Execuções com filtro não apagam arquivos anteriores;
-consulte somente os arquivos listados no resumo atual e confira `inputDigest`.
-Use `--out` com pastas diferentes para avaliações e lotes parciais.
+A saída padrão da versão 2 fica em `reports/bible-occurrence-relations/`,
+separada dos relatórios antigos em `reports/bible-alignment-proposals/`.
+Nenhum relatório antigo é apagado ou promovido automaticamente. A pasta fica
+fora de `src` e da publicação; seu versionamento depende da configuração do Git.
 
-As fontes são o Texto Majoritário, os campos `pt` e `traducao` do dicionário
-definitivo e os segmentos/equivalências já cadastrados em `src/alinhamentos`.
-Expressões aprendidas só são reutilizadas quando seus tokens gregos formam uma
-sequência contígua; agrupamentos contextuais cruzados não viram regras gerais.
-A busca preserva acentos portugueses. Uma busca grega que dependa de ignorar
-diacríticos é identificada como aproximada, com aviso e prioridade baixa.
-Notações como `ele(a)` não são expandidas por adivinhação.
+O `summary.json` lista os capítulos da execução, as fontes e seus hashes,
+contagens, diagnósticos e o hash de cada arquivo gerado. O campo `fileHashes`
+preserva o histórico de hashes gerados em outros filtros da mesma pasta.
+Arquivos não listados em `chapters` podem ser de execuções anteriores: confira
+o resumo e o `inputDigest`. Use pastas diferentes para avaliação e revisão.
 
-Cada candidato traz `start`, `text`, `tokens`, evidências, prioridade e
-identificadores de candidatos conflitantes. A prioridade é uma heurística para
-organizar a revisão, não uma probabilidade de acerto. `CANDIDATO_UNICO` significa
-apenas que não há concorrente entre as propostas geradas. `AMBIGUO` preserva
-alternativas que disputam palavras portuguesas ou tokens gregos. Não há seleção
-automática de uma ocorrência repetida ou aplicação de uma tradução contextual.
-Até candidatos únicos podem estar linguisticamente errados ou incompletos.
+Cada arquivo `<livro>/<capítulo>.json` tem `version: 2` e
+`type: RELACOES_POR_OCORRENCIA`. Cada versículo preserva o texto português, a
+sequência grega e duas listas:
 
-`unmatchedPortuguese` e `unmatchedGreek` indicam ausência de candidato, não
-atestam palavras supridas ou originais omitidos. Termos entre colchetes são
-mantidos como suprimentos explícitos. Resultados truncados são identificados e
-nunca classificados como únicos. HTML/entidades ficam intactos e sinalizados,
-sem propostas para o versículo; é necessário tratar o formato separadamente.
+- `relations`: vínculos entre um trecho português e um ou vários tokens gregos.
+- `notes`: palavras ou tokens sem candidato, além de justificativas já aprovadas
+  para termos supridos ou elementos representados pela pontuação.
 
-O gerador prefere o Liquid atual quando existe e usa TXT apenas quando não há
-template correspondente. A identificação por metadados também resolve pastas
-com grafias diferentes do slug cadastrado, sem renomear arquivos. Os templates
-antigos com spans `verse` são lidos em seu formato original. Erros de ids,
-versículos duplicados ou capítulos ausentes são registrados; não se usa outra
-tradução silenciosamente para contornar um erro. Continuação TXT não numerada
-é preservada e exige conferência dos limites do versículo.
+Cada registro identifica referência, tipo, posição UTF-16 do trecho, texto,
+tokens gregos e estado. Os vínculos incluem evidências, prioridade, justificativa
+e ids de registros concorrentes. O id é estável enquanto referência, tipo,
+trecho, posição e tokens forem iguais. Assim, a revisão pode identificar a
+mesma relação em execuções posteriores sem depender da ordem dos candidatos.
 
-Na rodada inicial desta branch, foram geradas 157.540 propostas em 258 capítulos
+Os estados significam:
+
+- `PROPOSTA`: candidato sem concorrente detectado, ainda não conferido.
+- `PENDENTE`: concorrência, ausência de correspondência, conflito com decisão
+  aprovada ou geração incompleta. A razão é registrada.
+- `APROVADA`: decisão já cadastrada em `src/alinhamentos` e confirmada contra
+  o mesmo texto e a mesma sequência grega. O gerador não concede essa aprovação
+  por similaridade ou por haver apenas um candidato.
+
+Ao usar `--include-approved`, vínculos aprovados que o índice não recupera
+continuam na visão de revisão. As justificativas `unlinkedPortuguese` e
+`untranslatedTokens` também são mantidas como notas aprovadas. Sugestões que
+contradigam essas decisões ficam pendentes. Se a tradução ou o grego tiver
+mudado, as aprovações anteriores não são transferidas para as propostas.
+No modo de avaliação não se exportam aprovações do versículo avaliado.
+As contagens por estado incluem vínculos e notas, identificados pelo campo
+`type`; não devem ser interpretadas como quantidade de palavras traduzidas.
+
+Prioridade é uma heurística de ordenação, não uma probabilidade de acerto.
+Uma proposta sem concorrente pode estar linguisticamente errada. Não há
+seleção automática de ocorrências repetidas ou aplicação de exegese.
+
+Regeneração compara cada arquivo existente com o hash da última versão gerada.
+Se alguém tiver alterado um arquivo de revisão, o comando para antes de escrever
+os capítulos e o preserva. Use `--out` com outra pasta para obter uma nova
+rodada, mantendo a revisão existente. Não edite o manifesto ou seus hashes
+para contornar essa proteção.
+
+Estes arquivos **não são lidos pelo build para publicar tooltips**. Alterar
+`status` num relatório, inclusive para `APROVADA`, não modifica a página nem o
+arquivo aprovado. A importação das decisões usa o CSV do passo 3, descrito abaixo. O build
+continua usando somente os arquivos em
+`src/alinhamentos/<livro>/<capítulo>.json` e o fluxo de revisão já documentado.
+O gerador não escreve em capítulos, dicionário, aprovados ou `.git`.
+
+### Fontes e limitações de formato
+
+O gerador prefere o Liquid atual quando existe e usa TXT quando não há template.
+A identificação por metadados também resolve pastas com grafias diferentes do
+slug, sem renomeá-las. HTML legado com spans `verse` é lido no formato original.
+Erros de ids, versículos duplicados ou capítulos ausentes entram no resumo;
+não se usa outra tradução silenciosamente para contornar um problema.
+
+HTML e entidades dentro do versículo são preservados e sinalizados; não se
+inventam offsets após remover marcações. Continuação TXT não numerada é
+preservada e exige conferir os limites do versículo. Termos entre colchetes
+permanecem identificados como supridos. Ausência de candidato não comprova
+que uma palavra seja suprida ou que um original tenha sido omitido.
+
+Resultados parciais e limites de candidatos ficam explícitos. Fontes e índice
+são identificados por hashes para que revisões possam detectar dados antigos.
+A versão 2 não tem campo `segments`, evitando confusão com o esquema aprovado.
+
+### Avaliação da versão 2
+
+Na rodada atual, foram gerados 154.247 candidatos para 258 capítulos (7.883
+versículos), com os 51 versículos já cadastrados de João 1 ignorados por padrão.
+Mateus 2 continua no diagnóstico de id duplicado; 309 versículos precisam de
+revisão de formato.
+
+Na avaliação de João 1 sem usar o próprio versículo como exemplo, 551 dos 758
+vínculos de referência apareceram entre 1.114 candidatos (72,7%). Dos 314 sem
+concorrente, 266 coincidiram exatamente com a referência (84,7%). Não se deve
+aprovar automaticamente os restantes por unicidade; o arquivo preserva o
+estado de proposta ou pendência.
+
+### Histórico da versão anterior
+
+Na versão anterior, que consultava diretamente o dicionário, foram geradas 157.540 propostas em 258 capítulos
 (7.883 versículos), além de 51 versículos cadastrados que foram ignorados.
 309 versículos exigem revisão de formato. Mateus 2 não foi processado porque
 seu HTML repete o id `mt_2-2`, inclusive no trecho de 2:14. Esse problema já
 existia no template e não foi corrigido como parte do gerador.
 
-A avaliação de João 1, excluindo os exemplos do próprio versículo, encontrou
+A avaliação dessa versão em João 1, excluindo os exemplos do próprio versículo, encontrou
 557 dos 758 segmentos de referência entre 1.127 candidatos (cobertura de 73,5%).
 Entre os 319 candidatos sem concorrente, 269 coincidiram exatamente com a
 referência (84,3%). A comparação exige o mesmo trecho português e os mesmos
@@ -238,20 +458,143 @@ tokens na mesma ordem; reformulações equivalentes podem não ser contadas.
 Esses números se referem a esse capítulo, não estimam a qualidade de todo o NT
 e não justificam aprovação automática.
 
-Para revisar um capítulo, confira cada candidato com a ocorrência grega,
-selecione/ajuste os vínculos e registre somente os aprovados em
-`src/alinhamentos/<livro>/<capítulo>.json`, no esquema `segments` já descrito.
-Complete também os trechos sem candidato e as justificativas necessárias.
-O gerador não oferece um comando de aprovação em massa. Os arquivos gerados
-não têm campo `segments`, para evitar que sejam confundidos com aprovados.
-Depois, rode `npm run bible:align:check` e confira a página. A próxima geração
-passará a usar os novos exemplos cadastrados.
 
-Não edite os relatórios como lugar definitivo de aprovação: são regeneráveis,
-e a mesma execução pode sobrescrevê-los. Preserve decisões aprovadas nos
-arquivos de alinhamento e justificativas do projeto. O gerador não escreve em
-`src`, no dicionário, nos capítulos, nos aprovados ou em `.git`; também bloqueia
-saídas por links simbólicos que apontem para essas fontes.
+## CSV e importação das decisões — passo 3
+
+### Preparar e abrir a revisão
+
+Com as relações do passo 2 geradas, exporte um capítulo:
+
+```bash
+npm run bible:review:export -- --book jo --chapter 2
+```
+
+Isso cria dois arquivos que devem permanecer juntos:
+
+- `reports/bible-review/jo/2.csv`: a revisão que você abre na planilha.
+- `reports/bible-review/jo/2.review.json`: os dados de referência usados pelo
+  importador para detectar alterações no texto, grego, dicionário e aprovados.
+
+Não edite o `.review.json`. Ao mover ou renomear o CSV, copie também esse arquivo
+com o mesmo nome-base. Não é um backup; é parte do contrato de importação.
+A exportação não substitui um CSV ou manifesto já diferente: escolha outra
+pasta com `--out reports/revisao-rodada2`.
+
+É possível exportar um livro inteiro com `--book jo` sem `--chapter`, ou todos
+os capítulos listados no resumo sem filtros. Cada capítulo recebe seu próprio
+par CSV/manifesto. Para usar outra rodada de relações, informe
+`--source reports/pasta-da-rodada`. Capítulos já aprovados só aparecem se a
+rodada de origem tiver sido gerada com `--include-approved`.
+
+O CSV usa UTF-8 com BOM, separador ponto e vírgula, aspas escapadas e CRLF.
+O importador também aceita vírgula como separador. No Excel/LibreOffice,
+preserve os acentos gregos e salve como **CSV UTF-8**, mantendo as colunas de
+ids, posições e tokens como texto. Não salve por cima como XLSX ou CSV ANSI.
+Células que poderiam ser interpretadas como fórmulas recebem escape reversível.
+Os testes verificam o round-trip dos dados; não foi feita validação visual em
+uma sessão nativa do Excel.
+
+### O que preencher
+
+A coluna editável principal é `decisao`, que começa vazia:
+
+- `APROVAR`: publicar este vínculo após importação com `--apply`.
+- `REJEITAR`: registrar que a sugestão foi descartada. Se a linha representar
+  um vínculo já aprovado, retirá-lo explicitamente do arquivo aprovado.
+- `PENDENTE`: registrar a dúvida sem mudar um vínculo aprovado que já exista.
+- Vazio: não tomar decisão nessa linha; não remove nem aprova nada.
+
+Quando houver várias alternativas para o mesmo trecho/token, escolha apenas
+as compatíveis entre si. A importação rejeita conflitos entre aprovações.
+Não basta a situação original indicar proposta única: confira a ocorrência.
+
+As outras colunas editáveis são `tipo`, `trecho_pt`, `inicio_pt`,
+`tokens_gregos` e `observacao`. As demais são referências e devem ficar intactas.
+`referencia` identifica o versículo, `situacao_original` mostra o estado da
+rodada, e `id` mantém a identidade da linha mesmo após ordenar ou filtrar.
+`texto_versiculo` e `grego_versiculo` permitem conferir o contexto completo.
+`formas_gregas`, evidências e justificativa original descrevem a sugestão de
+origem; não se atualizam dentro da planilha quando você edita os tokens.
+
+Para corrigir um vínculo, edite o trecho e sua posição e/ou os tokens, e marque
+`APROVAR`. `inicio_pt` conta posições de string JavaScript (UTF-16), começando
+em zero. Tokens gregos começam em 1 e aceitam listas como `5,6`. Não escreva
+Strong no lugar desses números. O trecho precisa corresponder exatamente ao
+texto do versículo, sem cortar uma palavra. Expressões com vários tokens são
+aceitas. Não invente ids nem duplique linhas.
+
+Para criar uma relação que faltou, reaproveite uma linha de pendência, altere
+`tipo` para `VINCULO` e preencha trecho, posição e tokens. Para confirmar que
+não há equivalente direto, escolha `PORTUGUES_SEM_VINCULO_DIRETO` (trecho e
+posição, sem tokens) ou `GREGO_SEM_VINCULO_DIRETO` (um token, trecho/posição
+portugueses vazios). Esses dois tipos exigem justificativa em `observacao`.
+Não se aprova uma linha `SEM_CANDIDATO` como se ela já fosse um vínculo.
+
+`observacao` acompanha a decisão e fica no recibo; em vínculos aprovados também
+pode ser guardada como `reviewNote`. Uma observação isolada, sem decisão, não
+é importada. Edições nos dados do vínculo sem uma decisão são rejeitadas.
+
+### Conferir, aplicar e visualizar
+
+Primeiro valide sem escrever arquivos aprovados:
+
+```bash
+npm run bible:review:import -- --file reports/bible-review/jo/2.csv
+```
+
+O resultado indica decisões, arquivo afetado, versículos, quantidade de vínculos
+e pendências restantes. Qualquer referência inválida, fonte alterada, coluna de
+referência editada, id duplicado ou aprovação incompatível aborta antes da gravação.
+Você pode ordenar/filtrar linhas; omitir uma linha não exclui seu vínculo aprovado.
+
+Para efetivar suas decisões explícitas:
+
+```bash
+npm run bible:review:import -- --file reports/bible-review/jo/2.csv --apply
+npm run bible:align
+npm run dev -- --port=8091
+```
+
+A importação atualiza somente o capítulo em `src/alinhamentos/jo/2.json`, nunca
+os capítulos traduzidos, o dicionário ou outros capítulos aprovados. Não
+reformata o arquivo inteiro: preserva chaves, espaçamento e entradas não afetadas.
+Vínculos aprovados que não receberam decisão são preservados. Correções que
+alterem o conteúdo de um vínculo não herdam automaticamente suas antigas
+alternativas lexicais; os outros dados aprovados permanecem intactos.
+
+O recibo `<capítulo>.import-<hash>.json`, ao lado do CSV, registra as decisões,
+observações e hashes anterior/posterior. Não substitui o histórico Git nem gera
+`.bak`. Com todas as decisões vazias, nada é aplicado.
+
+Aprovações parciais são permitidas. O arquivo aprovado guarda `pendingReview`
+para palavras e tokens ainda sem decisão. O build mostra os vínculos aprovados
+e mantém as pendências no relatório. `bible:align:check` retorna saída 1 enquanto
+elas existirem; o build normal continua funcionando. Capítulos parciais voltam
+a entrar no gerador de relações, preservando os vínculos já cadastrados.
+
+### Revisões posteriores e limites
+
+Cada CSV é uma rodada baseada nas fontes e aprovados presentes na exportação.
+Se a tradução, o grego, o dicionário, as relações de origem ou o capítulo aprovado
+mudar, ele não pode ser aplicado silenciosamente. Uma importação que altere o
+capítulo também torna antiga aquela rodada. Para continuar depois, gere novas
+relações e exporte para outra pasta, preservando o CSV anterior e seu recibo.
+Evite regenerar as relações na mesma pasta enquanto revisa um CSV; use `--out`
+para manter a origem daquela rodada intacta.
+
+Mudanças mecânicas anteriores à exportação podem ter seus vínculos seguros
+reposicionados durante a importação. Os trechos que deixaram de ser seguros
+ficam pendentes, sem escolher uma tradução nova. Mudança da sequência grega
+aprovada requer revisão específica e não é reconciliada por posições presumidas.
+
+Aprovar tooltips exige um template com shortcode `verse` e texto sem marcação
+interna. TXT sem página, HTML legado e trechos com tags/entidades precisam ser
+preparados e reexportados antes de aprovar vínculos publicáveis. Não se remove
+marcação automaticamente para encaixar os offsets.
+
+O passo 3 não aprova decisões linguísticas por você. Na entrega inicial, o CSV
+de João 2 foi exportado com todas as decisões vazias e testado em modo de
+conferência. Nenhum vínculo real novo foi aprovado pelo agente.
 
 ## Integração
 
