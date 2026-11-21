@@ -4,6 +4,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@100..900&display=swap');
 
 :root {
+  --sans-font: "Open Sans", Arial, sans-serif;
+  --serif-font: "Merriweather", Georgia, "Times New Roman", Times, serif;
+	--greek: "Cardo", "GentiumAlt", "Galilee Unicode Gk", "Galatia SIL", "Palatino Linotype", Arial, Helvetica, sans-serif;
+	--hebrew: "Noto Sans Hebrew", sans-serif;
+}
+
+:root {
+	color-scheme: light;
+
   --brandColor: #560219;
 	--brandTextColor: #7b0000;
   --textColor: rgba(0, 0, 0, 0.85);
@@ -17,10 +26,25 @@
 	--activeBtnBg: #D3E7FD;
 	--linkColor: #107AF7;
 	--titleColor: #051E3C;
-  --sans-font: "Open Sans", Arial, sans-serif;
-  --serif-font: "Merriweather", Georgia, "Times New Roman", Times, serif;
-	--greek: "Cardo", "GentiumAlt", "Galilee Unicode Gk", "Galatia SIL", "Palatino Linotype", Arial, Helvetica, sans-serif;
-	--hebrew: "Noto Sans Hebrew", sans-serif;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+	--brandColor: #560219;
+	--brandTextColor: #F08F94;
+  --textColor: #F4F1F0;
+	--greyText: #AEB5C1;
+	--burgerColor: #DFE6EC;
+	--flatBgColor: #151C24;
+	--toolBarBg: #0F141A;
+	--inputBg: #232E36;
+	--inputBorder: #232E36;
+	--labelColor: #E0E3E7;
+	--activeLabelColor: #E0E4E8;
+	--activeBtnBg: #28538D;
+	--linkColor: #59CDF5;
+	--titleColor: #F9F9F9;
 }
 
 body {
@@ -28,8 +52,7 @@ body {
   margin: 0;
   line-height: 1.35em;
   color: var(--textColor);
-  background-color: #fdfeff;
-  /* text-align: justify; */
+  background-color: var(--flatBgColor);
 }
 
 a:link,
@@ -179,7 +202,7 @@ q {
 
     & li a {
 			padding: 0 10px;
-      color: rgba(255, 255, 255, 0.85);
+      color: var(--brandTextColor);
       font-size: 15px;
 
       &:visited {
@@ -329,6 +352,8 @@ button.square {
 	background-color: var(--inputBg);
 	cursor: pointer;
 	padding: 8px;
+
+	& svg { fill: var(--labelColor) }
 }
 
 button.large {
@@ -1010,11 +1035,12 @@ table.tablefloatleft td {
 
   nav.main-nav {
     position: absolute;
-    background-color: #664f55;
+		background-color: var(--flatBgColor);
     right: -4px;
-    top: 112%;
-    padding: 4px 16px;
+    top: 100%;
     display: none;
+    padding: 4px 16px;
+		box-shadow: 0 4px 7px rgba(0, 0, 0, .2);
 
     & ul {
       display: block;
@@ -1024,7 +1050,7 @@ table.tablefloatleft td {
 				padding: 6px 0;
         line-height: 2.3;
 
-				&:not(:last-child) { border-bottom: solid 1px rgba(255, 255, 255, .3); }
+				&:not(:last-child) { border-bottom: solid 1px var(--inputBorder); }
       }
     }
 
@@ -1162,7 +1188,7 @@ table.tablefloatleft td {
 	.chapter-wrapper {
 		width: auto;
 		margin: 0 20px;
-		padding-top: 8px;
+		padding-top: 16px;
 	}
 
   .pericope {
@@ -1181,7 +1207,7 @@ table.tablefloatleft td {
 	}
 
   input.pagefind-ui__search-input.svelte-e9gkc3 {
-    width: calc(100% - 6px) !important
+    width: calc(100% - 6px) !important;
     margin: 0;
   }
 
