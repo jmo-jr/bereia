@@ -8,7 +8,7 @@ const { findAll, textContent, removeElement } = require('domutils');
 const { resolve, findMatches } = require('../../src/lib/bible-global-lexicon');
 const { createGlobalRenderer } = require('../../src/lib/bible-global-renderer');
 const { exportGlobal, importGlobal, COLUMNS } = require('./global');
-const { encode, parse } = require('../bible-review/csv');
+const { encode, parse } = require('./csv');
 const dictionary = {
   'λόγος': { grego: 'λόγος', pt: 'palavra', transliteracao: 'logos', morfologia: 'Substantivo - Nominativo Masculino Singular', verbete: 'G3056: palavra' },
   'ῥῆμα': { grego: 'ῥῆμα', pt: 'palavra', transliteracao: 'rhēma', morfologia: 'Substantivo - Nominativo Neutro Singular', verbete: 'G4487: declaração' },
@@ -37,7 +37,7 @@ test('a fonte global funciona em vários capítulos sem arquivos de alinhamento'
     assert.equal(visible(one), 'Palavra'); assert.equal(visible(two), 'Palavra');
     assert.equal(renderer.report().totals.tooltips, 2);
     assert.equal(renderer.report().totals.alternatives, 1);
-    assert.equal(fs.existsSync(path.join(f.root, 'src/alinhamentos')), false);
+    assert.equal(fs.existsSync(path.join(f.root, 'src/tooltip-exceptions.json')), false);
   } finally { f.remove(); }
 });
 
@@ -87,7 +87,7 @@ test('uma edição no CSV global afeta todos os capítulos e não muda o dicion�
     assert.doesNotMatch(first, /G4487/); assert.match(textContent(parseDocument(first)), /λόγος/); assert.match(textContent(parseDocument(second)), /λόγος/);
     assert.equal(renderer.report().totals.alternatives, 0);
     assert.equal(fs.readFileSync(path.join(f.root, 'src/_data/nt/dict_flex_nt-lxx_greek-pt.json'), 'utf8'), before);
-    assert.equal(fs.existsSync(path.join(f.root, 'src/alinhamentos')), false);
+    assert.equal(fs.existsSync(path.join(f.root, 'src/tooltip-exceptions.json')), false);
   } finally { f.remove(); }
 });
 
@@ -126,14 +126,5 @@ test('id bíblico duplicado não é usado para associar um original errado', () 
     const duplicate = html(3).replace('</body>', html(3) + '</body>');
     assert.doesNotMatch(renderer.transform(duplicate), /bible-original-content/);
     assert.ok(renderer.report().issues.length);
-  } finally { f.remove(); }
-});
-
-test('a fonte global vale inclusive onde há alinhamento antigo, salvo opção explícita de exceção', () => {
-  const f = fixture();
-  try {
-    f.write('src/alinhamentos/jo/3.json', { sourceBook: 'JO', verses: { 1: { text: 'Palavra', greek: ['λόγος', 'λόγος'], segments: [{ start: 0, text: 'Palavra', tokens: [1] }] } } });
-    const config = rules(); config.entries.palavra = { enabled: false }; f.write('src/tooltip-relations.json', config);
-    assert.doesNotMatch(createGlobalRenderer({ root: f.root }).transform(html(3)), /bible-original-content/);
   } finally { f.remove(); }
 });

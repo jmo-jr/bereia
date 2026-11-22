@@ -3,16 +3,14 @@ const path = require('node:path');
 const { parseDocument } = require('htmlparser2');
 const { findAll, getOuterHTML } = require('domutils');
 const { load, findMatches, canonicalGreek, ROOT } = require('./bible-global-lexicon');
-const { reconcile } = require('./bible-reconcile');
+const { words, normalizePortuguese } = require('./bible-lexical-text');
+const { loadExceptions, resolveExceptions } = require('./bible-exceptions');
 const escape = value => String(value).replace(/[&<>"']/gu, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const hasClass = (node, name) => node.attribs?.class?.split(/\s+/u).includes(name);
-function createGlobalRenderer({ root = ROOT, lexicon = load(root), approvedRenderer } = {}) {
-  const books = new Map(), overrides = new Map(), metadata = new Map();
-  for (const [key, value] of Object.entries(lexicon.dictionary)) {
-    const canonical = canonicalGreek(key); if (!metadata.has(canonical)) metadata.set(canonical, []);
-    metadata.get(canonical).push({ key, value });
-  }
-  const records = new Map(), termRecords = new Map();
+const overlaps = (a, b) => a.start < b.end && b.start < a.end;
+
+function createGlobalRenderer({ root = ROOT, lexicon = load(root), exceptions = loadExceptions(root) } = {}) {
+  const books = new Map(), records = new Map(), terms = new Map(), coverage = new Map(), ambiguities = new Map();
   function source(book, chapter, verse) {
     if (!books.has(book)) {
       const file = path.join(root, 'src/interlinear/nt', book.toUpperCase() + '.json');
@@ -21,18 +19,14 @@ function createGlobalRenderer({ root = ROOT, lexicon = load(root), approvedRende
     const item = books.get(book).find(item => Number(item.chapter) === chapter)?.pericopes.flatMap(item => item.verses).find(item => Number(item.verse) === verse);
     return item?.tokens.map(token => token.lemma);
   }
-  function manual(book, chapter, verse) {
-    const key = `${book}/${chapter}`;
-    if (!overrides.has(key)) {
-      const file = path.join(root, 'src/alinhamentos', book, chapter + '.json');
-      overrides.set(key, fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')).verses : {});
-    }
-    return overrides.get(key)[verse];
+  function dataFor(candidate, index) {
+    // Candidate keys are exact dictionary references; never choose the first
+    // analysis of a homograph that was not explicitly selected.
+    return lexicon.dictionary[candidate.dictionaryForms[index]];
   }
   function details(candidate, counter) {
     return candidate.forms.map((form, index) => {
-      const key = candidate.dictionaryForms[index];
-      const entry = Object.hasOwn(lexicon.dictionary, key) ? lexicon.dictionary[key] : metadata.get(canonicalGreek(form))?.[0]?.value;
+      const key = candidate.dictionaryForms[index], entry = dataFor(candidate, index);
       if (!entry || canonicalGreek(entry.grego || key) !== canonicalGreek(form)) {
         counter.missingMetadata++;
         return form + '\nDados desta flexão não disponíveis no dicionário.';
@@ -45,66 +39,110 @@ function createGlobalRenderer({ root = ROOT, lexicon = load(root), approvedRende
     siblings.splice(index, 1, ...nodes);
     for (let i = 0; i < siblings.length; i++) { siblings[i].parent = node.parent; siblings[i].prev = siblings[i - 1] || null; siblings[i].next = siblings[i + 1] || null; }
   }
+  function auditWord(word, index, reference, text, greek, classification, reason) {
+    const term = normalizePortuguese(text.slice(word.start, word.end)), key = term + '\u0000' + classification;
+    if (!coverage.has(key)) coverage.set(key, { term, classification, status: 'PENDENTE', reason, occurrences: [] });
+    coverage.get(key).occurrences.push({ reference, position: index + 1, start: word.start, text: text.slice(word.start, word.end), context: text,
+      greekCandidates: (lexicon.terms.get(term)?.forms || []).filter(form => greek.some(original => canonicalGreek(form) === canonicalGreek(original))) });
+  }
   function transform(html) {
     if (!html.includes('verse-text')) return html;
-    const document = parseDocument(html), elements = findAll(node => hasClass(node, 'verse-text'), document.children);
-    const counts = new Map();
+    const document = parseDocument(html), elements = findAll(node => hasClass(node, 'verse-text'), document.children), counts = new Map();
     function identify(node) {
-      let parent = node.parent;
-      while (parent && !hasClass(parent, 'verse')) parent = parent.parent;
+      let parent = node.parent; while (parent && !hasClass(parent, 'verse')) parent = parent.parent;
       return /^([a-z0-9]+)_(\d+)-(\d+)$/iu.exec(parent?.attribs?.id || '');
     }
-    for (const element of elements) { const id = identify(element); if (id) { const ref = `${id[1]} ${Number(id[2])}:${Number(id[3])}`; counts.set(ref, (counts.get(ref) || 0) + 1); } }
+    for (const element of elements) { const id = identify(element); if (id) { const ref = `${id[1].toLowerCase()} ${Number(id[2])}:${Number(id[3])}`; counts.set(ref, (counts.get(ref) || 0) + 1); } }
     for (const element of elements) {
       const id = identify(element); if (!id) continue;
       const book = id[1].toLowerCase(), chapter = Number(id[2]), verse = Number(id[3]), reference = `${book} ${chapter}:${verse}`;
-      const counter = { reference, tooltips: 0, alternatives: 0, missingMetadata: 0, skippedMarkup: 0, issues: [] };
+      let text = ''; const nodes = [];
+      function collect(node, blocked = false) {
+        if (hasClass(node, 'bible-original-content') || hasClass(node, 'ref') || ['script', 'style', 'sup'].includes(node.name)) return;
+        const skip = blocked || hasClass(node, 'bible-original') || hasClass(node, 'tooltip') || ['button', 'a'].includes(node.name);
+        if (node.type === 'text') { const start = text.length; text += node.data; nodes.push({ node, start, end: text.length, blocked: skip }); }
+        else for (const child of node.children || []) collect(child, skip);
+      }
+      collect(element);
+      const pt = words(text), blocked = nodes.filter(item => item.blocked), greek = source(book, chapter, verse);
+      const counter = { reference, tooltips: 0, controls: 0, alternatives: 0, missingMetadata: 0, portugueseTokens: pt.length,
+        lexicalTokens: 0, unambiguousLexicalTokens: 0, confirmedTokens: 0, exceptionAlternatives: 0, suppliedTokens: 0, confirmedWithoutOriginal: 0, excludedMarkupTokens: 0, displayedTokens: 0, issues: [] };
       records.set(reference, counter);
-      if (counts.get(reference) > 1) { counter.issues.push('Id bíblico duplicado na página; associação automática suspensa.'); continue; }
-      const greek = source(book, chapter, verse);
-      if (!greek) { counter.issues.push('Texto grego da referência não encontrado.'); continue; }
-      const useOverrides = process.env.BEREIA_VERSE_OVERRIDES === '1' || lexicon.rules.useVerseOverrides === true;
-      const exception = useOverrides ? manual(book, chapter, verse) : undefined, excludedTokens = new Set();
-      for (const segment of useOverrides ? approvedRenderer?.records.get(reference)?.segments || [] : []) for (const token of segment.tokens) excludedTokens.add(token);
-      if (exception && JSON.stringify(exception.greek) === JSON.stringify(greek)) for (const item of exception.untranslatedTokens || []) excludedTokens.add(item.position);
-      function visible(node) {
-        if (hasClass(node, 'bible-original-content')) return '';
-        return node.type === 'text' ? node.data : (node.children || []).map(visible).join('');
+      if (counts.get(reference) > 1) counter.issues.push('Id bíblico duplicado; associação automática suspensa.');
+      if (!greek) counter.issues.push('Texto grego da referência não encontrado.');
+      if (counter.issues.length) {
+        pt.forEach((word, index) => auditWord(word, index, reference, text, greek || [], 'FONTE_INCOMPATIVEL', counter.issues[0]));
+        continue;
       }
-      const text = visible(element);
-      const protectedRanges = exception ? reconcile({ text: exception.text, segments: (exception.unlinkedPortuguese || []).map(note => ({ ...note, tokens: [] })) }, text).segments : [];
-      let offset = 0, serial = 0;
-      function visit(node, blocked = false) {
-        if (hasClass(node, 'bible-original-content')) return;
-        const skip = blocked || hasClass(node, 'bible-original') || hasClass(node, 'tooltip') || hasClass(node, 'ref') || ['script', 'style', 'button', 'a'].includes(node.name);
-        if (node.type !== 'text') { for (const child of [...(node.children || [])]) visit(child, skip); return; }
-        const from = offset; offset += node.data.length;
-        if (skip) { counter.skippedMarkup++; return; }
-        const matches = findMatches(node.data, greek, lexicon, excludedTokens).filter(match => !protectedRanges.some(range => from + match.start < range.start + range.text.length && range.start < from + match.end));
-        if (!matches.length) return;
-        let cursor = 0; const parts = [];
-        for (const match of matches) {
-          const ambiguous = match.candidates.length > 1;
-          if (ambiguous && lexicon.ambiguityPolicy === 'omit') continue;
-          const id = `global-original-${book}-${chapter}-${verse}-${++serial}`;
-          const content = (ambiguous ? 'Alternativas lexicais presentes no versículo:\n\n' : '') + match.candidates.map((candidate, index) => (ambiguous ? `Possibilidade ${index + 1}\n` : '') + details(candidate, counter)).join('\n\n');
-          parts.push(escape(node.data.slice(cursor, match.start)), `<span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="${id}">${escape(match.text)}<span id="${id}" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">×</button><span class="bible-original-details">${escape(content)}</span></span></span>`);
-          cursor = match.end; counter.tooltips++; if (ambiguous) counter.alternatives++;
-          if (!termRecords.has(match.term)) termRecords.set(match.term, { tooltips: 0, alternatives: 0, examples: [] });
-          const term = termRecords.get(match.term); term.tooltips++; if (ambiguous) term.alternatives++;
-          if (term.examples.length < 3 && !term.examples.includes(reference)) term.examples.push(reference);
+      const contextual = resolveExceptions(exceptions, reference, text, greek, lexicon);
+      counter.issues.push(...contextual.issues);
+      const protectedRanges = [...blocked, ...contextual.suppressed, ...contextual.matches];
+      const automatic = findMatches(text, greek, lexicon, contextual.excludedTokens, protectedRanges);
+      const matches = [...contextual.matches.filter(match => !blocked.some(item => overlaps(item, match))), ...automatic].sort((a, b) => a.start - b.start);
+      const renderable = [];
+      for (const [index, match] of matches.entries()) {
+        const ambiguous = match.candidates.length > 1, wordCount = pt.filter(word => word.start >= match.start && word.end <= match.end).length;
+        if (match.confirmed && !ambiguous) counter.confirmedTokens += wordCount;
+        else if (match.confirmed) counter.exceptionAlternatives += wordCount;
+        else { counter.lexicalTokens += wordCount; if (!ambiguous) counter.unambiguousLexicalTokens += wordCount; }
+        if (ambiguous) {
+          counter.alternatives++;
+          if (!ambiguities.has(match.term)) ambiguities.set(match.term, { term: match.term, status: 'ALTERNATIVAS', occurrences: [] });
+          ambiguities.get(match.term).occurrences.push({ reference, position: pt.findIndex(word => word.start === match.start) + 1, start: match.start, text: match.text, context: text,
+            resolution: match.confirmed ? 'EXCECAO_COM_ALTERNATIVAS' : 'NAO_CONFIRMADA', candidates: match.candidates.map(candidate => ({ forms: candidate.forms, dictionaryKeys: candidate.dictionaryForms,
+              analyses: candidate.forms.map((_, i) => { const data = dataFor(candidate, i); return { lemma: data?.lema || lexicon.lemmas?.[data?.strongs] || null, strongs: data?.strongs || null, morphology: data?.morfologia || null }; }) })) });
         }
-        if (cursor) { parts.push(escape(node.data.slice(cursor))); replaceText(node, parseDocument(parts.join('')).children); }
+        if (ambiguous && lexicon.ambiguityPolicy === 'omit') continue;
+        const content = (ambiguous ? 'Alternativas lexicais presentes no versículo:\n\n' : '') + match.candidates.map((candidate, i) => (ambiguous ? `Possibilidade ${i + 1}\n` : '') + details(candidate, counter)).join('\n\n');
+        renderable.push({ ...match, id: `global-original-${book}-${chapter}-${verse}-${index + 1}`, content });
+        counter.tooltips++; counter.displayedTokens += wordCount;
+        if (!terms.has(match.term)) terms.set(match.term, { tooltips: 0, alternatives: 0, examples: [] });
+        const term = terms.get(match.term); term.tooltips++; if (ambiguous) term.alternatives++;
+        if (term.examples.length < 3 && !term.examples.includes(reference)) term.examples.push(reference);
       }
-      visit(element);
+      const supplied = [...text.matchAll(/\[[^\]]*\]/gu)].map(match => ({ start: match.index, end: match.index + match[0].length }));
+      pt.forEach((word, index) => {
+        if (matches.some(match => word.start >= match.start && word.end <= match.end)) return;
+        if (blocked.some(item => overlaps(item, word))) { counter.excludedMarkupTokens++; return; }
+        if (supplied.some(item => word.start >= item.start && word.end <= item.end)) { counter.suppliedTokens++; return; }
+        if (contextual.suppressed.some(item => word.start >= item.start && word.end <= item.end)) { counter.confirmedWithoutOriginal++; return; }
+        const entry = lexicon.terms.get(normalizePortuguese(text.slice(word.start, word.end)));
+        const classification = entry?.enabled === false ? 'DESATIVADO_GLOBALMENTE' : entry ? 'SEM_CANDIDATO_NO_VERSICULO' : 'COBERTURA_LEXICAL_INSUFICIENTE';
+        if (entry?.enabled === false) return;
+        auditWord(word, index, reference, text, greek, classification, entry ? 'Há relação lexical, mas nenhuma candidata neste versículo; conferir expressão, contexto ou suprimento.' : 'Sem entrada lexical simples; pode ser expressão composta, auxiliar, suprimento ou sinônimo. Não é erro confirmado.');
+      });
+      // A phrase may cross formatting tags. Its pieces share the association,
+      // but keep unique control ids and all original DOM structure.
+      for (const item of nodes) {
+        if (item.blocked) continue;
+        const selected = renderable.filter(match => overlaps(item, match));
+        if (!selected.length) continue;
+        let cursor = 0; const parts = [];
+        for (const match of selected) {
+          const from = Math.max(item.start, match.start) - item.start, to = Math.min(item.end, match.end) - item.start;
+          const id = `${match.id}-p${counter.controls++}`;
+          parts.push(escape(item.node.data.slice(cursor, from)), `<span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="${id}">${escape(item.node.data.slice(from, to))}<span id="${id}" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">×</button><span class="bible-original-details">${escape(match.content)}</span></span></span>`);
+          cursor = to;
+        }
+        parts.push(escape(item.node.data.slice(cursor))); replaceText(item.node, parseDocument(parts.join('')).children);
+      }
     }
     return getOuterHTML(document);
   }
   function report() {
-    return { version: 1, source: 'src/tooltip-relations.json + dicionário definitivo', scope: 'Busca lexical global, filtrada pelo grego de cada versículo; alternativas não são aprovação contextual.',
-      totals: { verses: records.size, versesWithAutomaticTooltips: [...records.values()].filter(record => record.tooltips).length, tooltips: [...records.values()].reduce((n, item) => n + item.tooltips, 0), alternatives: [...records.values()].reduce((n, item) => n + item.alternatives, 0), missingMetadata: [...records.values()].reduce((n, item) => n + item.missingMetadata, 0) },
-      terms: Object.fromEntries([...termRecords].sort(([a], [b]) => a.localeCompare(b, 'pt-BR'))), issues: [...records.values()].filter(record => record.issues.length) };
+    const values = [...records.values()], sum = key => values.reduce((n, item) => n + item[key], 0);
+    const total = sum('portugueseTokens'), displayed = sum('displayedTokens');
+    return { version: 2, source: 'Dicionário + complemento global + exceções opcionais com âncoras persistentes',
+      totals: { verses: records.size, versesWithAutomaticTooltips: values.filter(record => record.tooltips).length, tooltips: sum('tooltips'), controls: sum('controls'), alternatives: sum('alternatives'), missingMetadata: sum('missingMetadata'),
+        portugueseTokens: total, lexicalTokens: sum('lexicalTokens'), unambiguousLexicalTokens: sum('unambiguousLexicalTokens'), contextConfirmedTokens: sum('confirmedTokens'), exceptionAlternativeTokens: sum('exceptionAlternatives'), suppliedExplicitTokens: sum('suppliedTokens'), confirmedWithoutOriginal: sum('confirmedWithoutOriginal'), excludedMarkupTokens: sum('excludedMarkupTokens'), displayedTokens: displayed,
+        lexicalCoveragePercent: total ? Number((100 * displayed / total).toFixed(2)) : 0 },
+      definitions: { lexicalCoveragePercent: 'Tokens portugueses com tooltip / tokens portugueses analisados. Não mede confirmação contextual.', contextConfirmedTokens: 'Somente associações explícitas de exceções válidas e com uma análise.', suppliedExplicitTokens: 'Somente palavras explicitamente entre colchetes; ausências lexicais não são classificadas automaticamente como suprimentos.' },
+      terms: Object.fromEntries([...terms].sort(([a], [b]) => a.localeCompare(b, 'pt-BR'))), issues: values.filter(record => record.issues.length) };
   }
-  return { transform, report, records, lexicon };
+  function reports() {
+    return { summary: report(), coverage: { version: 1, scope: 'Pendências agrupadas por termo, com referências individuais. Não são correções automáticas do dicionário.', terms: [...coverage.values()].sort((a, b) => a.term.localeCompare(b.term, 'pt-BR')) },
+      ambiguities: { version: 1, scope: 'Alternativas simultâneas são grupos; grupos diferentes são possibilidades, não uma escolha contextual automática.', terms: [...ambiguities.values()].sort((a, b) => a.term.localeCompare(b.term, 'pt-BR')) } };
+  }
+  return { transform, report, reports, records, lexicon };
 }
 module.exports = { createGlobalRenderer };

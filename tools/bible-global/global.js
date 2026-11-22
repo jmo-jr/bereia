@@ -2,9 +2,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { load, ROOT, resolve, canonicalGreek, normalizePortuguese } = require('../../src/lib/bible-global-lexicon');
-const { encode, parse } = require('../bible-review/csv');
-const { setValue } = require('../bible-review/json-patch');
-const { safeOutput } = require('../bible-proposals/generate');
+const { encode, parse } = require('./csv');
+const { setValue } = require('./json-patch');
+const { safeOutput } = require('./files');
 const hash = text => crypto.createHash('sha256').update(text).digest('hex');
 const COLUMNS = ['termo_pt', 'formas_gregas', 'grupos_gregos', 'ativo', 'observacao', 'origem', 'id'];
 const row = (term, entry) => ({ termo_pt: term, formas_gregas: entry.forms.join(' | '), grupos_gregos: entry.groups.map(group => group.join(' + ')).join(' || '),
@@ -68,35 +68,11 @@ function importGlobal({ root = ROOT, file, apply = false } = {}) {
   }
   return { applied: apply && content !== before, changedTerms: changed.length, terms: changed, file: 'src/tooltip-relations.json' };
 }
-function seed({ root = ROOT } = {}) {
-  const lexicon = load(root), rules = lexicon.rules;
-  if (Object.keys(rules.entries).length) throw Error('Fonte global existente preservada; a inicialização só vale para entries vazio.');
-  const folder = path.join(root, 'src/alinhamentos');
-  if (fs.existsSync(folder)) for (const book of fs.readdirSync(folder)) {
-    const directory = path.join(folder, book); if (!fs.statSync(directory).isDirectory()) continue;
-    for (const name of fs.readdirSync(directory).filter(name => name.endsWith('.json'))) {
-      const data = JSON.parse(fs.readFileSync(path.join(directory, name), 'utf8'));
-      for (const entry of Object.values(data.verses)) for (const segment of entry.segments) {
-        if (!segment.tokens.length || segment.tokens.some((position, index) => index && position !== segment.tokens[index - 1] + 1)) continue;
-        const forms = segment.tokens.map(position => entry.greek[position - 1]);
-        for (const label of [segment.text, ...(segment.alternatives || [])]) {
-          const term = normalizePortuguese(label), base = lexicon.terms.get(term);
-          if (forms.length === 1 && base?.forms.some(form => canonicalGreek(form) === canonicalGreek(forms[0]))) continue;
-          const rule = rules.entries[term] ||= { forms: [], groups: [], mode: 'extend', origin: 'expressão cadastrada', note: '' };
-          if (forms.length === 1) { if (!rule.forms.includes(forms[0])) rule.forms.push(forms[0]); }
-          else if (!rule.groups.some(group => JSON.stringify(group) === JSON.stringify(forms))) rule.groups.push(forms);
-        }
-      }
-    }
-  }
-  fs.writeFileSync(path.join(root, 'src/tooltip-relations.json'), JSON.stringify(rules, null, 2) + '\n');
-  return { seeded: Object.keys(rules.entries).length };
-}
 if (require.main === module) {
   try {
     const args = process.argv.slice(2), mode = args.shift(), options = {};
     for (let i = 0; i < args.length; i++) { if (args[i] === '--apply') options.apply = true; else if (args[i] === '--file' && args[i + 1]) options.file = path.resolve(args[++i]); else throw Error('Use --file caminho.csv e, para importar, --apply.'); }
-    console.log(JSON.stringify(mode === 'export' ? exportGlobal(options) : mode === 'import' ? importGlobal(options) : mode === 'seed' ? seed(options) : (() => { throw Error('Use export ou import.'); })(), null, 2));
+    console.log(JSON.stringify(mode === 'export' ? exportGlobal(options) : mode === 'import' ? importGlobal(options) : (() => { throw Error('Use export ou import.'); })(), null, 2));
   } catch (error) { console.error(error.message); process.exitCode = 1; }
 }
-module.exports = { COLUMNS, exportGlobal, importGlobal, seed };
+module.exports = { COLUMNS, exportGlobal, importGlobal };

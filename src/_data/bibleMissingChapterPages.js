@@ -4,7 +4,7 @@ const { execFileSync } = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
 const escape = value => String(value).replace(/[&<>"']/gu, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 module.exports = () => {
-  const { readChapters } = require('../../tools/bible-proposals/generate');
+  const { readChapters } = require('../../tools/bible-global/chapters');
   const inventory = readChapters(root);
   const metadata = JSON.parse(fs.readFileSync(path.join(root, 'src/_data/ntBooks.json'), 'utf8'));
   const missing = inventory.chapters.filter(chapter => chapter.format === 'txt').map(chapter => {

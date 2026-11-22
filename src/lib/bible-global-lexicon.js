@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { buildIndex } = require('../../tools/bible-reverse-index');
-const { canonicalGreek, normalizePortuguese, words } = require('../../tools/bible-proposals/lexical');
+const { buildIndex } = require('./bible-lexical-index');
+const { canonicalGreek, normalizePortuguese, words } = require('./bible-lexical-text');
+const analysisSignature = (key, dictionary) => { const entry = dictionary[key]; return entry ? JSON.stringify([entry.strongs || canonicalGreek(entry.lema || entry.grego || key), entry.strongs ? '' : entry.verbete || '', entry.morfologia || '', entry.abrev_morf || '']) : canonicalGreek(key); };
 const ROOT = path.resolve(__dirname, '../..');
 function resolve(dictionary, rules) {
   if (rules.version !== 1 || !['alternatives', 'omit'].includes(rules.ambiguityPolicy) || !rules.entries || Array.isArray(rules.entries)) throw Error('Fonte global de tooltips inválida.');
@@ -20,14 +21,22 @@ function resolve(dictionary, rules) {
     const groups = [...new Map([...(extend ? previous?.groups || [] : []), ...(entry.groups || [])].map(group => [JSON.stringify(group), group])).values()];
     terms.set(term, { forms, groups, enabled: entry.enabled !== false, origin: entry.origin || 'fonte global', note: entry.note || '' });
   }
-  return { terms, ambiguityPolicy: rules.ambiguityPolicy, pendingIndex: index.pending };
+  const analysisIndex = new Map();
+  for (const key of Object.keys(dictionary)) {
+    const canonical = canonicalGreek(key);
+    if (!analysisIndex.has(canonical)) analysisIndex.set(canonical, []);
+    analysisIndex.get(canonical).push(key);
+  }
+  return { terms, dictionary, rules, analysisIndex, ambiguityPolicy: rules.ambiguityPolicy, pendingIndex: index.pending };
 }
 function load(root = ROOT) {
   const dictionary = JSON.parse(fs.readFileSync(path.join(root, 'src/_data/nt/dict_flex_nt-lxx_greek-pt.json'), 'utf8'));
   const rules = JSON.parse(fs.readFileSync(path.join(root, 'src/tooltip-relations.json'), 'utf8'));
-  return { dictionary, rules, ...resolve(dictionary, rules) };
+  const lemmaFile = path.join(root, 'src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
+  const lemmas = fs.existsSync(lemmaFile) ? Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync(lemmaFile, 'utf8'))).map(([strong, entry]) => [strong, entry.lema])) : {};
+  return { dictionary, rules, lemmas, ...resolve(dictionary, rules) };
 }
-function findMatches(text, greek, lexicon, excludedTokens = new Set()) {
+function findMatches(text, greek, lexicon, excludedTokens = new Set(), protectedRanges = []) {
   const pt = words(text), supplied = [...text.matchAll(/\[[^\]]*\]/gu)].map(match => [match.index, match.index + match[0].length]);
   const maxWords = lexicon.maxWords || (lexicon.maxWords = [...lexicon.terms.keys()].reduce((max, term) => Math.max(max, words(term).length), 1));
   const results = [];
@@ -35,16 +44,24 @@ function findMatches(text, greek, lexicon, excludedTokens = new Set()) {
     let selected;
     for (let length = Math.min(maxWords, pt.length - i); length >= 1; length--) {
       const start = pt[i].start, end = pt[i + length - 1].end;
-      if (supplied.some(([from, to]) => start < to && from < end)) continue;
+      if (supplied.some(([from, to]) => start < to && from < end) || protectedRanges.some(range => start < range.end && range.start < end)) continue;
       const term = normalizePortuguese(text.slice(start, end)), entry = lexicon.terms.get(term);
       if (!entry?.enabled) continue;
       const candidates = new Map();
       const patterns = [...entry.forms.map(form => [form]), ...entry.groups];
       for (const pattern of patterns) for (let position = 0; position <= greek.length - pattern.length; position++) {
         if (!pattern.every((form, index) => !excludedTokens.has(position + index + 1) && canonicalGreek(form) === canonicalGreek(greek[position + index]))) continue;
-        const forms = greek.slice(position, position + pattern.length), key = pattern.map(canonicalGreek).join('\u0000');
-        if (!candidates.has(key)) candidates.set(key, { forms, dictionaryForms: pattern, occurrences: [] });
-        candidates.get(key).occurrences.push(pattern.map((_, index) => position + index + 1));
+        const forms = greek.slice(position, position + pattern.length);
+        let analyses = [[]];
+        for (const form of pattern) {
+          const keys = Object.hasOwn(lexicon.dictionary, form) ? [form] : lexicon.analysisIndex.get(canonicalGreek(form)) || [form];
+          analyses = analyses.flatMap(group => keys.map(key => [...group, key]));
+        }
+        for (const keys of analyses) {
+          const key = JSON.stringify(keys.map((key, i) => [canonicalGreek(forms[i]), analysisSignature(key, lexicon.dictionary)]));
+          if (!candidates.has(key)) candidates.set(key, { forms, dictionaryForms: keys, occurrences: [] });
+          candidates.get(key).occurrences.push(keys.map((_, index) => position + index + 1));
+        }
       }
       if (!candidates.size) continue;
       selected = { term, start, end, text: text.slice(start, end), length, candidates: [...candidates.values()] };

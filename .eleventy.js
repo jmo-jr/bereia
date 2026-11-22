@@ -1,7 +1,5 @@
 const { execSync } = require('child_process')
 const generateDictionary = require('./tools/dictionary/generate');
-const { createRenderer } = require('./src/lib/bible-alignment');
-const { scan, report } = require('./tools/bible-alignment');
 const { createGlobalRenderer } = require('./src/lib/bible-global-renderer');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -9,28 +7,26 @@ const path = require('node:path');
 
 module.exports = function(eleventyConfig) {
   generateDictionary();
-  const useVerseOverrides = process.env.BEREIA_VERSE_OVERRIDES === '1' || JSON.parse(fs.readFileSync(path.join(__dirname, 'src/tooltip-relations.json'), 'utf8')).useVerseOverrides === true;
-  let renderAlignedVerse = createRenderer();
   let globalRenderer;
   eleventyConfig.addWatchTarget('src/tooltip-relations.json', { resetConfig: true });
+  eleventyConfig.addWatchTarget('src/tooltip-exceptions.json', { resetConfig: true });
   eleventyConfig.addWatchTarget('src/biblia/nt/**/*.txt', { resetConfig: true });
   eleventyConfig.addTransform('bible-global-tooltips', function(content, outputPath) {
     if (!outputPath?.endsWith('.html') || !/[/\\]biblia[/\\]/u.test(outputPath)) return content;
-    globalRenderer ||= createGlobalRenderer({ approvedRenderer: renderAlignedVerse });
+    globalRenderer ||= createGlobalRenderer();
     return globalRenderer.transform(content);
   });
-  eleventyConfig.addWatchTarget('src/alinhamentos/', { resetConfig: true });
-  eleventyConfig.on('eleventy.before', () => { renderAlignedVerse = useVerseOverrides ? scan(createRenderer()) : createRenderer(); globalRenderer = undefined; });
+  eleventyConfig.on('eleventy.before', () => { globalRenderer = undefined; });
   eleventyConfig.on('eleventy.after', () => {
-    const result = report(renderAlignedVerse);
     if (globalRenderer) {
-      const globalReport = globalRenderer.report();
-      const filename = path.join(__dirname, 'reports/bible-global-tooltips.json');
-      fs.mkdirSync(path.dirname(filename), { recursive: true });
-      fs.writeFileSync(filename, JSON.stringify(globalReport, null, 2) + '\n');
-      console.log(`Tooltips globais: ${globalReport.totals.tooltips} trechos em ${globalReport.totals.versesWithAutomaticTooltips} versículos.`);
+      const reports = globalRenderer.reports();
+      const folder = process.env.BEREIA_BIBLE_REPORT_DIR || path.join(__dirname, 'reports');
+      fs.mkdirSync(folder, { recursive: true });
+      for (const [name, value] of Object.entries({ 'bible-tooltip-summary': reports.summary, 'bible-lexical-coverage': reports.coverage, 'bible-lexical-ambiguities': reports.ambiguities })) {
+        fs.writeFileSync(path.join(folder, name + '.json'), JSON.stringify(value, null, 2) + '\n');
+      }
+      console.log(`Tooltips: ${reports.summary.totals.tooltips} associações lexicais; ${reports.summary.totals.alternatives} com alternativas.`);
     }
-    if (result.pendingVerses) console.warn(`Tooltips: ${result.pendingVerses} versículo(s) com pendências; consulte reports/bible-alignment.json.`);
   });
   eleventyConfig.addWatchTarget('src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
   eleventyConfig.addWatchTarget('src/interlinear/at/*.json');
@@ -63,7 +59,7 @@ module.exports = function(eleventyConfig) {
     const number = positiveInteger(verseNumber, 'versículo');
 		const redletter = red ? 'redletter' : '';
 
-    return `<span id="${abbreviation}_${chapterNumber}-${number}" class="verse"><span class="verse-number">${number}</span><span class="verse-text ${redletter}">${useVerseOverrides ? renderAlignedVerse(content.trim(), abbreviation.toLowerCase(), chapterNumber, number) : content.trim()}</span></span>`;
+    return `<span id="${abbreviation}_${chapterNumber}-${number}" class="verse"><span class="verse-number">${number}</span><span class="verse-text ${redletter}">${content.trim()}</span></span>`;
   });
 
 	/*
