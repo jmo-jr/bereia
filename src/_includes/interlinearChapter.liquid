@@ -1,15 +1,15 @@
 {% assign chapter = entry.chapter %}
-{% if entry.lxx %}
-<div id="movebox2" class="page-header">
-  {% if entry.previousUrl %}<a href="{{ entry.previousUrl | url }}" title="Capítulo anterior">◄</a>{% endif %}
-  <div class="page-header_title"><h3>{{ entry.bookHeading | default: entry.bookName | escape }} {{ chapter.number }}</h3></div>
-  {% if entry.nextUrl %}<a href="{{ entry.nextUrl | url }}" title="Próximo capítulo">►</a>{% endif %}
-</div>
-{% else %}
-{% render 'bookNav', bookNameSlug: bookNameSlug, greekBookName: greekBookName, bookName: bookName, bookChapter: chapter.number, bookAbbr: bookNameAbbr %}
 
-{% render 'sideNav', theResource: '/interlinear/', theBookName: bookNameAbbr, theBookChapter: chapter.number %}
-{% endif %}
+{% comment %} {% if entry.lxx %} {% endcomment %}
+<div id="movebox2" class="page-header">
+  <div class="page-header_title">
+		<h3>
+			{{ entry.bookHeading | default: entry.bookName | escape }} {{ chapter.number }}
+		</h3>
+	</div>
+</div>
+{% comment %} {% else %}
+{% render 'bookNav', bookNameSlug: bookNameSlug, greekBookName: greekBookName, bookName: bookName, bookChapter: chapter.number, bookAbbr: bookNameAbbr %} {% endcomment %}
 
 	<div class="chapter-wrapper">
 		{% comment %} <h1 class="vheading" data-pagefind-meta="title">{{ greekBookName }} {{ chapter.number }}</h1> {% endcomment %}
@@ -28,7 +28,7 @@
 								<strong class="refmain">{{ verse.number }}</strong>
 								<div class="interlinear">
 									{% for token in verse.tokens %}
-										<span class="token">
+										<span class="token"{% if token.alias_dicionario %} data-dictionary-form="{{ token.alias_dicionario.destino.grego | escape }}"{% endif %}>
 											{% if token.strongs != blank %}
 											<a 
 												class="strongs tooltip"
@@ -41,7 +41,7 @@
 											<a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
 											{% endif %}
 											<span class="translit">{{ token.transliteracao | escape }}</span>
-											<span class="greek tooltip" title="{{ token.traducao | escape }} | Ocorrências: {{ token.ocorrencias }}">{{ token.lemma | escape }}</span>
+											<span class="greek tooltip" title="{{ token.traducao | escape }} | Ocorrências: {{ token.ocorrencias_forma_tm | default: token.ocorrencias }}">{{ token.lemma | escape }}</span>
 											<span class="translate">{{ token.pt | escape }}</span>
 											<small class="refs tooltip" title="{{ token.morfologia | escape }}">{{ token.abrev_morf }}</small>
 										</span>
@@ -59,7 +59,7 @@
 						<strong class="refmain">{{ verse.number }}</strong>
 						<div class="interlinear">
 							{% for token in verse.tokens %}
-								<span class="token">
+								<span class="token"{% if token.alias_dicionario %} data-dictionary-form="{{ token.alias_dicionario.destino.grego | escape }}"{% endif %}>
 									{% if token.strongs != blank %}<a class="strongs" href="https://biblehub.com/greek/{{ token.strongs | strip }}.htm" data-strong="G{{ token.strongs }}" title="{{ token.verbete | escape }}:">{{ token.strongs }}</a>{% else %}<a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>{% endif %}
 									<span class="translit" title="{{ token.ocorrencia }}">{{ token.transliteracao }}</span>
 									<span class="greek">{{ token.lemma | escape }}</span>
@@ -74,11 +74,30 @@
 		{% endif %}
 
 		{% if entry.lxx %}
-        <p class="source-credit"><small>Fontes lexicais complementares:
-          <a href="https://github.com/STEPBible/STEPBible-Data/tree/master/Lexicons">TBESG — Tyndale House e STEPBible.org</a>
-          (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>),
-          <a href="https://www.septuaginta.online">Septuaginta Online</a> e BEREIA.
-          Traduções e flexões complementares adaptadas para a versão beta.
-        </small></p>
+		<footer>
+      <p class="source-credit">
+				<small>Septuaginta de Rhalfs (1935) disponível em 
+          <a href="https://github.com/OpenScriptorium/lxx-morph">https://github.com/OpenScriptorium/lxx-morph</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Termos gregos ausentes do Léxico de Strong podem ter sido traduzidos por inteligência artificial.
+        </small>
+			</p>
+		</footer>
+		{% else %}
+		<footer>
+      <p class="source-credit">
+				<small>Texto Majoritário Bizantino do Novo Testamento disponível em 
+          <a href="https://github.com/byztxt/byzantine-majority-text">https://github.com/byztxt/byzantine-majority-text</a> (Domínio Público). Base lexical de Strong traduzida do original em inglês (Domínio Público).
+        </small>
+			</p>
+		</footer>
 		{% endif %}
+
+		{% comment %} <div id="botright">
+			<a href="#" title="Ir para o topo">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="14" viewBox="0 0 24 14">
+					<path id="seta-acima" data-name="seta-acima"
+						d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
+						transform="translate(0) rotate(0)" fill="#ddd" />
+				</svg>
+			</a>
+		</div> {% endcomment %}
 	</div>

@@ -9,7 +9,7 @@ function loadBooks(dictText) {
   const filename = path.join(c.ROOT, 'src/_data/nt/index.js');
   const sandbox = { module: { exports: {} }, __dirname: path.dirname(filename), process,
     require(name) {
-      if (name !== 'fs') return require(name);
+      if (name !== 'fs') return require('node:module').createRequire(filename)(name);
       return { ...fs,
         readFileSync(file, ...args) { return file === c.DERIVED ? dictText : fs.readFileSync(file, ...args); },
         writeFileSync(file) { assert.equal(path.basename(file), 'nt-missing-lemmas.log'); },

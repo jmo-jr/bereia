@@ -2,7 +2,7 @@
 title: Bíblia BEREIA
 ---
 <!DOCTYPE html>
-<html land="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +11,46 @@ title: Bíblia BEREIA
   <meta name="description" content="Página do capítulo do livro escolhido">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="{{ '/img/logo.png' | url }}">
+	<script>
+		(() => {
+			const storageKey = 'bereia-theme';
+			const systemPreference = window.matchMedia('(prefers-color-scheme: dark)');
+			const savedTheme = localStorage.getItem(storageKey);
+			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
+
+			const initialTheme = hasSavedTheme
+				? savedTheme
+				: systemPreference.matches
+					? 'dark'
+					: 'light';
+
+			const applyTheme = (theme) => {
+				document.documentElement.dataset.theme = theme;
+			};
+
+			applyTheme(initialTheme);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.querySelector(
+					'.switch input[type="checkbox"]'
+				);
+
+				if (!toggle) return;
+
+				toggle.checked = initialTheme === 'dark';
+
+				toggle.addEventListener('change', () => {
+					const selectedTheme = toggle.checked ? 'dark' : 'light';
+
+					applyTheme(selectedTheme);
+					localStorage.setItem(storageKey, selectedTheme);
+				});
+			});
+		})();
+	</script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/toggler-component.css' | url }}">
 	<link rel="stylesheet" href="{{ '/biblia/pagefind/pagefind-ui.css' | url }}">
 	<link rel="stylesheet" href="{{ '/assets/css/tooltipster.bundle.min.css' | url }}">
 	<link rel="stylesheet" href="{{ '/assets/css/tooltipster-sideTip-light.min.css' | url }}">
@@ -49,7 +87,9 @@ title: Bíblia BEREIA
 			{% if entry.lxx == true %}{% assign isLxxInterlinear = true %}{% endif %}
 		{% endif %}
 
-		{% render 'toolBar', lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookChapter: bookChapter, type: bee | default: false %}
+		{% render 'toolBar', 
+			lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookNameAbbr: bookNameAbbr, bookChapter: bookChapter, type: bee | default: false 
+		%}
 
 		<div class="content-wrapper">
 			<main class="main-content">
@@ -156,6 +196,11 @@ title: Bíblia BEREIA
 				one_result: '[COUNT] resultado para [SEARCH_TERM]'
 			}
 		});">
+	</script>
+	<script>
+		const tema = checkbox.checked ? 'dark' : 'light';
+		document.documentElement.dataset.theme = tema;
+		localStorage.setItem('bereia-theme', tema);
 	</script>
 	{% if bee %}
 	{% render 'notes' %}
