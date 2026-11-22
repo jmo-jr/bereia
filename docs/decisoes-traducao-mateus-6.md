@@ -1,0 +1,31 @@
+# Decisões de tradução — Mateus 6
+
+- **6:1 — “esmola”**: segue `ἐλεημοσύνην`, leitura do Texto Majoritário do projeto, sem adotar a variante “justiça”. O título editorial foi preservado exatamente como consta no JSON.
+- **6:1 — propósito de ser visto**: `πρὸς τὸ θεαθῆναι` foi traduzido como finalidade consciente, “com o propósito de serem vistos”, em continuidade com o tratamento de construções semelhantes em Mateus 5:28.
+- **6:2,5,16 — “recebem por completo”**: traduz a acepção contextual de `ἀπέχω` como recebimento integral da recompensa já obtida da aprovação humana.
+- **6:2 — “não toque trombeta”**: preserva a imagem concreta de `σαλπίζω`, sem decidir se descreve prática literal ou figura retórica.
+- **6:3 — mãos esquerda e direita**: a personificação foi mantida sem explicação adicional; o singular dirigido ao praticante da esmola também foi preservado.
+- **6:4,6 — “publicamente”**: segue `ἐν τῷ φανερῷ`, presente no Texto Majoritário nos dois versículos. A mesma expressão não foi acrescentada ao versículo 18, onde não aparece na fonte do projeto.
+- **6:5–6 — singular na oração pessoal**: preserva as formas de segunda pessoa singular, em contraste com o plural dos versículos 7–9.
+- **6:6 — “quarto”**: `ταμιεῖον` foi traduzido como cômodo interior e privado, sem restringi-lo a depósito ou despensa.
+- **6:7 — “repetições vazias / fala abundante”**: distingue `βαττολογέω`, fala repetitiva ou vazia, de `πολυλογία`, grande quantidade de palavras. A crítica não foi ampliada a toda repetição na oração.
+- **6:7 — “os das nações”**: traduz `ἐθνικοί` em continuidade com o uso de “nações” para `ἔθνη`, sem empregar uma designação religiosa posterior.
+- **6:9 — “seja santificado”**: mantém a voz passiva do imperativo `ἁγιασθήτω`, sem explicitar no texto principal o agente da santificação do nome.
+- **6:10 — céu e terra**: preserva o singular “céu” deste versículo, distinguindo-o do plural “céus” do versículo 9.
+- **6:11 — “pão necessário”**: `ἐπιούσιος` foi traduzido conforme o dicionário definitivo e a decisão em avaliação já registrada no projeto. O termo é raro e admite outras interpretações, mas “necessário” evita impor automaticamente a acepção temporal “diário”.
+- **6:12,14–15 — dívidas e transgressões**: `ὀφειλήματα` e `ὀφειλέται` foram mantidos como “dívidas/devedores”; `παραπτώματα`, nos versículos seguintes, foi traduzido por “transgressões”, preservando a mudança lexical.
+- **6:13 — “não nos leve para a provação”**: mantém `εἰσφέρω` e `πειρασμός` sem afirmar que Deus seja o agente do mal. “Provação” preserva a possibilidade de teste, distinguindo-a da ação verbal de testar em Mateus 4.
+- **6:13 — “do perverso”**: `τοῦ πονηροῦ` foi traduzido pessoalmente, em continuidade com Mateus 5:37,39, sem eliminar a possibilidade lexical de referência ao mal.
+- **6:13 — doxologia do TM**: foram preservados “o Reino, o poder e a glória pelas eras” e “Amém”, presentes no Texto Majoritário do projeto.
+- **6:16 — “sombrios / desfiguram”**: distingue `σκυθρωποί`, aparência triste, de `ἀφανίζουσιν`, alteração deliberada do rosto para evidenciar o jejum.
+- **6:17 — unção e lavagem**: os dois imperativos médios foram mantidos como ações normais de cuidado pessoal durante o jejum.
+- **6:19–20 — “corrosão”**: `βρῶσις` foi traduzido segundo a acepção contextual indicada pelo dicionário para Mateus, abrangendo deterioração ou ferrugem. `διορύσσω`, literalmente escavar através, foi preservado como “escavar”.
+- **6:22 — “olho bom”**: `ἁπλοῦς` foi traduzido conforme a equivalência contextual principal do dicionário. A expressão pode envolver simplicidade, integridade ou generosidade; essa amplitude não foi reduzida no texto principal a uma explicação moral específica.
+- **6:23 — luz e escuridão**: foram preservadas as repetições e a exclamação final. `[É]` explicita a cópula ausente.
+- **6:24 — “servir como escravo / Mamon”**: `δουλεύω` foi traduzido de modo relacionado a `δοῦλος`, destacando sujeição. O nome `μαμωνᾶς` foi mantido como “Mamon”, personificação das riquezas, enquanto o título editorial conserva “riquezas”.
+- **6:25 — `ψυχή` como “vida”**: o contexto de comida e bebida exige a acepção de vida, não a designação isolada de “alma”. Alimento e roupa permanecem subordinados à vida e ao corpo.
+- **6:27 — “idade”**: mantém a equivalência adotada em Lucas 12:25 para `ἡλικία`; a imagem do côvado foi preservada sem convertê-la em unidade de tempo.
+- **6:28 — “observem atentamente”**: traduz a intensidade de `καταμανθάνω`, distinguindo-o do simples olhar dirigido às aves no versículo 26.
+- **6:30 — “gente de pouca fé”**: solução vocativa para `ὀλιγόπιστοι`, preservando sua aplicação plural aos destinatários.
+- **6:33 — “Reino de Deus”**: segue `τὴν βασιλείαν τοῦ θεοῦ`, leitura explícita do Texto Majoritário, além de preservar “a justiça dele”.
+- **6:34 — “seu próprio mal”**: `κακία` foi traduzido por “mal” sem definir se indica dificuldade, sofrimento ou maldade moral; a personificação do amanhã foi mantida.

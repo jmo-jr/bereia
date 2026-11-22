@@ -1,0 +1,22 @@
+# Decisões de tradução — 1João 3
+
+- **3.1 — leitura do TM:** preservado “o mundo não conhece vocês”, conforme ὑμᾶς no Texto Majoritário local, sem harmonização com a variante de primeira pessoa. ποταπός foi traduzido pela expressão “que tipo de”.
+- **3.1–2 — τέκνα θεοῦ:** mantido como “filhos de Deus”. A repetição de φανερόω foi preservada por “manifestar”.
+- **3.3 — ἁγνίζω / ἁγνός:** a relação lexical foi mantida por “purificar/puro”, sem confundir esses termos com καθαρίζω, também traduzido por “purificar” em 1João 1 por falta de distinção portuguesa igualmente natural.
+- **3.4 — ἁμαρτία / ἀνομία:** diferenciados como “pecado/transgressão”, conforme o dicionário definitivo. ποιέω foi traduzido por “praticar” nesse contexto, preservando a expressão recorrente “praticar o pecado/a justiça”.
+- **3.5 — αἴρω:** traduzido contextualmente por “remover”, acepção registrada no dicionário, sem acrescentar como ocorre essa remoção.
+- **3.6,9 — formulações sobre pecado:** os presentes ἁμαρτάνει e ποιεῖ foram traduzidos literalmente por “peca/pratica”, e οὐ δύναται ἁμαρτάνειν por “não pode pecar”. Não foram inseridos “continuamente”, “habitualmente” ou outras qualificações aspectuais ausentes do texto.
+- **3.8,10 — διάβολος:** traduzido por “acusador”, conforme a decisão lexical aplicada desde Mateus e nos capítulos anteriores. λύω foi vertido contextualmente por “desfazer” em relação às obras do acusador.
+- **3.9 — σπέρμα:** traduzido literalmente por “semente”. A tradução não identifica expressamente o referente dessa semente.
+- **3.11 — ἀγγελία:** traduzido por “mensagem”, em continuidade com 1João 1.5.
+- **3.12 — ὁ πονηρός / σφάζω:** traduzidos por “o mau” e “matar”. A pergunta idiomática χάριν τίνος foi vertida por “por que razão”.
+- **3.13 — leitura do TM:** preservado o vocativo “meus irmãos”, presente no Texto Majoritário local.
+- **3.14–15 — morte e vida:** mantidos os contrastes “passar da morte para a vida” e “permanecer na morte”. ἀνθρωποκτόνος foi traduzido por “homicida”, conforme o dicionário.
+- **3.16 — τιθέναι τὴν ψυχήν:** traduzido por “entregar a vida”, em continuidade com João 10.11,15,17 e 15.13. Embora ψυχή possa ser “alma”, a expressão idiomática designa a entrega da própria vida.
+- **3.17 — βίος / σπλάγχνα:** βίος foi traduzido contextualmente por “bens” na expressão “bens deste mundo”, pois o contraste trata de recursos materiais diante da necessidade do irmão. σπλάγχνα foi mantido literalmente como “entranhas”, preservando a imagem de fechar a compaixão interior.
+- **3.18 — λόγος / γλῶσσα / ἔργον / ἀλήθεια:** preservada a oposição “palavra/língua” e “obra/verdade”, sem expandir a frase em uma explicação moral.
+- **3.19–20 — πείθω / καταγινώσκω:** traduzidos por “persuadir” e “condenar”. A redação mantém o encadeamento entre persuadir o coração diante de Deus e a hipótese de o coração condenar, sem substituir πείθω pelo interpretativo “tranquilizar”.
+- **3.21 — παρρησία:** traduzido por “ousadia”, em continuidade com 1João 2.28 e o dicionário definitivo.
+- **3.22 — τὰ ἀρεστά:** traduzido por “as coisas agradáveis”, preservando o neutro plural e sua relação com “fazer”.
+- **3.23 — πιστεύω com dativo:** traduzido por “crer no nome”, forma natural em português para o dativo τῷ ὀνόματι. A repetição de “mandamento” foi mantida.
+- **3.24 — permanência recíproca:** mantido “permanece nele, e ele [permanece] naquele”; os colchetes marcam o segundo verbo, elíptico no grego. “Espírito” recebe inicial maiúscula pela referência ao dom divino.

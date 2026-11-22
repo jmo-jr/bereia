@@ -1,0 +1,34 @@
+# Decisões de tradução — Mateus 5
+
+- **5:3–11 — “bem-aventurados”**: mantém a equivalência já adotada no projeto para `μακάριος`. As mudanças de terceira para segunda pessoa e do presente para o futuro foram preservadas.
+- **5:3 — “pobres no espírito”**: o dativo `τῷ πνεύματι` foi mantido sem explicar se indica atitude interior, condição espiritual ou outro aspecto.
+- **5:6 — “saciados”**: traduz `χορτάζω` em sua acepção de satisfazer plenamente fome e sede, preservando as duas imagens aplicadas à justiça.
+- **5:7 — misericórdia**: `ἐλεήμονες` e `ἐλεηθήσονται` foram refletidos por “misericordiosos” e “receberão misericórdia”, mantendo a relação lexical.
+- **5:9 — “pacificadores”**: traduz o composto `εἰρηνοποιοί` sem reduzi-lo apenas a pessoas pacíficas.
+- **5:10 — perfeito passivo**: `δεδιωγμένοι` foi traduzido por “os que foram perseguidos”, preservando a ação sofrida e seu estado resultante.
+- **5:11 — “declaração má”**: mantém `ῥῆμα` como “declaração”, segundo a distinção lexical do projeto. “Mentindo” preserva a leitura do Texto Majoritário.
+- **5:13 — sal insípido**: `μωρανθῇ`, literalmente relacionado a tornar-se tolo, foi traduzido contextualmente por “tornar-se insípido”, conforme a imagem do sal. A sequência lançar fora e pisar foi mantida.
+- **5:15 — “cesto / suporte de lâmpada”**: `μόδιος` foi vertido pelo objeto funcional “cesto”, e `λυχνία`, por “suporte de lâmpada”, preservando a oposição espacial.
+- **5:16,45,48 — “[está] nos céus”**: cópula suprida para tornar natural em português a expressão nominal sobre o Pai, mantendo o plural “céus”.
+- **5:17 — “abolir / cumprir”**: `καταλύω` e `πληρόω` foram diferenciados, preservando o contraste entre desfazer a Lei e levá-la ao cumprimento.
+- **5:18 — “iota / traço”**: mantém as imagens de `ἰῶτα` e `κεραία`, respectivamente a menor letra grega e um pequeno traço gráfico, sem convertê-las em uma afirmação sobre uma escrita específica.
+- **5:19 — “violar”**: tradução contextual de `λύω` aplicada ao mandamento. Fazer e ensinar permanecem as duas ações associadas à grandeza no Reino.
+- **5:20 — “exceder em muito”**: expressa o comparativo `πλεῖον` ligado a `περισσεύω`, sem definir no texto principal em que consiste essa justiça superior.
+- **5:21 — homicídio e julgamento**: `φονεύω` foi traduzido por “cometer homicídio”, distinguindo-o de qualquer ato de matar. A segunda declaração foi mantida separada da citação do mandamento.
+- **5:22 — “sem motivo”**: preserva `εἰκῇ`, presente no Texto Majoritário. “Racá” foi mantido como termo aramaico de desprezo; Sinédrio e Geena preservam as designações do texto.
+- **5:23–24 — “dádiva”**: `δῶρον` foi traduzido por “dádiva”, distinguindo-a de uma explicação ritual mais específica. A reconciliação precede a oferta, conforme a sequência verbal.
+- **5:25 — “entrar em acordo”**: tradução idiomática mínima de `ἴσθι εὐνοῶν`, que orienta uma disposição conciliadora imediata com o adversário durante o caminho.
+- **5:26 — “quadrante”**: preserva a moeda `κοδράντης`; a explicação de seu baixo valor foi colocada em nota, sem substituir a unidade no texto.
+- **5:28 — propósito do olhar**: `πρὸς τὸ ἐπιθυμῆσαι` foi traduzido por “com o propósito de desejá-la”, preservando a construção de finalidade em vez de tratar todo olhar como semanticamente idêntico.
+- **5:29–30 — olho, mão e tropeço**: `σκανδαλίζω` foi traduzido por “fazer tropeçar”, em continuidade com o projeto. As imagens corporais foram mantidas sem paráfrase interpretativa.
+- **5:31–32 — “dispensar”**: `ἀπολύω` mantém a equivalência adotada em Mateus 1:19. `ἀποστάσιον` foi explicitado como “certificado de divórcio”, e `πορνεία`, como “imoralidade sexual”, em continuidade com Mateus 19:9.
+- **5:33 — juramentos**: `ἐπιορκέω` foi traduzido por “jurar falsamente”; a obrigação de entregar ao Senhor os juramentos foi expressa por “cumprir”.
+- **5:34–36 — formas de juramento**: céu, terra, Jerusalém e cabeça foram mantidos separadamente, com as justificativas dadas no texto, sem expandir a discussão jurídica.
+- **5:37 — “do perverso”**: `τοῦ πονηροῦ` admite relação com o mal ou com o perverso. A tradução pessoal foi escolhida em continuidade com o título editorial e o versículo 39, sem eliminar a ambiguidade lexical.
+- **5:39 — “não resistam ao perverso”**: preserva `μὴ ἀντιστῆναι τῷ πονηρῷ`; os exemplos subsequentes foram mantidos como concretizações da declaração, sem transformá-la em regra jurídica adicional.
+- **5:40 — túnica e manto**: `χιτών` e `ἱμάτιον` foram diferenciados como peça interna e peça externa, respectivamente.
+- **5:41 — “[a andar]”**: verbo suprido para explicitar a coerção de percurso contida em `ἀγγαρεύω`; a unidade “milha” foi preservada.
+- **5:43 — amor e ódio**: somente “Você amará seu próximo” recebeu referência à Lei. “Odiará seu inimigo” foi mantido como parte da fórmula ouvida, sem atribuí-lo diretamente a uma passagem não citada.
+- **5:44 — forma ampliada do TM**: foram preservadas as quatro ações presentes no Texto Majoritário: amar os inimigos, abençoar os que amaldiçoam, fazer o bem aos que odeiam e orar pelos que maltratam e perseguem.
+- **5:46–47 — “arrecadadores / amigos”**: mantém `τελῶναι` como “arrecadadores” e preserva `φίλους`, “amigos”, leitura do Texto Majoritário no versículo 47.
+- **5:48 — futuro**: `ἔσεσθε` foi traduzido por “serão”, preservando a forma futura da conclusão em vez de convertê-la diretamente em imperativo.

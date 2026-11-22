@@ -1,0 +1,21 @@
+# Decisões de tradução — 1João 2
+
+- **2.1 — τεκνία / παράκλητος:** traduzidos por “filhinhos” e “Advogado”, conforme o dicionário e em continuidade com João 13–16. “Advogado” recebe inicial maiúscula como designação de Jesus Cristo. “[O]” explicita o artigo exigido em português diante de “justo”.
+- **2.2 — ἱλασμός:** traduzido por “propiciação”, em continuidade com Romanos 3.25 e Hebreus 2.17. A segunda ocorrência elíptica de “pecados” foi explicitada sem colchetes por exigência normal do português.
+- **2.3–6 — conhecer, guardar e andar:** γινώσκω, τηρέω e περιπατέω foram mantidos consistentemente como “conhecer”, “guardar” e “andar”. Em 2.5, τελειόω foi traduzido por “completar”, conforme o dicionário e a opção de 1João 1.4.
+- **2.5 — ἀγάπη τοῦ θεοῦ:** mantido como “amor de Deus”, sem decidir no texto traduzido se o genitivo enfatiza o amor procedente de Deus ou dirigido a ele.
+- **2.7 — leitura do TM:** preservados o vocativo “irmãos” e a segunda ocorrência de “desde o princípio”, presentes no Texto Majoritário local.
+- **2.8–11 — luz e escuridão:** mantidas as equivalências de 1João 1. σκοτία foi traduzido por “escuridão”, e παράγω por “passar”. Em 2.10, σκάνδαλον foi vertido por “motivo de tropeço”, preservando a imagem sem definir se o tropeço afeta a própria pessoa ou outra.
+- **2.12–14 — τεκνία / παιδία:** diferenciados como “filhinhos” e “crianças”, conforme o dicionário definitivo. τὸν πονηρόν foi traduzido por “o mau”, em continuidade com João 17.15 e outras ocorrências anteriores.
+- **2.15–17 — κόσμος:** mantido como “mundo” em todas as ocorrências. ἐπιθυμία e ἀλαζονεία foram traduzidos por “cobiça” e “arrogância”; βίος, contextualmente, por “vida”.
+- **2.17 — παράγω / μένω:** preservado o contraste “passar/permanecer”, sem reduzir a expressão temporal εἰς τὸν αἰῶνα a mera longevidade.
+- **2.18 — ἀντίχριστος:** mantido como “anticristo”. O perfeito γεγόνασιν foi traduzido por “vieram a existir”, distinguindo-o do presente “vem” usado para o anticristo singular.
+- **2.19 — elipse:** “[saíram]” explicita a ação retomada no contraste final do versículo. A formulação “nem todos são de nós” preserva a ordem e a abrangência da negação grega.
+- **2.20 — leitura do TM:** preservado “conhecem todas as coisas”, conforme πάντα no Texto Majoritário local, sem harmonização com a variante “todos vocês”. χρίσμα foi traduzido por “unção”.
+- **2.22 — negação com ἀρνέομαι:** “nega que Jesus é o Cristo” expressa a construção grega ἀρνούμενος ὅτι Ἰησοῦς οὐκ ἔστιν ὁ Χριστός. A negação interna é absorvida semanticamente pelo verbo “negar”; reproduzi-la como “nega que Jesus não é” inverteria o sentido confirmado pelo paralelismo seguinte.
+- **2.23 — leitura breve do TM:** o Texto Majoritário local encerra o versículo depois de “não tem o Pai”; não foi acrescentada a oração positiva presente em outras tradições textuais.
+- **2.24 — μένω:** a repetição de “permanecer” foi preservada nas três ocorrências, inclusive no imperativo singular cujo sujeito é “aquilo que ouviram”.
+- **2.25 — promessa:** mantida a construção “a promessa que ele nos prometeu”, preservando a repetição lexical entre ἐπαγγελία e ἐπαγγέλλομαι.
+- **2.27 — leitura verbal do TM:** μενεῖτε foi preservado como futuro — “permanecerão nele” — e não convertido no imperativo presente encontrado em outra forma textual.
+- **2.28 — παρουσία:** traduzido por “chegada”, em continuidade com 1Tessalonicenses e 1Pedro 5. ἀπ’ αὐτοῦ foi mantido direcionalmente como “para longe dele”, sem suavização para simples vergonha “diante dele”.
+- **2.29 — ποιεῖν τὴν δικαιοσύνην:** traduzido por “praticar a justiça”, construção idiomática necessária em português e paralela a “fazer a verdade” em 1João 1.6.

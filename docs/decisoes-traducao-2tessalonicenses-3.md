@@ -1,0 +1,20 @@
+# Decisões de tradução — 2Tessalonicenses 3
+
+- **3.1 — τρέχω / δοξάζω:** “correr / ser glorificada”. A imagem da palavra do Senhor correndo foi preservada sem substituí-la por “espalhar-se”. “Entre vocês” aplica contextualmente πρός ao lugar onde a palavra já foi recebida e glorificada.
+- **3.2 — ἄτοπος / πονηρός:** “perverso / mau”. Os dois adjetivos foram distinguidos sem especificar atos ou identidade dos opositores. “A fé não [é] de todos” marca a cópula ausente e preserva o genitivo distributivo sem trocar fé por fidelidade no texto principal.
+- **3.3 — πιστός / στηρίζω / φυλάσσω / ὁ πονηρός:** “fiel / fortalecer / guardar / o mau”. O contraste lexical entre a ausência de fé de todos e a fidelidade do Senhor foi mantido. “O mau” segue o padrão de 1João e conserva a forma pessoal substantivada sem substituir por “mal”.
+- **3.4 — πέποιθα ἐν κυρίῳ ἐφ’ ὑμᾶς:** “estar confiante no Senhor a respeito de vocês”. O perfeito foi representado pelo estado presente de confiança, e a repetição temporal “fazem e farão” foi mantida.
+- **3.5 — amor de Deus e perseverança de Cristo:** os dois genitivos foram preservados sem decidir se indicam origem divina, amor dirigido a Deus, perseverança exercida por Cristo ou perseverança dirigida a ele. O singular distributivo “coração” acomoda o plural grego.
+- **3.6 — στέλλομαι / ἀτάκτως περιπατέω:** “afastar-se / andar desordenadamente”. A disciplina é dirigida a todo irmão caracterizado pela conduta, sem trocar “irmão” por inimigo, como o v. 15 explicita.
+- **3.6 — leitura verbal do TM:** preservado παρέλαβον, terceira pessoa plural — “a tradição que receberam de nós” —, tendo como referente os irmãos que a receberam. A redação não foi harmonizada com a variante de segunda pessoa plural.
+- **3.7–9 — imitação e exemplo:** μιμέομαι foi repetido por “imitar”, e τύπος, por “modelo”. “Autoridade” mantém ἐξουσία sem reduzir a questão a direito financeiro; o trabalho de Paulo e seus companheiros é apresentado como modelo voluntário.
+- **3.8 — δωρεάν / κόπος / μόχθος:** “de graça / esforço / labuta”. A dupla de trabalho retoma 1Tessalonicenses 2.9, assim como “noite e dia” e “não sobrecarregar”. “Pão” permanece literal como objeto de comer.
+- **3.10 — querer trabalhar e comer:** os dois presentes foram mantidos. A condição diz “não quer”, não “não pode”; nenhuma aplicação a situações de incapacidade foi acrescentada ao texto.
+- **3.11 — ἐργάζομαι / περιεργάζομαι:** “trabalhar / ocupar-se indevidamente”. A segunda escolha preserva a censura ao envolvimento impróprio, embora o jogo morfológico grego não possa ser reproduzido integralmente em português. Não se especificou qual atividade alheia ocupava essas pessoas.
+- **3.12 — ordem e exortação:** παραγγέλλω e παρακαλέω foram distinguidos por “ordenar / exortar”. “Com quietude” conserva ἡσυχία, e “o próprio pão” mantém a relação entre trabalho e sustento sem acrescentar aquisição, salário ou propriedade.
+- **3.13 — καλοποιέω:** “fazer o bem”. A proibição “não se cansem” mantém ἐκκακέω sem restringir a boa ação ao auxílio dos que não trabalhavam.
+- **3.14 — σημειόω / συναναμίγνυμαι / ἐντρέπω:** “marcar / associar-se / ficar envergonhado”. Os pronomes masculinos acompanham o demonstrativo e retomam genericamente “alguém”. O afastamento mantém finalidade corretiva.
+- **3.15 — inimigo e irmão:** ἡγέομαι foi traduzido por “considerar”, e νουθετέω por “advertir”. A oposição foi preservada para limitar a disciplina: não como inimigo, mas como irmão.
+- **3.16 — διὰ παντός / ἐν παντὶ τρόπῳ:** “continuamente / de toda maneira”. As duas expressões foram distinguidas como tempo e modo. “[Seja]” completa a bênção nominal “O Senhor com todos vocês”.
+- **3.17 — assinatura:** “pela minha própria mão, de Paulo” segue a solução usada em Colossenses 4.18 e preserva o dativo instrumental e o genitivo. O sinal em toda carta é a forma da saudação escrita, sem reconstrução de caligrafia.
+- **3.18 — encerramento do TM:** mantidos “com todos vocês” e “Amém”, conforme o JSON e o CSV locais. “[Seja]” explicita a cópula da bênção final.

@@ -1,0 +1,30 @@
+# Decisões de tradução — Judas
+
+- **1:1 — “escravo”**: mantém a equivalência adotada no projeto para `δοῦλος`. A conjunção `δέ` foi preservada por “mas” no contraste entre escravo de Jesus Cristo e irmão de Tiago.
+- **1:1 — “santificados em Deus Pai”**: segue `ἐν θεῷ πατρὶ ἡγιασμένοις` do Texto Majoritário, sem adotar a variante “amados”. O perfeito passivo foi preservado junto a “guardados”.
+- **1:3 — “lutar seriamente”**: traduz `ἐπαγωνίζεσθαι` conforme o dicionário definitivo. “De uma vez por todas” expressa `ἅπαξ` na entrega da fé.
+- **1:4 — “previamente escritos”**: preserva a imagem de `προγεγραμμένοι` sem especificar qual passagem ou registro anterior anunciou o julgamento.
+- **1:4 — “o único Soberano Deus e nosso Senhor Jesus Cristo”**: mantém `τὸν μόνον δεσπότην θεὸν καὶ κύριον ἡμῶν Ἰησοῦν Χριστόν` do Texto Majoritário, incluindo `θεόν`, sem harmonizar a construção com outra variante textual.
+- **1:5 — “numa segunda ocasião”**: traduz `τὸ δεύτερον`, distinguindo a salvação inicial do povo e a destruição posterior dos que não creram.
+- **1:6 — “domínio / morada”**: distingue `ἀρχή` de `οἰκητήριον`. Os anjos não guardaram seu domínio ou posição e abandonaram sua própria morada; não se definiu além do texto a natureza de ambos.
+- **1:6 — “correntes eternas”**: preserva `δεσμοῖς ἀϊδίοις`, distinguindo essas correntes das “correntes de escuridão” de 2Pedro 2:4.
+- **1:7 — “outra carne”**: traduz literalmente `σαρκὸς ἑτέρας`, sem explicar no texto principal a identidade ou natureza dessa alteridade. A relação “de modo semelhante a eles” foi mantida com os anjos do versículo anterior.
+- **1:8 — “seres gloriosos”**: tradução contextual de `δόξας`, em continuidade com 2Pedro 2:10, sem definir a identidade desses seres.
+- **1:9 — “acusador”**: traduz contextualmente `διάβολος` conforme a preferência lexical registrada no projeto. O optativo `ἐπιτιμήσαι` foi mantido como “Que o Senhor repreenda você”.
+- **1:9 — corpo de Moisés**: a disputa de Miguel foi preservada sem acrescentar origem, cenário ou explicação não presentes no texto.
+- **1:10 — conhecer e corromper-se**: mantém o contraste entre aquilo que os falsos mestres não conhecem e aquilo que conhecem naturalmente; a repetição de “nisso” conserva a ligação com sua corrupção.
+- **1:11 — Caim, Balaão e Corá**: preserva as três imagens e os movimentos verbais distintos: andar, derramar-se e perecer. A motivação do erro de Balaão permanece ligada à recompensa.
+- **1:12 — “manchas”**: traduz `σπιλάδες` conforme o dicionário definitivo. `ἀγάπαις` foi vertido contextualmente por “festas de amor”, indicando as refeições comunitárias sem confundi-las com o substantivo abstrato isolado.
+- **1:12–13 — sequência de imagens**: foram preservadas separadamente nuvens sem água, árvores de outono, ondas selvagens e estrelas errantes, sem harmonizar a redação com 2Pedro.
+- **1:14 — “sétimo a partir de Adão”**: mantém a contagem expressa no texto e “santas miríades” para `ἁγίαις μυριάσιν`, sem substituir o número indefinido por “milhares”.
+- **1:14 — “veio”**: preserva o aoristo profético `ἦλθεν` na citação, sem convertê-lo automaticamente em futuro.
+- **1:15 — repetição da impiedade**: a recorrência de `ἀσεβής`, `ἀσέβεια` e `ἀσεβέω` foi refletida por “ímpios”, “impiedade” e “praticaram”, evitando uma frase artificial sem apagar a família lexical principal.
+- **1:16 — “admirando pessoas”**: `θαυμάζοντες πρόσωπα` descreve favorecimento interessado; “por causa de benefício” preserva a finalidade expressa no texto.
+- **1:17 — “declarações”**: mantém a equivalência de `ῥήματα` adotada em 2Pedro 3:2, distinguindo o termo de `λόγος`.
+- **1:18 — “no último tempo”**: conserva o singular `ἐν ἐσχάτῳ χρόνῳ`, sem harmonizá-lo com “nos últimos dias” de 2Pedro 3:3.
+- **1:19 — “os que separam”**: segue o particípio `ἀποδιορίζοντες` do Texto Majoritário. “Naturais” traduz `ψυχικοί` conforme o dicionário, em contraste com não terem o Espírito.
+- **1:20–21 — estrutura da exortação**: os particípios “edificando”, “orando” e “aguardando” foram mantidos subordinados ao imperativo principal “guardem”.
+- **1:22 — “fazendo distinção”**: preserva `διακρινόμενοι` do Texto Majoritário e a primeira classe de pessoas que deve receber misericórdia.
+- **1:23 — “com temor”**: foi ligado à ação de salvar a segunda classe, preservando a imagem de arrebatá-los do fogo e odiar a túnica contaminada.
+- **1:24 — “guardá-los”**: segue `φυλάξαι αὐτούς` do Texto Majoritário, com referente naqueles mencionados nos versículos 22–23, sem substituir o pronome pela segunda pessoa plural de outra variante.
+- **1:25 — “único Deus sábio”**: preserva `μόνῳ σοφῷ θεῷ`, presente no Texto Majoritário. A doxologia não recebeu expressões ausentes da fonte, e `εἰς πάντας τοὺς αἰῶνας` foi traduzido por “por todas as eras”, em continuidade com o projeto.

@@ -1,0 +1,35 @@
+# 1 Coríntios 5 — decisões de tradução
+
+Estado: capítulo completo para revisão humana; aprovação editorial pendente.
+
+Fontes: `src/interlinear/nt/1CO.json`, capítulo 5, e `tools/tmnt/with-parsing/1CO.csv`; dicionário definitivo em `src/_data/nt/dict_flex_nt-lxx_greek-pt.json`. Seguidos o protocolo, as decisões gerais e a continuidade lexical dos capítulos anteriores. As observações são locais, sem alteração do dicionário ou consolidação de novas regras gerais.
+
+## O caso e a decisão — 5:1–5
+
+- **ὅλως (G3654) — 5:1: “em toda parte”.** Selecionada a acepção disponível no dicionário que qualifica a circulação do relato, sem atribuir a conduta a todos os membros. **πορνεία (G4202): “imoralidade sexual”**, preservando a repetição. **ὀνομάζεται (G3687): “é mencionada”**, leitura explícita no TM local; não foi substituída por “existe” ou “é tolerada”. **ἔθνεσιν (G1484): “nações”** conforme a preferência lexical, sem acrescentar “pagãs”.
+- **γυναῖκα ... τοῦ πατρὸς — 5:1: “a mulher do pai”.** Conservada a formulação relacional do texto. Não foram acrescentados “madrasta”, o estado civil do pai ou detalhes sobre a relação. O infinitivo ἔχειν foi mantido em “alguém ter”.
+- **πεφυσιωμένοι ἐστέ (G5448) — 5:2: “estão orgulhosos”.** Mantida a acepção de 4:6,18–19 e o estado resultante do perfeito perifrástico. **ἐπενθήσατε (G3996): “lamentaram”**, sem converter o aoristo em ordem nem acrescentar a modalidade “deveriam”. A pontuação separa a censura da pergunta, sem pretensão de reproduzir pontuação autoral.
+- **ἐξαρθῇ / ἐξαρεῖτε (G1808) — 5:2,13: “fosse removido” / “removerão”.** Conservado o mesmo verbo nas duas ocorrências. Em 5:2, a subordinação ao passado e à pergunta admite “fosse”; não se afirma que a remoção já ocorreu.
+- **κέκρικα (G2919) — 5:3: “já decidi”.** Selecionada a acepção decisória registrada no dicionário, permitindo que o infinitivo “entregar”, em 5:5, complete a decisão ao longo de 5:3–5. “A respeito daquele” acomoda o objeto pessoal à regência portuguesa. Não se acrescentou a expressão “sentença de excomunhão”.
+- **ἐν τῷ ὀνόματι ... συναχθέντων — 5:4.** Mantida a sequência entre a decisão e o infinitivo de 5:5, com “estando reunidos vocês e meu espírito”. A posição de “em nome” não resolve de forma exclusiva se a expressão qualifica a decisão, a reunião ou a entrega. “Nosso Senhor Jesus Cristo” aparece duas vezes em 5:4, conforme ambas as fontes locais; em 5:5, a fonte traz “Senhor Jesus”.
+- **Σατανᾷ (G4567) — 5:5:** “a Satanás”, dativo como destinatário de παραδοῦναι, apesar da indicação de vocativo na entrada flexionada do dicionário; o CSV e a sintaxe sustentam o dativo. **ὄλεθρον τῆς σαρκός: “destruição da carne”**, sem substituir “carne” por corpo, natureza pecaminosa ou vida. O tipo de destruição permanece para interpretação humana. **πνεῦμα:** minúscula em 5:3–5; em 5:3–4 trata-se do espírito de Paulo e em 5:5 do espírito a ser salvo, sem identificação com o Espírito Santo.
+
+## Fermento e celebração — 5:6–8
+
+- **καύχημα (G2745) — 5:6: “vanglória”**, conforme o dicionário e o contexto de orgulho. **ζύμη / ζυμόω (G2219/G2220): “fermento” / “levedar”**, preservando a imagem e o título da fonte. Não se substituiu o fermento por uma identificação interpretativa de pessoas ou práticas.
+- **ἐκκαθάρατε (G1571) — 5:7: “eliminem completamente”.** A limpeza completa, glosada no dicionário, foi expressa pela retirada do fermento, objeto direto da ordem. **ἦτε:** subjuntivo presente, conforme a oração com ἵνα e a análise do CSV, vertido “sejam”; não foi adotada a indicação de imperfeito da entrada isolada. **νέον φύραμα:** neutro singular, “massa nova”. Nenhum campo técnico foi modificado.
+- **ἄζυμοι / ἀζύμοις (G106) — 5:7–8: “sem fermento”.** Em 5:7, o adjetivo masculino plural se refere aos destinatários; não foi acrescentado “pães”. Em 5:8, o neutro plural substantivado foi explicitado como “[pães] sem fermento”, mantendo em colchetes o substantivo suprido. Preservados os genitivos “de sinceridade e verdade”, sem reescrever a figura como descrição direta das pessoas.
+- **τὸ Πάσχα ἡμῶν ... χριστός — 5:7: “Cristo, nossa Páscoa”.** A ordem foi ajustada para uma oração portuguesa legível, sem acrescentar “cordeiro”. Mantidos o passivo **ἐτύθη**, “foi sacrificado”, e **ὑπὲρ ἡμῶν**, “por nós”, presentes nas fontes locais. **ἑορτάζωμεν (G1858) — 5:8: “celebremos a festa”**, subjuntivo exortativo; não se especifica um rito ou calendário.
+- **κακίας / πονηρίας (G2549/G4189) — 5:8: “maldade e maldade”.** Ambos recebem essa equivalência no dicionário, também observada em Romanos 1:29. Conservada a repetição, embora editorialmente pouco natural, em vez de criar uma distinção lexical apenas estilística. “Malícia e maldade” é alternativa aceitável para revisão humana, não correção obrigatória.
+
+## Associação e julgamento — 5:9–13
+
+- **συναναμίγνυσθαι (G4874) — 5:9,11: “associar-se”.** Mantida a equivalência nas duas ocorrências. **πόρνος (G4205): “fornicador”**, conforme o dicionário, em distinção formal da tradução do substantivo πορνεία; não se restringe o termo a uma modalidade sexual não especificada. “Na carta” conserva o artigo sem acrescentar “anterior”.
+- **καὶ οὐ πάντως — 5:10:** “e não me referia de modo absoluto”. “Me referia” recompõe a elipse portuguesa retomando a instrução anterior; não introduz uma segunda fala. **ὀφείλετε ... ἐξελθεῖν:** “teriam de sair”, equivalência modal da consequência hipotética, sem afirmar uma obrigação efetiva de abandonar o mundo.
+- **πλεονέκτης (G4123): “pessoa cobiçosa”**; **λοίδορος (G3060): “injuriador”**; **μέθυσος (G3183): “bêbado”**, conforme as glosas. **ἅρπαξ (G727) — 5:10–11: “roubador”**, acepção contextual da rapacidade em relação aos outros, em vez de “voraz”, que poderia sugerir apenas alimentação. A escolha não especifica mecanismo de roubo ou extorsão. **εἰδωλολάτρης (G1496): “idólatra”.**
+- **ἀδελφὸς ὀνομαζόμενος — 5:11: “sendo chamado irmão”.** Preservada a formulação passiva, sem transformar em autodeclaração (“que se diz irmão”). **μηδὲ συνεσθίειν:** “nem sequer comam”, retomando a instrução em oração portuguesa; não se restringe a uma refeição ritual.
+- **κρίνετε — 5:12:** indicativo na pergunta “Não são vocês que julgam...?”, conforme o CSV e a construção interrogativa. **κρινεῖ — 5:13: “julgará”**, futuro explícito no TM local, sem substituir por “julga”. **ἐξαρεῖτε:** futuro “vocês removerão”, preservado mesmo com força de instrução; não foi substituído morfologicamente por imperativo. **τὸν πονηρόν:** masculino singular substantivado, “o mau”, conforme artigo, contexto e CSV, apesar do neutro indicado na entrada flexionada isolada. **ἐξ ὑμῶν αὐτῶν:** “do meio de vocês mesmos”, conservando o reforço pronominal.
+
+## Conferência estrutural
+
+São 13 versículos em três perícopes: 1–5, 6–8 e 9–13. Títulos preservados do JSON, sem concordâncias acrescentadas. O capítulo permanece para revisão humana; as divergências de análise observadas no dicionário foram resolvidas apenas na tradução contextual, sem alteração de JSONs.

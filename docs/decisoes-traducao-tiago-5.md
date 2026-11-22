@@ -1,0 +1,24 @@
+# Decisões de tradução — Tiago 5
+
+- **5.1 — ὀλολύζω / ταλαιπωρία:** traduzidos por “lamentar em alta voz” e “miséria”, conforme o dicionário definitivo. A perífrase distingue ὀλολύζω do verbo simples “chorar” presente na mesma oração.
+- **5.2–3 — deterioração das riquezas:** σήπω foi traduzido por “apodrecer”, σητόβρωτος por “comido por traças” e κατιόω por “ser corroído”. Em 5.3, ἰός foi vertido contextualmente por “corrosão”, diferentemente de “veneno” em Tiago 3.8.
+- **5.3 — últimos dias:** mantida a declaração direta “Vocês acumularam tesouro nos últimos dias”, sem acrescentar um objeto ou uma finalidade não expressos no grego.
+- **5.4 — ἀποστερέω:** traduzido por “reter” no contexto do salário não entregue aos trabalhadores.
+- **5.4 — κύριος Σαβαώθ:** mantido como “Senhor Sabaote”, preservando a transliteração hebraica presente no Texto Majoritário em vez de substituí-la por uma tradução interpretativa.
+- **5.5 — τρυφάω / σπαταλάω:** diferenciados como “viver no luxo” e “entregar-se aos prazeres”. A imagem de alimentar o coração em dia de matança foi preservada.
+- **5.6 — ὁ δίκαιος:** mantido no singular como “o justo”, sem decidir se a referência é individual, coletiva ou exemplar.
+- **5.7–10 — μακροθυμέω / μακροθυμία:** traduzidos consistentemente por “ser paciente/paciência”. παρουσία foi mantida como “chegada”, conforme a decisão lexical aplicada anteriormente.
+- **5.7 — ὑετὸς πρώϊμος καὶ ὄψιμος:** traduzido por “chuva primeira e tardia”, preservando a oposição temporal sem recorrer aos termos menos correntes “temporã/serôdia”.
+- **5.9 — κριτής:** grafado como “Juiz” por referir-se ao Senhor cuja chegada é mencionada no contexto imediato.
+- **5.10 — τῷ ὀνόματι κυρίου:** traduzido por “em nome do Senhor”, preservando a construção sem convertê-la em “por autoridade do Senhor”.
+- **5.11 — ὑπομένω / ὑπομονή:** a relação lexical foi mantida por “perseverar/perseverança”, em continuidade com Tiago 1.3–4,12. τέλος κυρίου foi traduzido por “o desfecho [dado] pelo Senhor”; os colchetes explicitam a relação contextual sem definir em que consistiu esse desfecho.
+- **5.11 — πολύσπλαγχνος / οἰκτίρμων:** diferenciados como “muito compassivo” e “misericordioso”, evitando a repetição de um único adjetivo português para os dois termos gregos.
+- **5.12 — leitura do TM:** preservado “para que não caiam em hipocrisia”, conforme ὑπόκρισιν no Texto Majoritário local. A sequência “sim, sim / não, não” foi mantida.
+- **5.13 — ψάλλω:** traduzido por “cantar”, equivalência principal do dicionário, sem restringir o verbo a um gênero específico de cântico.
+- **5.14 — πρεσβύτεροι / ἀλείφω:** traduzidos por “anciãos” e “ungir”. O particípio “tendo ungido” foi preservado, sem definir uma relação médica ou sacramental além do texto.
+- **5.15 — εὐχὴ τῆς πίστεως / κάμνω:** traduzidos por “oração da fé” e, contextualmente, “doente”. “[Isso]” fornece um referente português singular para a forma passiva ἀφεθήσεται, cujo antecedente grego “pecados” está no plural.
+- **5.16 — παραπτώματα:** traduzido por “deslizes”, conforme o dicionário definitivo e distinguindo-o de ἁμαρτίαι, “pecados”, no versículo anterior.
+- **5.16 — δέησις δικαίου ἐνεργουμένη:** traduzido por “A súplica de um justo, quando atua, tem muita força”, preservando tanto a ideia de atuação quanto a força expressa por ἰσχύω.
+- **5.17 — ὁμοιοπαθής:** traduzido por “de natureza semelhante à nossa”, conforme o dicionário. A construção cognata προσευχῇ προσηύξατο foi vertida simplesmente por “orou”, pois sua reprodução formal seria artificial em português.
+- **5.19–20 — ἐπιστρέφω / πλάνη:** mantida a relação “fazer retornar” e a distinção entre “desviar-se” e “erro”. ψυχή foi traduzido por “alma”, em continuidade com Tiago 1.21.
+- **5.20 — sujeito das ações finais:** mantida a formulação “salvará uma alma... e cobrirá uma multidão de pecados”, sem decidir no texto traduzido a quem pertencem a alma e os pecados mencionados.

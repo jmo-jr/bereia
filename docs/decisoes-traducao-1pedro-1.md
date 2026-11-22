@@ -1,0 +1,24 @@
+# Decisões de tradução — 1Pedro 1
+
+- **1.1 — παρεπίδημος / διασπορά:** traduzidos por “estrangeiro” e “dispersão”, conforme o dicionário definitivo. A condição de eleitos foi mantida ligada aos destinatários sem desenvolver sua implicação teológica.
+- **1.2 — πρόγνωσις / ἁγιασμός / ῥαντισμός:** traduzidos por “presciência”, “santificação” e “aspersão”. “Espírito” foi grafado com inicial maiúscula pelo paralelismo com Deus Pai e Jesus Cristo.
+- **1.3,23 — ἀναγεννάω:** traduzido consistentemente por “gerar de novo”, equivalência literal registrada no dicionário, em vez de empregar somente o termo teológico “regenerar”.
+- **1.4 — descrição da herança:** ἄφθαρτος, ἀμίαντος e ἀμάραντος foram diferenciados como “incorruptível”, “imaculada” e “imperecível”, segundo o dicionário definitivo.
+- **1.5 — φρουρέω / ἀποκαλύπτω:** traduzidos por “guardar” e “revelar”. A repetição de “guardada/guardados” nos vv. 4–5 foi preservada.
+- **1.6–7 — πειρασμός / δοκίμιον:** mantida a distinção “provas/teste”, em continuidade com Tiago 1.2–3. A comparação com o ouro conserva tanto sua perecibilidade quanto seu teste pelo fogo.
+- **1.7,13 — ἀποκάλυψις Ἰησοῦ Χριστοῦ:** traduzido por “revelação de Jesus Cristo”, sem substituir a expressão por “chegada”, pois o substantivo empregado é ἀποκάλυψις, não παρουσία.
+- **1.8 — χαρὰ ἀνεκλάλητος καὶ δεδοξασμένη:** traduzido por “alegria inexprimível e glorificada”, preservando o particípio passivo sem convertê-lo em mero intensificador.
+- **1.9 — τέλος / ψυχαί:** traduzidos por “fim” e “almas”. A aposição identifica esse fim como “a salvação das almas”, sem transformar τέλος em “meta” ou “resultado” no texto principal.
+- **1.10–11 — busca profética:** ἐκζητέω, ἐξερευνάω e ἐρευνάω foram diferenciados como “buscar”, “examinar minuciosamente” e “investigar”. Em 1.11, a duplicação τίνα ἢ ποῖον καιρόν foi mantida como “que tempo ou que espécie de tempo”.
+- **1.11 — sofrimentos e glórias:** τὰ εἰς Χριστὸν παθήματα foi traduzido por “os sofrimentos destinados a Cristo”, preservando a direção expressa por εἰς; “as glórias” permaneceu no plural.
+- **1.12 — εὐαγγελίζω / παρακύπτω:** traduzidos por “anunciar boas novas” e “inclinar-se para olhar”, em continuidade com o uso já adotado no projeto. ἐν πνεύματι ἁγίῳ foi traduzido por “no Espírito Santo”, conforme o padrão de construções semelhantes nos capítulos anteriores.
+- **1.13 — imagem e exortação:** mantida a imagem “cingir os lombos da mente”. νήφω foi traduzido por “estar sóbrio”, em continuidade com 1Tessalonicenses 5.6,8; τελείως foi ligado ao imperativo principal: “esperem completamente”.
+- **1.14 — συσχηματίζομαι:** traduzido por “moldar-se de acordo com”. ἐπιθυμίαι foi mantido como “cobiças”, em continuidade com Tiago 4.2.
+- **1.15,17–18 — ἀναστροφή / ἀναστρέφω:** a relação lexical foi refletida por “conduta/conduzir-se”. Em 1.18, πατροπαράδοτος foi traduzido por “recebida dos pais”.
+- **1.16 — forma do imperativo:** γίνεσθε foi traduzido por “tornem-se”, preservando a ideia verbal em vez de reduzi-la à cópula “sejam”.
+- **1.17 — ἀπροσωπολήπτως / παροικία:** traduzidos por “sem parcialidade” e “estadia”, conforme o dicionário definitivo.
+- **1.18–19 — redenção:** λυτρόω foi traduzido por “redimir”. ἄμωμος e ἄσπιλος foram diferenciados como “irrepreensível” e “imaculado”.
+- **1.20 — προγινώσκω:** traduzido por “conhecer de antemão”, preservando a relação lexical com πρόγνωσις no v. 2 sem impor uma explicação doutrinária.
+- **1.22 — διὰ πνεύματος:** “Espírito” foi grafado com inicial maiúscula, em coerência com o agente da santificação no v. 2. ἐκτενῶς foi traduzido por “sinceramente”, conforme o dicionário.
+- **1.23,25 — λόγος / ῥῆμα:** diferenciados como “palavra” e “declaração”, de acordo com o dicionário definitivo. O particípio μένοντος foi ligado à “palavra”, preservando a leitura “palavra viva de Deus, que permanece”.
+- **1.24 — citação:** os colchetes em “[é]” explicitam a cópula ausente na primeira frase nominal. σάρξ e χόρτος foram mantidos como “carne” e “erva”.

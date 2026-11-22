@@ -1,0 +1,24 @@
+# Decisões de tradução — Filipenses 1
+
+- **1.1 — δοῦλοι / ἐπίσκοποι / διάκονοι:** traduzidos por “escravos / supervisores / servidores”, preservando a distinção entre os três termos. “Supervisores” mantém o padrão de Atos 20.28, e “servidores”, o emprego de διάκονος em 1Coríntios 3.5.
+- **1.3–4 — μνεία / δέησις:** “lembrança / súplica”. A repetição de “súplica” no v. 4 conserva as duas ocorrências do mesmo substantivo grego.
+- **1.5,7,12,17,27 — εὐαγγέλιον:** “boas novas”, conforme o padrão lexical do projeto. “Evangelho” foi mantido somente nos títulos editoriais recebidos do JSON.
+- **1.5 — κοινωνία:** “comunhão”, preservando a relação “para com as boas novas” sem explicá-la como contribuição financeira ou cooperação missionária.
+- **1.7 — δεσμοί / ἀπολογία / βεβαίωσις / συγκοινωνός:** “prisões / defesa / confirmação / coparticipante”. “Prisões” conserva o plural recorrente do texto; não se restringiu “coparticipantes da graça” a uma das duas circunstâncias anteriores.
+- **1.8 — σπλάγχνα:** “entranhas”, mantendo a imagem corporal do original, sem substituí-la por “afeição”.
+- **1.9–10 — ἐπίγνωσις / αἴσθησις / δοκιμάζω / διαφέρω:** “pleno conhecimento / percepção / testar / coisas superiores”. A última expressão adota a acepção de superioridade já empregada em Romanos 2.18; “as coisas que diferem” permanece alternativa mais formal.
+- **1.10 — εἰλικρινεῖς καὶ ἀπρόσκοποι:** “sinceros e sem tropeço”. A redação conserva os dois qualificativos sem resolver se o segundo enfatiza não tropeçar ou não fazer outros tropeçarem.
+- **1.11 — καρπῶν δικαιοσύνης:** “frutos de justiça”, preservando o plural do Texto Majoritário local. “[Vêm]” explicita a relação predicativa com “por meio de Jesus Cristo”.
+- **1.12–14 — progresso, pretório e prisões:** προκοπή foi mantido como “progresso”; πραιτώριον, como “pretório”, conforme os Evangelhos e Atos; e δεσμοί, novamente como “prisões”. “Vieram antes” conserva μᾶλλον sem interpretar os acontecimentos como um impedimento previamente esperado.
+- **1.15–18 — proclamar e anunciar:** καταγγέλλω foi traduzido por “proclamar” no v. 15 e “anunciar” no v. 17, enquanto κηρύσσω é “anunciar” no v. 16 e καταγγέλλω volta a “anunciado” no v. 18. A variação acompanha a construção portuguesa e foi registrada porque não representa lemas idênticos em todos os casos.
+- **1.16 — ἐριθεία:** “ambição egoísta”, acepção contextual de rivalidade interessada; não foi confundida com ἔρις, “rivalidade”, no v. 15.
+- **1.18 — προφάσει / ἀληθείᾳ:** “por pretexto / em verdade”. A forma interrogativa breve “O que, então?” e a declaração de alegria foram mantidas sem completar uma objeção não expressa.
+- **1.19–20 — salvação, suprimento e intensa expectativa:** σωτηρία foi preservado como “salvação”; ἐπιχορηγία, como “suprimento”; e ἀποκαραδοκία, como “intensa expectativa”. Não se definiu se “salvação” aponta aqui para libertação imediata ou para seu alcance final.
+- **1.21 — viver e morrer:** as formas infinitivas substantivadas foram mantidas. “[É]” marca a cópula não expressa em “viver [é] Cristo”; a elipse paralela antes de “ganho” permanece perceptível.
+- **1.22 — construção elíptica:** “se o viver na carne [é] para mim fruto de trabalho” preserva a sequência compacta do grego. Não se acrescentou uma conclusão como “então vale a pena viver”; a relação exata entre as orações permanece aberta à revisão editorial.
+- **1.23–24 — ἀναλύω / ἐπιμένω:** “partir / permanecer”. “Partir” conserva a metáfora sem defini-la no texto como morte; “na carne” foi repetido no contraste do v. 24.
+- **1.25–26 — παραμένω / καύχημα / παρουσία:** “continuar com / vanglória / presença”. “Vanglória” segue o dicionário e o padrão predominante nas cartas; “motivo de glória” é alternativa contextual mais positiva.
+- **1.27 — πολιτεύομαι / συναθλέω:** “conduzir-se / lutar juntos”. O primeiro verbo contém a ideia de viver como cidadão, mas a tradução evita acrescentar uma referência política explícita não desenvolvida na oração. “Um só espírito” permanece em minúscula porque descreve a unidade dos destinatários em paralelo com “uma só alma”.
+- **1.28 — ἔνδειξις:** “indicação”, sem intensificá-la como prova definitiva. “Isto da parte de Deus” preserva o demonstrativo neutro sem especificar se retoma mais diretamente a salvação, a indicação ou toda a situação.
+- **1.29 — ἐχαρίσθη:** “foi graciosamente concedido”, conservando a relação lexical com χάρις e a voz passiva.
+- **1.30 — ἀγών:** “luta”. “[Que há]” explicita a elipse exigida em português naquilo que os destinatários agora ouvem a respeito de Paulo.

@@ -1,0 +1,23 @@
+# Decisões de tradução — Filemom
+
+- **1:1 — “prisioneiro de Cristo Jesus”**: mantém `δέσμιος` e a construção genitiva sem explicitar se Paulo é prisioneiro por causa de Cristo ou pertencente a ele.
+- **1:1,24 — “companheiro de trabalho”**: traduz `συνεργός` em continuidade com Filipenses e distingue o termo de “companheiro de luta”, `συστρατιώτης`, no versículo 2.
+- **1:2 — “assembleia”**: mantém a equivalência adotada no projeto para `ἐκκλησία`; a expressão “na casa de você” preserva o singular dirigido a Filemom.
+- **1:5 — amor e fé**: os dois substantivos foram mantidos na ordem do grego e relacionados tanto ao Senhor Jesus como a todos os santos, sem redistribuir explicitamente cada qualidade a um objeto diferente.
+- **1:6 — “comunhão da sua fé”**: preserva `κοινωνία τῆς πίστεώς σου` sem decidir no texto principal se a comunhão indica participação, compartilhamento material ou testemunho da fé.
+- **1:6 — “pleno conhecimento”**: `ἐπίγνωσις` mantém a equivalência utilizada nas cartas anteriores, distinguindo-se de `γνῶσις`, “conhecimento”.
+- **1:7 — “muita gratidão”**: o Texto Majoritário apresenta `χάριν`, “graça/favor”, e não a variante `χαράν`, “alegria”. Na expressão `χάριν ἔχομεν`, o termo foi traduzido idiomaticamente como gratidão, sem adotar a variante textual.
+- **1:7,12,20 — “entranhas”**: preserva a imagem de `σπλάγχνα`, já mantida em Filipenses, Colossenses e outras cartas. O verbo `ἀναπαύω` foi traduzido por “reanimar” neste contexto afetivo.
+- **1:9 — “idoso”**: traduz `πρεσβύτης` conforme a leitura e a análise morfológica do Texto Majoritário, sem adotar a interpretação “embaixador”.
+- **1:10 — “gerei em minhas correntes”**: mantém a metáfora de geração espiritual e a condição de prisioneiro, sem explicar o processo de conversão de Onésimo.
+- **1:11 — “inútil / útil”**: preserva o contraste entre `ἄχρηστος` e `εὔχρηστος`, que também cria um jogo semântico com o nome Onésimo.
+- **1:12 — “receba-o”**: preserva `προσλαβοῦ`, presente no Texto Majoritário, e mantém a identificação afetiva de Onésimo com as próprias entranhas de Paulo.
+- **1:13 — “boas novas”**: `εὐαγγέλιον` foi traduzido segundo a equivalência predominante do projeto; as correntes são relacionadas às boas novas sem expansão causal.
+- **1:14 — “boa ação”**: tradução contextual de `τὸ ἀγαθόν σου`, isto é, o bem que Filemom faria voluntariamente, em contraste com obrigação.
+- **1:15 — “receba plenamente”**: aplica ao contexto a acepção de `ἀπέχω` que indica receber ou ter de modo completo; “[de você]” explicita o complemento da separação.
+- **1:16 — “escravo”**: mantém a equivalência consolidada de `δοῦλος`. “Mais que escravo” preserva `ὑπὲρ δοῦλον` sem apagar a relação social mencionada no texto.
+- **1:17 — “[receberia]”**: verbo suprido para explicitar em português o valor comparativo de `ὡς ἐμέ`.
+- **1:18–19 — linguagem contábil**: “coloque em minha conta” e “pagarei” preservam `ἐλλογέω` e `ἀποτίνω`, mantendo a forma concreta da garantia de Paulo.
+- **1:20 — “seja beneficiado”**: traduz `ὀναίμην` e preserva outro possível jogo verbal com o nome Onésimo, sem tentar reproduzi-lo artificialmente em português.
+- **1:22 — “eu seja concedido a vocês”**: mantém a voz passiva de `χαρισθήσομαι`, atribuindo implicitamente a Deus a resposta às orações.
+- **1:23–24 — saudação compartilhada**: o verbo “saúda” do versículo 23 foi estendido sintaticamente aos nomes do versículo 24, que no grego formam uma continuação nominal.

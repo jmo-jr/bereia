@@ -1,0 +1,21 @@
+# Decisões de tradução — 2Pedro 1
+
+- **1:1 — “Simeão Pedro”**: preserva a forma `Συμεών` do Texto Majoritário, sem harmonizá-la com a forma mais comum “Simão”.
+- **1:1 — “fé de igual valor”**: traduz `ἰσότιμον πίστιν` conforme o dicionário definitivo, mantendo a comparação com a fé dos remetentes.
+- **1:1 — “nosso Deus e Salvador Jesus Cristo”**: a construção grega emprega um único artigo para `θεοῦ` e `σωτῆρος`, identificando os dois títulos com Jesus Cristo; a tradução preserva essa unidade sintática.
+- **1:2–3,8 — “pleno conhecimento”**: `ἐπίγνωσις` mantém a equivalência utilizada nas cartas pastorais, distinguindo-se de `γνῶσις`, “conhecimento”, nos versículos 5–6.
+- **1:3 — “por meio de glória e virtude”**: preserva a leitura `διὰ δόξης καὶ ἀρετῆς` do Texto Majoritário e não a substitui por outra variante textual.
+- **1:4 — “participantes da natureza divina”**: mantém literalmente `θείας κοινωνοὶ φύσεως`, sem explicar no texto principal a extensão teológica dessa participação.
+- **1:4 — “pela cobiça”**: a expressão `ἐν ἐπιθυμίᾳ` foi ligada à corrupção existente no mundo, preservando o singular e a escolha lexical já empregada em 1Pedro.
+- **1:5–7 — cadeia de virtudes**: a repetição de `ἐν` foi expressa pela sequência “à...”, conservando a progressão fé, virtude, conhecimento, autocontrole, perseverança, piedade, amor fraternal e amor.
+- **1:5 — “tendo apresentado todo empenho”**: preserva o particípio `παρεισενέγκαντες` e o substantivo `σπουδή`, sem transformá-los somente em um advérbio de intensidade.
+- **1:9 — “cego, sendo míope”**: mantém as duas descrições `τυφλός` e `μυωπάζων`, sem fundi-las como sinônimos.
+- **1:10 — “tornar firme”**: traduz a construção média `βεβαίαν ... ποιεῖσθαι` como ação diligente dos destinatários em relação ao chamado e à eleição, sem atribuir-lhes a origem dessas realidades.
+- **1:13–15 — “tenda”, “remoção” e “partida”**: preserva as imagens distintas de `σκήνωμα`, `ἀπόθεσις` e `ἔξοδος`. Em 1:14, “iminente” expressa contextualmente `ταχινή`, indicando a proximidade da remoção da tenda.
+- **1:16 — “fábulas engenhosamente inventadas”**: traduz `σεσοφισμένοις μύθοις` como narrativas artificialmente elaboradas, mantendo o contraste com o testemunho ocular.
+- **1:16 — “vinda”**: `παρουσία` permanece “vinda”, distinguindo-se de `ἀποκάλυψις`, traduzido por “revelação” em 1Pedro.
+- **1:17 — “glória majestosa”**: traduz `μεγαλοπρεποῦς δόξης` preservando sua função como origem da voz; “majestade” no versículo anterior corresponde ao substantivo distinto `μεγαλειότης`.
+- **1:19 — “mais firme a palavra profética”**: conserva o comparativo `βεβαιότερον` sem explicar no texto principal se o testemunho da transfiguração confirma a palavra profética ou se ela é apresentada como ainda mais segura.
+- **1:19 — “estrela da manhã”**: tradução contextual de `φωσφόρος`, em continuidade com a imagem astronômica e com a expressão adotada em Apocalipse 2:28.
+- **1:20 — “surge de interpretação própria”**: `γίνεται` foi traduzido no sentido de origem ou surgimento da profecia. A frase não foi expandida para decidir se “própria” se refere ao profeta, ao leitor ou a outra interpretação individual.
+- **1:21 — “homens santos de Deus”**: preserva `ἅγιοι θεοῦ ἄνθρωποι`, presente no Texto Majoritário. O particípio passivo `φερόμενοι` foi vertido por “sendo conduzidos”, mantendo o Espírito Santo como agente.

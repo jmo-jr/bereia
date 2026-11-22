@@ -1,0 +1,21 @@
+# Decisões de tradução — 1Pedro 5
+
+- **5.1 — πρεσβύτερος / συμπρεσβύτερος:** πρεσβύτερος foi traduzido por “ancião”, em continuidade com Tiago 5.14. συμπρεσβύτερος foi vertido por “companheiro ancião”, preservando a participação do autor no mesmo encargo.
+- **5.1 — testemunha e participante:** mantida a dupla descrição “testemunha dos sofrimentos de Cristo” e “participante da glória” futura, sem definir a natureza do testemunho além do texto.
+- **5.2 — ποιμαίνω / ποίμνιον / ἐπισκοπέω:** traduzidos por “pastorear”, “rebanho” e “supervisionar”, preservando as imagens e sua relação com “Supervisor” em 1Pedro 2.25.
+- **5.2 — modos de serviço:** ἀναγκαστῶς, ἑκουσίως, αἰσχροκερδῶς e προθύμως foram traduzidos por “por constrangimento”, “voluntariamente”, “gananciosamente” e “com disposição”.
+- **5.3 — κλῆροι:** traduzido contextualmente por “os que lhes foram confiados”. O sentido literal de “lotes/porções” designa aqui aqueles sobre os quais os anciãos exercem cuidado; a tradução evita a forma opaca “dominar sobre os lotes”.
+- **5.3 — τύποι:** traduzido por “exemplos”, conforme a função indicada no contexto, em vez da reprodução formal “tipos”.
+- **5.4 — ἀρχιποίμην / ἀμαράντινος:** traduzidos por “Chefe Pastor” e “imperecível”. A inicial maiúscula identifica a designação de Cristo.
+- **5.5 — leitura do TM:** preservada a oração “todos, submetendo-se uns aos outros”, presente no Texto Majoritário local. ἐγκομβόομαι foi mantido na imagem “vestir-se de humildade”.
+- **5.6 — ἐν καιρῷ:** “[apropriado]” explicita o valor contextual de καιρός, distinguindo-o de simples duração cronológica.
+- **5.7 — μέριμνα / μέλει:** traduzidos por “cuidado/cuidar”, preservando a relação lexical e a imagem de lançar todo cuidado sobre Deus.
+- **5.8 — ἀντίδικος / διάβολος:** traduzidos contextualmente por “adversário” e “acusador”. O primeiro possui sentido jurídico de litigante, mas “adversário” comunica sua função na imagem; o segundo mantém a decisão lexical consolidada nos capítulos anteriores.
+- **5.8–9 — vigilância e resistência:** νήφω e γρηγορέω foram diferenciados como “ser sóbrio” e “vigiar”, em continuidade com 1Tessalonicenses 5.6. A figura do leão que ruge e procura alguém para engolir foi preservada.
+- **5.9 — ἐπιτελέω:** traduzido por “completar”, mantendo a voz passiva e sem sugerir que a irmandade produz voluntariamente os próprios sofrimentos.
+- **5.10 — formas verbais do TM:** καταρτίσαι foi traduzido como desejo ou oração — “que ele... os restaure” —, enquanto os futuros στηρίξει, σθενώσει e θεμελιώσει foram preservados como “firmará, fortalecerá e fundamentará”.
+- **5.10 — leitura do TM:** preservado “em Cristo Jesus”, conforme a forma completa no Texto Majoritário local.
+- **5.11 — doxologia:** mantidos “a glória e o domínio” e o “Amém”, conforme o TM. “[Sejam]” explicita a cópula e a formulação optativa portuguesa.
+- **5.12 — Silvano:** διά foi traduzido por “por meio de”, sem decidir no texto principal se Silvano atuou como portador, escriba ou colaborador de outra maneira. A graça é aquela “na qual” os leitores permanecem firmes.
+- **5.13 — συνεκλεκτή:** traduzido por “a escolhida juntamente [com vocês]”, preservando o feminino singular e sua ambiguidade. A tradução não decide se a expressão designa uma mulher ou uma comunidade.
+- **5.13–14 — saudações do TM:** mantidos Babilônia, Marcos como “meu filho”, “Cristo Jesus” e o “Amém” final, sem harmonização com outras tradições textuais.

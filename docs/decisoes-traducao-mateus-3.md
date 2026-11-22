@@ -1,0 +1,22 @@
+# Decisões de tradução — Mateus 3
+
+- **3:1 — “João, o Batizador”**: o texto principal traduz `βαπτιστής` conforme o dicionário definitivo, enquanto o título da perícope preserva literalmente a forma editorial “João Batista” presente no JSON.
+- **3:1,13 — presente histórico**: `παραγίνεται` foi mantido como “chega” tanto para João como para Jesus, preservando o movimento narrativo no presente.
+- **3:2 — “arrependam-se”**: `μετανοέω` mantém a equivalência estabelecida no projeto, relacionada ao substantivo `μετάνοια`, “arrependimento”, nos versículos 8 e 11.
+- **3:2 — “Reino dos Céus”**: preserva o plural `τῶν οὐρανῶν` e a expressão característica de Mateus. O perfeito `ἤγγικεν` foi traduzido por “se aproximou”, indicando proximidade alcançada.
+- **3:3 — citação de Isaías**: `ὁδός` e `τρίβοι` foram diferenciados como “caminho” e “veredas”. A forma citada por Mateus foi preservada sem harmonização com Lucas.
+- **3:4 — roupa e alimento de João**: `ἀκρίδες` foi traduzido por “gafanhotos” conforme o dicionário, sem adotar a interpretação alternativa de frutos vegetais. “Mel silvestre” preserva `μέλι ἄγριον`.
+- **3:5 — sujeitos coletivos**: Jerusalém, Judeia e a região do Jordão foram mantidas como sujeitos coletivos do verbo singular, sem acrescentar “habitantes” ao texto principal.
+- **3:6–7,11,13–16 — imersão**: as formas de `βαπτίζω` foram traduzidas por “imergir”, segundo a preferência lexical registrada no projeto. `βάπτισμα` foi vertido contextualmente por “imersão” no versículo 7, mantendo a relação verbal.
+- **3:7 — “prole de víboras”**: preserva `γεννήματα ἐχιδνῶν` em continuidade com Lucas 3:7 e Mateus 23:33.
+- **3:8 — fruto no singular**: segue `καρπὸν ἄξιον`, distinguindo a forma de outras passagens que apresentam “frutos” no plural.
+- **3:9 — “não pensem em dizer”**: mantém `μὴ δόξητε λέγειν`, advertindo contra a suposição interior baseada na descendência de Abraão.
+- **3:10 — fazer bom fruto**: `ποιέω` foi preservado por “fazer”, em continuidade com Lucas 3:9, sem substituição estilística por “produzir”.
+- **3:11 — “carregar as sandálias”**: Mateus emprega `βαστάσαι`, diferentemente de Marcos e Lucas, que mencionam desatar a correia. A tradução preserva essa diferença entre os relatos.
+- **3:11 — “em Espírito Santo”**: segue o Texto Majoritário do projeto, que neste versículo não contém “e fogo”. A menção ao fogo permanece na imagem de julgamento do versículo 12; não houve harmonização com Lucas 3:16.
+- **3:12 — “garfo joeirador”**: tradução contextual de `πτύον`, em continuidade com Lucas 3:17. `[Está]` explicita a cópula ausente; eira, trigo, armazém e palha foram mantidos como imagens distintas.
+- **3:14 — “tentava impedi-lo”**: o imperfeito `διεκώλυεν` indica tentativa ou ação continuada de João, não apenas uma objeção pontual.
+- **3:15 — “permita agora”**: `ἄφες ἄρτι` foi traduzido de modo contextual como consentimento à imersão. A primeira pessoa plural em “cumprirmos” preserva `ἡμῖν`.
+- **3:16 — saída da água**: `ἀπὸ τοῦ ὕδατος` foi traduzido por “da água”, sem explicar no texto principal a forma física da imersão.
+- **3:16 — Espírito como pomba**: `ὡσεὶ περιστεράν` foi mantido como comparação, sem afirmar que o Espírito se transformou em uma pomba.
+- **3:17 — “Este é meu Filho”**: preserva a terceira pessoa `οὗτός ἐστιν`, distinta da forma em segunda pessoa registrada em Marcos 1:11 e Lucas 3:22.

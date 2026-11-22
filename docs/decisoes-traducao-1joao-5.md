@@ -1,0 +1,21 @@
+# Decisões de tradução — 1João 5
+
+- **5.1–4 — γεννάω:** traduzido consistentemente por “gerar”. No v. 4, o neutro πᾶν τὸ γεγεννημένον foi preservado como “tudo o que foi gerado”, sem restringi-lo gramaticalmente a pessoas.
+- **5.1 — aquele que gera e o gerado:** a formulação foi mantida sem substituir os referentes por “Deus” e “filho de Deus”, permitindo que o paralelismo explique a relação.
+- **5.3 — βαρεῖαι:** traduzido por “pesados”, preservando a metáfora do peso dos mandamentos.
+- **5.4–5 — νικάω / νίκη:** mantida a relação lexical “vencer/vitória” e a repetição de “mundo”.
+- **5.6 — água, sangue e Espírito:** διά foi traduzido por “por meio de” na primeira oração, e ἐν por “na” no contraste seguinte. “Espírito” recebe inicial maiúscula por ser identificado como a verdade e atuar como testemunha divina.
+- **5.7–8 — ausência do *Comma Johanneum*:** o JSON e o CSV do Texto Majoritário local trazem somente “três são os que testemunham: o Espírito, a água e o sangue”. A fórmula sobre Pai, Palavra e Espírito Santo não consta nas fontes do projeto e não foi acrescentada.
+- **5.8 — εἰς τὸ ἕν:** traduzido por “para uma só coisa”, mantendo a direção e o neutro da expressão sem transformar o testemunho em uma afirmação ontológica não explicitada no texto.
+- **5.9–10 — μαρτυρία / μαρτυρέω:** a relação lexical foi mantida por “testemunho/testemunhar”, mesmo onde a repetição é mais marcada que no português habitual.
+- **5.10 — crer no Filho / crer em Deus:** preservada a alternância entre εἰς com o Filho e o dativo com Deus, ambos vertidos naturalmente por “crer em”.
+- **5.11–12 — vida no Filho:** mantida a repetição de “vida” e o contraste “ter o Filho/ter a vida”, sem explicação adicional.
+- **5.13 — leitura ampliada do TM:** preservada a segunda oração de finalidade — “e para que creiam no nome do Filho de Deus” — presente no Texto Majoritário local.
+- **5.14 — παρρησία:** traduzido por “ousadia”, em continuidade com 1João 2.28 e 3.21.
+- **5.15 — αἰτήματα:** traduzido por “pedidos”, distinguindo o substantivo das formas verbais de “pedir”.
+- **5.16–17 — pecado para morte:** πρός foi mantido como “para”, sem definir a natureza do pecado, da morte ou da relação entre ambos. “[É]” explicita a cópula ausente nas duas expressões.
+- **5.16 — sujeito de δώσει:** “[Deus]” explicita o sujeito contextualmente pressuposto de “dará vida”, distinguindo-o daquele que pede e daquele por quem se pede. A relação é indicada pela oração e pelo papel de Deus como doador da vida no v. 11.
+- **5.18 — leitura reflexiva do TM:** preservado “aquele que foi gerado por Deus guarda a si mesmo”, conforme ἑαυτόν no Texto Majoritário local, sem harmonização com a leitura “o guarda”. A formulação absoluta “não peca” foi mantida como em 1João 3.6,9.
+- **5.18–19 — ὁ πονηρός / τὸ πονηρόν:** traduzido por “o mau”. Em 5.19, “o mundo inteiro jaz no mau” preserva a ambiguidade formal entre referência pessoal e esfera do mal.
+- **5.20 — ὁ ἀληθινός:** traduzido por “o Verdadeiro”, com inicial maiúscula como designação de Deus. O demonstrativo “Este” foi preservado sem resolver por paráfrase a qual antecedente se refere.
+- **5.21 — encerramento do TM:** mantidos o vocativo “Filhinhos” e o “Amém” final, conforme o Texto Majoritário local.

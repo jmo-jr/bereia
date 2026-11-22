@@ -1,0 +1,24 @@
+# Decisões de tradução — 2Pedro 3
+
+- **3:1 — “em ambas”**: o relativo plural `ἐν αἷς` retoma esta carta e a anterior, preservando a referência explícita a duas cartas.
+- **3:2 — “declarações”**: mantém a equivalência de `ῥήματα` adotada no projeto, distinguindo o termo de `λόγος`, “palavra”, nos versículos 5 e 7.
+- **3:2 — “[transmitido] pelos apóstolos de vocês”**: o particípio foi suprido para explicitar em português a relação entre o mandamento do Senhor e Salvador e `τῶν ἀποστόλων ὑμῶν`, preservando a leitura “apóstolos de vocês” do Texto Majoritário.
+- **3:3 — “nos últimos dias”**: a construção singular superlativa `ἐπ’ ἐσχάτου τῶν ἡμερῶν` foi vertida pelo equivalente idiomático plural, sem alterar sua referência temporal.
+- **3:4 — “adormeceram”**: preserva a metáfora de `κοιμάομαι` aplicada aos pais, sem substituí-la por “morreram” no texto principal.
+- **3:5 — formação da terra**: `ἐξ ὕδατος καὶ δι’ ὕδατος` foi mantido como “da água e por meio da água”, sem explicar o mecanismo da criação.
+- **3:6 — “por meio das quais”**: o relativo plural foi preservado sem restringir seu referente somente à água; o texto associa os elementos anteriormente mencionados ao mundo inundado.
+- **3:7 — “armazenados para o fogo”**: traduz `τεθησαυρισμένοι ... πυρί`, mantendo a imagem de reserva para o julgamento.
+- **3:8 — comparação temporal**: foram preservadas as duas partes da comparação entre um dia e mil anos, sem convertê-las em fórmula de equivalência cronológica.
+- **3:9 — “para conosco”**: segue `εἰς ἡμᾶς` do Texto Majoritário. “Cheguem ao arrependimento” traduz contextualmente `εἰς μετάνοιαν χωρῆσαι`.
+- **3:10 — “como ladrão na noite”**: preserva `ὡς κλέπτης ἐν νυκτί` do Texto Majoritário, em continuidade com 1Tessalonicenses 5:2.
+- **3:10 — “com estrondo”**: tradução idiomática de `ῥοιζηδόν`, que descreve o som intenso e súbito da passagem dos céus.
+- **3:10 — “serão queimadas”**: segue a leitura `κατακαήσεται` do Texto Majoritário para a terra e as obras nela, sem substituí-la por variantes textuais.
+- **3:11 — plurais de conduta**: `ἁγίαις ἀναστροφαῖς καὶ εὐσεβείαις` foi expresso por “condutas santas e atos de piedade”, evitando o português abstrato e opaco “piedades”.
+- **3:12 — “apressando a vinda”**: preserva o valor ativo de `σπεύδοντας` e a construção com `παρουσία`, sem explicar como a conduta dos destinatários se relaciona com o dia de Deus.
+- **3:13 — “novos céus e nova terra”**: mantém os plurais e singulares do grego e a afirmação de que a justiça habita neles.
+- **3:14 — “encontrados por ele”**: o dativo `αὐτῷ` foi entendido como agente da passiva, preservando Deus como aquele diante de quem os destinatários serão encontrados.
+- **3:15 — “paciência [...] como salvação”**: traduz `μακροθυμία` em continuidade com o adjetivo verbal do versículo 9 e mantém `σωτηρία` como predicativo.
+- **3:16 — cartas e Escrituras**: “entre as quais” retoma as coisas tratadas nas cartas de Paulo. A expressão “as demais Escrituras” foi mantida sem desenvolver no texto principal suas implicações canônicas.
+- **3:17 — “firmeza”**: tradução de `στηριγμός`, relacionada ao verbo traduzido por “estar firmado” em 1:12.
+- **3:18 — “conhecimento”**: `γνῶσις` permanece “conhecimento”, distinguindo-se de `ἐπίγνωσις`, “pleno conhecimento”, nos capítulos anteriores.
+- **3:18 — “dia da eternidade”**: `ἡμέραν αἰῶνος` foi traduzido segundo sua função doxológica, expressando duração ilimitada; a formulação incomum “dia” foi preservada.
