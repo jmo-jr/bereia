@@ -391,3 +391,185 @@ reconstruí-lo a partir de auditoria com aliases ativos produz o mesmo manifesto
 Os relatórios, CSV de pendências e provas de integração estão em
 `reports/audit/aliases/`. O dicionário, índices, TM, LXX, traduções e estado
 linguístico permanecem intactos. Não foram criados backups nem commit.
+
+## Revisão editorial dos verbetes por lema
+
+A rodada autorizada de promoção analisa 551 grupos com overrides de `verbete`:
+546 possuem divergência textual e cinco apenas repetem o lema. O manifesto
+`tools/audit/approvals/verbetes-lema.json` registra escolhas editoriais, valores
+anteriores/posteriores, índices e textos flexionais, pendências e referências à
+cópia local do TBESG. Não há regra automática de preferir o conjunto mais longo.
+Foram selecionados 73 lemas; 16 grupos têm pendências (um deles também recebeu
+uma melhoria parcial). Os demais grupos permanecem sem alteração, sem que isso
+certifique cada sinônimo anterior ou autorize remover os overrides.
+
+`promote_lemma_verbetes.py` é uma aplicação separada, limitada aos campos de lema
+do manifesto. Verifica hashes e valores revisados, altera somente os intervalos
+das strings JSON e recusa dados novos. A aplicação é idempotente. Não modifica
+flexões nem o TM; os 4.784 verbetes flexionais continuam intactos.
+
+```sh
+python3 -B -m tools.audit.promote_lemma_verbetes --apply
+npm run dict:generate
+npm run dict:review-state
+python3 -B -m tools.audit.promote_lemma_verbetes --check
+python3 -B -m unittest tools.audit.test_promote_lemma_verbetes -v
+```
+
+Os relatórios JSON, Markdown e CSV de pendências ficam em
+`reports/audit/verbetes-lema/`. São reproduzíveis a partir do manifesto versionável;
+como os demais relatórios do projeto, o diretório está ignorado pelo Git. O comando
+sem opções somente gera relatórios, sem aplicar dados. Após a geração do léxico,
+auditoria e aliases devem ser reconstruídos pelo fluxo anterior para atualizar
+o hash de referência; nesta rodada, as equivalências contextuais não mudaram.
+
+O gerador ainda prioriza `flexao.verbete`. Apenas `αἰτοῦντί`, `ἀσπάσησθε` e
+`ἔσχατον`, que não têm override, herdam imediatamente a mudança de lema. Uma
+futura remoção dos campos exige resolver as pendências, avaliar cada override
+e comparar os resultados antes/depois, preservando os identificadores Strong,
+os homógrafos e a segmentação de locuções. Esse passo não foi executado.
+
+## Auditoria de agrupamentos e consistência morfológica
+
+`audit_morphology.py` examina toda a fonte lexical atual, sem reaplicar as
+escolhas anteriores e sem escrever em dicionários, TM, índices ou traduções.
+Compara classe lexical do TBESG, referência Strong do verbete, código local,
+descrição, parsing auxiliar e registros repetidos por forma literal/NFC.
+Divergências de classe ou entre fontes permanecem revisão manual: substantivação
+não transforma automaticamente um particípio em substantivo. As hipóteses de
+código candidato usam apenas parsing de versículos integralmente alinhados e não
+comprovam exclusividade morfológica.
+
+O adaptador distingue tempo/modo/voz na convenção BEREIA da ordem Robinson;
+reconhece alternativas compactadas e mantém as análises. Descrições abreviadas,
+possuidor versus objeto possuído, sincretismo neutro e pluperfeito não geram
+contradições artificiais. Deponência e códigos não reconhecidos não são
+convertidos por adivinhação. Uma ausência de voz no código é relatada como lacuna
+técnica, sem preencher automaticamente o campo. As 80 ocorrências de códigos
+fora do adaptador na primeira execução estão discriminadas, com Strong e índice,
+no relatório completo; não são automaticamente erros.
+
+```sh
+python3 -B -m tools.audit.audit_morphology
+python3 -B -m unittest tools.audit.test_audit_morphology -v
+```
+
+A leitura padrão é JSON estrito e recusa chaves duplicadas. Se a edição manual
+tiver apenas vírgulas terminais, o modo explícito abaixo permite análise
+provisória: desconsidera essas vírgulas somente em memória, registra linha,
+coluna e offset de cada uma e não regrava nenhum byte do arquivo original.
+Outros erros de sintaxe continuam fatais. Corrigir a sintaxe e executar novamente
+é necessário antes de usar os relatórios como resultado de uma fonte válida.
+
+```sh
+python3 -B -m tools.audit.audit_morphology --tolerate-trailing-commas
+```
+
+Saídas em `reports/audit/morfologia/`: `auditoria.json`, `resumo.md`,
+`erros-comprovados.json`, `pendencias.csv`, `formas-repetidas.json`,
+`prioridades.json`, `caso-on.json` e `produtos.json`. A comparação dos produtos
+informa derivados e índices desatualizados e aliases com índices deslocados,
+sem reconstruí-los durante a auditoria. O CSV contém somente achados pendentes;
+o inventário de homógrafos legítimos fica separado, sem sugerir sua eliminação.
+Não são criadas pendências de parsing apenas por ambiguidade nominal com uma
+ocorrência; erros internos independentes continuam sendo registrados.
+
+Os relatórios usam hashes das fontes e do código, sem horários e sem cache, e
+são determinísticos. As referências de perícopes repetidas são deduplicadas para
+não contar a mesma ocorrência como provas independentes; cópias conflitantes
+ficam sem atribuição de parsing. Caracteres invisíveis são inventariados como
+possíveis marcadores históricos, nunca apagados ou tratados como identidade.
+Esta auditoria não reconstrói todos os paradigmas gregos independentemente.
+Correções e consolidações ficam para uma aplicação separada, com seus próprios
+critérios e validação de índices.
+
+## Aplicação separada dos casos morfológicos prioritários
+
+A solicitação de tratar os casos prioritários autoriza o manifesto
+`tools/audit/approvals/morfologia-prioritarios.json`. Ele fixa os bytes da fonte
+antes/depois, os seis registros revisados, as sete mudanças de campo e as provas
+no TM, parsing e TBESG. A aplicação não exclui registros nem altera formas,
+traduções, verbetes ou contagens. Em σπείροντος, o código conserva os gêneros
+masculino/neutro já presentes na descrição ao corrigir o caso; não atribui uma
+leitura neutra à ocorrência. O registro incompleto de ὢν recebe voz ativa sem
+fundir seus metadados com os do outro registro da mesma forma.
+
+```sh
+python3 -B -m tools.audit.apply_morphology_priorities --apply
+npm run dict:generate
+npm run dict:review-state
+python3 -B -m tools.audit.audit_tm --output reports/audit/aliases/base
+python3 -B -m tools.audit.build_accent_aliases
+python3 -B -m tools.audit.audit_morphology
+python3 -B -m tools.audit.apply_morphology_priorities --check
+npm run dict:check
+npm run dict:review-state:check
+python3 -B -m tools.audit.build_accent_aliases --check
+python3 -B -m unittest tools.audit.test_apply_morphology_priorities tools.audit.test_audit_morphology -v
+```
+
+O aplicador é idempotente, recusa fonte ou evidências novas e substitui somente
+as strings dos campos autorizados. A inversão em memória deve restaurar todos os
+bytes anteriores, e nenhuma sequência de flexões é alterada. Os relatórios de
+aplicação ficam em `reports/audit/morfologia-aplicacao/`; a auditoria atual e seu
+CSV contêm apenas os achados que permanecem ativos. O sumário de prioridades é
+derivado dos achados atuais, para não repetir como pendentes os casos resolvidos.
+
+G1510/49 (`ὧν` + U+200B) permanece intocado. O backup histórico já misturava a
+chave com marcador, `grego: ὢν` e análise genitiva verbal; os campos atuais não
+permitem transportar contagens com segurança. O manifesto documenta a proposta
+não aplicada de retirada isolada após decisão humana, conservando G1510/46–48,
+o pronome G3739/18 e os demais marcadores históricos. O backup foi apenas lido.
+Na execução após aplicação, o JSON é válido, os derivados e o índice coincidem
+com a fonte, e os 170 aliases mantêm as mesmas referências contextuais.
+
+## Revisão dos 48 alertas de voz remanescentes
+
+O manifesto `approvals/vozes-48.json` documenta todos os 48 alertas da rodada
+anterior. A aplicação em `apply_missing_voice.py` completa somente a voz em
+`abrev_morf` e `morfologia` de 47 registros (94 campos): 38 ativos e nove futuros
+médios de εἰμί/πάρειμι. Mantém integralmente os demais traços e todos os demais
+campos. Reutiliza o aplicador de intervalos de strings, sem reserializar a fonte.
+
+G1507/0 é um registro genérico com código `V`, descrição `Verbo`, contagem vazia
+e sem ocorrência literal/NFC no TM. Não recebeu análise inventada: o auditor
+passa a contá-lo separadamente como genérico, em lugar de tratá-lo como omissão
+de voz numa análise flexional. O registro e sua limitação permanecem visíveis.
+
+As fontes gramaticais consultadas estão no manifesto e no relatório, com URLs e
+uso da evidência: Robinson PARSING.COD, Ancient Greek for Everyone e LSJ. Robinson
+D é média deponente; o adaptador contextual só a compara como média nos futuros
+de G1510/G3918. Não altera etiquetas originais, não estende a equivalência a
+outros lemas nem a O/N, e não deduz voz pela tradução portuguesa. Sete registros
+sem parsing alinhado usam o paradigma e a identidade lexical: suas ocorrências
+continuam sem atribuição auxiliar. Contagens e grafias foram preservadas.
+
+```sh
+python3 -B -m tools.audit.apply_missing_voice --apply
+npm run dict:generate
+npm run dict:review-state
+python3 -B -m tools.audit.audit_tm --output reports/audit/aliases/base
+python3 -B -m tools.audit.build_accent_aliases
+python3 -B -m tools.audit.audit_tm --output reports/audit/aliases/atual
+python3 -B -m tools.audit.build_accent_aliases --inventory reports/audit/aliases/atual/inventario.json --check
+python3 -B -m tools.audit.audit_morphology
+python3 -B -m tools.audit.apply_missing_voice --check
+npm run dict:check
+npm run dict:review-state:check
+python3 -B -m unittest tools.audit.test_apply_missing_voice tools.audit.test_apply_morphology_priorities tools.audit.test_audit_morphology -v
+```
+
+Os relatórios de aplicação ficam em `reports/audit/vozes-48/`. Não se reescrevem
+manifestos históricos para corresponder ao léxico novo: cada aplicação aceita
+somente seus hashes antes/depois. Os testes do lote prioritário usam snapshots
+como fixtures quando há revisões posteriores, sem enfraquecer essas verificações
+de execução nem alterar os hashes históricos.
+
+Na revalidação desta rodada, todos os 170 aliases anteriores foram preservados
+integralmente. A melhoria dos campos técnicos habilitou sete aliases com prova
+contextual, somando 195 tokens validados: total de 177 aliases e 13.287 tokens.
+A equivalência não foi estendida a ocorrências sem prova. O resultado da auditoria
+morfológica tem zero alertas de código sem voz; permanecem 14 divergências entre
+código e descrição e 856 alertas de revisão manual, incluindo problemas alheios
+a esta aplicação. Não foram removidos os registros de homógrafos ou o marcador
+G1510/49.

@@ -29,6 +29,49 @@ ficam pendentes e não podem atravessar o fallback legado sem marcas. Não funda
 nem apague as 255 inclusões anteriores. Interrogativos τίς/τί, deslocamentos de
 acento, circunflexos, espíritos, elisão e iota subscrito não entram nessa regra.
 
+## Aplicação da revisão dos 48 alertas de voz
+
+O usuário solicitou tratar os 48 alertas remanescentes. O manifesto
+`approvals/vozes-48.json` autoriza completar somente a voz em `abrev_morf` e
+`morfologia` de 47 registros: 38 ativos e nove futuros médios de G1510/G3918.
+Preserve tempo, modo, pessoa, caso, gênero, número e todos os demais campos.
+O registro G1507/0 com código genérico `V` fica intacto: sem análise flexional,
+não constitui omissão de voz. Registre essa distinção explicitamente no auditor.
+A adaptação de Robinson D para média é restrita aos futuros copulares revisados,
+com documentação gramatical; não a estenda a outras famílias ou a O/N.
+Sete registros sem parsing integralmente alinhado usam o paradigma e a fonte
+lexical como fundamento, sem inventar atribuição auxiliar às ocorrências.
+Aplicação separada, derivados regenerados, estado linguístico atualizado e
+aliases revalidados. Sem exclusões, fusões, backups ou commit.
+
+## Aplicação dos casos morfológicos prioritários
+
+O usuário solicitou tratar os casos prioritários da auditoria morfológica e
+atualizar o resumo. A aplicação separada em `apply_morphology_priorities.py`
+fica limitada aos seis registros e sete campos técnicos de
+`approvals/morfologia-prioritarios.json`, com hashes e evidências. Preserve
+grafias, traduções, contagens, metadados LXX, registros e índices existentes.
+Em σπείροντος, a correção independente de caso conserva na codificação os
+gêneros já expressos na descrição; não escolhe leitura para uma ocorrência.
+Não renomeie, funda ou exclua o registro G1510/49 com marcador invisível:
+a origem mistura campos incompatíveis e permanece pendente de decisão humana.
+Regenerar os derivados, revalidar os aliases e atualizar o estado linguístico
+faz parte da aplicação. As auditorias continuam somente leitura.
+
+## Promoção de verbetes ao lema autorizada pelo usuário
+
+O usuário solicitou analisar os conjuntos de `verbete` e copiar ao lema as
+opções melhores das flexões. Essa revisão editorial autoriza uma aplicação
+separada e explícita das escolhas registradas em
+`tools/audit/approvals/verbetes-lema.json`, limitada ao `verbete` do lema.
+Não automatize escolhas pela extensão dos textos nem por união de sinônimos.
+Registre antes/depois, Strong, índices das fontes flexionais e conferência
+lexical. Preserve todos os campos das flexões, inclusive seus `verbete`, e
+todos os demais campos dos lemas. Casos contextuais ou sem evidência suficiente
+ficam pendentes. Esta autorização não permite excluir overrides nem consolidar
+homógrafos. Regenerar derivados e atualizar o estado linguístico é parte desta
+aplicação; auditorias comuns continuam somente leitura. Não faça commit.
+
 ## Aplicação do piloto aprovada pelo usuário
 
 O usuário aprovou as glosas de `ἀρχῇ` e solicitou avançar para sua inclusão.
