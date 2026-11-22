@@ -46,7 +46,8 @@ class TriageTests(unittest.TestCase):
     def test_strict_lookup_has_no_case_or_marks_fallback(self):
         resolver = StrictLookup(lexicon())
         self.assertEqual(resolver.resolve('ἀρχή')['estado'], 'unica')
-        for form in ['ἀρχῇ', 'Ἀρχή', 'αρχη', 'ἀρχή ']:
+        self.assertEqual(resolver.resolve('Ἀρχή')['correspondencia'], 'caixa')
+        for form in ['ἀρχῇ', 'αρχη', 'ἀρχή ']:
             self.assertEqual(resolver.resolve(form)['entradas'], [])
 
     def test_canonical_collision_retains_all_analyses_even_with_literal(self):

@@ -302,3 +302,92 @@ Os outros 355 continuam no grupo agudo/grave da auditoria atual.
 preservação, comparação da consulta antes/depois, testes e resumo da aplicação.
 Nenhum backup, baseline, relatório histórico de migração ou capítulo bíblico foi
 alterado pela aplicação; nenhum commit foi criado.
+
+## Consulta insensível a caixa
+
+Por orientação do usuário, a chave de consulta ignora caixa com
+`toLowerCase().normalize('NFC')`, conservando acentos, espíritos, trema, iota
+subscrito e espaços. A grafia exibida continua sendo a do token do TM. Nenhuma
+palavra foi convertida para minúsculas nos JSONs; a identificação de nomes
+próprios não é inferida para reescrever o texto. Não se usa casefold que expanda
+o iota subscrito. Essa equivalência dispensa duplicar entradas só pela caixa.
+
+O loader usa literal, NFC, caixa e, durante a migração, o fallback legado.
+NT e LXX recebem o índice completo de formas. Colisões entre formas canônicas
+diferentes ou Strong diferentes não escolhem o primeiro registro nem recorrem
+ao fallback. Uma só forma canônica e um só Strong mantêm a projeção de
+compatibilidade já existente, expondo em `analises_dicionario` todos os pares
+Strong/índice quando houver múltiplas análises. Isso não funde registros nem
+resolve ambiguidades gramaticais por capitalização.
+
+O painel aplica a mesma equivalência de caixa depois da tentativa literal/NFC e
+conserva todas as análises da forma. A auditoria distingue `somente_caixa` de NFC
+e conserva os candidatos completos. A comparação literal continua disponível
+na biblioteca Python por `StrictLookup(lexicon, ignore_case=False)`.
+
+A verificação atual encontrou 1.449 grafias sem correspondência literal/NFC
+que correspondem por caixa, em 9.441 tokens. O número histórico de 1.448 excluía
+um caso com espaço marginal já presente também na entrada correspondente;
+nenhum espaço foi retirado. Com essa equivalência, restam 1.069 grafias sem
+correspondência sem retirada de diacríticos. `Εὗρον` e `Οὐ` mantêm as múltiplas
+análises do índice sem mudança nos registros. Relatórios em
+`reports/audit/caixa/` foram gerados separadamente dos relatórios aprovados.
+
+Regressões: `node --test tools/audit/case_lookup.test.js`. Nenhum dicionário,
+texto do TM/LXX, tradução, baseline ou estado linguístico foi alterado por essa
+mudança de consulta. As exceções legadas continuam preservadas.
+
+## Lista positiva de equivalências agudo/grave
+
+O usuário autorizou equivalências validadas sem duplicar ou consolidar entradas.
+O registro separado está em `src/_data/nt/greek_accent_aliases.json`. Cada alias
+preserva origem, destino Strong/índice, assinatura da identidade morfológica,
+referências NT e parsing que fundamentam a associação. Não altera a entrada
+canônica nem remove qualquer uma das 255 inclusões anteriores.
+
+A regra aceita uma única troca agudo/grave na última vogal, conservando todos os
+outros sinais. É conservadora para grafias que exigem análise adicional; exclui
+interrogativos τίς/τί, elisão, espaços, hífens e mudanças de posição de acento.
+O fundamento gramatical é Smyth, §154, registrado com URL no manifesto.
+
+Como os 355 casos restantes têm provas parciais, o escopo é **por ocorrência**:
+livro, capítulo, versículo e posição do token. A construção revalida diretamente
+os JSONs/CSVs, exige alinhamento do versículo inteiro, Strong literal compatível,
+código e descrição coerentes e destino único. Referências repetidas em perícopes
+são verificadas em todas as cópias relevantes. Não se transfere parsing de uma
+cópia alinhada para outra não alinhada.
+
+Na primeira construção, 170 pares foram autorizados em 13.076 referências
+distintas, correspondentes a 13.092 tokens na estrutura dos JSONs. Restaram
+10.908 tokens pendentes; todas as 355 grafias ainda têm alguma ocorrência sem
+prova. Destas, 185 não têm alias ativo. Referências únicas e tokens são contados
+separadamente, sem editar ou deduplicar o TM.
+
+A consulta tenta literal/NFC e caixa antes do alias. Nos casos controlados, sem
+referência ou prova válida, o resultado é pendente e não atravessa o fallback
+sem marcas. Outras famílias continuam sob o mecanismo legado enquanto a migração
+prossegue. Os aliases não são usados na LXX, para a qual não foi validado parsing.
+
+Hashes do TM e parsing validam cada livro. Se a evidência mudar, os aliases desse
+livro ficam pendentes até reconstrução. Mudança de Strong, forma, código ou índice
+do destino também bloqueia o alias; glosas e contagens aprovadas da entrada
+canônica propagam-se sem duplicação. As contagens da grafia original ficam em
+campo separado, e o painel identifica a forma de referência sem mudar a exibição
+do token. Os totais gerais de cobertura literal/caixa continuam separados da
+cobertura contextual parcial; não se declara a grafia inteira resolvida por
+existirem algumas ocorrências comprovadas.
+
+```sh
+python3 -B tools/audit/audit_tm.py --output reports/audit/aliases/base
+python3 -B -m tools.audit.build_accent_aliases
+python3 -B tools/audit/audit_tm.py --output reports/audit/aliases/atual
+python3 -B -m tools.audit.build_accent_aliases --inventory reports/audit/aliases/atual/inventario.json --check
+python3 -B -m unittest tools.audit.test_accent_aliases -v
+node --test tools/audit/accent_aliases.test.js
+```
+
+O registro é determinístico e não depende dos resultados do próprio resolvedor:
+reconstruí-lo a partir de auditoria com aliases ativos produz o mesmo manifesto.
+Os relatórios, CSV de pendências e provas de integração estão em
+`reports/audit/aliases/`. O dicionário, índices, TM, LXX, traduções e estado
+linguístico permanecem intactos. Não foram criados backups nem commit.

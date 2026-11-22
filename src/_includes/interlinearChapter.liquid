@@ -28,7 +28,7 @@
 								<strong class="refmain">{{ verse.number }}</strong>
 								<div class="interlinear">
 									{% for token in verse.tokens %}
-										<span class="token">
+										<span class="token"{% if token.alias_dicionario %} data-dictionary-form="{{ token.alias_dicionario.destino.grego | escape }}"{% endif %}>
 											{% if token.strongs != blank %}
 											<a 
 												class="strongs tooltip"
@@ -41,7 +41,7 @@
 											<a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>
 											{% endif %}
 											<span class="translit">{{ token.transliteracao | escape }}</span>
-											<span class="greek tooltip" title="{{ token.traducao | escape }} | Ocorrências: {{ token.ocorrencias }}">{{ token.lemma | escape }}</span>
+											<span class="greek tooltip" title="{{ token.traducao | escape }} | Ocorrências: {{ token.ocorrencias_forma_tm | default: token.ocorrencias }}">{{ token.lemma | escape }}</span>
 											<span class="translate">{{ token.pt | escape }}</span>
 											<small class="refs tooltip" title="{{ token.morfologia | escape }}">{{ token.abrev_morf }}</small>
 										</span>
@@ -59,7 +59,7 @@
 						<strong class="refmain">{{ verse.number }}</strong>
 						<div class="interlinear">
 							{% for token in verse.tokens %}
-								<span class="token">
+								<span class="token"{% if token.alias_dicionario %} data-dictionary-form="{{ token.alias_dicionario.destino.grego | escape }}"{% endif %}>
 									{% if token.strongs != blank %}<a class="strongs" href="https://biblehub.com/greek/{{ token.strongs | strip }}.htm" data-strong="G{{ token.strongs }}" title="{{ token.verbete | escape }}:">{{ token.strongs }}</a>{% else %}<a class="strongs tooltip" href="#" target="_blank" data-strong="" aria-hidden="true" tabindex="-1">&nbsp;</a>{% endif %}
 									<span class="translit" title="{{ token.ocorrencia }}">{{ token.transliteracao }}</span>
 									<span class="greek">{{ token.lemma | escape }}</span>

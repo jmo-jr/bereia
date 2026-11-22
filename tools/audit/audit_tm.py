@@ -6,8 +6,12 @@ import hashlib
 import json
 import re
 import unicodedata as ud
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+if __package__ in (None, ''):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from tools.audit.accent_alias_rules import AccentAliases
 
 ROOT = Path(__file__).resolve().parents[2]
 VERSION = 1
@@ -133,18 +137,24 @@ def index_lexicon(lexicon):
     return literal, canonical, case, candidates
 
 
-def classify(form, indexes):
+def classify(form, indexes, ignore_case=False):
     literal, canonical, case, candidates = indexes
     if literal.get(form):
         return 'exata', literal[form]
     if canonical.get(nfc(form)):
         return 'somente_nfc', canonical[nfc(form)]
+    if ignore_case and case.get(nfc(form.lower())):
+        return 'somente_caixa', case[nfc(form.lower())]
     # Caixa é separada de equivalência Unicode e não autoriza associação.
     return 'ausente', []
 
 
-def audit(verses, sources, lexicon, flat, exceptions, prefer_exact=False):
+def audit(verses, sources, lexicon, flat, exceptions, prefer_exact=False, ignore_case=False,
+          accent_aliases=None, alias_valid_books=()):
     indexes = index_lexicon(lexicon)
+    form_index = {form: [{'strongs': r['strong'], 'flexao': r['flexao']} for r in entries]
+                  for form, entries in indexes[0].items()}
+    alias_resolver = AccentAliases(accent_aliases, flat, form_index, alias_valid_books)
     forms = {}
     alignment = []
     legacy = {}
@@ -160,17 +170,37 @@ def audit(verses, sources, lexicon, flat, exceptions, prefer_exact=False):
         alignment.append({'ref': verse['ref'], 'estado': status})
         for pos, form in enumerate(verse['forms'], 1):
             if form not in forms:
-                category, entries = classify(form, indexes)
+                category, entries = classify(form, indexes, ignore_case=ignore_case)
                 selected = legacy.get(legacy_key(form, exceptions))
+                ambiguous_case = False
+                multiple_case_analyses = False
                 if prefer_exact:
                     selected = exact.get(form) or canonical.get(nfc(form)) or selected
+                if ignore_case and form not in exact and nfc(form) not in canonical:
+                    case_entries = indexes[2].get(nfc(form.lower()), [])
+                    if (len({nfc(entry['forma']) for entry in case_entries}) > 1 or
+                            len({entry['strong'] for entry in case_entries}) > 1):
+                        ambiguous_case, selected = True, None
+                    elif case_entries:
+                        selected = canonical[nfc(case_entries[0]['forma'])]
+                        multiple_case_analyses = len(case_entries) > 1
+                controlled_accent = False
+                if form not in exact and nfc(form) not in canonical and not (ignore_case and indexes[2].get(nfc(form.lower()))):
+                    controlled_accent = alias_resolver.resolve(form)['estado'] != 'fora_escopo'
+                    if controlled_accent:
+                        selected = None  # Sem referência, não há escolha contextual.
                 forms[form] = {'forma_tm': form, 'classe': category, 'referencias': [],
                                'entradas': entries,
                                'candidatos_sem_diacriticos': indexes[3].get(folded(form), []),
                                'candidatos_caixa': indexes[2].get(nfc(form.lower()), []),
                                'ambiguidades': len(entries) > 1,
+                               'consulta_ambigua_caixa': ambiguous_case,
+                               'consulta_multianalise_caixa': multiple_case_analyses,
+                               'origem_controlada_acento': controlled_accent,
+                               'consultas_contextuais': {},
                                'candidatos_multiplos': len(indexes[3].get(folded(form), [])) > 1,
-                               'situacao_normalizacao': ('equivalencia_nfc' if category == 'somente_nfc' else
+                               'situacao_normalizacao': ('equivalencia_caixa' if category == 'somente_caixa' else
+                                   'equivalencia_nfc' if category == 'somente_nfc' else
                                    'somente_caixa_candidata' if category == 'ausente' and indexes[2].get(nfc(form.lower())) else
                                    'somente_sem_marcas_candidata' if category == 'ausente' and indexes[3].get(folded(form)) else
                                    'sem_candidato' if category == 'ausente' else 'literal'),
@@ -178,11 +208,27 @@ def audit(verses, sources, lexicon, flat, exceptions, prefer_exact=False):
             row = forms[form]
             ref = f"{verse['ref']}#{pos}"
             row['referencias'].append(ref)
+            current_selected = row['consulta_atual']
+            if row['origem_controlada_acento']:
+                resolved = alias_resolver.resolve(form, ref)
+                entry = resolved.get('entrada')
+                current_selected = ({'chave': entry['grego'], **{k: entry.get(k) for k in
+                    ('strongs', 'grego', 'abrev_morf', 'morfologia')}} if entry else None)
+                alias_id = resolved.get('alias', {}).get('id')
+                key = (resolved['estado'], alias_id)
+                if key not in row['consultas_contextuais']:
+                    row['consultas_contextuais'][key] = {'estado': resolved['estado'], 'alias_id': alias_id,
+                        'destino': current_selected, 'referencias': []}
+                row['consultas_contextuais'][key]['referencias'].append(ref)
             if status == 'alinhado':
                 _, strong, morph = aux['tokens'][pos - 1]
                 outcome = compatibility(row['entradas'], strong, morph) if row['entradas'] else 'forma_ausente'
-                selected = row['consulta_atual']
+                selected = current_selected
                 current = compatibility([{'strong': selected.get('strongs'), 'abrev_morf': selected.get('abrev_morf')}], strong, morph) if selected else 'sem_resultado'
+                if row['consulta_ambigua_caixa']:
+                    current = 'ambiguidade_caixa'
+                if row['origem_controlada_acento'] and not current_selected:
+                    current = 'alias_acento_pendente'
                 key = (strong, morph, outcome, current)
                 if key not in row['evidencias']:
                     row['evidencias'][key] = {'strong_fonte': strong, 'morfologia_fonte': morph,
@@ -195,12 +241,19 @@ def audit(verses, sources, lexicon, flat, exceptions, prefer_exact=False):
     rows = sorted(forms.values(), key=lambda x: x['forma_tm'])
     for row in rows:
         row['evidencias'] = list(row['evidencias'].values())
+        row['consultas_contextuais'] = list(row['consultas_contextuais'].values())
     return {'resumo': {'tokens_tm': sum(len(r['referencias']) for r in rows), 'formas_tm': len(rows),
         'classes': dict(sorted(Counter(r['classe'] for r in rows).items())),
         'ausentes_com_candidatos': sum(r['classe'] == 'ausente' and bool(r['candidatos_sem_diacriticos']) for r in rows),
         'formas_com_multiplas_analises': sum(r['ambiguidades'] for r in rows),
         'formas_com_multiplos_candidatos': sum(r['candidatos_multiplos'] for r in rows),
         'ausentes_apenas_caixa': sum(r['classe'] == 'ausente' and bool(r['candidatos_caixa']) for r in rows),
+        'formas_com_ambiguidade_caixa': sum(r['consulta_ambigua_caixa'] for r in rows),
+        'formas_com_multiplas_analises_por_caixa': sum(r['consulta_multianalise_caixa'] for r in rows),
+        'formas_com_alias_contextual_validado': sum(any(c['estado'] == 'resolvido' for c in r['consultas_contextuais']) for r in rows),
+        'tokens_alias_contextual_validado': sum(len(c['referencias']) for r in rows for c in r['consultas_contextuais'] if c['estado'] == 'resolvido'),
+        'tokens_alias_contextual_pendente': sum(len(c['referencias']) for r in rows for c in r['consultas_contextuais'] if c['estado'] == 'pendente'),
+        'tokens_com_ambiguidade_caixa': sum(len(r['referencias']) for r in rows if r['consulta_ambigua_caixa']),
         'consulta_atual_forma_diferente_nfc': sum(bool(r['consulta_atual']) and nfc(r['consulta_atual']['grego']) != nfc(r['forma_tm']) for r in rows),
         'alinhamento_versiculos': dict(sorted(Counter(r['estado'] for r in alignment).items())),
         'comparacoes': dict(sorted(Counter(e['comparacao_exata_nfc'] for r in rows for e in r['evidencias']).items()))},
@@ -233,12 +286,18 @@ def main():
         'derivado': 'src/_data/nt/dict_flex_nt-lxx_greek-pt.json',
         'indice': 'src/_data/nt/dict_form_index_nt-lxx_greek-pt.json',
         'consulta': 'src/_data/nt/index.js', 'painel': 'src/assets/js/strong-drawer.js',
+        'chave_caixa': 'src/lib/greek-form-lookup.js',
+        'resolvedor_acento': 'src/lib/greek-accent-aliases.js',
+        'regras_acento': 'tools/audit/accent_alias_rules.py',
         'gerador': 'tools/dictionary/generate.js', 'core': 'tools/dictionary/core.js',
         'strong_archive': 'src/_data/archive/strongsg.js',
         'tbesg': 'tools/lxx/fontes/TBESG - Translators Brief lexicon of Extended Strongs for Greek - STEPBible.org CC BY.txt',
         'strong_pt_legado': 'src/_data/strongs_greek_pt_defs.json',
         'auditor': 'tools/audit/audit_tm.py'}.items()}
     verses, sources = [], {}
+    aliases_path = ROOT / 'src/_data/nt/greek_accent_aliases.json'
+    if aliases_path.exists():
+        paths['aliases'] = aliases_path
     for book in sorted(args.books or BOOKS):
         tm = ROOT / f'src/interlinear/nt/{book}.json'
         csv_path = ROOT / f'tools/tmnt/with-parsing/{BOOKS[book]}.csv'
@@ -266,8 +325,15 @@ def main():
     lexicon, flat = read(paths['lexico']), read(paths['derivado'])
     lookup_source = paths['consulta'].read_text(encoding='utf-8')
     prefer_exact = 'const canonicalDictIndex = new Map();' in lookup_source
-    report = audit(verses, sources, lexicon, flat, exceptions_from(lookup_source), prefer_exact=prefer_exact)
-    report['consulta_modo'] = 'literal_nfc_antes_do_fallback_legado' if prefer_exact else 'normalizacao_legada'
+    ignore_case = 'const caseDictIndex = buildCaseDictIndex(' in lookup_source
+    accent_manifest = read(aliases_path) if aliases_path.exists() and 'const accentAliasIndex = buildAccentAliasIndex(' in lookup_source else None
+    valid_books = {book for book, evidence in (accent_manifest or {}).get('evidencia_por_livro', {}).items()
+                   if len(evidence) == 2 and all(manifest.get(p) == h for p, h in evidence.items())}
+    report = audit(verses, sources, lexicon, flat, exceptions_from(lookup_source), prefer_exact=prefer_exact,
+                   ignore_case=ignore_case, accent_aliases=accent_manifest, alias_valid_books=valid_books)
+    report['consulta_modo'] = ('literal_nfc_caixa_alias_contextual' if accent_manifest else
+                             'literal_nfc_caixa_antes_do_fallback_legado' if ignore_case else
+                             'literal_nfc_antes_do_fallback_legado' if prefer_exact else 'normalizacao_legada')
     expected_flat, expected_index = {}, defaultdict(list)
     for strong, group in lexicon.items():
         for i, f in enumerate(group['flexoes']):
@@ -284,17 +350,21 @@ def main():
     report['criterios'] = {
         'exata': 'Igualdade literal com flexoes[].grego; caixa preservada.',
         'somente_nfc': 'Equivalência canônica NFC, sem remover marcas nem converter caixa.',
-        'ausente': 'Sem flexão literal/NFC; candidatos por caixa ou marcas não são correspondências.',
-        'ambiguidades': 'Múltiplas entradas literais/NFC preservadas; não são erros por si só.',
+        'somente_caixa': 'Correspondência por minúsculas + NFC, sem retirar marcas ou espaços. Uma única forma canônica mantém a projeção de compatibilidade e todas as referências de análises; formas canônicas diferentes bloqueiam o fallback.',
+        'ausente': 'Sem flexão literal/NFC ou equivalente por caixa; candidatos sem marcas não são correspondências.',
+        'ambiguidades': 'Múltiplas entradas literais/NFC/caixa preservadas; não são erros por si só.',
         'evidencia': 'CSV local alinhado por versículo inteiro; grafia sem diacríticos não prova identidade morfológica.',
         'morfologia': 'Código idêntico ou mapeamento explícito N-caso-número-gênero → S-caso-gênero-número; sincretismo neutro nominativo/acusativo não cria divergência própria. Demais convenções: não comparável.',
         'inconsistencias': 'Divergências entre fontes, sujeitas a revisão; sem correção automática.',
+        'aliases': 'Equivalência agudo/grave somente nas referências validadas; consultas_contextuais detalha os resultados por ocorrência. Origem controlada sem prova não usa fallback legado.',
         'contagens': 'Comparações contam grupos forma/Strong/parsing/resultado, não tokens. Referências usam token iniciado em 1.',
         'incremental': 'Cache por livro e SHA256; relatório completo recalculado. --books restringe explicitamente o escopo.'}
     # As fontes não podem mudar durante a execução.
     if any(not (ROOT / p).exists() or digest(ROOT / p) != h for p, h in manifest.items()):
         raise RuntimeError('Fonte mudou durante a execução; repetir auditoria.')
     write(output / 'inventario.json', dump(report))
+    write(output / 'ambiguidades-caixa.json', dump({'schema_version': VERSION,
+        'formas': [r for r in report['formas'] if r['consulta_ambigua_caixa']]}))
     issues = [r for r in report['formas'] if any(e['comparacao_exata_nfc'] in {'strong_divergente', 'morfologia_divergente'} or e['comparacao_consulta_atual'] in {'strong_divergente', 'morfologia_divergente'} for e in r['evidencias'])]
     write(output / 'inconsistencias.json', dump({'schema_version': VERSION, 'formas': issues}))
     case = [r for r in report['formas'] if nfc(r['forma_tm'].lower()) in {'ἀρχῇ', 'ἀρχή', 'ἀρχὴ'}]

@@ -6,7 +6,8 @@ const { loadBetaSupplement, forBook } = require('../lib/lxx-beta');
 
 module.exports = () => {
   const dict = JSON.parse(fs.readFileSync(path.join(__dirname, 'nt/dict_flex_nt-lxx_greek-pt.json'), 'utf8'));
-  const enhance = createEnhanceTokenWithDict(dict, { record() {} }, ['ocorrencias_lxx']);
+  const formIndex = JSON.parse(fs.readFileSync(path.join(__dirname, 'nt/dict_form_index_nt-lxx_greek-pt.json'), 'utf8'));
+  const enhance = createEnhanceTokenWithDict(dict, { record() {} }, ['ocorrencias_lxx'], formIndex);
   const supplement = loadBetaSupplement();
   return loadBooks().flatMap(book => {
     const sourceText = fs.readFileSync(path.join(__dirname, '../interlinear/at', `${book.id}.json`), 'utf8');
@@ -25,7 +26,8 @@ module.exports = () => {
         number: verse.verse,
         tokens: (verse.tokens || []).map((token, position) => {
           const enriched = enhance(token);
-          const fallback = enriched.strongs ? null : beta(number, verse.verse, position, token.lemma);
+          const fallback = enriched.strongs || enriched.consulta_dicionario === 'ambiguidade_caixa'
+            ? null : beta(number, verse.verse, position, token.lemma);
           return { ...enriched, ...(fallback || {}), ocorrencias: enriched.ocorrencias_lxx ?? '', lemma: token.lemma };
         }),
       }));

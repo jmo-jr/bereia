@@ -5,6 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { execFileSync } = require('node:child_process');
 const { createEnhanceTokenWithDict } = require('../../src/_data/nt');
+const { validateAliasEvidence } = require('../../src/lib/greek-accent-aliases');
 const ROOT = path.resolve(__dirname, '../..');
 const read = p => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const dictionary = read('src/_data/nt/dict_flex_nt-lxx_greek-pt.json');
@@ -64,8 +65,9 @@ test('auditoria Python e consulta JavaScript concordam para todas as formas do i
     execFileSync('python3', ['-B', 'tools/audit/audit_tm.py', '--output', temporary], { cwd: ROOT });
     inventory = JSON.parse(fs.readFileSync(path.join(temporary, 'inventario.json'), 'utf8'));
   } finally { fs.rmSync(temporary, { recursive: true, force: true }); }
-  const lookup = createEnhanceTokenWithDict(dictionary, { record() {} });
-  assert.equal(inventory.consulta_modo, 'literal_nfc_antes_do_fallback_legado');
+  const manifest = read('src/_data/nt/greek_accent_aliases.json');
+  const lookup = createEnhanceTokenWithDict(dictionary, { record() {} }, [], read('src/_data/nt/dict_form_index_nt-lxx_greek-pt.json'), { manifest, validBooks: validateAliasEvidence(manifest, ROOT) });
+  assert.equal(inventory.consulta_modo, 'literal_nfc_caixa_alias_contextual');
   for (const row of inventory.formas) {
     const actual = lookup({ lemma: row.forma_tm });
     const expected = row.consulta_atual;
@@ -91,14 +93,14 @@ class Element {
   addEventListener() {}
 }
 
-async function renderDrawer(word, flexoes) {
+async function renderDrawer(word, flexoes, dictionaryForm) {
   const drawer = new Element();
   drawer.hidden = true;
   const body = new Element(), title = new Element();
   drawer.querySelector = selector => selector === 'h1' ? title : selector === '.drawer-body' ? body : new Element();
   const greek = new Element(); greek.textContent = word;
   const translation = new Element(); translation.textContent = 'Glosa da ocorrência';
-  const token = { querySelector: selector => selector === '.greek' ? greek : selector === '.translate' ? translation : null };
+  const token = { dataset: dictionaryForm ? { dictionaryForm } : {}, querySelector: selector => selector === '.greek' ? greek : selector === '.translate' ? translation : null };
   const link = new Element(); link.dataset.strong = 'G746';
   link.closest = selector => selector === '.token' ? token : link;
   const listeners = [];
@@ -126,11 +128,23 @@ test('painel apresenta apenas o dativo, preservando todas as análises NFC da me
   assert.equal(multiple.children.filter(c => c.tag === 'h2').length, 2);
 });
 
-test('painel não atribui morfologia de candidatos por caixa ou remoção de marcas', async () => {
-  for (const word of ['Ἀρχῇ', 'αρχη']) {
+test('painel ignora caixa e conserva as marcas', async () => {
+  const capital = await renderDrawer('Ἀρχῇ', lexical['746'].flexoes);
+  assert.match(capital.textContent, /Dativo/);
+  assert.equal(capital.children.filter(c => c.tag === 'h2').length, 1);
+  for (const word of ['αρχη']) {
     const body = await renderDrawer(word, lexical['746'].flexoes);
     assert.equal(body.children.filter(c => c.tag === 'h2').length, 0);
     assert.doesNotMatch(body.textContent, /Dativo|Nominativo|Acusativo|Genitivo/);
     assert.match(body.textContent, /Glosa da ocorrência/);
   }
+});
+
+
+test('painel usa destino validado sem mudar a grafia exibida', async () => {
+  const body = await renderDrawer('ἀρχὴ', lexical['746'].flexoes, 'ἀρχή');
+  assert.match(body.textContent, /ἀρχὴ/);
+  assert.match(body.textContent, /Forma de referênciaἀρχή/);
+  assert.match(body.textContent, /Nominativo/);
+  assert.doesNotMatch(body.textContent, /Dativo/);
 });

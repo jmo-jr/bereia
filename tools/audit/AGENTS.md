@@ -4,6 +4,31 @@ Siga o AGENTS.md da raiz. Nesta etapa, opere exclusivamente em leitura sobre
 TM, dicionários, traduções, índices, exceções e fontes auxiliares. Nem mesmo
 inconsistências técnicas autorizam alterações nos dados durante a auditoria.
 
+## Política de caixa autorizada pelo usuário
+
+Maiúsculas/minúsculas podem ser ignoradas na chave de consulta, mantendo NFC e
+todos os diacríticos. Preserve a capitalização original no TM, nos registros e
+na exibição; não determine automaticamente quais palavras são nomes próprios.
+Correspondências por caixa não exigem duplicar flexões no dicionário. Preserve
+todas as análises e não selecione a primeira em colisões entre formas canônicas
+diferentes ou entre Strong diferentes. Para uma só forma canônica e um só Strong
+com múltiplas análises, mantenha a projeção
+de compatibilidade já usada pela consulta literal e exponha todos os pares
+Strong/índice, sem fundir ou excluir registros. Não use casefold
+que expanda o iota subscrito nem retire marcas para resolver essas colisões.
+
+## Equivalências de acento autorizadas pelo usuário
+
+O usuário autorizou executar a estratégia de aliases agudo/grave validados.
+Permite-se criar e atualizar a lista positiva separada do dicionário e usá-la na
+consulta, mantendo os registros e o TM intactos. Cada alias deve conservar todos
+os demais sinais e vincular destino Strong/índice a referências com parsing
+alinhado e compatível. Evidência parcial só autoriza as referências comprovadas;
+não estenda a equivalência às demais ocorrências. As origens deste lote sem prova
+ficam pendentes e não podem atravessar o fallback legado sem marcas. Não funda
+nem apague as 255 inclusões anteriores. Interrogativos τίς/τί, deslocamentos de
+acento, circunflexos, espíritos, elisão e iota subscrito não entram nessa regra.
+
 ## Aplicação do piloto aprovada pelo usuário
 
 O usuário aprovou as glosas de `ἀρχῇ` e solicitou avançar para sua inclusão.

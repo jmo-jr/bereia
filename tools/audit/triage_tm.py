@@ -286,7 +286,7 @@ def main():
         '## Consulta estrita em paralelo', '',
         *[f'- {name}: {count} formas.' for name, count in comparison['resumo'].items()], '',
         *[f'- {name}: {count} tokens.' for name, count in comparison['tokens_por_classificacao'].items()], '',
-        'A consulta experimental aceita somente igualdade literal/NFC e devolve todas as análises canonicamente equivalentes.',
+        'A consulta sem retirada de marcas aceita literal/NFC e equivalência por caixa, preservando todas as análises correspondentes.',
         f'Consulta em produção registrada no inventário: {report.get("consulta_modo", "normalizacao_legada")}.',
         'Não altera o loader, o painel, os dados ou as exceções. Diferença entre consultas não comprova erro de tradução.', '',
         '## Decisão humana', '',

@@ -23,7 +23,7 @@ function loadBooks(dictionary) {
   const filename = path.join(ROOT, LOADER);
   const sandbox = { module: { exports: {} }, __dirname: path.dirname(filename), process,
     require(name) {
-      if (name !== 'fs') return require(name);
+      if (name !== 'fs') return require('node:module').createRequire(filename)(name);
       return { ...fs,
         readFileSync(file, ...args) {
           return path.resolve(file) === path.join(ROOT, DERIVED) ? JSON.stringify(dictionary) : fs.readFileSync(file, ...args);
