@@ -2,48 +2,90 @@
 
 ## https://bereia.app.br
 
-Baseado no **Texto Majoritário** e na **Septuaginta de Rhalfs**, com destaque para a *Família 35*
+Baseado no **Texto Majoritário**, com destaque para a *Família 35*
 
-## Novo Testamento de Estudo Exegético
+## Projeto baseado em 11ty
 
-- Prioridade à tradução literal, com notas apresentando traduções alternativas ou dinâmicas;
-- Coerência de tradução de palavras sempre que possível, de modo a refletir, sempre que possível, a uniformidade lexical do original grego;
-- Comentários, notas e palavras-chave gregas auxiliam na compreensão do texto;
-- Texto formatado em parágrafos, mantendo a numeração dos versículos;
-- Referências a citações do AT grego, tanto as diretas, quanto as indiretas;
-- Cores destacam as palavras de Jesus, personagens importantes e locais de destaque;
-- Acesso fácil à versão interlinear do capítulo aberto.
+**Compile:** `eleventy`
 
-## Bíblia Grega Interlinear Analítico
+**Run:** `npx @11ty/eleventy`
 
-- Texto grego da Septuaginta (LXX) de Rhalfs (1935), contendo números Strong (onde existentes), morfologia analítica e tradução dos termos;
-- Texto grego do Novo Testamento Bizantino (Majoritário) de Hodges-Farstad, contendo números Strong, morfologia analítica e tradução dos termos;
-- Exibição de detalhes do verbete, incluindo número de ocorrências na LXX e no NTTM, a palavra hebraica original do Texto Massorético e notas lexicais;
+**Serve:** `npx @11ty/eleventy --serve`
 
-## Roadmap
+## Dicionário grego
 
-### Novo Testamento de Estudo
+A fonte principal é `src/_data/dict_lex_nt-lxx_greek-pt.json`, organizada por
+Strong e lema. O dicionário de flexões e o índice de formas são gerados
+automaticamente pelo Eleventy. Para gerar e verificar manualmente, use
+`npm run dict:generate`, `npm run dict:check` e `npm test`.
+Consulte [a arquitetura e o fluxo de atualização](docs/arquitetura-dicionario.md).
 
-- Tooltip sobre cada palavra ou expressão em português exibe o termo grego por trás da tradução, além da pronúncia (transliteração), morfologia e sentido do termo;
+## Regex para pesquisa de expressões:
 
-### Bíblia Interlinear
+Caracteres especiais devem ser acrescentados após a vírgula
 
-- Exibir o texto da LXX junto com a citação no NT para efeito comparativo;
+`\b[\w\s\[\],áàãéêíóõôúç()]+` (\b = limite de palavra; \w = letra; \s = espaço; \ = escapa carac. espec.; + = um ou mais)
 
-## Ferramentas e recursos utilizados
+Substituir os links das definições em grego do Bibleapps.com:
 
-Tooltipster: https://calebjacob.github.io/tooltipster
+Find: `/greek/(\d{1,4})\.htm`
 
-Texto da Septuaginta (Rahlfs): https://github.com/OpenScriptorium/lxx-morph
+Quebras de linha: `(\r?\n)+`
 
-Texto Majoritário (Bizantino): https://github.com/byztxt/byzantine-majority-text
+Números:  (\d) -> \n$1
 
-https://biblehub.com/
+Replace: `https://bibleapps-com.translate.goog/strongs/greek/$1.htm?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp`
 
-https://septuaginta.online/
+Data TR/LXX: `https://www.blueletterbible.org/lang/lexicon/inflections.cfm?strongs=G{numero_strong}&ot={TR/LXX}&word={grego_inflex}`
 
-https://theancientbible.org
+https://theancientbible-org.translate.goog/word/g0846/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp
 
-Powered by [11ty](https://11ty.dev)
+## Auxílios para tradução:
 
-**A Deus toda a glória**
+Glifos: ē, ō
+
+Vozes e Tempos Verbais:
+- Nominativo = A pesoa ...
+- Acusativo = ... a coisa
+- Dativo = (indireto) a, para; (instrumento) com, por meio de; (lugar) em, sobre
+- Genitivo = do
+- Vocativo = Mestre!
+
+- Aoristo Indicativo = Pretérito Perfeito Simples (eles foram)
+- Presente Particípio Ativo (PPA) = Gerúndio (vendo)
+- Presente Particípio Passivo (PPP) = sendo visto
+- Aoristo Particípio Ativo (APA) = tendo visto
+- Aoristo Particípio Passivo (APP) = tendo sido visto
+
+### Declinações do artigo definido
+
+|  				| ACUSATIVO | NOMINATIVO | DATIVO | GENITIVO |
+|----------|----------|----------|----------|----------|
+| Masculino  | τὸν, τοὺς | ὁ, οἱ | τῷ, τοῖς | τοῦ, τῶν |
+| Feminino  | τὴν, τὰς | ἡ, αἱ | τῇ, ταῖς | τῆς, τῶν |
+| Neutro  | τὸ, τὰ | τὸ, τὰ | τῷ, τοῖς | τοῦ, τῶν |
+
+## Templates para páginas
+
+``` 
+---
+bookName: "Mateus"
+bookChapter: 1
+---
+```
+
+`{% render './_includes/bookNav', bookName: bookName, bookChapter: bookChapter %}`
+
+`{% render './_includes/sideNav', theBookName: bookName, theBookChapter: bookChapter %}`
+
+Novo Tooltip: https://calebjacob.github.io/tooltipster/#demos
+
+## Detalhes sobre o NT de Estudo
+
+- Tradução priorizando a literalidade, secundariamente a legibilidade
+- Coerência de tradução de palavras sempre que possível
+- Comentários tooltip com tradução alternativa (dinâmica), notas, etc.
+- Palavras-chave do NT (grego e detalhe sobre a palavra) tooltip
+- Parágrafos baseados na NVI
+- Negrito nas referências ao AT, tanto diretas, quanto indiretas (consultar Bíbllia Judaica Comentada)
+- Palavras de Jesus em vermelho 

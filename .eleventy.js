@@ -1,6 +1,5 @@
 const { execSync } = require('child_process')
 const generateDictionary = require('./tools/dictionary/generate');
-const { createPilot, watchPaths } = require('./tools/lexical-alignment/pilot');
 //const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function(eleventyConfig) {
@@ -8,10 +7,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addWatchTarget('src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
   eleventyConfig.addWatchTarget('src/interlinear/at/*.json');
   eleventyConfig.on('eleventy.beforeWatch', () => generateDictionary());
-  for (const file of watchPaths) eleventyConfig.addWatchTarget(file);
-  let lexicalPilot;
-  eleventyConfig.on('eleventy.before', () => { lexicalPilot = undefined; });
-  eleventyConfig.on('eleventy.after', () => lexicalPilot?.writeReports());
   const escapeHtml = value => String(value)
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
@@ -40,14 +35,7 @@ module.exports = function(eleventyConfig) {
     const number = positiveInteger(verseNumber, 'versículo');
 		const redletter = red ? 'redletter' : '';
 
-    const verseId = `${abbreviation}_${chapterNumber}-${number}`;
-    const text = content.trim();
-    let aligned = { body: text, details: '' };
-    if (abbreviation.toLowerCase() === 'mt' && chapterNumber === 8) {
-      lexicalPilot ??= createPilot();
-      aligned = lexicalPilot.align(text, number, verseId);
-    }
-    return `<span id="${verseId}" class="verse"><span class="verse-number">${number}</span><span class="verse-text ${redletter}">${aligned.body}</span>${aligned.details}</span>`;
+    return `<span id="${abbreviation}_${chapterNumber}-${number}" class="verse"><span class="verse-number">${number}</span><span class="verse-text ${redletter}">${content.trim()}</span></span>`;
   });
 
 	/*
