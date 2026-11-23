@@ -77,6 +77,7 @@ title: Bíblia BEREIA
 
   <div id="app" class="wrapper no_greenplaces no_bluecharacters">
 
+		{% comment %} header.app-bar {% endcomment %}
     {% render 'siteHeader' %}
 
 		{% assign interlinearBooks = ntBooks %}
@@ -87,10 +88,12 @@ title: Bíblia BEREIA
 			{% if entry.lxx == true %}{% assign isLxxInterlinear = true %}{% endif %}
 		{% endif %}
 
+		{% comment %} div.toolbar {% endcomment %}
 		{% render 'toolBar', 
 			lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookNameAbbr: bookNameAbbr, bookChapter: bookChapter, type: bee | default: false 
 		%}
 
+		{% comment %} Conteúdo atual {% endcomment %}
 		<div class="content-wrapper">
 			<main class="main-content">
 				<div class="content" data-pagefind-body>
@@ -102,6 +105,7 @@ title: Bíblia BEREIA
 				</div>
 			</main>
 
+			{% comment %} Drawer lexical {% endcomment %}
 			{% unless bee %}
 			<aside class="side-drawer" id="strong-drawer" tabindex="-1"
 				aria-labelledby="strong-drawer-title" data-lexico-url="{{ '/assets/lexico/greek.json' | url }}">
