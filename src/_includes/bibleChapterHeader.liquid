@@ -1,19 +1,18 @@
-{% render 'sideNav.liquid', theResource: '/biblia/', theBookName: bookName, theBookChapter: bookChapter %}
+{% comment %} {% render 'sideNav.liquid', theResource: '/biblia/', theBookName: bookName, theBookChapter: bookChapter %} {% endcomment %}
 
 <div class="page-header bee">
-	{% if bookChapter > 1 %}
+	{% comment %} {% if bookChapter > 1 %}
 	<a 
 		href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | minus: 1 }}"
 		title="{{ bookName }} {{ bookChapter | minus: 1 }}">
 	◄</a>
 	{% else %}
 	<a href="#">&nbsp;</a>
-	{% endif %}
+	{% endif %} {% endcomment %}
 	<div class="page-header_title">
 		<h3>{{bookName}} {{bookChapter}}</h3>
-		<small><a href="/interlinear/{{bookAbbrev}}/{{bookChapter}}">Versão interlinear</a></small>
+		{% comment %} <small><a href="/interlinear/{{bookAbbrev}}/{{bookChapter}}">Versão interlinear</a></small> {% endcomment %}
 	</div>
-	<a href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | plus: 1 }}"
-		title="{{ bookName }} {{ bookChapter | plus: 1 }}">►</a>
+	{% comment %} <a href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter | plus: 1 }}"
+		title="{{ bookName }} {{ bookChapter | plus: 1 }}">►</a> {% endcomment %}
 </div>
-<div class="content-container">

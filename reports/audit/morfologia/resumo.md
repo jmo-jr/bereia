@@ -7,13 +7,13 @@ Dados originais preservados. Os achados contam regras acionadas: uma flexão pod
 ## Cobertura
 
 - grupos_strong: 5379.
-- flexoes: 18542.
-- formas_nfc: 18534.
-- cobertura_codigos: {"codigo_comparavel": 18462, "codigo_nao_comparavel": 80, "divergencias_nominais_uma_ocorrencia_ignoradas": 45, "registros_verbais_genericos_sem_analise_flexional": 1}.
-- achados: 870.
-- flexoes_com_achados: 813.
-- achados_por_tipo: {"classe_flexao_lema": 303, "codigo_descricao": 14, "grafia_com_invisiveis_ou_espacos": 6, "parsing_auxiliar_divergente": 474, "strong_auxiliar_divergente": 71, "strong_verbete_lema": 2}.
-- achados_por_estado: {"ERRO_COMPROVADO": 14, "REVISAO_MANUAL": 856}.
+- flexoes: 18897.
+- formas_nfc: 18889.
+- cobertura_codigos: {"codigo_comparavel": 18802, "codigo_nao_comparavel": 95, "divergencias_nominais_uma_ocorrencia_ignoradas": 52, "registros_verbais_genericos_sem_analise_flexional": 1}.
+- achados: 939.
+- flexoes_com_achados: 878.
+- achados_por_tipo: {"classe_flexao_lema": 329, "codigo_descricao": 14, "grafia_com_invisiveis_ou_espacos": 6, "parsing_auxiliar_divergente": 509, "strong_auxiliar_divergente": 79, "strong_verbete_lema": 2}.
+- achados_por_estado: {"ERRO_COMPROVADO": 14, "REVISAO_MANUAL": 925}.
 - formas_repetidas: 8.
 - repeticoes_por_tipo: {"analises_distintas_atestadas": 2, "mesma_analise_metadados_distintos": 3, "multiplicidade_a_validar": 3}.
 
