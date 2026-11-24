@@ -322,7 +322,7 @@ def render_chapter(
         "{% render 'bibleChapterHeader.liquid', bookName: bookName, "
         "bookAbbrev: bookAbbrev, bookChapter: bookChapter %}"
     )
-    return f"{front_matter}\n{header}\n\n" + "\n\n".join(sections) + "\n</div>\n"
+    return f"{front_matter}\n{header}\n\n" + "\n\n".join(sections) + "\n"
 
 
 def build_parser() -> argparse.ArgumentParser:
