@@ -14,7 +14,7 @@ title: Bíblia BEREIA
 	<script>
 		(() => {
 			const storageKey = 'bereia-theme';
-			const systemPreference = window.matchMedia('(prefers-color-scheme: dark)');
+			const systemPreference = window.matchMedia('(prefers-color-scheme: light)');
 			const savedTheme = localStorage.getItem(storageKey);
 			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
 
@@ -89,8 +89,9 @@ title: Bíblia BEREIA
 		{% endif %}
 
 		{% comment %} div.toolbar {% endcomment %}
+		{% assign toolbarBookNameAbbr = bookNameAbbr | default: bookAbbrev %}
 		{% render 'toolBar', 
-			lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookNameAbbr: bookNameAbbr, bookChapter: bookChapter, type: bee | default: false 
+			lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookNameAbbr: toolbarBookNameAbbr, bookChapter: bookChapter, type: bee | default: false 
 		%}
 
 		{% comment %} Conteúdo atual {% endcomment %}
@@ -119,6 +120,14 @@ title: Bíblia BEREIA
 			</aside>
 			{% endunless %}
 		</div>
+
+		{% unless bee %}
+		<footer>
+			<p class="source-credit">
+				<small>Palavras entre [colchetes] não existem no original, mas podem estar subentendidas ou serem necessárias para tornar a leitura compreensível. Palavras em <em>itálico</em> indicam termos hebraicos, aramaicos ou latinos presentes no original grego.</small>
+			</p>
+		</footer>
+		{% endunless %}
 
     <script src="{{ '/assets/js/strong-drawer.js' | url }}" defer></script>
 
