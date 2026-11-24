@@ -17,6 +17,7 @@
 	--brandNameColor: var(--brandColor);
 	--brandTextColor: #7b0000;
   --textColor: rgba(0, 0, 0, 0.85);
+	--greyText: #AEB5C1;
 	--burgerColor: rgb(101 79 85);
 	--flatBgColor: white;
 	--toolBarBg: #fafafb;
@@ -274,16 +275,22 @@ button { cursor: pointer; }
 			}
 		}
 
-		& a.group-button {
+		& .group-button {
+			display: inline-block;
+			flex: 1;
 			padding: 9px 14px;
+			background-color: var(--inputBg);
+			border: none;
 			border-radius: 6px;
+			color: var(--labelColor);
 			font-family: var(--sans-font);
 			font-size: 14px;
 			font-weight: 500;
-			display: inline-block;
-			flex: 1;
 			text-align: center;
-			color: var(--labelColor);
+
+			&[disabled] {
+				opacity: .2;
+			}
 
 			&.active {
 				background: var(--activeBtnBg);
@@ -487,6 +494,11 @@ button.large {
 
 	& footer {
     border-top: solid 1px #e3e3e3;
+		color: var(--greyText);
+
+		&.nte-footer {
+			margin: 24px 24px 0;
+		}
 	}
 }
 

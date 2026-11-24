@@ -76,7 +76,6 @@ title: Bíblia BEREIA
 <body>
 
   <div id="app" class="wrapper no_greenplaces no_bluecharacters">
-
 		{% comment %} header.app-bar {% endcomment %}
     {% render 'siteHeader' %}
 
@@ -103,7 +102,15 @@ title: Bíblia BEREIA
 						{{ content }}
 					{% endblock %}
 
-				</div>
+				</div><!-- /.content -->
+
+				{% if bee %}
+				<footer class="nte-footer">
+					<p class="source-credit">
+						<small>Palavras entre [colchetes] não existem no original, mas podem estar subentendidas ou serem necessárias para tornar a leitura compreensível. Palavras em <em>itálico</em> indicam termos hebraicos, aramaicos ou latinos presentes no original grego.</small>
+					</p>
+				</footer>
+				{% endif %}
 			</main>
 
 			{% comment %} Drawer lexical {% endcomment %}
@@ -119,19 +126,10 @@ title: Bíblia BEREIA
 				<div class="drawer-body" aria-live="polite"></div>
 			</aside>
 			{% endunless %}
-		</div>
 
-		{% unless bee %}
-		<footer>
-			<p class="source-credit">
-				<small>Palavras entre [colchetes] não existem no original, mas podem estar subentendidas ou serem necessárias para tornar a leitura compreensível. Palavras em <em>itálico</em> indicam termos hebraicos, aramaicos ou latinos presentes no original grego.</small>
-			</p>
-		</footer>
-		{% endunless %}
+		</div><!-- /.content-wrapper -->
 
-    <script src="{{ '/assets/js/strong-drawer.js' | url }}" defer></script>
-
-  </div>
+  </div><!-- /#app -->
 
 	<div class="feedback-component">
 		<button type="button" onclick="toggleMenu(feedbackWindow, this)">📢 Feedback</button>
@@ -145,6 +143,7 @@ title: Bíblia BEREIA
 	</div>
 
   <!-- SCRIPTS -->
+	<script src="{{ '/assets/js/strong-drawer.js' | url }}" defer></script>
   <script>
     var page = document.getElementById("app");
 		
@@ -195,20 +194,37 @@ title: Bíblia BEREIA
 			});
 		});
 	</script>
-	<script 
-		src="{{ '/biblia/pagefind/pagefind-ui.js' | url }}" 
-		onload="new PagefindUI({
-			element: '#search', 
-			showImages: false,
-			pageSize: 10,
-  		excerptLength: 12,
-			translations: { 
-				placeholder: 'Busca', 
-				zero_results: 'Não encontrei [SEARCH_TERM]', 
-				many_results: '[COUNT] resultados para [SEARCH_TERM]', 
-				one_result: '[COUNT] resultado para [SEARCH_TERM]'
+	<script src="{{ '/biblia/pagefind/pagefind-ui.js' | url }}" defer></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			function initPagefind(selector) {
+				const container = document.querySelector(selector);
+				if (!container || typeof PagefindUI === "undefined") return;
+
+				new PagefindUI({
+					element: selector,
+					showImages: false,
+					pageSize: 10,
+					excerptLength: 12,
+					translations: {
+						placeholder: "Busca",
+						zero_results: "Não encontrei [SEARCH_TERM]",
+						many_results: "[COUNT] resultados para [SEARCH_TERM]",
+						one_result: "[COUNT] resultado para [SEARCH_TERM]"
+					},
+					processResult: function (result) {
+						if (result.url && !result.url.startsWith("/") && !result.url.startsWith("http")) {
+							result.url = "/" + result.url;
+						}
+						return result;
+					}
+				});
 			}
-		});">
+
+			// Exemplos em diferentes telas/containers da mesma estrutura
+			initPagefind("#search");
+			initPagefind("#search-modal");
+		});
 	</script>
 	<script>
 		const tema = checkbox.checked ? 'dark' : 'light';

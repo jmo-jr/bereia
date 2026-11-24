@@ -2,12 +2,6 @@
 <div class="toolbar">
 	<div class="content">
 
-		{% comment %} {% if type == true %}
-		<h2 class="show-mobile">Bíblia de Estudo Exegético</h2>
-		{% else %}
-		<h2 class="show-mobile">{% if lxx %}LXX Interlinear Analítico{% else %}NT Interlinear Analítico{% endif %}</h2>
-		{% endif %} {% endcomment %}
-
 		<div class="d-flex justify-between align-items-center flex-wrap">
 
 			{% comment %} Linha 1: Navegador dos livros {% endcomment %}
@@ -67,12 +61,6 @@
 				</div>
 			</div>
 
-			{% comment %} {% if type %}
-			<h2 class="show-desktop">Bíblia de Estudo Exegético</h2>
-			{% else %}
-			<h2 class="show-desktop">{% if lxx %}AT Grego (LXX) Interlinear Analítico{% else %}NT Majoritário Interlinear Analítico{% endif %}</h2>
-			{% endif %} {% endcomment %}
-
 			{% comment %} Linha 2: Configurações de tela {% endcomment %}
 			{% if type %}
 			<div class="options-container">
@@ -111,9 +99,9 @@
 
 			<div class="tool-selector">
 				<div class="button-group">
-					<a class="group-button {% if type %}active{% endif %}" href="{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter }}">NT de Estudo</a>
+					<button class="group-button {% if type %}active{% endif %}" onclick="window.location.href='{{ '/biblia/' | url }}{{ bookName | downcase }}/{{ bookChapter }}'" {% if lxx %}disabled{% endif %}>NT de Estudo</button>
 
-					<a class="group-button {% unless type %}active{% endunless %}" href="{{ '/interlinear/' | url }}{{ bookNameAbbr }}/{{ bookChapter }}">Bíblia Interlinear</a>
+					<button class="group-button {% unless type %}active{% endunless %}" onclick="window.location.href='{{ '/interlinear/' | url }}{{ bookNameAbbr }}/{{ bookChapter }}'">Bíblia Interlinear</button>
 				</div>
 			</div>
 
