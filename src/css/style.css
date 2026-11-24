@@ -29,6 +29,7 @@
 	--linkColor: #107AF7;
 	--titleColor: #051E3C;
 	--redLetter: #e60000;
+	--footerColor: #777;
 	--shadowColor: rgba(0, 0, 0, .1);
 }
 
@@ -51,6 +52,7 @@
 	--linkColor: #59CDF5;
 	--titleColor: #F9F9F9;
 	--redLetter: #d24b4b;
+	--footerColor: #777;
 	--shadowColor: rgba(255, 255, 255, .1);
 }
 
@@ -425,7 +427,7 @@ button.large {
   z-index: 2000;
   padding: 12px 16px;
   background: var(--brandColor);
-  color: var(--textColor);
+  color: rgba(255,255,255,.85);
   box-shadow: 0 -4px 18px var(--shadowColor);
 }
 
@@ -494,7 +496,12 @@ button.large {
 
 	& footer {
     border-top: solid 1px #e3e3e3;
-		color: var(--greyText);
+
+		& p {
+			color: var(--footerText);
+			font-family: var(--sans-font);
+			line-height: 1.2;
+		}
 
 		&.nte-footer {
 			margin: 24px 24px 0;
@@ -1234,11 +1241,11 @@ table.tablefloatleft td {
   .pericope {
     &.title {
 			margin-top: 0;
-      padding: 16px;
+      padding: 32px 24px 8px;
     }
 
     &.text {
-      padding: 0 16px;
+      padding: 0 24px;
     }
   }
 
@@ -1363,7 +1370,7 @@ aside.side-drawer {
 	font-family: var(--sans-font);
 	overflow-y: hidden;
 	transform: translateX(100%);
-	transition: all 1s ease;
+	transition: all .8s ease;
 	opacity: 0;
 	z-index: 1000;
 
@@ -1556,8 +1563,8 @@ aside.side-drawer {
   border: 1px solid var(--inputBorder);
 	border-radius: .35rem;
 	background: var(--flatBgColor);
-	color: var(--greyText);
-	box-shadow: 0 3px 14px var(--shadowColor);
+	color: var(--brandTextColor);
+	box-shadow: 0 0 9px var(--shadowColor);
   font: normal 1rem/1.5 Georgia, serif;
   white-space: pre-line;
   text-align: left;
