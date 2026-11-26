@@ -1,0 +1,21 @@
+# Decisões de tradução — 1João 4
+
+- **4.1 — πνεῦμα / δοκιμάζω:** πνεῦμα foi traduzido por “espírito” em minúscula quando designa os espíritos que devem ser testados. δοκιμάζω foi mantido como “testar”, conforme o dicionário e a distinção já usada em 1Pedro 1.7.
+- **4.1 — ψευδοπροφήτης:** traduzido por “falso profeta”, sem fundir a referência aos espíritos com as pessoas por meio das quais atuam.
+- **4.2 — τὸ πνεῦμα τοῦ θεοῦ:** traduzido por “o Espírito de Deus”, com inicial maiúscula. O passivo γινώσκεται foi vertido por “é reconhecido”.
+- **4.2–3 — leitura do TM:** preservada nas duas orações a forma completa “Jesus Cristo vindo em carne”, conforme o Texto Majoritário local. O perfeito ἐληλυθότα foi traduzido pelo particípio “vindo”, conservando a encarnação como condição afirmada.
+- **4.3 — τὸ τοῦ ἀντιχρίστου:** “[o espírito] do anticristo” explicita o substantivo retomado do contexto, que está elíptico na expressão grega.
+- **4.4 — maior:** a tradução mantém abertas as identidades de “aquele que está em vocês” e “aquele que está no mundo”, sem acrescentar nomes ao texto.
+- **4.5–6 — mundo e escuta:** preservadas as repetições de “mundo”, “ser de” e “ouvir”. Em 4.6, “espírito da verdade/espírito do erro” permanece em minúsculas, pois a oposição imediata classifica a origem dos espíritos sem nomear expressamente o Espírito Santo.
+- **4.7–8 — amor e conhecimento:** mantidas as repetições de ἀγαπάω/ἀγάπη e γινώσκω. “Gerado por Deus” segue a escolha de 1João 2.29 e 3.9.
+- **4.9 — μονογενής:** traduzido por “unigênito”, em continuidade com João 1.14,18 e 3.16,18. “Em nós” preserva ἐν ἡμῖν sem decidir se o amor foi manifestado dentro de nós ou entre nós.
+- **4.10 — ἱλασμός:** traduzido por “propiciação”, em continuidade com 1João 2.2.
+- **4.12 — θεάομαι:** traduzido por “contemplar”, preservando a distinção com o verbo mais geral “ver”. τελειόω foi mantido como “completar”.
+- **4.13 — ἐκ τοῦ πνεύματος:** traduzido por “de seu Espírito”, com inicial maiúscula por designar o dom divino já mencionado em 1João 3.24.
+- **4.14 — σωτήρ:** traduzido por “Salvador”, com inicial maiúscula como designação do Filho. “[Como]” explicita a relação predicativa exigida pelo português.
+- **4.15–16 — permanência recíproca:** mantida a repetição “Deus permanece nele, e ele, em Deus”, sem substituir a construção por linguagem explicativa.
+- **4.16 — ἀγάπη ἐν ἡμῖν:** traduzido por “amor que Deus tem em nós”, mantendo a preposição e sem escolher explicitamente entre “em nós” e “por nós”.
+- **4.17 — μεθ’ ἡμῶν:** traduzido por “entre nós”, solução portuguesa natural para a ideia de amor completado “conosco”. A expressão “neste mundo” preserva a ênfase do demonstrativo τούτῳ.
+- **4.18 — τέλειος / τελειόω / κόλασις:** a relação lexical foi mantida por “completo/completar”, e κόλασις foi traduzido por “punição”, conforme o dicionário.
+- **4.19 — leitura do TM:** preservados o objeto “o” e o advérbio “primeiro”: “Nós o amamos porque ele nos amou primeiro”.
+- **4.20 — pergunta do TM:** preservado “como pode amar Deus?”, conforme πῶς no Texto Majoritário local. A repetição ver/não ver foi mantida.

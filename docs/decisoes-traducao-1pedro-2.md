@@ -1,0 +1,24 @@
+# Decisões de tradução — 1Pedro 2
+
+- **2.1 — catálogo de vícios:** κακία, δόλος, ὑπόκρισις, φθόνος e καταλαλιά foram traduzidos por “maldade”, “engano”, “hipocrisia”, “inveja” e “difamação”. O último termo é distinguido do verbo καταλαλέω, traduzido por “falar contra” no v. 12.
+- **2.2 — λογικὸν ἄδολον γάλα:** traduzido por “leite racional puro”, seguindo as equivalências do dicionário definitivo. O TM local não contém “para salvação” depois do verbo “crescer”; a expressão não foi acrescentada.
+- **2.3 — χρηστός:** traduzido por “bondoso”, preservando a qualidade atribuída ao Senhor sem confundi-la com ἀγαθός.
+- **2.4–8 — λίθος / πέτρα:** λίθος foi mantido como “pedra” e πέτρα como “rocha”. ἔντιμος foi traduzido por “honrado”, conforme o dicionário, e ἀκρογωνιαῖος pela unidade “pedra angular”.
+- **2.5 — imagem do edifício:** “[como]” explicita a relação predicativa entre os crentes e a “casa espiritual”. O passivo οἰκοδομεῖσθε foi mantido como “são edificados”. ἱεράτευμα foi traduzido por “sacerdócio”.
+- **2.6 — negação enfática:** οὐ μή foi traduzido por “de modo nenhum”. A pedra foi retomada pelo pronome feminino “nela”, sem substituir a imagem por uma referência interpretativa a Cristo dentro da citação.
+- **2.7 — elipse:** “[ela é]” explicita a relação entre a pedra e a honra para os que creem. “Cabeça do ângulo” preserva a expressão grega sem harmonizá-la com “pedra angular” do versículo anterior.
+- **2.8 — destino dos desobedientes:** “para o que também foram destinados” conserva a referência relativa aberta de εἰς ὃ, sem explicitar se o antecedente é tropeço, desobediência ou outra ideia contextual.
+- **2.9 — povo de Deus:** γένος, βασίλειον ἱεράτευμα, ἔθνος e λαὸς εἰς περιποίησιν foram traduzidos por “geração”, “sacerdócio real”, “nação” e “povo para posse”. A última expressão permanece próxima do grego sem acrescentar um possuidor não expresso.
+- **2.9 — ἀρεταί:** traduzido por “virtudes”, conforme o dicionário definitivo, sem reduzir o plural a uma única qualidade.
+- **2.10 — misericórdia:** preservada a repetição verbal “não haviam recebido misericórdia/agora receberam misericórdia”. Os colchetes marcam as cópulas subentendidas.
+- **2.11 — πάροικος / παρεπίδημος:** traduzidos por “forasteiro” e “estrangeiro de passagem”, evitando duas palavras portuguesas idênticas para termos gregos distintos. A imagem militar de στρατεύομαι foi mantida em “guerrear”.
+- **2.12 — ἐπισκοπή:** traduzido por “supervisão”, conforme o dicionário. A tradução não determina se o “dia da supervisão” se refere a visita favorável ou a julgamento.
+- **2.13 — πᾶσα ἀνθρωπίνη κτίσις:** traduzido contextualmente por “toda instituição humana”. Embora κτίσις designe literalmente “criação”, rei e governadores nos vv. 13–14 mostram que o referente aqui é a ordem humana constituída.
+- **2.14–15 — fazer o mal e o bem:** κακοποιός e as formas de ἀγαθοποιέω foram mantidos como “malfeitor/fazer o bem”. φιμόω foi traduzido por “amordaçar”, preservando sua imagem concreta.
+- **2.16 — liberdade e escravidão:** ἐπικάλυμμα foi traduzido por “cobertura”; δοῦλοι, por “escravos”, conforme a preferência lexical do projeto.
+- **2.18 — οἰκέτης / δεσπότης / σκολιός:** traduzidos contextualmente por “servo”, “senhor” e “perverso”. “Soberano” e “torto”, equivalências formais possíveis, seriam inadequados às relações pessoais descritas na exortação.
+- **2.19–20 — χάρις / κλέος:** χάρις foi mantido como “graça”, e κλέος, como “glória”. “[Há]” explicita a cópula na pergunta do v. 20.
+- **2.21 — leitura do TM:** preservado “Cristo sofreu em nosso favor”, conforme ὑπὲρ ἡμῶν no Texto Majoritário local. ὑπογραμμός e ἴχνος foram traduzidos por “exemplo” e “pegadas”.
+- **2.23 — entrega ao justo Juiz:** “[a si mesmo]” explicita o objeto subentendido de παραδίδωμι, sem nomear aquele “que julga justamente” além do texto.
+- **2.24 — ἀπογίνομαι / ξύλον / μώλωψ:** traduzidos por “morrer para”, “madeiro” e “ferida”, em consonância com o dicionário e com o uso anterior de “madeiro” em Atos e Gálatas.
+- **2.25 — ποιμήν / ἐπίσκοπος:** traduzidos por “Pastor” e “Supervisor”. As iniciais maiúsculas refletem seu emprego como designações de Cristo no contexto.

@@ -1,0 +1,23 @@
+# Decisões de tradução — 1Pedro 4
+
+- **Estrutura das perícopes:** o JSON local contém quatro objetos sobrepostos: vv. 1–11 e 12–19 aparecem primeiro com títulos incompatíveis, e os vv. 7–11 e 12–19 reaparecem com títulos e limites coerentes. Para evitar duplicação, o TXT usa vv. 1–6 sob o primeiro título existente e depois as perícopes coerentes de vv. 7–11 e 12–19. Nenhum título foi inventado e nenhum JSON foi alterado.
+- **4.1 — leitura do TM:** preservado “Cristo sofreu em nosso favor”, conforme ὑπὲρ ἡμῶν. ἔννοια e ὁπλίζομαι foram traduzidos por “pensamento” e “armar-se”, mantendo a imagem militar.
+- **4.1 — πέπαυται ἁμαρτίας:** traduzido por “cessou do pecado”. A formulação conserva o singular e não amplia a frase em uma afirmação sobre impecabilidade absoluta.
+- **4.2–3 — vida e vontade:** mantido o contraste entre “cobiças dos seres humanos” e “vontade de Deus”. O catálogo foi vertido por “libertinagens, cobiças, embriaguezes, folias, bebedeiras e idolatrias ilegais”, seguindo o dicionário definitivo.
+- **4.4 — ἀσωτίας ἀνάχυσις:** traduzido por “derramamento de dissipação”, preservando a imagem concreta de ἀνάχυσις e a equivalência lexical de ἀσωτία.
+- **4.5 — ἀποδίδωμι λόγον:** traduzido idiomaticamente por “prestar contas”. A prontidão daquele que julgará vivos e mortos foi preservada.
+- **4.6 — mortos, carne e espírito:** mantido “as boas novas foram anunciadas também aos mortos”, sem identificar quem são os mortos nem quando receberam o anúncio. “Carne/espírito” permanece em minúsculas, sem decidir se πνεύματι indica esfera, condição ou o Espírito Santo.
+- **4.7 — σωφρονέω / νήφω:** diferenciados como “ter a mente sã” e “ser sóbrio”, de acordo com o dicionário e em continuidade com 1Pedro 1.13.
+- **4.8 — ἀγάπη ἐκτενής:** traduzido por “amor sério”, conforme a equivalência do dicionário definitivo. A afirmação de que o amor cobre uma multidão de pecados foi mantida sem explicação adicional.
+- **4.10 — χάρισμα / οἰκονόμος:** traduzidos por “dádiva” e “mordomo”. A “multiforme graça” preserva o sentido de ποικίλος e sua ligação com os diferentes dons.
+- **4.11 — λόγια / ἰσχύς / κράτος:** traduzidos por “oráculos”, “força” e “domínio”. “[Fale]” e “[sirva]” explicitam os verbos exigidos pela construção portuguesa. O “Amém” do TM foi preservado.
+- **4.12 — πύρωσις / πειρασμός:** traduzidos por “ardor” e “prova”, conforme o dicionário e a escolha já estabelecida para πειρασμός em Tiago e 1Pedro 1.
+- **4.13 — participação e revelação:** mantida a repetição dos verbos de alegria e a expressão “revelação da glória”, sem substituir ἀποκάλυψις por “chegada”.
+- **4.14 — leitura ampliada do TM:** preservadas as duas orações finais ausentes de algumas tradições textuais: “Por parte deles, é blasfemado; por parte de vocês, é glorificado”. A tradução não explicita o sujeito dessas formas passivas além do que a construção permite.
+- **4.14 — τὸ τῆς δόξης καὶ τὸ τοῦ θεοῦ πνεῦμα:** traduzido por “o Espírito da glória e de Deus”, com inicial maiúscula pela referência ao Espírito divino.
+- **4.15 — ἀλλοτριοεπίσκοπος:** traduzido por “intrometido”, conforme o dicionário definitivo, sem restringir o termo a uma modalidade específica de interferência em assuntos alheios.
+- **4.16 — ἐν τῷ μέρει τούτῳ:** traduzido contextualmente por “a esse respeito”. “[Sofre]” explicita o verbo retomado do versículo anterior.
+- **4.17 — elipses:** “[chegou]”, “[começa]” e “[será]” explicitam elementos exigidos pelo português na afirmação sobre o tempo do julgamento e na pergunta sobre o fim dos desobedientes.
+- **4.17 — εὐαγγέλιον:** traduzido por “boas novas”, em continuidade com 1Pedro 1.12,25 e com o uso predominante nos capítulos anteriores.
+- **4.18 — μόλις:** traduzido por “com dificuldade”, conforme o dicionário, sem transformar a expressão em incerteza sobre a salvação do justo.
+- **4.19 — παρατίθημι / κτίστης / ἀγαθοποιΐα:** traduzidos por “confiar”, “Criador” e “fazer o bem”. “Criador” recebe inicial maiúscula por designar Deus no contexto.

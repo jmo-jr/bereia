@@ -1,8 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const { greekCaseKey, buildCaseDictIndex } = require('../../lib/greek-form-lookup');
+const { buildAccentAliasIndex, validateAliasEvidence } = require('../../lib/greek-accent-aliases');
 
 // const DICT_PATH = path.join(__dirname, '..', 'nt_greek-pt_dict.json');
 const DICT_PATH = path.join(__dirname, '..', 'nt/dict_flex_nt-lxx_greek-pt.json');
+const FORM_INDEX_PATH = path.join(__dirname, 'dict_form_index_nt-lxx_greek-pt.json');
+const ACCENT_ALIASES_PATH = path.join(__dirname, 'greek_accent_aliases.json');
 const SOURCE_DIR = path.join(__dirname, '..', '..', 'interlinear', 'nt');
 const MISSING_LEMMAS_LOG_PATH = path.join(__dirname, '..', '..', '..', 'nt-missing-lemmas.log');
 
@@ -71,6 +75,7 @@ const createMissingLemmaTracker = () => {
           normalized,
           occurrences: 0,
           references: new Set(),
+          motivo: context.motivo || 'forma_ausente',
         });
       }
 
@@ -103,6 +108,7 @@ const createMissingLemmaTracker = () => {
               `lemma: ${entry.lemma}`,
               `normalizado: ${entry.normalized}`,
               `ocorrencias: ${entry.occurrences}`,
+              `motivo: ${entry.motivo}`,
               `referencias: ${entry.references.join(', ')}`,
             ].join('\n')).join('\n\n')
           : 'Nenhum lemma sem equivalente foi encontrado.',
@@ -114,12 +120,45 @@ const createMissingLemmaTracker = () => {
   };
 };
 
-const createEnhanceTokenWithDict = (dict, missingLemmaTracker, extraFields = []) => {
+const createEnhanceTokenWithDict = (dict, missingLemmaTracker, extraFields = [], formIndex = {}, accentPolicy = null) => {
   const dictIndex = buildDictIndex(dict);
+  const caseDictIndex = buildCaseDictIndex(dict, formIndex);
+  const accentAliasIndex = buildAccentAliasIndex(dict, formIndex, accentPolicy);
+  const canonicalDictIndex = new Map();
+  for (const [form, entry] of Object.entries(dict)) {
+    const key = form.normalize('NFC');
+    if (!canonicalDictIndex.has(key)) canonicalDictIndex.set(key, entry);
+  }
 
   return (token = {}, context = {}) => {
-    const normalized = normalizeGreek(token.lemma || '');
-    const dictEntry = dictIndex[normalized];
+    const form = String(token.lemma || '');
+    let caseAnalyses;
+    let accentMatch;
+    // Prioridade segura para formas cobertas. O fallback legado permanece
+    // somente durante a migração de cobertura, sob acompanhamento da auditoria.
+    let dictEntry = Object.hasOwn(dict, form) ? dict[form] : canonicalDictIndex.get(form.normalize('NFC'));
+    if (!dictEntry) {
+      const candidates = caseDictIndex.get(greekCaseKey(form)) || [];
+      const distinctForms = new Set(candidates.map(candidate => candidate.reference.grego.normalize('NFC')));
+      const distinctStrongs = new Set(candidates.map(candidate => candidate.reference.strongs));
+      if (distinctForms.size > 1 || distinctStrongs.size > 1) {
+        // Nunca atravessar uma ambiguidade de caixa escolhendo o primeiro
+        // registro da projeção ou retomando o fallback sem marcas.
+        missingLemmaTracker.record(token, { ...context, motivo: 'ambiguidade_caixa' });
+        return { ...token, consulta_dicionario: 'ambiguidade_caixa',
+          analises_dicionario: candidates.map(candidate => ({ ...candidate.reference })) };
+      }
+      if (candidates.length > 1) caseAnalyses = candidates.map(candidate => ({ ...candidate.reference }));
+      dictEntry = candidates[0]?.entry;
+      if (!dictEntry) {
+        accentMatch = accentAliasIndex.resolve(form, context);
+        if (accentMatch.estado === 'pendente') {
+          missingLemmaTracker.record(token, { ...context, motivo: accentMatch.motivo });
+          return { ...token, consulta_dicionario: 'alias_acento_pendente', motivo_dicionario: accentMatch.motivo };
+        }
+        dictEntry = accentMatch.estado === 'resolvido' ? accentMatch.entrada : dictIndex[normalizeGreek(form)];
+      }
+    }
 
     if (!dictEntry) {
       missingLemmaTracker.record(token, context);
@@ -136,6 +175,10 @@ const createEnhanceTokenWithDict = (dict, missingLemmaTracker, extraFields = [])
     return {
       ...token,
       ...lexicon,
+      ...(caseAnalyses ? { consulta_dicionario: 'caixa_multianalise', analises_dicionario: caseAnalyses } : {}),
+      ...(accentMatch?.estado === 'resolvido' ? { consulta_dicionario: 'alias_agudo_grave',
+        alias_dicionario: { id: accentMatch.alias.id, destino: accentMatch.alias.destino, referencia: accentMatch.referencia },
+        ocorrencias_forma_tm: accentMatch.alias.ocorrencias_forma_tm } : {}),
     };
   };
 };
@@ -143,9 +186,10 @@ const createEnhanceTokenWithDict = (dict, missingLemmaTracker, extraFields = [])
 const normalizePericope = (pericope = {}, enhanceTokenWithDict, context = {}) => {
   const verses = (pericope.verses || []).map(verseEntry => ({
     number: Number(verseEntry.verse),
-    tokens: (verseEntry.tokens || []).map(token => enhanceTokenWithDict(token, {
+    tokens: (verseEntry.tokens || []).map((token, position) => enhanceTokenWithDict(token, {
       ...context,
       verseNumber: Number(verseEntry.verse),
+      tokenPosition: position + 1,
     })),
   }));
 
@@ -161,7 +205,7 @@ const normalizeBookData = (bookContent = [], enhanceTokenWithDict, bookId) =>
   bookContent.map(chapterEntry => {
     const chapterNumber = Number(chapterEntry.chapter);
     const pericopes = (chapterEntry.pericopes || []).map(pericope =>
-      normalizePericope(pericope, enhanceTokenWithDict, { bookId, chapterNumber }),
+      normalizePericope(pericope, enhanceTokenWithDict, { corpus: 'nt', bookId, chapterNumber }),
     );
     const verses = pericopes.flatMap(pericope => pericope.verses);
 
@@ -179,7 +223,9 @@ const loadAllBooks = () => {
 
   const dict = loadJsonFile(DICT_PATH);
   const missingLemmaTracker = createMissingLemmaTracker();
-  const enhanceTokenWithDict = createEnhanceTokenWithDict(dict, missingLemmaTracker);
+  const manifest = fs.existsSync(ACCENT_ALIASES_PATH) ? loadJsonFile(ACCENT_ALIASES_PATH) : null;
+  const policy = manifest ? { manifest, validBooks: validateAliasEvidence(manifest) } : null;
+  const enhanceTokenWithDict = createEnhanceTokenWithDict(dict, missingLemmaTracker, [], loadJsonFile(FORM_INDEX_PATH), policy);
 
   const books = fs
     .readdirSync(SOURCE_DIR)

@@ -1,0 +1,23 @@
+# Decisões de tradução — 2Pedro 2
+
+- **2:1 — “facções de destruição”**: `αἱρέσεις ἀπωλείας` foi traduzido sem impor ao termo `αἵρεσις` o sentido doutrinário posterior de “heresia”; neste contexto, ele descreve grupos ou divisões que conduzem à destruição.
+- **2:1 — “Soberano”**: `δεσπότης` foi distinguido de `κύριος`, traduzido normalmente por “Senhor”. A afirmação de que ele “os comprou” foi preservada sem explicação teológica adicional.
+- **2:2,7,18 — “libertinagem”**: mantém uma equivalência estável para `ἀσέλγεια`, em conformidade com o dicionário definitivo.
+- **2:3 — “explorarão”**: tradução contextual de `ἐμπορεύσονται`, cuja imagem comercial indica fazer dos destinatários objeto de ganho mediante palavras inventadas.
+- **2:4 — “lançado no Tártaro”**: preserva o verbo específico `ταρταρόω`, sem substituí-lo pelo termo grego distinto normalmente traduzido por “inferno”.
+- **2:4 — “correntes de escuridão”**: segue a leitura `σειραῖς ζόφου` do Texto Majoritário.
+- **2:5 — “Noé, o oitavo”**: mantém a expressão `ὄγδοον Νῶε`, indicando Noé como o oitavo preservado, sem inserir no texto principal a enumeração dos outros sete.
+- **2:6 — “estabelecendo-as como exemplo”**: o particípio `τεθεικώς` retoma Deus como sujeito e as cidades reduzidas a cinzas como exemplo do julgamento dos que agem com impiedade.
+- **2:7–8 — “contrária à lei”**: a família lexical de `ἄθεσμος` e `ἄνομος` foi expressa pela ideia de desrespeito ou oposição à lei, sem identificar uma legislação específica.
+- **2:9 — “[então]”**: conectivo suprido para concluir em português o longo período condicional iniciado no versículo 4.
+- **2:10–11 — “seres gloriosos”**: tradução contextual de `δόξας`, que aqui funciona como designação pessoal. A redação não define a identidade ou a condição moral desses seres além do contexto.
+- **2:12 — “na própria corrupção”**: preserva o jogo lexical entre `φθορά` e `καταφθείρω`, refletido em “corrupção” e “completamente destruídos”.
+- **2:13 — “luxo durante o dia”**: conserva `τὴν ἐν ἡμέρᾳ τρυφήν` como objeto do prazer deles, sem suavizar a crítica à ostentação diurna.
+- **2:14 — “olhos cheios de adultério”**: tradução idiomática mínima de `ὀφθαλμοὺς μεστοὺς μοιχαλίδος`, literalmente “olhos cheios de adúltera”; preserva o sentido sem produzir em português uma imagem gramaticalmente opaca.
+- **2:15 — “Balaão, [filho] de Bosor”**: preserva `Βαλαὰμ τοῦ Βοσόρ` do Texto Majoritário. “[filho]” explicita a relação nominal implícita, sem harmonizar “Bosor” com outra forma tradicional.
+- **2:16 — “animal de carga”**: tradução de `ὑποζύγιον`, mantendo a designação genérica do texto sem inserir “jumenta”.
+- **2:17 — “para sempre”**: traduz `εἰς αἰῶνα` em sua função temporal dentro da expressão de reserva da escuridão.
+- **2:18 — “os que verdadeiramente escaparam”**: preserva a leitura `τοὺς ὄντως ἀποφυγόντας` do Texto Majoritário, sem substituí-la por variante que indicaria terem escapado “por pouco”.
+- **2:19 — vencimento e escravidão**: a construção passiva perfeita foi mantida: quem foi vencido por algo permanece escravizado a isso.
+- **2:20–21 — “pleno conhecimento / conhecer plenamente”**: `ἐπίγνωσις` e `ἐπιγινώσκω` foram traduzidos de modo relacionado, em continuidade com 2Pedro 1.
+- **2:22 — provérbios**: foram preservadas as duas imagens, com “[voltou]” suprido na segunda para explicitar o paralelismo verbal em português.

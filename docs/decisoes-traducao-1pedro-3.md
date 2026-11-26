@@ -1,0 +1,22 @@
+# Decisões de tradução — 1Pedro 3
+
+- **3.1–2 — λόγος / ἀναστροφή:** λόγος foi mantido como “palavra” nas duas ocorrências, e ἀναστροφή como “conduta”, em continuidade com 1Pedro 1–2. “Sem palavra” não significa ausência de toda fala, mas reproduz a formulação do texto sem expandi-la.
+- **3.3–4 — κόσμος e o adorno:** κόσμος foi traduzido contextualmente por “adorno”. “[Seja]” explicita a cópula e “[adorno]” retoma o substantivo do v. 3 na descrição do ser humano oculto do coração.
+- **3.4 — πνεῦμα:** mantido como “espírito” em minúscula, pois se refere à disposição mansa e tranquila. ἄφθαρτος foi traduzido por “incorruptível”, em continuidade com 1Pedro 1.4,23.
+- **3.6 — τέκνα:** traduzido contextualmente por “filhas”, pois os particípios femininos mostram que a exortação continua dirigida às esposas. πτόησις foi mantido como “medo”.
+- **3.7 — σκεῦος / συγκληρονόμοι:** σκεῦος foi mantido como “vaso”. O TM local traz συγκληρονόμοι no nominativo masculino; “[sendo] co-herdeiros [com elas]” preserva a referência aos maridos e explicita a relação conjunta com as esposas.
+- **3.8 — qualidades comunitárias:** ὁμόφρονες, συμπαθεῖς, φιλάδελφοι, εὔσπλαγχνοι e φιλόφρονες foram traduzidos por “de mesmo parecer”, “simpáticos”, “fraternos”, “compassivos” e “amigáveis”, seguindo de perto o dicionário definitivo.
+- **3.9 — λοιδορία / εὐλογία:** traduzidos por “injúria” e “bênção”. O particípio εὐλογοῦντες foi vertido por “bendizendo”, preservando a relação lexical com “bênção”.
+- **3.10–12 — citação:** a imagem da língua refreada foi mantida em continuidade com Tiago 3. As cópulas e o complemento “[atentos]” foram marcados por colchetes quando exigidos pela frase portuguesa.
+- **3.13 — μιμηταί:** traduzido por “imitadores”, conforme a leitura do Texto Majoritário local, sem substituí-lo pela variante “zelosos”.
+- **3.14 — μακάριοι / φόβος:** μακάριοι foi traduzido por “[são] felizes”, em continuidade com Tiago 1.12. “Não tenham medo do medo deles” preserva a repetição de φόβος/φοβέω sem decidir se o genitivo indica a intimidação causada por eles ou aquilo que eles próprios temem.
+- **3.15 — leitura do TM:** preservado “o Senhor Deus”, conforme κύριον τὸν θεόν no Texto Majoritário local. ἀπολογία foi traduzido por “defesa”, e λόγος, contextualmente, por “razão”.
+- **3.16 — ἐπηρεάζω:** traduzido por “insultar”, conforme o dicionário. A “boa conduta em Cristo” foi mantida sem explicação adicional.
+- **3.17 — vontade de Deus:** “se assim quiser a vontade de Deus” conserva o sujeito explícito da oração grega, ainda que a formulação seja menos usual em português.
+- **3.18 — carne e espírito:** σάρξ e πνεῦμα foram mantidos como “carne/espírito”, com “espírito” em minúscula. A tradução não decide se o dativo descreve esfera, condição ou agência do Espírito.
+- **3.18 — leitura do TM:** preservado “levar vocês a Deus”, conforme ὑμᾶς no Texto Majoritário local, sem harmonizar com a variante de primeira pessoa.
+- **3.19–20 — espíritos em prisão:** mantida a sequência “no qual... foi e proclamou”, sem definir o momento, o local, a identidade dos espíritos ou o conteúdo da proclamação além do texto.
+- **3.20 — ψυχαί / διά ὕδατος:** as oito “almas” foram também explicitadas como “pessoas” para clareza: “poucas pessoas, isto é, oito almas”. διά foi mantido como “por meio da água”.
+- **3.21 — ἀντίτυπον / βάπτισμα:** traduzidos por “antítipo” e “imersão”. Embora o dicionário registre “batismo” para βάπτισμα, “imersão” preserva a decisão lexical já aplicada sistematicamente nos Evangelhos, em Atos, Romanos e Efésios.
+- **3.21 — ἐπερώτημα:** traduzido por “solicitação”, acepção registrada no dicionário. A formulação preserva a relação com uma boa consciência diante de Deus sem definir o termo como “resposta”, “compromisso” ou “garantia”. “[Como]” explicita o contraste entre as duas descrições da imersão.
+- **3.22 — ordens celestiais:** ἄγγελοι, ἐξουσίαι e δυνάμεις foram mantidos como “anjos, autoridades e poderes”, todos sujeitos a Cristo.

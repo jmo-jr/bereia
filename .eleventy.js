@@ -1,9 +1,33 @@
 const { execSync } = require('child_process')
 const generateDictionary = require('./tools/dictionary/generate');
+const { createGlobalRenderer } = require('./src/lib/bible-global-renderer');
+const fs = require('node:fs');
+const path = require('node:path');
 //const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function(eleventyConfig) {
   generateDictionary();
+  let globalRenderer;
+  eleventyConfig.addWatchTarget('src/tooltip-relations.json', { resetConfig: true });
+  eleventyConfig.addWatchTarget('src/tooltip-exceptions.json', { resetConfig: true });
+  eleventyConfig.addWatchTarget('src/biblia/nt/**/*.txt', { resetConfig: true });
+  eleventyConfig.addTransform('bible-global-tooltips', function(content, outputPath) {
+    if (!outputPath?.endsWith('.html') || !/[/\\]biblia[/\\]/u.test(outputPath)) return content;
+    globalRenderer ||= createGlobalRenderer();
+    return globalRenderer.transform(content);
+  });
+  eleventyConfig.on('eleventy.before', () => { globalRenderer = undefined; });
+  eleventyConfig.on('eleventy.after', () => {
+    if (globalRenderer) {
+      const reports = globalRenderer.reports();
+      const folder = process.env.BEREIA_BIBLE_REPORT_DIR || path.join(__dirname, 'reports');
+      fs.mkdirSync(folder, { recursive: true });
+      for (const [name, value] of Object.entries({ 'bible-tooltip-summary': reports.summary, 'bible-lexical-coverage': reports.coverage, 'bible-lexical-ambiguities': reports.ambiguities })) {
+        fs.writeFileSync(path.join(folder, name + '.json'), JSON.stringify(value, null, 2) + '\n');
+      }
+      console.log(`Tooltips: ${reports.summary.totals.tooltips} associações lexicais; ${reports.summary.totals.alternatives} com alternativas.`);
+    }
+  });
   eleventyConfig.addWatchTarget('src/_data/nt/dict_lex_nt-lxx_greek-pt.json');
   eleventyConfig.addWatchTarget('src/interlinear/at/*.json');
   eleventyConfig.on('eleventy.beforeWatch', () => generateDictionary());

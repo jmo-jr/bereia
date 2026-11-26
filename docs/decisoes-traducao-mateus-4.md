@@ -1,0 +1,23 @@
+# Decisões de tradução — Mateus 4
+
+- **4:1,3,5,8,11 — `διάβολος` / `πειράζω`**: `διάβολος` foi traduzido por “acusador”, conforme a preferência registrada no projeto, e `πειράζω`, por “testar” neste contexto. O particípio substantivado `ὁ πειράζων` no versículo 3 foi mantido como “o testador”.
+- **4:1 — Espírito como agente**: a voz passiva de `ἀνήχθη` e o agente `ὑπὸ τοῦ πνεύματος` foram preservados: Jesus é conduzido pelo Espírito e testado pelo acusador.
+- **4:2 — quarenta dias e noites**: foram mantidos os dois acusativos de duração, sem reduzir a expressão apenas a “quarenta dias”.
+- **4:3 — pedras e pães no plural**: Mateus apresenta `οἱ λίθοι οὗτοι` e `ἄρτοι`; a tradução preserva os plurais, distinguindo a redação de Lucas 4:3.
+- **4:4 — “declaração”**: traduz `ῥῆμα` em continuidade com a distinção lexical adotada no projeto em relação a `λόγος`, “palavra”. A citação segue a redação de Mateus sem harmonização com outra passagem.
+- **4:5 — “pináculo do templo”**: `πτερύγιον` foi traduzido pela designação arquitetônica tradicional, sem identificar uma estrutura específica do complexo do templo.
+- **4:6 — citação do salmo**: foram mantidas as duas partes citadas pelo acusador e a relação entre a ordem aos anjos, ser levado nas mãos e não bater o pé.
+- **4:7 — “não testará”**: preserva o futuro `οὐκ ἐκπειράσεις` usado com força normativa na citação, mantendo sua relação lexical com o teste narrado no capítulo.
+- **4:9–10 — prostração e culto**: `προσκυνέω` foi expresso por “prostrar-se/reverenciar”, enquanto `λατρεύω` foi traduzido por “cultuar”, preservando a distinção entre os verbos.
+- **4:10 — “Vá para trás de mim”**: segue `ὕπαγε ὀπίσω μου`, presente no Texto Majoritário, sem encurtar a ordem a “Vá embora”. O nome “Satanás” foi mantido como vocativo do texto.
+- **4:11 — serviço dos anjos**: o imperfeito `διηκόνουν` foi traduzido por “serviam”, indicando a ação subsequente à aproximação deles.
+- **4:12 — “entregue”**: traduz `παραδίδωμι` em continuidade com Marcos 1:14, sem substituir a passiva por “preso”, embora a prisão resulte do contexto mais amplo.
+- **4:13,15 — Zebulom e Naftali**: as grafias seguem as formas já empregadas em Apocalipse 7. Cafarnaum foi descrita como “junto ao mar”, preservando `παραθαλασσία`.
+- **4:15–16 — citação de Isaías**: foram mantidas as expressões geográficas e as duas ocorrências de “sentado”. `ἀνατέλλω` foi traduzido contextualmente por “raiar”, conservando a imagem da luz.
+- **4:17 — início da proclamação**: a mensagem repete Mateus 3:2 e recebeu a mesma tradução, preservando a relação entre arrependimento e proximidade do Reino dos Céus.
+- **4:18 — “rede de pesca”**: `ἀμφίβληστρον` designa uma rede lançada ao redor; a especificação “de pesca” torna claro o objeto sem confundi-lo com `δίκτυα`, o termo mais geral usado nos versículos 20–21.
+- **4:19 — “pescadores de seres humanos”**: `ἄνθρωποι` foi traduzido de forma inclusiva e lexicalmente consistente, sem restringir a imagem a homens adultos.
+- **4:21 — “[filho] de Zebedeu”**: o parentesco está expresso pelo genitivo sem substantivo explícito; o termo suprido foi marcado entre colchetes.
+- **4:23 — “boas novas do Reino”**: traduz `εὐαγγέλιον τῆς βασιλείας` em continuidade com o projeto. `νόσος` e `μαλακία` foram distinguidos como “doença” e “fraqueza”, como em Mateus 8:17.
+- **4:24 — “lunáticos”**: preserva a designação `σεληνιαζομένους`, literalmente relacionada à lua, sem substituí-la automaticamente por um diagnóstico médico moderno. Endemoniados, lunáticos e paralíticos permanecem grupos textualmente distintos.
+- **4:25 — “do outro lado do Jordão”**: traduz `πέραν τοῦ Ἰορδάνου` sem inserir a designação geográfica posterior “Pereia”.

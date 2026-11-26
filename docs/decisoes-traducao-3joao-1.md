@@ -1,0 +1,21 @@
+# Decisões de tradução — 3João
+
+- **Estrutura — versículos 14–15**: os metadados da perícope final indicam término no versículo 15, mas o JSON e o CSV do Texto Majoritário do projeto contêm apenas os versículos 1–14. Todo o encerramento — “Paz a você...” — integra o versículo 14 nas duas fontes. A tradução segue os versículos efetivamente presentes, sem alterar o JSON.
+- **1:1 — “ancião”**: `πρεσβύτερος` mantém a equivalência adotada em 2João e nos demais livros do projeto.
+- **1:1 — “em verdade”**: preserva `ἐν ἀληθείᾳ`, sem excluir o sentido de amar verdadeiramente ou no âmbito da verdade.
+- **1:2 — “prospere em todas as coisas”**: traduz contextualmente `περὶ πάντων ... εὐοδοῦσθαι` como prosperidade em todos os aspectos, em paralelo com a prosperidade da alma. O pedido de saúde foi mantido separadamente.
+- **1:3 — “sua verdade”**: preserva `σου τῇ ἀληθείᾳ` e sua explicação pela conduta de Gaio na verdade, sem reduzir a expressão somente a sinceridade pessoal.
+- **1:4 — “estas coisas”**: mantém o plural `τούτων`, seguido pela explicação de que a alegria consiste em ouvir que os filhos andam na verdade.
+- **1:5 — irmãos e estrangeiros**: os dois grupos gramaticais foram preservados, sem decidir no texto principal se os irmãos eram também desconhecidos pessoalmente por Gaio.
+- **1:6 — “encaminhar”**: `προπέμπω` foi traduzido como auxílio à continuação da viagem, em continuidade com Tito 3:13.
+- **1:7 — “o Nome”**: mantém a expressão absoluta `ὑπὲρ τοῦ ὀνόματος`, sem inserir no texto principal o nome não expresso. A inicial maiúscula sinaliza seu uso como designação reconhecida.
+- **1:7 — “nações”**: preserva a equivalência regular de `ἔθνη`; o texto não declara que os viajantes recusavam todo auxílio de pessoas não judaicas em qualquer circunstância.
+- **1:8 — “receber”**: segue `ἀπολαμβάνειν` do Texto Majoritário, entendido contextualmente como acolher ou receber pessoas como os irmãos mencionados.
+- **1:8 — “companheiros de trabalho da verdade”**: conserva o dativo `τῇ ἀληθείᾳ`, apresentando a verdade como aquilo com que os destinatários cooperam.
+- **1:9 — “ama ter o primeiro lugar”**: explicita o sentido do particípio composto `φιλοπρωτεύων` sem atribuir a Diótrefes um cargo específico.
+- **1:10 — “falando coisas más”**: tradução contextual de `φλυαρῶν ... λόγοις πονηροῖς`, indicando discurso malicioso e vazio contra os remetentes. “[Recebê-los]” explicita o complemento do desejo dos irmãos impedidos.
+- **1:11 — fazer o bem e o mal**: `ἀγαθοποιέω` e `κακοποιέω` foram vertidos por construções paralelas, preservando o contraste lexical.
+- **1:12 — testemunho de Demétrio**: o perfeito passivo foi expresso por “tem recebido testemunho”, mantendo os três testemunhos mencionados: todos, a própria verdade e os remetentes.
+- **1:13 — “tinta e pena”**: `κάλαμος` designa literalmente uma cana e, neste contexto, o instrumento de escrita feito dela. “Pena” fornece o equivalente funcional mínimo em português.
+- **1:14 — “boca a boca”**: preserva a expressão concreta `στόμα πρὸς στόμα`, em continuidade com 2João 12.
+- **1:14 — “pelo nome”**: `κατ’ ὄνομα` indica uma saudação individual a cada amigo, sem exigir que os nomes sejam registrados na carta.

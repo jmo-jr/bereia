@@ -2,7 +2,7 @@
 title: Bíblia BEREIA
 ---
 <!DOCTYPE html>
-<html land="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +11,46 @@ title: Bíblia BEREIA
   <meta name="description" content="Página do capítulo do livro escolhido">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="{{ '/img/logo.png' | url }}">
+	<script>
+		(() => {
+			const storageKey = 'bereia-theme';
+			const systemPreference = window.matchMedia('(prefers-color-scheme: light)');
+			const savedTheme = localStorage.getItem(storageKey);
+			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
+
+			const initialTheme = hasSavedTheme
+				? savedTheme
+				: systemPreference.matches
+					? 'dark'
+					: 'light';
+
+			const applyTheme = (theme) => {
+				document.documentElement.dataset.theme = theme;
+			};
+
+			applyTheme(initialTheme);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.querySelector(
+					'.switch input[type="checkbox"]'
+				);
+
+				if (!toggle) return;
+
+				toggle.checked = initialTheme === 'dark';
+
+				toggle.addEventListener('change', () => {
+					const selectedTheme = toggle.checked ? 'dark' : 'light';
+
+					applyTheme(selectedTheme);
+					localStorage.setItem(storageKey, selectedTheme);
+				});
+			});
+		})();
+	</script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/toggler-component.css' | url }}">
 	<link rel="stylesheet" href="{{ '/biblia/pagefind/pagefind-ui.css' | url }}">
 	<link rel="stylesheet" href="{{ '/assets/css/tooltipster.bundle.min.css' | url }}">
 	<link rel="stylesheet" href="{{ '/assets/css/tooltipster-sideTip-light.min.css' | url }}">
@@ -27,6 +65,7 @@ title: Bíblia BEREIA
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 	<script src="{{ '/assets/js/tooltipster.bundle.min.js' | url }}"></script>
 	<script src="{{ '/assets/js/tooltip-init.js' | url }}"></script>
+	<script src="{{ '/assets/js/bible-original.js' | url }}" defer></script>
   <script>
     $( function() {
       //$( document ).tooltip();
@@ -37,7 +76,7 @@ title: Bíblia BEREIA
 <body>
 
   <div id="app" class="wrapper no_greenplaces no_bluecharacters">
-
+		{% comment %} header.app-bar {% endcomment %}
     {% render 'siteHeader' %}
 
 		{% assign interlinearBooks = ntBooks %}
@@ -47,8 +86,14 @@ title: Bíblia BEREIA
 			{% assign interlinearBooks = atBooks | concat: ntBooks %}
 			{% if entry.lxx == true %}{% assign isLxxInterlinear = true %}{% endif %}
 		{% endif %}
-		{% render 'toolBar', lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookChapter: bookChapter, type: bee | default: false %}
 
+		{% comment %} div.toolbar {% endcomment %}
+		{% assign toolbarBookNameAbbr = bookNameAbbr | default: bookAbbrev %}
+		{% render 'toolBar', 
+			lxx: isLxxInterlinear, bookList: interlinearBooks, bookName: bookName, bookNameAbbr: toolbarBookNameAbbr, bookChapter: bookChapter, type: bee | default: false 
+		%}
+
+		{% comment %} Conteúdo atual {% endcomment %}
 		<div class="content-wrapper">
 			<main class="main-content">
 				<div class="content" data-pagefind-body>
@@ -57,9 +102,18 @@ title: Bíblia BEREIA
 						{{ content }}
 					{% endblock %}
 
-				</div>
+				</div><!-- /.content -->
+
+				{% if bee %}
+				<footer class="nte-footer">
+					<p class="source-credit">
+						<small>Palavras entre [colchetes] não existem no original, mas podem estar subentendidas ou serem necessárias para tornar a leitura compreensível. Palavras em <em>itálico</em> indicam termos hebraicos, aramaicos ou latinos presentes no original grego.</small>
+					</p>
+				</footer>
+				{% endif %}
 			</main>
 
+			{% comment %} Drawer lexical {% endcomment %}
 			{% unless bee %}
 			<aside class="side-drawer" id="strong-drawer" tabindex="-1"
 				aria-labelledby="strong-drawer-title" data-lexico-url="{{ '/assets/lexico/greek.json' | url }}">
@@ -72,13 +126,24 @@ title: Bíblia BEREIA
 				<div class="drawer-body" aria-live="polite"></div>
 			</aside>
 			{% endunless %}
+
+		</div><!-- /.content-wrapper -->
+
+  </div><!-- /#app -->
+
+	<div class="feedback-component">
+		<button type="button" onclick="toggleMenu(feedbackWindow, this)">📢 Feedback</button>
+
+		<div class="feedback-options">
+			<p>Queremos te ouvir!</p>
+			<button id="bugReport" type="button">🚨 Relate um erro</button>
+			<button id="featureRequest" type="button">🌟 Sugira uma funcionalidade</button>
+			<button id="helpUs" type="button">🫰 Apoie nosso trabalho</button>
 		</div>
-
-    <script src="{{ '/assets/js/strong-drawer.js' | url }}" defer></script>
-
-  </div>
+	</div>
 
   <!-- SCRIPTS -->
+	<script src="{{ '/assets/js/strong-drawer.js' | url }}" defer></script>
   <script>
     var page = document.getElementById("app");
 		
@@ -96,6 +161,7 @@ title: Bíblia BEREIA
 		const mainNav = document.querySelector('.main-nav');
 		const optionsDropdown = document.querySelector('.options-dropdown');
 		const optionsDropdown2 = document.querySelector('.options-dropdown2');
+		const feedbackWindow = document.querySelector('.feedback-options');
 		const menuControls = [
 			{ nav: mainNav, button: document.getElementById('toggleMenu') },
 			{ nav: optionsDropdown, button: document.getElementById('optionsBt') },
@@ -128,22 +194,45 @@ title: Bíblia BEREIA
 			});
 		});
 	</script>
-	<script 
-		src="{{ '/biblia/pagefind/pagefind-ui.js' | url }}" 
-		onload="new PagefindUI({
-			element: '#search', 
-			showImages: false,
-			pageSize: 10,
-  		excerptLength: 12,
-			translations: { 
-				placeholder: 'Busca', 
-				zero_results: 'Não encontrei [SEARCH_TERM]', 
-				many_results: '[COUNT] resultados para [SEARCH_TERM]', 
-				one_result: '[COUNT] resultado para [SEARCH_TERM]'
-			}
-		});">
-	</script>
+	<script src="{{ '/biblia/pagefind/pagefind-ui.js' | url }}" defer></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			function initPagefind(selector) {
+				const container = document.querySelector(selector);
+				if (!container || typeof PagefindUI === "undefined") return;
 
+				new PagefindUI({
+					element: selector,
+					showImages: false,
+					pageSize: 10,
+					excerptLength: 12,
+					translations: {
+						placeholder: "Busca",
+						zero_results: "Não encontrei [SEARCH_TERM]",
+						many_results: "[COUNT] resultados para [SEARCH_TERM]",
+						one_result: "[COUNT] resultado para [SEARCH_TERM]"
+					},
+					processResult: function (result) {
+						if (result.url && !result.url.startsWith("/") && !result.url.startsWith("http")) {
+							result.url = "/" + result.url;
+						}
+						return result;
+					}
+				});
+			}
+
+			// Exemplos em diferentes telas/containers da mesma estrutura
+			initPagefind("#search");
+			initPagefind("#search-modal");
+		});
+	</script>
+	<script>
+		const tema = checkbox.checked ? 'dark' : 'light';
+		document.documentElement.dataset.theme = tema;
+		localStorage.setItem('bereia-theme', tema);
+	</script>
+	{% if bee %}
 	{% render 'notes' %}
+	{% endif %}
 </body>
 </html>
