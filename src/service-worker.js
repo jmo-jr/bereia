@@ -1,4 +1,4 @@
-const CACHE = "bereia-v3";
+const CACHE = "bereia-v4";
 self.addEventListener("install", evt => {
   evt.waitUntil(
     caches.open(CACHE).then(cache => cache.addAll([
