@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html land="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,45 @@
   <meta name="description" content="Página inicial da BEI">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="./img/favicon.png">
+	<script>
+		(() => {
+			const storageKey = 'bereia-theme';
+			const systemPreference = window.matchMedia('(prefers-color-scheme: light)');
+			const savedTheme = localStorage.getItem(storageKey);
+			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
+
+			const initialTheme = hasSavedTheme
+				? savedTheme
+				: systemPreference.matches
+					? 'dark'
+					: 'light';
+
+			const applyTheme = (theme) => {
+				document.documentElement.dataset.theme = theme;
+			};
+
+			applyTheme(initialTheme);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.querySelector(
+					'.switch input[type="checkbox"]'
+				);
+
+				if (!toggle) return;
+
+				toggle.checked = initialTheme === 'dark';
+
+				toggle.addEventListener('change', () => {
+					const selectedTheme = toggle.checked ? 'dark' : 'light';
+
+					applyTheme(selectedTheme);
+					localStorage.setItem(storageKey, selectedTheme);
+				});
+			});
+		})();
+	</script>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/assets/css/toggler-component.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster.bundle.min.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster-sideTip-borderless.min.css">
 	
@@ -17,74 +55,76 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="default">
 	<link rel="icon" href="/img/logo.png">
 	<script>
-	if ("serviceWorker" in navigator) {
-  	navigator.serviceWorker.register("/service-worker.js").catch(()=>{});
-	}
-
-	let deferredPrompt = null;
-	let installBanner = null;
-
-	const isMobileDevice = () => window.matchMedia('(max-width: 767px)').matches;
-	const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-	const isIOS = () => /iphone|ipad|ipod/i.test(window.navigator.userAgent);
-
-	const hideInstallBanner = () => {
-		if (installBanner) installBanner.classList.add('hidden');
-	};
-
-	const showInstallBanner = (ios = false) => {
-		if (!installBanner || !isMobileDevice() || isStandalone()) return;
-		if (localStorage.getItem('bereia-install-dismissed') === 'true') return;
-		if (ios) {
-			installBanner.classList.add('install-banner--ios');
-			installBanner.querySelector('.install-banner__message').textContent =
-				'Toque em Compartilhar e depois em “Adicionar à Tela de Início”.';
-			installBanner.querySelector('#install-button').classList.add('hidden');
+		/* PWA Service Worker */
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker.register("/service-worker.js").catch(()=>{});
 		}
-		installBanner.classList.remove('hidden');
-	};
 
-	window.addEventListener('beforeinstallprompt', (event) => {
-		event.preventDefault();
-		deferredPrompt = event;
-		showInstallBanner();
-	});
+		/* Banner de instalação do PWA */
+		let deferredPrompt = null;
+		let installBanner = null;
 
-	document.addEventListener('DOMContentLoaded', () => {
-		installBanner = document.getElementById('install-banner');
-		const installButton = document.getElementById('install-button');
-		const dismissInstallButton = document.getElementById('dismiss-install');
+		const isMobileDevice = () => window.matchMedia('(max-width: 767px)').matches;
+		const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+		const isIOS = () => /iphone|ipad|ipod/i.test(window.navigator.userAgent);
 
-		if (!installBanner || !isMobileDevice() || isStandalone()) return;
-		if (isIOS()) {
-			showInstallBanner(true);
-		} else if (deferredPrompt) {
+		const hideInstallBanner = () => {
+			if (installBanner) installBanner.classList.add('hidden');
+		};
+
+		const showInstallBanner = (ios = false) => {
+			if (!installBanner || !isMobileDevice() || isStandalone()) return;
+			if (localStorage.getItem('bereia-install-dismissed') === 'true') return;
+			if (ios) {
+				installBanner.classList.add('install-banner--ios');
+				installBanner.querySelector('.install-banner__message').textContent =
+					'Toque em Compartilhar e depois em “Adicionar à Tela de Início”.';
+				installBanner.querySelector('#install-button').classList.add('hidden');
+			}
+			installBanner.classList.remove('hidden');
+		};
+
+		window.addEventListener('beforeinstallprompt', (event) => {
+			event.preventDefault();
+			deferredPrompt = event;
 			showInstallBanner();
-		}
-
-		installButton?.addEventListener('click', async () => {
-			if (!deferredPrompt) return;
-			deferredPrompt.prompt();
-			await deferredPrompt.userChoice;
-			deferredPrompt = null;
-			hideInstallBanner();
 		});
 
-		dismissInstallButton?.addEventListener('click', () => {
-			localStorage.setItem('bereia-install-dismissed', 'true');
-			hideInstallBanner();
-		});
-	});
+		document.addEventListener('DOMContentLoaded', () => {
+			installBanner = document.getElementById('install-banner');
+			const installButton = document.getElementById('install-button');
+			const dismissInstallButton = document.getElementById('dismiss-install');
 
-	window.addEventListener('appinstalled', hideInstallBanner);
+			if (!installBanner || !isMobileDevice() || isStandalone()) return;
+			if (isIOS()) {
+				showInstallBanner(true);
+			} else if (deferredPrompt) {
+				showInstallBanner();
+			}
+
+			installButton?.addEventListener('click', async () => {
+				if (!deferredPrompt) return;
+				deferredPrompt.prompt();
+				await deferredPrompt.userChoice;
+				deferredPrompt = null;
+				hideInstallBanner();
+			});
+
+			dismissInstallButton?.addEventListener('click', () => {
+				localStorage.setItem('bereia-install-dismissed', 'true');
+				hideInstallBanner();
+			});
+		});
+
+		window.addEventListener('appinstalled', hideInstallBanner);
 	</script>
 </head>
 
 <body>
 
-	  <div id="install-banner" class="install-banner hidden" role="dialog" aria-live="polite" aria-label="Instalar aplicativo">
+	<div id="install-banner" class="install-banner hidden" role="dialog" aria-live="polite" aria-label="Instalar aplicativo">
     <div class="install-banner__content">
-		  <p class="install-banner__message">Instale a BEREIA na sua tela inicial para abrir mais rápido no dispositivo.</p>
+		  <p class="install-banner__message">Instale a BEREIA em sua tela inicial e utilize offline.</p>
       <div class="install-banner__actions">
         <button id="install-button" type="button">Instalar</button>
         <button id="dismiss-install" type="button" class="secondary">Agora não</button>
@@ -96,7 +136,7 @@
 
     <header class="app-bar">
 	<div class="content d-flex justify-between align-items-center">
-		<div class="d-flex align-items-center" style="gap:16px;">
+		<div class="d-flex align-items-center" style="gap:10px;">
 			<img src="/img/logo.png" style="width:34px; height: 34px;">
 			<h1><a href="/">B.E.R.E.I.A.</a></h1>
 		</div>
@@ -111,13 +151,15 @@
 
 		<nav class="main-nav">
 			<ul>
-				<li><a href="/biblia/mateus/1/">Bíblia de Estudo</a></li>
-				<li><a href="/interlinear/mt/1/">Interlinear</a></li>
+				<li><a href="/biblia/mateus/1/">NT de Estudo</a></li>
+				<li><a href="/interlinear/mt/1/">Bíblia Interlinear</a></li>
 				<li><a href="/sobre/">Sobre</a></li>
+				
 			</ul>
 		</nav>
 	</div>
 </header>
+
 
     <main class="home main-content">
       <div class="content">

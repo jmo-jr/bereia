@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html land="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +8,46 @@
   <meta name="description" content="Página do capítulo do livro escolhido">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="/img/logo.png">
+	<script>
+		(() => {
+			const storageKey = 'bereia-theme';
+			const systemPreference = window.matchMedia('(prefers-color-scheme: light)');
+			const savedTheme = localStorage.getItem(storageKey);
+			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
+
+			const initialTheme = hasSavedTheme
+				? savedTheme
+				: systemPreference.matches
+					? 'dark'
+					: 'light';
+
+			const applyTheme = (theme) => {
+				document.documentElement.dataset.theme = theme;
+			};
+
+			applyTheme(initialTheme);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.querySelector(
+					'.switch input[type="checkbox"]'
+				);
+
+				if (!toggle) return;
+
+				toggle.checked = initialTheme === 'dark';
+
+				toggle.addEventListener('change', () => {
+					const selectedTheme = toggle.checked ? 'dark' : 'light';
+
+					applyTheme(selectedTheme);
+					localStorage.setItem(storageKey, selectedTheme);
+				});
+			});
+		})();
+	</script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/assets/css/toggler-component.css">
 	<link rel="stylesheet" href="/biblia/pagefind/pagefind-ui.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster.bundle.min.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster-sideTip-light.min.css">
@@ -24,6 +62,7 @@
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 	<script src="/assets/js/tooltipster.bundle.min.js"></script>
 	<script src="/assets/js/tooltip-init.js"></script>
+	<script src="/assets/js/bible-original.js" defer></script>
   <script>
     $( function() {
       //$( document ).tooltip();
@@ -34,10 +73,10 @@
 <body>
 
   <div id="app" class="wrapper no_greenplaces no_bluecharacters">
-
+		
     <header class="app-bar">
 	<div class="content d-flex justify-between align-items-center">
-		<div class="d-flex align-items-center" style="gap:16px;">
+		<div class="d-flex align-items-center" style="gap:10px;">
 			<img src="/img/logo.png" style="width:34px; height: 34px;">
 			<h1><a href="/">B.E.R.E.I.A.</a></h1>
 		</div>
@@ -52,33 +91,34 @@
 
 		<nav class="main-nav">
 			<ul>
-				<li><a href="/biblia/mateus/1/">Bíblia de Estudo</a></li>
-				<li><a href="/interlinear/mt/1/">Interlinear</a></li>
+				<li><a href="/biblia/mateus/1/">NT de Estudo</a></li>
+				<li><a href="/interlinear/mt/1/">Bíblia Interlinear</a></li>
 				<li><a href="/sobre/">Sobre</a></li>
+				
 			</ul>
 		</nav>
 	</div>
 </header>
 
+
 		
 		
 		
 		
 			
 			
+		
+
+		
 		
 		
 <div class="toolbar">
 	<div class="content">
 
-		
-		<h2 class="show-mobile">LXX Interlinear Analítico</h2>
-		
-
 		<div class="d-flex justify-between align-items-center flex-wrap">
 
 			
-			<div class="input-group">
+			<div class="input-group d-flex">
 
 				<form>
 					<select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
@@ -610,7 +650,7 @@
 							
 								
 								
-                                
+								
 								
 									<option 
 										value="/interlinear/ed/1"
@@ -885,18 +925,25 @@
 
 				</form>
 
-			</div>
+				<div class="chapters-nav">
+					
+					
+					
+					
+					
 
-			
-			<h2 class="show-desktop">AT Grego (LXX) Interlinear Analítico</h2>
-			
+					<button type="button" onclick="window.location='/interlinear/ed/3/'" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
+
+					<button type="button" onclick="window.location='/interlinear/ed/5/'" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></button>
+				</div>
+			</div>
 
 			
 			
 			<div class="options-container">
 				<div id="search" class="search"></div>
 				<div class="options-group">
-					<button id="optionsBt2" class="square" type="button" title="Opções de exibição" onclick="toggleMenu(optionsDropdown2, this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 128C78.3 128 64 142.3 64 160C64 177.7 78.3 192 96 192L182.7 192C195 220.3 223.2 240 256 240C288.8 240 317 220.3 329.3 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L329.3 128C317 99.7 288.8 80 256 80C223.2 80 195 99.7 182.7 128L96 128zM96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L342.7 352C355 380.3 383.2 400 416 400C448.8 400 477 380.3 489.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L489.3 288C477 259.7 448.8 240 416 240C383.2 240 355 259.7 342.7 288L96 288zM96 448C78.3 448 64 462.3 64 480C64 497.7 78.3 512 96 512L150.7 512C163 540.3 191.2 560 224 560C256.8 560 285 540.3 297.3 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L297.3 448C285 419.7 256.8 400 224 400C191.2 400 163 419.7 150.7 448L96 448z" fill="white"/></svg></button>
+					<button id="optionsBt2" class="square" type="button" title="Opções de exibição" onclick="toggleMenu(optionsDropdown2, this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 128C78.3 128 64 142.3 64 160C64 177.7 78.3 192 96 192L182.7 192C195 220.3 223.2 240 256 240C288.8 240 317 220.3 329.3 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L329.3 128C317 99.7 288.8 80 256 80C223.2 80 195 99.7 182.7 128L96 128zM96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L342.7 352C355 380.3 383.2 400 416 400C448.8 400 477 380.3 489.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L489.3 288C477 259.7 448.8 240 416 240C383.2 240 355 259.7 342.7 288L96 288zM96 448C78.3 448 64 462.3 64 480C64 497.7 78.3 512 96 512L150.7 512C163 540.3 191.2 560 224 560C256.8 560 285 540.3 297.3 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L297.3 448C285 419.7 256.8 400 224 400C191.2 400 163 419.7 150.7 448L96 448z" fill="var(--labelColor)"/></svg></button>
 
 					<div class="options-dropdown2">
 						<div><input id="strongBt" name="strongs" type="checkbox" title="Desmarque para ocultar números Strong" onchange="toggleText(this, 'no_strongs')" checked> <label for="strongs">Exibir Strongs</label></div>
@@ -905,17 +952,26 @@
 						
 						<div><input id="greekBt" type="checkbox" title="Desmarque para ocultar traduções" onchange="toggleText(this, 'no_greek')" checked> <label>Exibir traduções</label></div>
 						
-						<div><input id="gramBt" type="checkbox" title="Desmarque para ocultar morfologia" onchange="toggleText(this, 'no_grammar')" checked> <label></label>Exibir morfolofia</label></div>
+						<div><input id="gramBt" type="checkbox" title="Desmarque para ocultar morfologia" onchange="toggleText(this, 'no_grammar')" checked> <label></label>Exibir morfologia</label></div>
 					</div>
 				</div>
 			</div>
 			
+
+			<div class="tool-selector">
+				<div class="button-group">
+					<button class="group-button " onclick="window.location.href='/biblia/1-esdras-esdras/4'" disabled>NT de Estudo</button>
+
+					<button class="group-button active" onclick="window.location.href='/interlinear/ed/4'">Bíblia Interlinear</button>
+				</div>
+			</div>
 
 		</div>
 
 	</div>
 </div>
 
+		
 		<div class="content-wrapper">
 			<main class="main-content">
 				<div class="content" data-pagefind-body>
@@ -923,10 +979,13 @@
 					
 						
 
+
 <div id="movebox2" class="page-header">
-  <a href="/interlinear/ed/3/" title="Capítulo anterior">◄</a>
-  <div class="page-header_title"><h3>Ἔσδρας Α&#39; 4</h3></div>
-  <a href="/interlinear/ed/5/" title="Próximo capítulo">►</a>
+  <div class="page-header_title">
+		<h3 data-pagefind-meta="title">
+			Ἔσδρας Α&#39; 4
+		</h3>
+	</div>
 </div>
 
 
@@ -956,7 +1015,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1245,7 +1304,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -1277,7 +1336,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1293,7 +1352,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -1335,7 +1394,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1367,7 +1426,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -1438,7 +1497,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1453,8 +1512,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -1480,7 +1539,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1528,7 +1587,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1570,7 +1629,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1618,7 +1677,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1683,7 +1742,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1843,7 +1902,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1859,7 +1918,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1885,7 +1944,7 @@
 											>846</a>
 											
 											<span class="translit">autous</span>
-											<span class="greek tooltip" title="eles | Ocorrências: 1461">αὐτοὺς</span>
+											<span class="greek tooltip" title="eles | Ocorrências: 1077">αὐτοὺς</span>
 											<span class="translate">eles</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Plural">PPro-AM3P</small>
 										</span>
@@ -1953,7 +2012,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -1979,7 +2038,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -2011,7 +2070,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2027,7 +2086,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -2059,7 +2118,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2118,7 +2177,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2144,7 +2203,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2256,7 +2315,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2272,7 +2331,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2356,7 +2415,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2388,7 +2447,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2414,7 +2473,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2430,7 +2489,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -2485,7 +2544,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2601,7 +2660,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -2727,7 +2786,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2882,7 +2941,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -2898,7 +2957,7 @@
 											>846</a>
 											
 											<span class="translit">autos</span>
-											<span class="greek tooltip" title="ele | Ocorrências: 457">αὐτὸς</span>
+											<span class="greek tooltip" title="ele | Ocorrências: 412">αὐτὸς</span>
 											<span class="translate">ele</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Nominativo Masculino 3ª Pessoa Singular">PPro-NM3S</small>
 										</span>
@@ -2930,8 +2989,8 @@
 											>3441</a>
 											
 											<span class="translit">monos</span>
-											<span class="greek tooltip" title="sozinho | Ocorrências: 46">μόνος</span>
-											<span class="translate">sozinho</span>
+											<span class="greek tooltip" title="só | Ocorrências: 46">μόνος</span>
+											<span class="translate">só</span>
 											<small class="refs tooltip" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</small>
 										</span>
 									
@@ -2948,7 +3007,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἐστίν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -2962,7 +3021,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3020,7 +3079,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -3117,7 +3176,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -3153,7 +3212,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -3202,7 +3261,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -3238,7 +3297,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -3281,7 +3340,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3329,7 +3388,7 @@
 											>2992</a>
 											
 											<span class="translit">laos</span>
-											<span class="greek tooltip" title="povo | Ocorrências: 529">λαὸς</span>
+											<span class="greek tooltip" title="povo | Ocorrências: 368">λαὸς</span>
 											<span class="translate">povo</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -3361,7 +3420,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3458,7 +3517,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3490,7 +3549,7 @@
 											>846</a>
 											
 											<span class="translit">autos</span>
-											<span class="greek tooltip" title="ele | Ocorrências: 457">αὐτὸς</span>
+											<span class="greek tooltip" title="ele | Ocorrências: 412">αὐτὸς</span>
 											<span class="translate">ele</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Nominativo Masculino 3ª Pessoa Singular">PPro-NM3S</small>
 										</span>
@@ -3538,7 +3597,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3570,7 +3629,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3602,7 +3661,7 @@
 											>846</a>
 											
 											<span class="translit">autoi</span>
-											<span class="greek tooltip" title="eles | Ocorrências: 245">αὐτοὶ</span>
+											<span class="greek tooltip" title="eles | Ocorrências: 224">αὐτοὶ</span>
 											<span class="translate">eles</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Nominativo Masculino 3ª Pessoa Plural">PPro-NM3P</small>
 										</span>
@@ -3618,7 +3677,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3676,7 +3735,7 @@
 											>846</a>
 											
 											<span class="translit">auton</span>
-											<span class="greek tooltip" title="a ele | Ocorrências: 1738">αὐτὸν</span>
+											<span class="greek tooltip" title="a ele | Ocorrências: 1490">αὐτὸν</span>
 											<span class="translate">a ele</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Singular">PPro-AM3S</small>
 										</span>
@@ -3692,7 +3751,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3772,7 +3831,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3804,7 +3863,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -4051,7 +4110,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἐστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -4065,7 +4124,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4120,7 +4179,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4232,7 +4291,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4298,7 +4357,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἐστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -4430,8 +4489,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -4447,7 +4506,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4463,7 +4522,7 @@
 											>4183</a>
 											
 											<span class="translit">polloi</span>
-											<span class="greek tooltip" title="muitos | Ocorrências: 57">πολλοὶ</span>
+											<span class="greek tooltip" title="muitos | Ocorrências: 45">πολλοὶ</span>
 											<span class="translate">muitos</span>
 											<small class="refs tooltip" title="Adjetivo - Nominativo Masculino Plural">Adj-NMP</small>
 										</span>
@@ -4511,7 +4570,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4755,7 +4814,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaikes</span>
-											<span class="greek tooltip" title="mulheres | Ocorrências: 83">γυναῖκες</span>
+											<span class="greek tooltip" title="mulheres | Ocorrências: 91">γυναῖκες</span>
 											<span class="translate">mulheres</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Plural">S-NFP</small>
 										</span>
@@ -4794,7 +4853,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaikes</span>
-											<span class="greek tooltip" title="mulheres | Ocorrências: 83">γυναῖκες</span>
+											<span class="greek tooltip" title="mulheres | Ocorrências: 91">γυναῖκες</span>
 											<span class="translate">mulheres</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Plural">S-NFP</small>
 										</span>
@@ -4858,7 +4917,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4986,7 +5045,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5041,7 +5100,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5105,7 +5164,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5147,7 +5206,7 @@
 											>846</a>
 											
 											<span class="translit">autous</span>
-											<span class="greek tooltip" title="eles | Ocorrências: 1461">αὐτοὺς</span>
+											<span class="greek tooltip" title="eles | Ocorrências: 1077">αὐτοὺς</span>
 											<span class="translate">eles</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Plural">PPro-AM3P</small>
 										</span>
@@ -5302,7 +5361,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5414,7 +5473,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5510,7 +5569,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5590,9 +5649,9 @@
 											>1510</a>
 											
 											<span class="translit">einai</span>
-											<span class="greek tooltip" title="ser, estar, existir | Ocorrências: 128">εἶναι</span>
+											<span class="greek tooltip" title="ser, estar, existir | Ocorrências: 122">εἶναι</span>
 											<span class="translate">ser/estar</span>
-											<small class="refs tooltip" title="Verbo - Presente Infinitivo">V-PN</small>
+											<small class="refs tooltip" title="Verbo - Presente Infinitivo Ativa">V-PNA</small>
 										</span>
 									
 										<span class="token">
@@ -5606,7 +5665,7 @@
 											>5565</a>
 											
 											<span class="translit">chōris</span>
-											<span class="greek tooltip" title="sem, além de | Ocorrências: 13">χωρὶς</span>
+											<span class="greek tooltip" title="sem, além de | Ocorrências: 14">χωρὶς</span>
 											<span class="translate">à parte de</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -5661,7 +5720,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5677,7 +5736,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5719,7 +5778,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5751,7 +5810,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5809,7 +5868,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5841,7 +5900,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaika</span>
-											<span class="greek tooltip" title="mulher | Ocorrências: 202">γυναῖκα</span>
+											<span class="greek tooltip" title="mulher | Ocorrências: 216">γυναῖκα</span>
 											<span class="translate">mulher</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
 										</span>
@@ -5873,7 +5932,7 @@
 											>2570</a>
 											
 											<span class="translit">kalēn</span>
-											<span class="greek tooltip" title="boa | Ocorrências: 7">καλὴν</span>
+											<span class="greek tooltip" title="boa | Ocorrências: 5">καλὴν</span>
 											<span class="translate">boa</span>
 											<small class="refs tooltip" title="Adjetivo - Acusativo Feminino Singular">Adj-AFS</small>
 										</span>
@@ -5921,7 +5980,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5970,7 +6029,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5979,15 +6038,15 @@
 											
 											<a 
 												class="strongs tooltip"
-												href="https://theancientbible-org.translate.goog/word/g3778/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" 
+												href="https://theancientbible-org.translate.goog/word/g5023/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" 
 												target="_blank" 
-												title="G3778: este (m), esta (f), isto (n)"
-												data-strong="G3778"
-											>3778</a>
+												title="G5023: essas coisas, essas"
+												data-strong="G5023"
+											>5023</a>
 											
-											<span class="translit">tauta</span>
-											<span class="greek tooltip" title="estas coisas | Ocorrências: 1">ταῦτα</span>
-											<span class="translate">estas coisas</span>
+											<span class="translit">taûta</span>
+											<span class="greek tooltip" title="G5023: essas coisas, essas | Ocorrências: 0">ταῦτα</span>
+											<span class="translate">essas coisas</span>
 											<small class="refs tooltip" title="Pronome Demonstrativo - Acusativo Neutro Plural">DPro-ANP</small>
 										</span>
 									
@@ -6050,7 +6109,7 @@
 											>846</a>
 											
 											<span class="translit">autēn</span>
-											<span class="greek tooltip" title="ela | Ocorrências: 766">αὐτὴν</span>
+											<span class="greek tooltip" title="ela | Ocorrências: 523">αὐτὴν</span>
 											<span class="translate">ela</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Feminino 3ª Pessoa Singular">PPro-AF3S</small>
 										</span>
@@ -6076,7 +6135,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6102,7 +6161,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -6166,7 +6225,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6198,7 +6257,7 @@
 											>846</a>
 											
 											<span class="translit">autēn</span>
-											<span class="greek tooltip" title="ela | Ocorrências: 766">αὐτὴν</span>
+											<span class="greek tooltip" title="ela | Ocorrências: 523">αὐτὴν</span>
 											<span class="translate">ela</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Feminino 3ª Pessoa Singular">PPro-AF3S</small>
 										</span>
@@ -6256,7 +6315,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -6288,7 +6347,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6304,7 +6363,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -6336,7 +6395,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6517,7 +6576,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6533,7 +6592,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -6581,7 +6640,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6613,7 +6672,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -6645,7 +6704,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaika</span>
-											<span class="greek tooltip" title="mulher | Ocorrências: 202">γυναῖκα</span>
+											<span class="greek tooltip" title="mulher | Ocorrências: 216">γυναῖκα</span>
 											<span class="translate">mulher</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
 										</span>
@@ -6678,7 +6737,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6726,7 +6785,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaikos</span>
-											<span class="greek tooltip" title="da mulher | Ocorrências: 96">γυναικὸς</span>
+											<span class="greek tooltip" title="da mulher | Ocorrências: 83">γυναικὸς</span>
 											<span class="translate">da mulher</span>
 											<small class="refs tooltip" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
 										</span>
@@ -6752,7 +6811,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -6767,8 +6826,8 @@
 												data-strong="G5590"
 											>5590</a>
 											
-											<span class="translit">psychēn</span>
-											<span class="greek tooltip" title="alma | Ocorrências: 217">ψυχὴν</span>
+											<span class="translit">Psychēn</span>
+											<span class="greek tooltip" title="alma | Ocorrências: 0">ψυχὴν</span>
 											<span class="translate">alma</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
 										</span>
@@ -6784,7 +6843,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6874,7 +6933,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -6922,7 +6981,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -6961,7 +7020,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7025,7 +7084,7 @@
 											>1097</a>
 											
 											<span class="translit">gnōnai</span>
-											<span class="greek tooltip" title="ter conhecido, ter sabido | Ocorrências: 31">γνῶναι</span>
+											<span class="greek tooltip" title="ter conhecido, ter sabido | Ocorrências: 30">γνῶναι</span>
 											<span class="translate">conhecer</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Infinitivo Ativa">V-ANA</small>
 										</span>
@@ -7073,7 +7132,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaikes</span>
-											<span class="greek tooltip" title="mulheres | Ocorrências: 83">γυναῖκες</span>
+											<span class="greek tooltip" title="mulheres | Ocorrências: 91">γυναῖκες</span>
 											<span class="translate">mulheres</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Plural">S-NFP</small>
 										</span>
@@ -7121,7 +7180,7 @@
 											>3780</a>
 											
 											<span class="translit">ouchi</span>
-											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 156">οὐχὶ</span>
+											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 144">οὐχὶ</span>
 											<span class="translate">não</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -7147,7 +7206,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7173,7 +7232,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7221,7 +7280,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaixin</span>
-											<span class="greek tooltip" title="às mulheres | Ocorrências: 8">γυναιξὶν</span>
+											<span class="greek tooltip" title="às mulheres | Ocorrências: 7">γυναιξὶν</span>
 											<span class="translate">às mulheres</span>
 											<small class="refs tooltip" title="Substantivo - Dativo Feminino Plural">S-DFP</small>
 										</span>
@@ -7253,7 +7312,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7292,7 +7351,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7340,7 +7399,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -7388,7 +7447,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7430,7 +7489,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7456,7 +7515,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7488,7 +7547,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7520,7 +7579,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -7568,7 +7627,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7607,7 +7666,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7665,7 +7724,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7723,7 +7782,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7771,7 +7830,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7797,7 +7856,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7866,7 +7925,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -7930,7 +7989,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -7962,7 +8021,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaika</span>
-											<span class="greek tooltip" title="mulher | Ocorrências: 202">γυναῖκα</span>
+											<span class="greek tooltip" title="mulher | Ocorrências: 216">γυναῖκα</span>
 											<span class="translate">mulher</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
 										</span>
@@ -8042,7 +8101,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8058,7 +8117,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -8097,7 +8156,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8113,7 +8172,7 @@
 											>4183</a>
 											
 											<span class="translit">polloi</span>
-											<span class="greek tooltip" title="muitos | Ocorrências: 57">πολλοὶ</span>
+											<span class="greek tooltip" title="muitos | Ocorrências: 45">πολλοὶ</span>
 											<span class="translate">muitos</span>
 											<small class="refs tooltip" title="Adjetivo - Nominativo Masculino Plural">Adj-NMP</small>
 										</span>
@@ -8181,7 +8240,7 @@
 											>1223</a>
 											
 											<span class="translit">dia</span>
-											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 649">διὰ</span>
+											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 851">διὰ</span>
 											<span class="translate">por (causa)</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -8229,7 +8288,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8245,7 +8304,7 @@
 											>1401</a>
 											
 											<span class="translit">douloi</span>
-											<span class="greek tooltip" title="escravos | Ocorrências: 40">δοῦλοι</span>
+											<span class="greek tooltip" title="escravos | Ocorrências: 33">δοῦλοι</span>
 											<span class="translate">escravos</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
 										</span>
@@ -8310,7 +8369,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8326,7 +8385,7 @@
 											>4183</a>
 											
 											<span class="translit">polloi</span>
-											<span class="greek tooltip" title="muitos | Ocorrências: 57">πολλοὶ</span>
+											<span class="greek tooltip" title="muitos | Ocorrências: 45">πολλοὶ</span>
 											<span class="translate">muitos</span>
 											<small class="refs tooltip" title="Adjetivo - Nominativo Masculino Plural">Adj-NMP</small>
 										</span>
@@ -8358,7 +8417,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8384,7 +8443,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8410,7 +8469,7 @@
 											>1223</a>
 											
 											<span class="translit">dia</span>
-											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 649">διὰ</span>
+											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 851">διὰ</span>
 											<span class="translate">por (causa)</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -8465,7 +8524,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8512,10 +8571,10 @@
 												data-strong="G4100"
 											>4100</a>
 											
-											<span class="translit">pisteuete</span>
+											<span class="translit">Pisteuete</span>
 											<span class="greek tooltip" title="vós credes, tendes fé, confiais; crede, tende fé, confiai vós | Ocorrências: 0">πιστεύετέ</span>
 											<span class="translate">crede(s)</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo/Imperativo Ativa - 2ª Pessoa Plural">V-PIA/PMA-2P</small>
+											<small class="refs tooltip" title="Verbo - Presente Imperativo Ativa - 2ª Pessoa Plural">V-PMA-2P</small>
 										</span>
 									
 										<span class="token">
@@ -8545,7 +8604,7 @@
 											>3780</a>
 											
 											<span class="translit">ouchi</span>
-											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 156">οὐχὶ</span>
+											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 144">οὐχὶ</span>
 											<span class="translate">não</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -8592,8 +8651,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -8625,9 +8684,9 @@
 											>1849</a>
 											
 											<span class="translit">exousia</span>
-											<span class="greek tooltip" title="autoridade | Ocorrências: 7">ἐξουσίᾳ</span>
+											<span class="greek tooltip" title="autoridade | Ocorrências: 4">ἐξουσίᾳ</span>
 											<span class="translate">autoridade</span>
-											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+											<small class="refs tooltip" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
 										</span>
 									
 										<span class="token">
@@ -8657,7 +8716,7 @@
 											>3780</a>
 											
 											<span class="translit">ouchi</span>
-											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 156">οὐχὶ</span>
+											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 144">οὐχὶ</span>
 											<span class="translate">não</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -8774,7 +8833,7 @@
 											>846</a>
 											
 											<span class="translit">auton</span>
-											<span class="greek tooltip" title="a ele | Ocorrências: 1738">αὐτὸν</span>
+											<span class="greek tooltip" title="a ele | Ocorrências: 1490">αὐτὸν</span>
 											<span class="translate">a ele</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Singular">PPro-AM3S</small>
 										</span>
@@ -8790,7 +8849,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -8816,7 +8875,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -8884,7 +8943,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -9029,7 +9088,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9055,7 +9114,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -9080,8 +9139,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -9161,7 +9220,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9203,7 +9262,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9300,7 +9359,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9363,8 +9422,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -9390,7 +9449,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -9454,7 +9513,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9470,7 +9529,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9522,7 +9581,7 @@
 											>1437</a>
 											
 											<span class="translit">ean</span>
-											<span class="greek tooltip" title="se | Ocorrências: 864">ἐὰν</span>
+											<span class="greek tooltip" title="se | Ocorrências: 1078">ἐὰν</span>
 											<span class="translate">se</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9538,7 +9597,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9713,7 +9772,7 @@
 											>3780</a>
 											
 											<span class="translit">ouchi</span>
-											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 156">οὐχὶ</span>
+											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 144">οὐχὶ</span>
 											<span class="translate">não</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -9761,7 +9820,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaikes</span>
-											<span class="greek tooltip" title="mulheres | Ocorrências: 83">γυναῖκες</span>
+											<span class="greek tooltip" title="mulheres | Ocorrências: 91">γυναῖκες</span>
 											<span class="translate">mulheres</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Plural">S-NFP</small>
 										</span>
@@ -9832,7 +9891,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -9879,8 +9938,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -9896,7 +9955,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -10031,7 +10090,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -10143,7 +10202,7 @@
 											>3780</a>
 											
 											<span class="translit">ouchi</span>
-											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 156">οὐχὶ</span>
+											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 144">οὐχὶ</span>
 											<span class="translate">não</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -10191,7 +10250,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaikes</span>
-											<span class="greek tooltip" title="mulheres | Ocorrências: 83">γυναῖκες</span>
+											<span class="greek tooltip" title="mulheres | Ocorrências: 91">γυναῖκες</span>
 											<span class="translate">mulheres</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Plural">S-NFP</small>
 										</span>
@@ -10255,7 +10314,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -10313,7 +10372,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -10509,7 +10568,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -10631,9 +10690,9 @@
 											>1520</a>
 											
 											<span class="translit">mia</span>
-											<span class="greek tooltip" title="uma | Ocorrências: 146">μιᾷ</span>
+											<span class="greek tooltip" title="uma | Ocorrências: 70">μιᾷ</span>
 											<span class="translate">uma</span>
-											<small class="refs tooltip" title="Adjetivo - Nominativo Feminino Singular">Adj-NFS</small>
+											<small class="refs tooltip" title="Adjetivo - Dativo Feminino Singular">Adj-DFS</small>
 										</span>
 									
 										<span class="token">
@@ -10670,7 +10729,7 @@
 											>3780</a>
 											
 											<span class="translit">ouchi</span>
-											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 156">οὐχὶ</span>
+											<span class="greek tooltip" title="não, de modo algum | Ocorrências: 144">οὐχὶ</span>
 											<span class="translate">não</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -10711,15 +10770,15 @@
 											
 											<a 
 												class="strongs tooltip"
-												href="https://theancientbible-org.translate.goog/word/g3778/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" 
+												href="https://theancientbible-org.translate.goog/word/g5023/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp" 
 												target="_blank" 
-												title="G3778: este (m), esta (f), isto (n)"
-												data-strong="G3778"
-											>3778</a>
+												title="G5023: essas coisas, essas"
+												data-strong="G5023"
+											>5023</a>
 											
-											<span class="translit">tauta</span>
-											<span class="greek tooltip" title="estas coisas | Ocorrências: 1">ταῦτα</span>
-											<span class="translate">estas coisas</span>
+											<span class="translit">taûta</span>
+											<span class="greek tooltip" title="G5023: essas coisas, essas | Ocorrências: 0">ταῦτα</span>
+											<span class="translate">essas coisas</span>
 											<small class="refs tooltip" title="Pronome Demonstrativo - Acusativo Neutro Plural">DPro-ANP</small>
 										</span>
 									
@@ -10734,9 +10793,9 @@
 											>4160</a>
 											
 											<span class="translit">poiei</span>
-											<span class="greek tooltip" title="tu faz, age, causa, trabalha | Ocorrências: 17">ποιεῖ</span>
+											<span class="greek tooltip" title="tu faz, age, causa, trabalha | Ocorrências: 27">ποιεῖ</span>
 											<span class="translate">faz</span>
-											<small class="refs tooltip" title="Verbo - Presente Imperativo Ativa - 2ª Pessoa Singular">V-PMA-2S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -10750,7 +10809,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -10782,7 +10841,7 @@
 											>225</a>
 											
 											<span class="translit">alētheia</span>
-											<span class="greek tooltip" title="verdade | Ocorrências: 56">ἀλήθεια</span>
+											<span class="greek tooltip" title="verdade | Ocorrências: 23">ἀλήθεια</span>
 											<span class="translate">verdade</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
 										</span>
@@ -10814,7 +10873,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -10927,7 +10986,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -10959,9 +11018,9 @@
 											>2564</a>
 											
 											<span class="translit">kalei</span>
-											<span class="greek tooltip" title="tu chama, nomea, convida | Ocorrências: 1">καλεῖ</span>
+											<span class="greek tooltip" title="tu chama, nomea, convida | Ocorrências: 2">καλεῖ</span>
 											<span class="translate">chama</span>
-											<small class="refs tooltip" title="Verbo - Presente Imperativo Ativa - 2ª Pessoa Singular">V-PMA-2S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -10975,7 +11034,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11007,7 +11066,7 @@
 											>3772</a>
 											
 											<span class="translit">ouranos</span>
-											<span class="greek tooltip" title="céu | Ocorrências: 34">οὐρανὸς</span>
+											<span class="greek tooltip" title="céu | Ocorrências: 35">οὐρανὸς</span>
 											<span class="translate">céu</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -11023,7 +11082,7 @@
 											>846</a>
 											
 											<span class="translit">autēn</span>
-											<span class="greek tooltip" title="ela | Ocorrências: 766">αὐτὴν</span>
+											<span class="greek tooltip" title="ela | Ocorrências: 523">αὐτὴν</span>
 											<span class="translate">ela</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Feminino 3ª Pessoa Singular">PPro-AF3S</small>
 										</span>
@@ -11055,7 +11114,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11087,7 +11146,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -11129,7 +11188,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11155,7 +11214,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11189,7 +11248,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἔστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -11390,7 +11449,7 @@
 											>1135</a>
 											
 											<span class="translit">gynaikes</span>
-											<span class="greek tooltip" title="mulheres | Ocorrências: 83">γυναῖκες</span>
+											<span class="greek tooltip" title="mulheres | Ocorrências: 91">γυναῖκες</span>
 											<span class="translate">mulheres</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Plural">S-NFP</small>
 										</span>
@@ -11502,7 +11561,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11544,7 +11603,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -11608,7 +11667,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -11640,7 +11699,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11674,7 +11733,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἔστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -11720,7 +11779,7 @@
 											>225</a>
 											
 											<span class="translit">alētheia</span>
-											<span class="greek tooltip" title="verdade | Ocorrências: 56">ἀλήθεια</span>
+											<span class="greek tooltip" title="verdade | Ocorrências: 23">ἀλήθεια</span>
 											<span class="translate">verdade</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
 										</span>
@@ -11736,7 +11795,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11784,9 +11843,9 @@
 											>93</a>
 											
 											<span class="translit">adikia</span>
-											<span class="greek tooltip" title="injustiça | Ocorrências: 33">ἀδικίᾳ</span>
+											<span class="greek tooltip" title="injustiça | Ocorrências: 9">ἀδικίᾳ</span>
 											<span class="translate">injustiça</span>
-											<small class="refs tooltip" title="Adjetivo - Nominativo Feminino Singular">Adj-NFS</small>
+											<small class="refs tooltip" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
 										</span>
 									
 										<span class="token">
@@ -11855,7 +11914,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11871,7 +11930,7 @@
 											>225</a>
 											
 											<span class="translit">alētheia</span>
-											<span class="greek tooltip" title="verdade | Ocorrências: 56">ἀλήθεια</span>
+											<span class="greek tooltip" title="verdade | Ocorrências: 23">ἀλήθεια</span>
 											<span class="translate">verdade</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
 										</span>
@@ -11903,7 +11962,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -11983,7 +12042,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12015,7 +12074,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12134,7 +12193,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12168,7 +12227,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἔστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -12288,7 +12347,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -12320,9 +12379,9 @@
 											>4160</a>
 											
 											<span class="translit">poiei</span>
-											<span class="greek tooltip" title="tu faz, age, causa, trabalha | Ocorrências: 17">ποιεῖ</span>
+											<span class="greek tooltip" title="tu faz, age, causa, trabalha | Ocorrências: 27">ποιεῖ</span>
 											<span class="translate">faz</span>
-											<small class="refs tooltip" title="Verbo - Presente Imperativo Ativa - 2ª Pessoa Singular">V-PMA-2S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -12335,8 +12394,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -12400,7 +12459,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12432,7 +12491,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12522,7 +12581,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12556,7 +12615,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἔστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -12634,7 +12693,7 @@
 											>3762</a>
 											
 											<span class="translit">outhen</span>
-											<span class="greek tooltip" title="nenhum | Ocorrências: 24">οὐθὲν</span>
+											<span class="greek tooltip" title="nenhum | Ocorrências: 14">οὐθὲν</span>
 											<span class="translate">nenhum</span>
 											<small class="refs tooltip" title="Adjetivo - Acusativo Neutro Singular">Adj-ANS</small>
 										</span>
@@ -12667,7 +12726,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12731,7 +12790,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12747,7 +12806,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -12779,7 +12838,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12827,7 +12886,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -12948,8 +13007,8 @@
 												data-strong="G2316"
 											>2316</a>
 											
-											<span class="translit">theos</span>
-											<span class="greek tooltip" title="Deus | Ocorrências: 1367">θεὸς</span>
+											<span class="translit">Theos</span>
+											<span class="greek tooltip" title="Deus | Ocorrências: 0">θεὸς</span>
 											<span class="translate">Deus</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -13004,7 +13063,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -13062,7 +13121,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -13110,7 +13169,7 @@
 											>2992</a>
 											
 											<span class="translit">laos</span>
-											<span class="greek tooltip" title="povo | Ocorrências: 529">λαὸς</span>
+											<span class="greek tooltip" title="povo | Ocorrências: 368">λαὸς</span>
 											<span class="translate">povo</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -13158,7 +13217,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -13238,7 +13297,7 @@
 											>225</a>
 											
 											<span class="translit">alētheia</span>
-											<span class="greek tooltip" title="verdade | Ocorrências: 56">ἀλήθεια</span>
+											<span class="greek tooltip" title="verdade | Ocorrências: 23">ἀλήθεια</span>
 											<span class="translate">verdade</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
 										</span>
@@ -13254,7 +13313,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -13318,8 +13377,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -13335,7 +13394,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -13463,7 +13522,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -13563,7 +13622,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -13615,7 +13674,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -13630,8 +13689,8 @@
 												data-strong="G4773"
 											>4773</a>
 											
-											<span class="translit">syngenēs</span>
-											<span class="greek tooltip" title="parente | Ocorrências: 2">συγγενής</span>
+											<span class="translit">syggenēs</span>
+											<span class="greek tooltip" title="parente | Ocorrências: 1">συγγενής</span>
 											<span class="translate">parente</span>
 											<small class="refs tooltip" title="Adjetivo - Nominativo Masculino Singular">Adj-NMS</small>
 										</span>
@@ -13702,7 +13761,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -13750,7 +13809,7 @@
 											>3403</a>
 											
 											<span class="translit">mnēsthēti</span>
-											<span class="greek tooltip" title="lembra-te, está atento | Ocorrências: 8">μνήσθητι</span>
+											<span class="greek tooltip" title="lembra-te, está atento | Ocorrências: 35">μνήσθητι</span>
 											<span class="translate">lembra-te</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Imperativo Passiva - 2ª Pessoa Singular">V-AMP-2S</small>
 										</span>
@@ -13766,7 +13825,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -13840,7 +13899,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -13936,7 +13995,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -14007,7 +14066,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -14039,7 +14098,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -14071,7 +14130,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -14221,7 +14280,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -14280,7 +14339,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -14354,7 +14413,7 @@
 											>3485</a>
 											
 											<span class="translit">naon</span>
-											<span class="greek tooltip" title="templo | Ocorrências: 17">ναόν</span>
+											<span class="greek tooltip" title="templo | Ocorrências: 3">ναόν</span>
 											<span class="translate">templo</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Masculino Singular">S-AMS</small>
 										</span>
@@ -14486,7 +14545,7 @@
 											>5259</a>
 											
 											<span class="translit">hypo</span>
-											<span class="greek tooltip" title="por, sob | Ocorrências: 212">ὑπὸ</span>
+											<span class="greek tooltip" title="por, sob | Ocorrências: 235">ὑπὸ</span>
 											<span class="translate">por/sob</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -14541,7 +14600,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -14591,7 +14650,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἐστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -14646,8 +14705,8 @@
 												data-strong="G2962"
 											>2962</a>
 											
-											<span class="translit">Kyrie</span>
-											<span class="greek tooltip" title="senhor!, mestre! | Ocorrências: 2">κύριε</span>
+											<span class="translit">kyrie</span>
+											<span class="greek tooltip" title="senhor!, mestre! | Ocorrências: 561">κύριε</span>
 											<span class="translate">Senhor</span>
 											<small class="refs tooltip" title="Substantivo - Vocativo Masculino Singular">S-VMS</small>
 										</span>
@@ -14679,7 +14738,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -14743,7 +14802,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -14775,9 +14834,9 @@
 											>1510</a>
 											
 											<span class="translit">estin</span>
-											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἐστὶν</span>
+											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 106">ἐστὶν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -14935,7 +14994,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -15089,7 +15148,7 @@
 											>4750</a>
 											
 											<span class="translit">stomatos</span>
-											<span class="greek tooltip" title="da boca | Ocorrências: 84">στόματός</span>
+											<span class="greek tooltip" title="da boca | Ocorrências: 32">στόματός</span>
 											<span class="translate">da boca</span>
 											<small class="refs tooltip" title="Substantivo - Genitivo Neutro Singular">S-GNS</small>
 										</span>
@@ -15185,8 +15244,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -15218,7 +15277,7 @@
 											>846</a>
 											
 											<span class="translit">auton</span>
-											<span class="greek tooltip" title="a ele | Ocorrências: 1738">αὐτὸν</span>
+											<span class="greek tooltip" title="a ele | Ocorrências: 1490">αὐτὸν</span>
 											<span class="translate">a ele</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Singular">PPro-AM3S</small>
 										</span>
@@ -15234,7 +15293,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15378,7 +15437,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15404,7 +15463,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15436,7 +15495,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15488,7 +15547,7 @@
 											>846</a>
 											
 											<span class="translit">auton</span>
-											<span class="greek tooltip" title="a ele | Ocorrências: 1738">αὐτὸν</span>
+											<span class="greek tooltip" title="a ele | Ocorrências: 1490">αὐτὸν</span>
 											<span class="translate">a ele</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Singular">PPro-AM3S</small>
 										</span>
@@ -15504,7 +15563,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15610,7 +15669,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -15649,7 +15708,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15743,7 +15802,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15769,7 +15828,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -15910,8 +15969,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -15985,7 +16044,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16053,7 +16112,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -16092,7 +16151,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16203,8 +16262,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -16268,7 +16327,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -16380,7 +16439,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16406,7 +16465,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16432,7 +16491,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16464,7 +16523,7 @@
 											>3361</a>
 											
 											<span class="translit">mē</span>
-											<span class="greek tooltip" title="não, para que não | Ocorrências: 43">μὴ</span>
+											<span class="greek tooltip" title="não, para que não | Ocorrências: 2198">μὴ</span>
 											<span class="translate">não</span>
 											<small class="refs tooltip" title="Advérbio">Adv</small>
 										</span>
@@ -16489,8 +16548,8 @@
 												data-strong="G1909"
 											>1909</a>
 											
-											<span class="translit">epi</span>
-											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 3558">ἐπὶ</span>
+											<span class="translit">Epi</span>
+											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 0">ἐπὶ</span>
 											<span class="translate">para/por/sobre</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -16561,7 +16620,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16593,7 +16652,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -16693,7 +16752,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16858,7 +16917,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -16890,7 +16949,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -16980,7 +17039,7 @@
 											>1763</a>
 											
 											<span class="translit">eniauton</span>
-											<span class="greek tooltip" title="ano | Ocorrências: 29">ἐνιαυτὸν</span>
+											<span class="greek tooltip" title="ano | Ocorrências: 32">ἐνιαυτὸν</span>
 											<span class="translate">ano</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Masculino Singular">S-AMS</small>
 										</span>
@@ -17077,7 +17136,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -17092,8 +17151,8 @@
 												data-strong="G1909"
 											>1909</a>
 											
-											<span class="translit">epi</span>
-											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 3558">ἐπὶ</span>
+											<span class="translit">Epi</span>
+											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 0">ἐπὶ</span>
 											<span class="translate">para/por/sobre</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -17109,7 +17168,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -17224,8 +17283,8 @@
 												data-strong="G1785"
 											>1785</a>
 											
-											<span class="translit">entolēn</span>
-											<span class="greek tooltip" title="mandamento | Ocorrências: 21">ἐντολὴν</span>
+											<span class="translit">Entolēn</span>
+											<span class="greek tooltip" title="mandamento | Ocorrências: 0">ἐντολὴν</span>
 											<span class="translate">mandamento</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
 										</span>
@@ -17348,7 +17407,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -17405,8 +17464,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -17458,7 +17517,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -17506,7 +17565,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -17570,7 +17629,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -17634,7 +17693,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -17741,7 +17800,7 @@
 											>1161</a>
 											
 											<span class="translit">de</span>
-											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3008">δὲ</span>
+											<span class="greek tooltip" title="então, por sua vez, mas | Ocorrências: 3382">δὲ</span>
 											<span class="translate">porém</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -17757,7 +17816,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -17773,7 +17832,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -17799,7 +17858,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -17815,7 +17874,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -17944,7 +18003,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18002,7 +18061,7 @@
 											>1325</a>
 											
 											<span class="translit">dounai</span>
-											<span class="greek tooltip" title="dar | Ocorrências: 110">δοῦναι</span>
+											<span class="greek tooltip" title="dar | Ocorrências: 104">δοῦναι</span>
 											<span class="translate">dar</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Infinitivo Ativa">V-ANA</small>
 										</span>
@@ -18018,7 +18077,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -18134,7 +18193,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18183,7 +18242,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18241,7 +18300,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -18283,7 +18342,7 @@
 											>1325</a>
 											
 											<span class="translit">dounai</span>
-											<span class="greek tooltip" title="dar | Ocorrências: 110">δοῦναι</span>
+											<span class="greek tooltip" title="dar | Ocorrências: 104">δοῦναι</span>
 											<span class="translate">dar</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Infinitivo Ativa">V-ANA</small>
 										</span>
@@ -18331,7 +18390,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18370,7 +18429,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18418,7 +18477,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -18485,8 +18544,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -18518,7 +18577,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18566,7 +18625,7 @@
 											>3004</a>
 											
 											<span class="translit">eipen</span>
-											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 1056">εἶπεν</span>
+											<span class="greek tooltip" title="ele(a) disse, falou, contou | Ocorrências: 2461">εἶπεν</span>
 											<span class="translate">disse</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -18608,7 +18667,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18624,7 +18683,7 @@
 											>846</a>
 											
 											<span class="translit">autos</span>
-											<span class="greek tooltip" title="ele | Ocorrências: 457">αὐτὸς</span>
+											<span class="greek tooltip" title="ele | Ocorrências: 412">αὐτὸς</span>
 											<span class="translate">ele</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Nominativo Masculino 3ª Pessoa Singular">PPro-NM3S</small>
 										</span>
@@ -18672,7 +18731,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18737,7 +18796,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -18833,7 +18892,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -18897,7 +18956,7 @@
 											>3772</a>
 											
 											<span class="translit">ouranon</span>
-											<span class="greek tooltip" title="céu | Ocorrências: 115">οὐρανὸν</span>
+											<span class="greek tooltip" title="céu | Ocorrências: 87">οὐρανὸν</span>
 											<span class="translate">céu</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Masculino Singular">S-AMS</small>
 										</span>
@@ -19112,7 +19171,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19192,7 +19251,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19256,7 +19315,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19272,7 +19331,7 @@
 											>1473</a>
 											
 											<span class="translit">egō</span>
-											<span class="greek tooltip" title="eu | Ocorrências: 1212">ἐγὼ</span>
+											<span class="greek tooltip" title="eu | Ocorrências: 1025">ἐγὼ</span>
 											<span class="translate">eu</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Nominativo 1ª Pessoa Singular">PPro-N1S</small>
 										</span>
@@ -19345,7 +19404,7 @@
 											<span class="translit">ei</span>
 											<span class="greek tooltip" title="tu és, estás, existes | Ocorrências: 663">εἶ</span>
 											<span class="translate">és/estás</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 2ª Pessoa Singular">V-PI-2S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 2ª Pessoa Singular">V-PIA-2S</small>
 										</span>
 									
 										<span class="token">
@@ -19423,7 +19482,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19526,7 +19585,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19590,7 +19649,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19648,7 +19707,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19751,7 +19810,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19792,8 +19851,8 @@
 												data-strong="G2316"
 											>2316</a>
 											
-											<span class="translit">theon</span>
-											<span class="greek tooltip" title="Deus | Ocorrências: 305">θεὸν</span>
+											<span class="translit">Theon</span>
+											<span class="greek tooltip" title="Deus | Ocorrências: 0">θεὸν</span>
 											<span class="translate">Deus</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Masculino Singular">S-AMS</small>
 										</span>
@@ -19873,7 +19932,7 @@
 											>1325</a>
 											
 											<span class="translit">edōken</span>
-											<span class="greek tooltip" title="ele(a) deu | Ocorrências: 193">ἔδωκεν</span>
+											<span class="greek tooltip" title="ele(a) deu | Ocorrências: 308">ἔδωκεν</span>
 											<span class="translate">deu</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 3ª Pessoa Singular">V-AIA-3S</small>
 										</span>
@@ -19921,7 +19980,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -19970,7 +20029,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -20018,7 +20077,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -20034,7 +20093,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -20098,7 +20157,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -20114,7 +20173,7 @@
 											>3686</a>
 											
 											<span class="translit">onoma</span>
-											<span class="greek tooltip" title="nome | Ocorrências: 535">ὄνομα</span>
+											<span class="greek tooltip" title="nome | Ocorrências: 457">ὄνομα</span>
 											<span class="translate">nome</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Neutro Singular">S-NNS</small>
 										</span>
@@ -20172,7 +20231,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -20230,7 +20289,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -20292,21 +20351,27 @@
 		
 
 		
-        <p class="source-credit"><small>Fontes lexicais complementares:
-          <a href="https://github.com/STEPBible/STEPBible-Data/tree/master/Lexicons">TBESG — Tyndale House e STEPBible.org</a>
-          (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>),
-          <a href="https://www.septuaginta.online">Septuaginta Online</a> e BEREIA.
-          Traduções e flexões complementares adaptadas para a versão beta.
-        </small></p>
+		<footer>
+      <p class="source-credit">
+				<small>Septuaginta de Rhalfs (1935) disponível em 
+          <a href="https://github.com/OpenScriptorium/lxx-morph">https://github.com/OpenScriptorium/lxx-morph</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Termos gregos ausentes do Léxico de Strong podem ter sido traduzidos por inteligência artificial.
+        </small>
+			</p>
+		</footer>
+		
+
 		
 	</div>
 
 
 					
 
-				</div>
+				</div><!-- /.content -->
+
+				
 			</main>
 
+			
 			
 			<aside class="side-drawer" id="strong-drawer" tabindex="-1"
 				aria-labelledby="strong-drawer-title" data-lexico-url="/assets/lexico/greek.json">
@@ -20319,13 +20384,24 @@
 				<div class="drawer-body" aria-live="polite"></div>
 			</aside>
 			
+
+		</div><!-- /.content-wrapper -->
+
+  </div><!-- /#app -->
+
+	<div class="feedback-component">
+		<button type="button" onclick="toggleMenu(feedbackWindow, this)">📢 Feedback</button>
+
+		<div class="feedback-options">
+			<p>Queremos te ouvir!</p>
+			<button id="bugReport" type="button">🚨 Relate um erro</button>
+			<button id="featureRequest" type="button">🌟 Sugira uma funcionalidade</button>
+			<button id="helpUs" type="button">🫰 Apoie nosso trabalho</button>
 		</div>
-
-    <script src="/assets/js/strong-drawer.js" defer></script>
-
-  </div>
+	</div>
 
   <!-- SCRIPTS -->
+	<script src="/assets/js/strong-drawer.js" defer></script>
   <script>
     var page = document.getElementById("app");
 		
@@ -20343,6 +20419,7 @@
 		const mainNav = document.querySelector('.main-nav');
 		const optionsDropdown = document.querySelector('.options-dropdown');
 		const optionsDropdown2 = document.querySelector('.options-dropdown2');
+		const feedbackWindow = document.querySelector('.feedback-options');
 		const menuControls = [
 			{ nav: mainNav, button: document.getElementById('toggleMenu') },
 			{ nav: optionsDropdown, button: document.getElementById('optionsBt') },
@@ -20375,123 +20452,43 @@
 			});
 		});
 	</script>
-	<script 
-		src="/biblia/pagefind/pagefind-ui.js" 
-		onload="new PagefindUI({
-			element: '#search', 
-			showImages: false,
-			pageSize: 10,
-  		excerptLength: 12,
-			translations: { 
-				placeholder: 'Busca', 
-				zero_results: 'Não encontrei [SEARCH_TERM]', 
-				many_results: '[COUNT] resultados para [SEARCH_TERM]', 
-				one_result: '[COUNT] resultado para [SEARCH_TERM]'
+	<script src="/biblia/pagefind/pagefind-ui.js" defer></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			function initPagefind(selector) {
+				const container = document.querySelector(selector);
+				if (!container || typeof PagefindUI === "undefined") return;
+
+				new PagefindUI({
+					element: selector,
+					showImages: false,
+					pageSize: 10,
+					excerptLength: 12,
+					translations: {
+						placeholder: "Busca",
+						zero_results: "Não encontrei [SEARCH_TERM]",
+						many_results: "[COUNT] resultados para [SEARCH_TERM]",
+						one_result: "[COUNT] resultado para [SEARCH_TERM]"
+					},
+					processResult: function (result) {
+						if (result.url && !result.url.startsWith("/") && !result.url.startsWith("http")) {
+							result.url = "/" + result.url;
+						}
+						return result;
+					}
+				});
 			}
-		});">
+
+			// Exemplos em diferentes telas/containers da mesma estrutura
+			initPagefind("#search");
+			initPagefind("#search-modal");
+		});
 	</script>
-
-	<div class="tooltip_templates">
-
+	<script>
+		const tema = checkbox.checked ? 'dark' : 'light';
+		document.documentElement.dataset.theme = tema;
+		localStorage.setItem('bereia-theme', tema);
+	</script>
 	
-	<span id="cristo">
-		<h4>Cristo (χριστος)</h4>
-		<p><em>Transliteração do grego <b>xριστος</b> (christos), ”ungido”, que por sua vez, traduz o hebraico <b>מָשִׁיחַ</b> (mashiach). Designa o rei Messias prometido da linhagem de Davi.</em></p>
-	</span>
-	<span id="jesus">
-		<h4>Jesus (Ἰησοῦς)</h4>
-		<p><em>Yeshua, em aramaico. Grafia alternativa de Yehoshua (Josué), que significa "Yeho salva".</em></p>
-	</span>
-	<span id="justo">
-		<h4>Justo (δίκαιος)</h4>
-		<p><em>Na Bíblia, "justo" é todo aquele que age dentro do padrão estabelecido por Deus, fazendo o que é correto (δίκη). Também pode ser traduzido como "reto". A retidão (δικαιοσύνη) é medida em quanto se obedece a Deus e se vive em conformidade com a sua vontade.</em></p>
-	</span>
-	<span id="proskuneo">
-		<h4>Reverenciar (προσκυνέω)</h4>
-		<p><em>Literalmente, "curvar-se para beijar", προσκυνέω (proskuneô) tem o sentido de "prostrar-se em reverência" (beijando a mão ou ajoelhando-se). Sempre usado para demonstrar reverência e respeito a alguém de maior importância, de mestres a reis. Assume, assim, o sentido de "adorar" quando dirigido a Deus.</em></p>
-	</span>
-	<span id="geena">
-		<h4>Geena (γέεννα)</h4>
-		<p><em>Do heb. Gê-Hinnon, "Vale de Hinom", o depósito de lixo de Jerusalém. No período inter-bíblico tornou-se o símbolo do lugar de punição eterna. Equivalente ao "lago de fogo e enxofre" das demais Escrituras do NT.</em></p>
-	</span>
-	<span id="porneia">
-		<h4>Porneía (πορνεία)</h4>
-		<p><em>Refere-se a todo tipo de comportamento sexual proibido pela Torá: prostituição, adultério, fornicação, incesto, zoofilia, etc. É a base do termo "pornografia" (conteúdo gráfico imoral).</em></p>
-	</span>
-	<span id="perfeito">
-		<h4>Perfeito (τέλειος)</h4>
-		<p><em>Tem o sentido de algo <strong>completo</strong>, <strong>íntegro</strong>, <strong>maduro</strong> e, por isso, também perfeito. Diferente da definição em português, teleios, especialmente se atribuído a pessoas, não tem o sentido de alguém que não comete falhas. Numa ilustração clássica, é como uma luneta que se estende, um estágio de cada vez, para funcionar com capacidade e eficácia totais.</em></p>
-	</span>
-	<span id="sinagoga">
-		<h4>Sinagoga (συναγωγή)</h4>
-		<p><em>Palavra derivada do termo "reunião" (συνάγω), passou a ser o nome dos locais onde os judeus congregavam para estudarem as Escrituras e também cuidar de assuntos da comunidade. Ao que tudo indica, no primeiro século, quando grande parte dos cristãos ainda era composta de judeus, os locais de reuniões cristãs também eram chamados de "sinagogas" (vd Tg 2:2).</em></p>
-	</span>
-	<span id="gentios">
-		<h4>Gentio (ἐθνικός)</h4>
-		<p><em>Literalmente, "quem pertence a uma nação", isto é, qualquer pessoa que não pertença a Israel. Em termos atuais, algo como "pagão".</em></p>
-	</span>
-	<span id="ilegalidade">
-		<h4>Transgressão da Lei (ἀνομία)</h4>
-		<p><em>Literalmente, "sem lei". Refere-se à condição de não conhecer ou não praticar a Lei divina. Tradicionalmente traduzido como "iniquidade", poderia também ser usado "ilegalidade". Aqui prefiro "transgressão da Lei", por ser mais próximo do conceito original da palavra.</em></p>
-	</span>
-	<span id="">
-		<h4></h4>
-		<p><em></em></p>
-	</span>
-
-	
-	<span id="quatorze">
-		<h5>Nota</h5>
-		<p><em>Muitos estudiosos acreditam que o número 14 alude ao valor numérico do nome do rei Davi (atravé da gematria), sendo usado aqui como uma prova da messianidade de Jesus.</em></p>
-	</span>
-	<span id="magos">
-		<h5>Nota</h5>
-		<p><em>Há um consenso de que estes magos eram sábios vindos da Babilônia. Os magos babilônios acreditavam que as conjunções astrais anunciavam eventos como o nascimento de reis e o próprio destino dos povos.</em></p>
-	</span>
-	<span id="estrela">
-		<h5>Nota</h5>
-		<p><em>A melhor suposição por que Mateus incluiu um relato tão estranho em seu Evangelho é a de que os magos babiônios, influenciados por Daniel ou seus amigos, teriam tomado conhecimento da profecia de Balaão quanto à Estrela de Jacó (Nm 24:17), considerada pelos judeus como apontando para o Messias. Uma suposta conjunção entre Júpiter e Saturno lhes teria dado o "sinal" de que o Rei Messias dos judeus havia nascido na terra de Israel.</em></p>
-	</span>
-	<span id="nazareno">
-		<h5>Nota</h5>
-		<p><em>Os termos Nazaré (נָצְרַת) e nazareno (נָצְרִי, notsri) vêm da mesma palavra-raiz "renovo" (נֵצֶר, netser), termo usado em profecias como a de Is 11:1 para se referir ao Messias.</em></p>
-	</span>
-	<span id="desobrigar">
-		<h5>Nota</h5>
-		<p><em>Lit. "desatar". No Judaísmo, tem o sentido de desobrigar o cumprimento de um mandamento.</em></p>
-	</span>
-	<span id="leiprofetas">
-		<h5>Nota</h5>
-		<p><em>Termo judaico significando "todas as Escrituras". Já nos dias de Jesus, a Bíblia de então era dividida em Lei (Torá), Profetas e Escritos.</em></p>
-	</span>
-	<span id="yod">
-		<h5>Nota</h5>
-		<p><em>Isto é, a menor letra do alfabeto hebraico. Em grego, "iota", equivalente à nossa letra "i".</em></p>
-	</span>
-	<span id="quadrante">
-		<h5>Nota</h5>
-		<p><em>Lit. 'quadrante', a menor moeda em circulação nos dias de Jesus.</em></p>
-	</span>
-	<span id="lv1918">
-		<h5>Nota</h5>
-		<p><em>Jesus, aqui, não cita Levítico 19:18, mas algum dito popular da tradição dos judeus. O ódio pelos inimigos era um sentimento comum entre os israelitas, por vezes até exaltado em salmos, embora Provérbios 25:21,22 já aconselhava a demonstrar misericórdia pelo inimigo.</em></p>
-	</span>
-	<span id="publicanos">
-		<h5>Nota</h5>
-		<p><em>Os cobradores de impostos, ou em algumas traduções, "publicanos", eram judeus que trabalhavam para os romanos coletando impostos do povo. Por causa disso, eram vistos como traidores, e utilizados como o pior exemplo de pecador.</em></p>
-	</span>
-	<span id="olhobom">
-		<h5>Nota</h5>
-		<p><em>Expressão idiomática da língua hebraica significando generosidade. Ter o olho bom significa ser generoso, enquanto ter o olho mau, significa ser avarento. Este sentido vem de passagens como Dt 15:9 e Pv 22:9, 23:6 e 28:22.</em></p>
-	</span>
-	<span id="mamon">
-		<h5>Nota</h5>
-		<p><em>Mamon (μαμωνᾶς) é a transliteração do termo aramaico "mamona", significando algo como "o que é confiável". Aparentemente, o termo aramaico passou a ser usado como o nome de um ídolo, associado ao dinheiro e às riquezas mundanas.</em></p>
-	</span>
-	<span id="">
-		<h5>Nota</h5>
-		<p><em></em></p>
-	</span>
-</div>
 </body>
 </html>

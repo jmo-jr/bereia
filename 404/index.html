@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Página não encontrada</title>
+  <meta name="description" content="Página inicial da BEI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="./img/favicon.png">
+	<script>
+		(() => {
+			const storageKey = 'bereia-theme';
+			const systemPreference = window.matchMedia('(prefers-color-scheme: light)');
+			const savedTheme = localStorage.getItem(storageKey);
+			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
+
+			const initialTheme = hasSavedTheme
+				? savedTheme
+				: systemPreference.matches
+					? 'dark'
+					: 'light';
+
+			const applyTheme = (theme) => {
+				document.documentElement.dataset.theme = theme;
+			};
+
+			applyTheme(initialTheme);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.querySelector(
+					'.switch input[type="checkbox"]'
+				);
+
+				if (!toggle) return;
+
+				toggle.checked = initialTheme === 'dark';
+
+				toggle.addEventListener('change', () => {
+					const selectedTheme = toggle.checked ? 'dark' : 'light';
+
+					applyTheme(selectedTheme);
+					localStorage.setItem(storageKey, selectedTheme);
+				});
+			});
+		})();
+	</script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/assets/css/toggler-component.css">
+	<link rel="stylesheet" href="/assets/css/tooltipster.bundle.min.css">
+	<link rel="stylesheet" href="/assets/css/tooltipster-sideTip-borderless.min.css">
+	
+	<link rel="manifest" href="/manifest.json">
+	<meta name="theme-color" content="#4e0707">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<link rel="icon" href="/img/logo.png">
+	<script>
+		/* PWA Service Worker */
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker.register("/service-worker.js").catch(()=>{});
+		}
+
+		/* Banner de instalação do PWA */
+		let deferredPrompt = null;
+		let installBanner = null;
+
+		const isMobileDevice = () => window.matchMedia('(max-width: 767px)').matches;
+		const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+		const isIOS = () => /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+
+		const hideInstallBanner = () => {
+			if (installBanner) installBanner.classList.add('hidden');
+		};
+
+		const showInstallBanner = (ios = false) => {
+			if (!installBanner || !isMobileDevice() || isStandalone()) return;
+			if (localStorage.getItem('bereia-install-dismissed') === 'true') return;
+			if (ios) {
+				installBanner.classList.add('install-banner--ios');
+				installBanner.querySelector('.install-banner__message').textContent =
+					'Toque em Compartilhar e depois em “Adicionar à Tela de Início”.';
+				installBanner.querySelector('#install-button').classList.add('hidden');
+			}
+			installBanner.classList.remove('hidden');
+		};
+
+		window.addEventListener('beforeinstallprompt', (event) => {
+			event.preventDefault();
+			deferredPrompt = event;
+			showInstallBanner();
+		});
+
+		document.addEventListener('DOMContentLoaded', () => {
+			installBanner = document.getElementById('install-banner');
+			const installButton = document.getElementById('install-button');
+			const dismissInstallButton = document.getElementById('dismiss-install');
+
+			if (!installBanner || !isMobileDevice() || isStandalone()) return;
+			if (isIOS()) {
+				showInstallBanner(true);
+			} else if (deferredPrompt) {
+				showInstallBanner();
+			}
+
+			installButton?.addEventListener('click', async () => {
+				if (!deferredPrompt) return;
+				deferredPrompt.prompt();
+				await deferredPrompt.userChoice;
+				deferredPrompt = null;
+				hideInstallBanner();
+			});
+
+			dismissInstallButton?.addEventListener('click', () => {
+				localStorage.setItem('bereia-install-dismissed', 'true');
+				hideInstallBanner();
+			});
+		});
+
+		window.addEventListener('appinstalled', hideInstallBanner);
+	</script>
+</head>
+
+<body>
+
+	<div id="install-banner" class="install-banner hidden" role="dialog" aria-live="polite" aria-label="Instalar aplicativo">
+    <div class="install-banner__content">
+		  <p class="install-banner__message">Instale a BEREIA em sua tela inicial e utilize offline.</p>
+      <div class="install-banner__actions">
+        <button id="install-button" type="button">Instalar</button>
+        <button id="dismiss-install" type="button" class="secondary">Agora não</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="wrapper">
+
+    <header class="app-bar">
+	<div class="content d-flex justify-between align-items-center">
+		<div class="d-flex align-items-center" style="gap:10px;">
+			<img src="/img/logo.png" style="width:34px; height: 34px;">
+			<h1><a href="/">B.E.R.E.I.A.</a></h1>
+		</div>
+
+		<button type="button" id="toggleMenu" onclick="toggleMenu(mainNav, this)">
+			<div class="burger-icon">
+				<div class="burger-layer"></div>
+				<div class="burger-layer"></div>
+				<div class="burger-layer"></div>
+			</div>
+		</button>
+
+		<nav class="main-nav">
+			<ul>
+				<li><a href="/biblia/mateus/1/">NT de Estudo</a></li>
+				<li><a href="/interlinear/mt/1/">Bíblia Interlinear</a></li>
+				<li><a href="/sobre/">Sobre</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+
+
+    <main class="home main-content">
+      <div class="content">
+
+        
+          
+<div class="d-flex flex-wrap" style="gap: 24px">
+	<div class="conteudo">
+		<h2>Não há nada pra ver aqui...</h2>
+
+		<img src="/img/empty.png" alt="A tumba está vazia!">
+
+		<p>A página que você tentou abrir não existe ou não está disponível.<br> 
+		<a href="/">Retorne à tela inicial</a>.</p>
+	</div>
+</div>
+        
+
+      </div>
+    </main>
+
+  </div>
+
+	<script>
+		(function () {
+			const toggleBtn = document.getElementById('toggleMenu');
+			const nav = document.querySelector('.main-nav');
+
+			if (!toggleBtn || !nav) return;
+
+			toggleBtn.setAttribute('aria-expanded', 'false');
+
+			toggleBtn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const opened = nav.classList.toggle('open');
+				toggleBtn.setAttribute('aria-expanded', String(opened));
+			});
+
+			// Click/touch outside to close
+			const closeIfOutside = (e) => {
+				if (!nav.classList.contains('open')) return;
+				if (nav.contains(e.target) || e.target === toggleBtn) return;
+				nav.classList.remove('open');
+				toggleBtn.setAttribute('aria-expanded', 'false');
+			};
+
+			document.addEventListener('click', closeIfOutside);
+			document.addEventListener('touchstart', closeIfOutside);
+
+			// Close with Escape
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && nav.classList.contains('open')) {
+					nav.classList.remove('open');
+					toggleBtn.setAttribute('aria-expanded', 'false');
+					toggleBtn.focus();
+				}
+			});
+		})();
+	</script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html land="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +8,46 @@
   <meta name="description" content="Página do capítulo do livro escolhido">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="/img/logo.png">
+	<script>
+		(() => {
+			const storageKey = 'bereia-theme';
+			const systemPreference = window.matchMedia('(prefers-color-scheme: light)');
+			const savedTheme = localStorage.getItem(storageKey);
+			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
+
+			const initialTheme = hasSavedTheme
+				? savedTheme
+				: systemPreference.matches
+					? 'dark'
+					: 'light';
+
+			const applyTheme = (theme) => {
+				document.documentElement.dataset.theme = theme;
+			};
+
+			applyTheme(initialTheme);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.querySelector(
+					'.switch input[type="checkbox"]'
+				);
+
+				if (!toggle) return;
+
+				toggle.checked = initialTheme === 'dark';
+
+				toggle.addEventListener('change', () => {
+					const selectedTheme = toggle.checked ? 'dark' : 'light';
+
+					applyTheme(selectedTheme);
+					localStorage.setItem(storageKey, selectedTheme);
+				});
+			});
+		})();
+	</script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/assets/css/toggler-component.css">
 	<link rel="stylesheet" href="/biblia/pagefind/pagefind-ui.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster.bundle.min.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster-sideTip-light.min.css">
@@ -24,6 +62,7 @@
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 	<script src="/assets/js/tooltipster.bundle.min.js"></script>
 	<script src="/assets/js/tooltip-init.js"></script>
+	<script src="/assets/js/bible-original.js" defer></script>
   <script>
     $( function() {
       //$( document ).tooltip();
@@ -34,10 +73,10 @@
 <body>
 
   <div id="app" class="wrapper no_greenplaces no_bluecharacters">
-
+		
     <header class="app-bar">
 	<div class="content d-flex justify-between align-items-center">
-		<div class="d-flex align-items-center" style="gap:16px;">
+		<div class="d-flex align-items-center" style="gap:10px;">
 			<img src="/img/logo.png" style="width:34px; height: 34px;">
 			<h1><a href="/">B.E.R.E.I.A.</a></h1>
 		</div>
@@ -52,33 +91,34 @@
 
 		<nav class="main-nav">
 			<ul>
-				<li><a href="/biblia/mateus/1/">Bíblia de Estudo</a></li>
-				<li><a href="/interlinear/mt/1/">Interlinear</a></li>
+				<li><a href="/biblia/mateus/1/">NT de Estudo</a></li>
+				<li><a href="/interlinear/mt/1/">Bíblia Interlinear</a></li>
 				<li><a href="/sobre/">Sobre</a></li>
+				
 			</ul>
 		</nav>
 	</div>
 </header>
 
+
 		
 		
 		
 		
 			
 			
+		
+
+		
 		
 		
 <div class="toolbar">
 	<div class="content">
 
-		
-		<h2 class="show-mobile">LXX Interlinear Analítico</h2>
-		
-
 		<div class="d-flex justify-between align-items-center flex-wrap">
 
 			
-			<div class="input-group">
+			<div class="input-group d-flex">
 
 				<form>
 					<select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
@@ -626,7 +666,7 @@
 							
 								
 								
-                                
+								
 								
 									<option 
 										value="/interlinear/sl/1"
@@ -1879,18 +1919,25 @@
 
 				</form>
 
-			</div>
+				<div class="chapters-nav">
+					
+					
+					
+					
+					
 
-			
-			<h2 class="show-desktop">AT Grego (LXX) Interlinear Analítico</h2>
-			
+					<button type="button" onclick="window.location='/interlinear/sl/43/'" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
+
+					<button type="button" onclick="window.location='/interlinear/sl/45/'" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></button>
+				</div>
+			</div>
 
 			
 			
 			<div class="options-container">
 				<div id="search" class="search"></div>
 				<div class="options-group">
-					<button id="optionsBt2" class="square" type="button" title="Opções de exibição" onclick="toggleMenu(optionsDropdown2, this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 128C78.3 128 64 142.3 64 160C64 177.7 78.3 192 96 192L182.7 192C195 220.3 223.2 240 256 240C288.8 240 317 220.3 329.3 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L329.3 128C317 99.7 288.8 80 256 80C223.2 80 195 99.7 182.7 128L96 128zM96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L342.7 352C355 380.3 383.2 400 416 400C448.8 400 477 380.3 489.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L489.3 288C477 259.7 448.8 240 416 240C383.2 240 355 259.7 342.7 288L96 288zM96 448C78.3 448 64 462.3 64 480C64 497.7 78.3 512 96 512L150.7 512C163 540.3 191.2 560 224 560C256.8 560 285 540.3 297.3 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L297.3 448C285 419.7 256.8 400 224 400C191.2 400 163 419.7 150.7 448L96 448z" fill="white"/></svg></button>
+					<button id="optionsBt2" class="square" type="button" title="Opções de exibição" onclick="toggleMenu(optionsDropdown2, this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 128C78.3 128 64 142.3 64 160C64 177.7 78.3 192 96 192L182.7 192C195 220.3 223.2 240 256 240C288.8 240 317 220.3 329.3 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L329.3 128C317 99.7 288.8 80 256 80C223.2 80 195 99.7 182.7 128L96 128zM96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L342.7 352C355 380.3 383.2 400 416 400C448.8 400 477 380.3 489.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L489.3 288C477 259.7 448.8 240 416 240C383.2 240 355 259.7 342.7 288L96 288zM96 448C78.3 448 64 462.3 64 480C64 497.7 78.3 512 96 512L150.7 512C163 540.3 191.2 560 224 560C256.8 560 285 540.3 297.3 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L297.3 448C285 419.7 256.8 400 224 400C191.2 400 163 419.7 150.7 448L96 448z" fill="var(--labelColor)"/></svg></button>
 
 					<div class="options-dropdown2">
 						<div><input id="strongBt" name="strongs" type="checkbox" title="Desmarque para ocultar números Strong" onchange="toggleText(this, 'no_strongs')" checked> <label for="strongs">Exibir Strongs</label></div>
@@ -1899,17 +1946,26 @@
 						
 						<div><input id="greekBt" type="checkbox" title="Desmarque para ocultar traduções" onchange="toggleText(this, 'no_greek')" checked> <label>Exibir traduções</label></div>
 						
-						<div><input id="gramBt" type="checkbox" title="Desmarque para ocultar morfologia" onchange="toggleText(this, 'no_grammar')" checked> <label></label>Exibir morfolofia</label></div>
+						<div><input id="gramBt" type="checkbox" title="Desmarque para ocultar morfologia" onchange="toggleText(this, 'no_grammar')" checked> <label></label>Exibir morfologia</label></div>
 					</div>
 				</div>
 			</div>
 			
+
+			<div class="tool-selector">
+				<div class="button-group">
+					<button class="group-button " onclick="window.location.href='/biblia/salmos/44'" disabled>NT de Estudo</button>
+
+					<button class="group-button active" onclick="window.location.href='/interlinear/sl/44'">Bíblia Interlinear</button>
+				</div>
+			</div>
 
 		</div>
 
 	</div>
 </div>
 
+		
 		<div class="content-wrapper">
 			<main class="main-content">
 				<div class="content" data-pagefind-body>
@@ -1917,10 +1973,13 @@
 					
 						
 
+
 <div id="movebox2" class="page-header">
-  <a href="/interlinear/sl/43/" title="Capítulo anterior">◄</a>
-  <div class="page-header_title"><h3>Ψαλμοί 44</h3></div>
-  <a href="/interlinear/sl/45/" title="Próximo capítulo">►</a>
+  <div class="page-header_title">
+		<h3 data-pagefind-meta="title">
+			Ψαλμοί 44
+		</h3>
+	</div>
 </div>
 
 
@@ -1966,7 +2025,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -2104,7 +2163,7 @@
 											>4907</a>
 											
 											<span class="translit">synesin</span>
-											<span class="greek tooltip" title="compreensão | Ocorrências: 32">σύνεσιν</span>
+											<span class="greek tooltip" title="compreensão | Ocorrências: 31">σύνεσιν</span>
 											<span class="translate">compreensão</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Feminino Singular">S-AFS</small>
 										</span>
@@ -2291,7 +2350,7 @@
 											>1473</a>
 											
 											<span class="translit">egō</span>
-											<span class="greek tooltip" title="eu | Ocorrências: 1212">ἐγὼ</span>
+											<span class="greek tooltip" title="eu | Ocorrências: 1025">ἐγὼ</span>
 											<span class="translate">eu</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Nominativo 1ª Pessoa Singular">PPro-N1S</small>
 										</span>
@@ -2307,7 +2366,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -2529,8 +2588,8 @@
 												data-strong="G5207"
 											>5207</a>
 											
-											<span class="translit">huious</span>
-											<span class="greek tooltip" title="filhos | Ocorrências: 337">υἱοὺς</span>
+											<span class="translit">yious</span>
+											<span class="greek tooltip" title="filhos | Ocorrências: 301">υἱοὺς</span>
 											<span class="translate">filhos</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Masculino Plural">S-AMP</small>
 										</span>
@@ -2658,7 +2717,7 @@
 											>1223</a>
 											
 											<span class="translit">dia</span>
-											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 649">διὰ</span>
+											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 851">διὰ</span>
 											<span class="translate">por (causa)</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -2737,8 +2796,8 @@
 												data-strong="G2316"
 											>2316</a>
 											
-											<span class="translit">theos</span>
-											<span class="greek tooltip" title="Deus | Ocorrências: 1367">θεὸς</span>
+											<span class="translit">Theos</span>
+											<span class="greek tooltip" title="Deus | Ocorrências: 0">θεὸς</span>
 											<span class="translate">Deus</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -2825,7 +2884,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -2872,8 +2931,8 @@
 												data-strong="G1909"
 											>1909</a>
 											
-											<span class="translit">epi</span>
-											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 3558">ἐπὶ</span>
+											<span class="translit">Epi</span>
+											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 0">ἐπὶ</span>
 											<span class="translate">para/por/sobre</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -2989,7 +3048,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3054,7 +3113,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3080,7 +3139,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3106,7 +3165,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3164,7 +3223,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3196,7 +3255,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3228,7 +3287,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3341,7 +3400,7 @@
 											>3588</a>
 											
 											<span class="translit">ta</span>
-											<span class="greek tooltip" title="os | Ocorrências: 3197">τὰ</span>
+											<span class="greek tooltip" title="os | Ocorrências: 3995">τὰ</span>
 											<span class="translate">os</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Plural">Art-ANP</small>
 										</span>
@@ -3489,9 +3548,9 @@
 											>2588</a>
 											
 											<span class="translit">kardia</span>
-											<span class="greek tooltip" title="coração | Ocorrências: 372">καρδίᾳ</span>
+											<span class="greek tooltip" title="coração | Ocorrências: 187">καρδίᾳ</span>
 											<span class="translate">coração</span>
-											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+											<small class="refs tooltip" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
 										</span>
 									
 										<span class="token">
@@ -3855,7 +3914,7 @@
 											>25</a>
 											
 											<span class="translit">ēgapēsas</span>
-											<span class="greek tooltip" title="tu amaste, preferiste (ação, não sentimento) | Ocorrências: 13">ἠγάπησας</span>
+											<span class="greek tooltip" title="tu amaste, preferiste (ação, não sentimento) | Ocorrências: 10">ἠγάπησας</span>
 											<span class="translate">amaste</span>
 											<small class="refs tooltip" title="Verbo - Aoristo Indicativo Ativa - 2ª Pessoa Singular">V-AIA-2S</small>
 										</span>
@@ -3887,7 +3946,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -3935,7 +3994,7 @@
 											>1223</a>
 											
 											<span class="translit">dia</span>
-											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 649">διὰ</span>
+											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 851">διὰ</span>
 											<span class="translate">por (causa)</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -4014,8 +4073,8 @@
 												data-strong="G2316"
 											>2316</a>
 											
-											<span class="translit">theos</span>
-											<span class="greek tooltip" title="Deus | Ocorrências: 1367">θεὸς</span>
+											<span class="translit">Theos</span>
+											<span class="greek tooltip" title="Deus | Ocorrências: 0">θεὸς</span>
 											<span class="translate">Deus</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -4192,7 +4251,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4218,7 +4277,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4243,8 +4302,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -4307,8 +4366,8 @@
 												data-strong="G575"
 											>575</a>
 											
-											<span class="translit">apo</span>
-											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 2367">ἀπὸ</span>
+											<span class="translit">Apo</span>
+											<span class="greek tooltip" title="desde, a partir de, de | Ocorrências: 0">ἀπὸ</span>
 											<span class="translate">desde</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -4473,9 +4532,9 @@
 											>5092</a>
 											
 											<span class="translit">timē</span>
-											<span class="greek tooltip" title="honra | Ocorrências: 21">τιμῇ</span>
+											<span class="greek tooltip" title="honra | Ocorrências: 6">τιμῇ</span>
 											<span class="translate">honra</span>
-											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+											<small class="refs tooltip" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
 										</span>
 									
 										<span class="token">
@@ -4702,7 +4761,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4734,7 +4793,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4760,7 +4819,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -4808,7 +4867,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -4882,7 +4941,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5026,8 +5085,8 @@
 												data-strong="G935"
 											>935</a>
 											
-											<span class="translit">basileus</span>
-											<span class="greek tooltip" title="rei | Ocorrências: 816">βασιλεὺς</span>
+											<span class="translit">Basileus</span>
+											<span class="greek tooltip" title="rei | Ocorrências: 1">βασιλεὺς</span>
 											<span class="translate">rei</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -5119,7 +5178,7 @@
 											<span class="translit">estin</span>
 											<span class="greek tooltip" title="ele(a) é, está, existe | Ocorrências: 740">ἐστιν</span>
 											<span class="translate">é/está</span>
-											<small class="refs tooltip" title="Verbo - Presente Indicativo - 3ª Pessoa Singular">V-PI-3S</small>
+											<small class="refs tooltip" title="Verbo - Presente Indicativo Ativa - 3ª Pessoa Singular">V-PIA-3S</small>
 										</span>
 									
 										<span class="token">
@@ -5148,8 +5207,8 @@
 												data-strong="G2962"
 											>2962</a>
 											
-											<span class="translit">Kyrios</span>
-											<span class="greek tooltip" title="senhor, dono, mestre | Ocorrências: 1">κύριός</span>
+											<span class="translit">kyrios</span>
+											<span class="greek tooltip" title="senhor, dono, mestre | Ocorrências: 64">κύριός</span>
 											<span class="translate">Senhor</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Singular">S-NMS</small>
 										</span>
@@ -5188,7 +5247,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -5300,7 +5359,7 @@
 											>3588</a>
 											
 											<span class="translit">to</span>
-											<span class="greek tooltip" title="o | Ocorrências: 4002">τὸ</span>
+											<span class="greek tooltip" title="o | Ocorrências: 5381">τὸ</span>
 											<span class="translate">o</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Neutro Singular">Art-ANS</small>
 										</span>
@@ -5316,7 +5375,7 @@
 											>4383</a>
 											
 											<span class="translit">prosōpon</span>
-											<span class="greek tooltip" title="rosto | Ocorrências: 338">πρόσωπόν</span>
+											<span class="greek tooltip" title="rosto | Ocorrências: 115">πρόσωπόν</span>
 											<span class="translate">rosto</span>
 											<small class="refs tooltip" title="Substantivo - Acusativo Neutro Singular">S-ANS</small>
 										</span>
@@ -5493,7 +5552,7 @@
 											>2364</a>
 											
 											<span class="translit">thygatros</span>
-											<span class="greek tooltip" title="da filha | Ocorrências: 41">θυγατρὸς</span>
+											<span class="greek tooltip" title="da filha | Ocorrências: 39">θυγατρὸς</span>
 											<span class="translate">da filha</span>
 											<small class="refs tooltip" title="Substantivo - Genitivo Feminino Singular">S-GFS</small>
 										</span>
@@ -5817,7 +5876,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6009,8 +6068,8 @@
 												data-strong="G5207"
 											>5207</a>
 											
-											<span class="translit">huioi</span>
-											<span class="greek tooltip" title="filhos | Ocorrências: 1019">υἱοί</span>
+											<span class="translit">yioi</span>
+											<span class="greek tooltip" title="filhos | Ocorrências: 56">υἱοί</span>
 											<span class="translate">filhos</span>
 											<small class="refs tooltip" title="Substantivo - Nominativo Masculino Plural">S-NMP</small>
 										</span>
@@ -6036,7 +6095,7 @@
 											>846</a>
 											
 											<span class="translit">autous</span>
-											<span class="greek tooltip" title="eles | Ocorrências: 1461">αὐτοὺς</span>
+											<span class="greek tooltip" title="eles | Ocorrências: 1077">αὐτοὺς</span>
 											<span class="translate">eles</span>
 											<small class="refs tooltip" title="Pronome Pessoal/Possessivo - Acusativo Masculino 3ª Pessoa Plural">PPro-AM3P</small>
 										</span>
@@ -6067,8 +6126,8 @@
 												data-strong="G1909"
 											>1909</a>
 											
-											<span class="translit">epi</span>
-											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 3558">ἐπὶ</span>
+											<span class="translit">Epi</span>
+											<span class="greek tooltip" title="para, em, sobre | Ocorrências: 0">ἐπὶ</span>
 											<span class="translate">para/por/sobre</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -6100,7 +6159,7 @@
 											>3588</a>
 											
 											<span class="translit">tēn</span>
-											<span class="greek tooltip" title="a | Ocorrências: 4337">τὴν</span>
+											<span class="greek tooltip" title="a | Ocorrências: 5378">τὴν</span>
 											<span class="translate">a</span>
 											<small class="refs tooltip" title="Artigo - Acusativo Feminino Singular">Art-AFS</small>
 										</span>
@@ -6165,7 +6224,7 @@
 											>3686</a>
 											
 											<span class="translit">onomatos</span>
-											<span class="greek tooltip" title="do nome | Ocorrências: 31">ὀνόματός</span>
+											<span class="greek tooltip" title="do nome | Ocorrências: 14">ὀνόματός</span>
 											<span class="translate">do nome</span>
 											<small class="refs tooltip" title="Substantivo - Genitivo Neutro Singular">S-GNS</small>
 										</span>
@@ -6229,9 +6288,9 @@
 											>1074</a>
 											
 											<span class="translit">genea</span>
-											<span class="greek tooltip" title="geração | Ocorrências: 31">γενεᾷ</span>
+											<span class="greek tooltip" title="geração | Ocorrências: 14">γενεᾷ</span>
 											<span class="translate">geração</span>
-											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+											<small class="refs tooltip" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
 										</span>
 									
 										<span class="token">
@@ -6245,7 +6304,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6261,9 +6320,9 @@
 											>1074</a>
 											
 											<span class="translit">genea</span>
-											<span class="greek tooltip" title="geração | Ocorrências: 31">γενεᾷ</span>
+											<span class="greek tooltip" title="geração | Ocorrências: 14">γενεᾷ</span>
 											<span class="translate">geração</span>
-											<small class="refs tooltip" title="Substantivo - Nominativo Feminino Singular">S-NFS</small>
+											<small class="refs tooltip" title="Substantivo - Dativo Feminino Singular">S-DFS</small>
 										</span>
 									
 										<span class="token">
@@ -6277,7 +6336,7 @@
 											>1223</a>
 											
 											<span class="translit">dia</span>
-											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 649">διὰ</span>
+											<span class="greek tooltip" title="por, por causa de, através de | Ocorrências: 851">διὰ</span>
 											<span class="translate">por (causa)</span>
 											<small class="refs tooltip" title="Preposição">Prep</small>
 										</span>
@@ -6399,7 +6458,7 @@
 											>2532</a>
 											
 											<span class="translit">kai</span>
-											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 18956">καὶ</span>
+											<span class="greek tooltip" title="e, também, ambos, mas, mesmo, para, se, ou, então, que, portanto, quando, ainda | Ocorrências: 47179">καὶ</span>
 											<span class="translate">e/também</span>
 											<small class="refs tooltip" title="Conjunção">Conj</small>
 										</span>
@@ -6493,21 +6552,27 @@
 		
 
 		
-        <p class="source-credit"><small>Fontes lexicais complementares:
-          <a href="https://github.com/STEPBible/STEPBible-Data/tree/master/Lexicons">TBESG — Tyndale House e STEPBible.org</a>
-          (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>),
-          <a href="https://www.septuaginta.online">Septuaginta Online</a> e BEREIA.
-          Traduções e flexões complementares adaptadas para a versão beta.
-        </small></p>
+		<footer>
+      <p class="source-credit">
+				<small>Septuaginta de Rhalfs (1935) disponível em 
+          <a href="https://github.com/OpenScriptorium/lxx-morph">https://github.com/OpenScriptorium/lxx-morph</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Termos gregos ausentes do Léxico de Strong podem ter sido traduzidos por inteligência artificial.
+        </small>
+			</p>
+		</footer>
+		
+
 		
 	</div>
 
 
 					
 
-				</div>
+				</div><!-- /.content -->
+
+				
 			</main>
 
+			
 			
 			<aside class="side-drawer" id="strong-drawer" tabindex="-1"
 				aria-labelledby="strong-drawer-title" data-lexico-url="/assets/lexico/greek.json">
@@ -6520,13 +6585,24 @@
 				<div class="drawer-body" aria-live="polite"></div>
 			</aside>
 			
+
+		</div><!-- /.content-wrapper -->
+
+  </div><!-- /#app -->
+
+	<div class="feedback-component">
+		<button type="button" onclick="toggleMenu(feedbackWindow, this)">📢 Feedback</button>
+
+		<div class="feedback-options">
+			<p>Queremos te ouvir!</p>
+			<button id="bugReport" type="button">🚨 Relate um erro</button>
+			<button id="featureRequest" type="button">🌟 Sugira uma funcionalidade</button>
+			<button id="helpUs" type="button">🫰 Apoie nosso trabalho</button>
 		</div>
-
-    <script src="/assets/js/strong-drawer.js" defer></script>
-
-  </div>
+	</div>
 
   <!-- SCRIPTS -->
+	<script src="/assets/js/strong-drawer.js" defer></script>
   <script>
     var page = document.getElementById("app");
 		
@@ -6544,6 +6620,7 @@
 		const mainNav = document.querySelector('.main-nav');
 		const optionsDropdown = document.querySelector('.options-dropdown');
 		const optionsDropdown2 = document.querySelector('.options-dropdown2');
+		const feedbackWindow = document.querySelector('.feedback-options');
 		const menuControls = [
 			{ nav: mainNav, button: document.getElementById('toggleMenu') },
 			{ nav: optionsDropdown, button: document.getElementById('optionsBt') },
@@ -6576,123 +6653,43 @@
 			});
 		});
 	</script>
-	<script 
-		src="/biblia/pagefind/pagefind-ui.js" 
-		onload="new PagefindUI({
-			element: '#search', 
-			showImages: false,
-			pageSize: 10,
-  		excerptLength: 12,
-			translations: { 
-				placeholder: 'Busca', 
-				zero_results: 'Não encontrei [SEARCH_TERM]', 
-				many_results: '[COUNT] resultados para [SEARCH_TERM]', 
-				one_result: '[COUNT] resultado para [SEARCH_TERM]'
+	<script src="/biblia/pagefind/pagefind-ui.js" defer></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			function initPagefind(selector) {
+				const container = document.querySelector(selector);
+				if (!container || typeof PagefindUI === "undefined") return;
+
+				new PagefindUI({
+					element: selector,
+					showImages: false,
+					pageSize: 10,
+					excerptLength: 12,
+					translations: {
+						placeholder: "Busca",
+						zero_results: "Não encontrei [SEARCH_TERM]",
+						many_results: "[COUNT] resultados para [SEARCH_TERM]",
+						one_result: "[COUNT] resultado para [SEARCH_TERM]"
+					},
+					processResult: function (result) {
+						if (result.url && !result.url.startsWith("/") && !result.url.startsWith("http")) {
+							result.url = "/" + result.url;
+						}
+						return result;
+					}
+				});
 			}
-		});">
+
+			// Exemplos em diferentes telas/containers da mesma estrutura
+			initPagefind("#search");
+			initPagefind("#search-modal");
+		});
 	</script>
-
-	<div class="tooltip_templates">
-
+	<script>
+		const tema = checkbox.checked ? 'dark' : 'light';
+		document.documentElement.dataset.theme = tema;
+		localStorage.setItem('bereia-theme', tema);
+	</script>
 	
-	<span id="cristo">
-		<h4>Cristo (χριστος)</h4>
-		<p><em>Transliteração do grego <b>xριστος</b> (christos), ”ungido”, que por sua vez, traduz o hebraico <b>מָשִׁיחַ</b> (mashiach). Designa o rei Messias prometido da linhagem de Davi.</em></p>
-	</span>
-	<span id="jesus">
-		<h4>Jesus (Ἰησοῦς)</h4>
-		<p><em>Yeshua, em aramaico. Grafia alternativa de Yehoshua (Josué), que significa "Yeho salva".</em></p>
-	</span>
-	<span id="justo">
-		<h4>Justo (δίκαιος)</h4>
-		<p><em>Na Bíblia, "justo" é todo aquele que age dentro do padrão estabelecido por Deus, fazendo o que é correto (δίκη). Também pode ser traduzido como "reto". A retidão (δικαιοσύνη) é medida em quanto se obedece a Deus e se vive em conformidade com a sua vontade.</em></p>
-	</span>
-	<span id="proskuneo">
-		<h4>Reverenciar (προσκυνέω)</h4>
-		<p><em>Literalmente, "curvar-se para beijar", προσκυνέω (proskuneô) tem o sentido de "prostrar-se em reverência" (beijando a mão ou ajoelhando-se). Sempre usado para demonstrar reverência e respeito a alguém de maior importância, de mestres a reis. Assume, assim, o sentido de "adorar" quando dirigido a Deus.</em></p>
-	</span>
-	<span id="geena">
-		<h4>Geena (γέεννα)</h4>
-		<p><em>Do heb. Gê-Hinnon, "Vale de Hinom", o depósito de lixo de Jerusalém. No período inter-bíblico tornou-se o símbolo do lugar de punição eterna. Equivalente ao "lago de fogo e enxofre" das demais Escrituras do NT.</em></p>
-	</span>
-	<span id="porneia">
-		<h4>Porneía (πορνεία)</h4>
-		<p><em>Refere-se a todo tipo de comportamento sexual proibido pela Torá: prostituição, adultério, fornicação, incesto, zoofilia, etc. É a base do termo "pornografia" (conteúdo gráfico imoral).</em></p>
-	</span>
-	<span id="perfeito">
-		<h4>Perfeito (τέλειος)</h4>
-		<p><em>Tem o sentido de algo <strong>completo</strong>, <strong>íntegro</strong>, <strong>maduro</strong> e, por isso, também perfeito. Diferente da definição em português, teleios, especialmente se atribuído a pessoas, não tem o sentido de alguém que não comete falhas. Numa ilustração clássica, é como uma luneta que se estende, um estágio de cada vez, para funcionar com capacidade e eficácia totais.</em></p>
-	</span>
-	<span id="sinagoga">
-		<h4>Sinagoga (συναγωγή)</h4>
-		<p><em>Palavra derivada do termo "reunião" (συνάγω), passou a ser o nome dos locais onde os judeus congregavam para estudarem as Escrituras e também cuidar de assuntos da comunidade. Ao que tudo indica, no primeiro século, quando grande parte dos cristãos ainda era composta de judeus, os locais de reuniões cristãs também eram chamados de "sinagogas" (vd Tg 2:2).</em></p>
-	</span>
-	<span id="gentios">
-		<h4>Gentio (ἐθνικός)</h4>
-		<p><em>Literalmente, "quem pertence a uma nação", isto é, qualquer pessoa que não pertença a Israel. Em termos atuais, algo como "pagão".</em></p>
-	</span>
-	<span id="ilegalidade">
-		<h4>Transgressão da Lei (ἀνομία)</h4>
-		<p><em>Literalmente, "sem lei". Refere-se à condição de não conhecer ou não praticar a Lei divina. Tradicionalmente traduzido como "iniquidade", poderia também ser usado "ilegalidade". Aqui prefiro "transgressão da Lei", por ser mais próximo do conceito original da palavra.</em></p>
-	</span>
-	<span id="">
-		<h4></h4>
-		<p><em></em></p>
-	</span>
-
-	
-	<span id="quatorze">
-		<h5>Nota</h5>
-		<p><em>Muitos estudiosos acreditam que o número 14 alude ao valor numérico do nome do rei Davi (atravé da gematria), sendo usado aqui como uma prova da messianidade de Jesus.</em></p>
-	</span>
-	<span id="magos">
-		<h5>Nota</h5>
-		<p><em>Há um consenso de que estes magos eram sábios vindos da Babilônia. Os magos babilônios acreditavam que as conjunções astrais anunciavam eventos como o nascimento de reis e o próprio destino dos povos.</em></p>
-	</span>
-	<span id="estrela">
-		<h5>Nota</h5>
-		<p><em>A melhor suposição por que Mateus incluiu um relato tão estranho em seu Evangelho é a de que os magos babiônios, influenciados por Daniel ou seus amigos, teriam tomado conhecimento da profecia de Balaão quanto à Estrela de Jacó (Nm 24:17), considerada pelos judeus como apontando para o Messias. Uma suposta conjunção entre Júpiter e Saturno lhes teria dado o "sinal" de que o Rei Messias dos judeus havia nascido na terra de Israel.</em></p>
-	</span>
-	<span id="nazareno">
-		<h5>Nota</h5>
-		<p><em>Os termos Nazaré (נָצְרַת) e nazareno (נָצְרִי, notsri) vêm da mesma palavra-raiz "renovo" (נֵצֶר, netser), termo usado em profecias como a de Is 11:1 para se referir ao Messias.</em></p>
-	</span>
-	<span id="desobrigar">
-		<h5>Nota</h5>
-		<p><em>Lit. "desatar". No Judaísmo, tem o sentido de desobrigar o cumprimento de um mandamento.</em></p>
-	</span>
-	<span id="leiprofetas">
-		<h5>Nota</h5>
-		<p><em>Termo judaico significando "todas as Escrituras". Já nos dias de Jesus, a Bíblia de então era dividida em Lei (Torá), Profetas e Escritos.</em></p>
-	</span>
-	<span id="yod">
-		<h5>Nota</h5>
-		<p><em>Isto é, a menor letra do alfabeto hebraico. Em grego, "iota", equivalente à nossa letra "i".</em></p>
-	</span>
-	<span id="quadrante">
-		<h5>Nota</h5>
-		<p><em>Lit. 'quadrante', a menor moeda em circulação nos dias de Jesus.</em></p>
-	</span>
-	<span id="lv1918">
-		<h5>Nota</h5>
-		<p><em>Jesus, aqui, não cita Levítico 19:18, mas algum dito popular da tradição dos judeus. O ódio pelos inimigos era um sentimento comum entre os israelitas, por vezes até exaltado em salmos, embora Provérbios 25:21,22 já aconselhava a demonstrar misericórdia pelo inimigo.</em></p>
-	</span>
-	<span id="publicanos">
-		<h5>Nota</h5>
-		<p><em>Os cobradores de impostos, ou em algumas traduções, "publicanos", eram judeus que trabalhavam para os romanos coletando impostos do povo. Por causa disso, eram vistos como traidores, e utilizados como o pior exemplo de pecador.</em></p>
-	</span>
-	<span id="olhobom">
-		<h5>Nota</h5>
-		<p><em>Expressão idiomática da língua hebraica significando generosidade. Ter o olho bom significa ser generoso, enquanto ter o olho mau, significa ser avarento. Este sentido vem de passagens como Dt 15:9 e Pv 22:9, 23:6 e 28:22.</em></p>
-	</span>
-	<span id="mamon">
-		<h5>Nota</h5>
-		<p><em>Mamon (μαμωνᾶς) é a transliteração do termo aramaico "mamona", significando algo como "o que é confiável". Aparentemente, o termo aramaico passou a ser usado como o nome de um ídolo, associado ao dinheiro e às riquezas mundanas.</em></p>
-	</span>
-	<span id="">
-		<h5>Nota</h5>
-		<p><em></em></p>
-	</span>
-</div>
 </body>
 </html>

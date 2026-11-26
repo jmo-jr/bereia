@@ -1,15 +1,53 @@
 <!DOCTYPE html>
-<html land="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Bíblia BEREIA</title>
-	<base href="">
-  <meta name="description" content="Página do capítulo do livro escolhido">
+  <title>B&#xED;blia BEREIA</title>
+	<base href>
+  <meta name="description" content="P&#xE1;gina do cap&#xED;tulo do livro escolhido">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="/img/logo.png">
+	<script>
+		(() => {
+			const storageKey = 'bereia-theme';
+			const systemPreference = window.matchMedia('(prefers-color-scheme: light)');
+			const savedTheme = localStorage.getItem(storageKey);
+			const hasSavedTheme = savedTheme === 'light' || savedTheme === 'dark';
+
+			const initialTheme = hasSavedTheme
+				? savedTheme
+				: systemPreference.matches
+					? 'dark'
+					: 'light';
+
+			const applyTheme = (theme) => {
+				document.documentElement.dataset.theme = theme;
+			};
+
+			applyTheme(initialTheme);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.querySelector(
+					'.switch input[type="checkbox"]'
+				);
+
+				if (!toggle) return;
+
+				toggle.checked = initialTheme === 'dark';
+
+				toggle.addEventListener('change', () => {
+					const selectedTheme = toggle.checked ? 'dark' : 'light';
+
+					applyTheme(selectedTheme);
+					localStorage.setItem(storageKey, selectedTheme);
+				});
+			});
+		})();
+	</script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/assets/css/toggler-component.css">
 	<link rel="stylesheet" href="/biblia/pagefind/pagefind-ui.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster.bundle.min.css">
 	<link rel="stylesheet" href="/assets/css/tooltipster-sideTip-light.min.css">
@@ -24,6 +62,7 @@
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 	<script src="/assets/js/tooltipster.bundle.min.js"></script>
 	<script src="/assets/js/tooltip-init.js"></script>
+	<script src="/assets/js/bible-original.js" defer></script>
   <script>
     $( function() {
       //$( document ).tooltip();
@@ -34,10 +73,10 @@
 <body>
 
   <div id="app" class="wrapper no_greenplaces no_bluecharacters">
-
+		
     <header class="app-bar">
 	<div class="content d-flex justify-between align-items-center">
-		<div class="d-flex align-items-center" style="gap:16px;">
+		<div class="d-flex align-items-center" style="gap:10px;">
 			<img src="/img/logo.png" style="width:34px; height: 34px;">
 			<h1><a href="/">B.E.R.E.I.A.</a></h1>
 		</div>
@@ -52,30 +91,31 @@
 
 		<nav class="main-nav">
 			<ul>
-				<li><a href="/biblia/mateus/1/">Bíblia de Estudo</a></li>
-				<li><a href="/interlinear/mt/1/">Interlinear</a></li>
+				<li><a href="/biblia/mateus/1/">NT de Estudo</a></li>
+				<li><a href="/interlinear/mt/1/">B&#xED;blia Interlinear</a></li>
 				<li><a href="/sobre/">Sobre</a></li>
+				
 			</ul>
 		</nav>
 	</div>
 </header>
 
+
 		
 		
+		
+		
+
 		
 		
 		
 <div class="toolbar">
 	<div class="content">
 
-		
-		<h2 class="show-mobile">Bíblia de Estudo Exegético</h2>
-		
-
 		<div class="d-flex justify-between align-items-center flex-wrap">
 
 			
-			<div class="input-group">
+			<div class="input-group d-flex">
 
 				<form>
 					<select id="livro" name="livro" class="drop" onchange="location.href = this.value;">
@@ -84,244 +124,163 @@
 						
 							
 						
-						<option 
-							value="/biblia/mateus/1"
-							
-						>Mateus</option>
+						<option value="/biblia/mateus/1">Mateus</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/marcos/1"
-							
-						>Marcos</option>
+						<option value="/biblia/marcos/1">Marcos</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/lucas/1"
-							
-						>Lucas</option>
+						<option value="/biblia/lucas/1">Lucas</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/joao/1"
-							
-						>João</option>
+						<option value="/biblia/joao/1">Jo&#xE3;o</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/atos/1"
-							
-						>Atos</option>
+						<option value="/biblia/atos/1">Atos</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/romanos/1"
-							
-						>Romanos</option>
+						<option value="/biblia/romanos/1">Romanos</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/1corintios/1"
-							
-						>1 Coríntios</option>
+						<option value="/biblia/1corintios/1">1 Cor&#xED;ntios</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/2corintios/1"
-							
-						>2 Coríntios</option>
+						<option value="/biblia/2corintios/1">2 Cor&#xED;ntios</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/galatas/1"
-							
-						>Gálatas</option>
+						<option value="/biblia/galatas/1">G&#xE1;latas</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/efesios/1"
-							
-						>Efésios</option>
+						<option value="/biblia/efesios/1">Ef&#xE9;sios</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/filipenses/1"
-							
-						>Filipenses</option>
+						<option value="/biblia/filipenses/1">Filipenses</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/colossenses/1"
-							
-						>Colossenses</option>
+						<option value="/biblia/colossenses/1">Colossenses</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/1tessalonicenses/1"
-							
-						>1 Tessalonicenses</option>
+						<option value="/biblia/1tessalonicenses/1">1 Tessalonicenses</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/2tessalonicenses/1"
-							
-						>2 Tessalonicenses</option>
+						<option value="/biblia/2tessalonicenses/1">2 Tessalonicenses</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/1timoteo/1"
-							
-						>1 Timóteo</option>
+						<option value="/biblia/1timoteo/1">1 Tim&#xF3;teo</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/2timoteo/1"
-							
-						>2 Timóteo</option>
+						<option value="/biblia/2timoteo/1">2 Tim&#xF3;teo</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/tito/1"
-							
-						>Tito</option>
+						<option value="/biblia/tito/1">Tito</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/filemon/1"
-							
-						>Filemon</option>
+						<option value="/biblia/filemon/1">Filemon</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/hebreus/1"
-							
-						>Hebreus</option>
+						<option value="/biblia/hebreus/1">Hebreus</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/tiago/1"
-							
-						>Tiago</option>
+						<option value="/biblia/tiago/1">Tiago</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/1pedro/1"
-							
-						>1 Pedro</option>
+						<option value="/biblia/1pedro/1">1 Pedro</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/2pedro/1"
-							
-						>2 Pedro</option>
+						<option value="/biblia/2pedro/1">2 Pedro</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/1joao/1"
-							
-						>1 João</option>
+						<option value="/biblia/1joao/1">1 Jo&#xE3;o</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/2joao/1"
-							
-						>2 João</option>
+						<option value="/biblia/2joao/1">2 Jo&#xE3;o</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/3joao/1"
-							
-						>3 João</option>
+						<option value="/biblia/3joao/1">3 Jo&#xE3;o</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/judas/1"
-							
-						>Judas</option>
+						<option value="/biblia/judas/1">Judas</option>
 						
 						
 						
 							
 						
-						<option 
-							value="/biblia/apocalipse/1"
-							
-						>Apocalipse</option>
+						<option value="/biblia/apocalipse/1">Apocalipse</option>
 						
 					</select>
 
@@ -493,11 +452,21 @@
 
 				</form>
 
-			</div>
+				<div class="chapters-nav">
+					
+					
+					
+						
+						
+					
+					
+					
 
-			
-			<h2 class="show-desktop">Bíblia de Estudo Exegético</h2>
-			
+					<button type="button" onclick="window.location=&apos;/biblia/2cor&#xED;ntios/8/&apos;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
+
+					<button type="button" onclick="window.location=&apos;/biblia/2cor&#xED;ntios/10/&apos;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></button>
+				</div>
+			</div>
 
 			
 			
@@ -505,113 +474,762 @@
 				<div id="search" class="search"></div>
 				
 				<div class="options-group">
-					<button id="optionsBt" class="square" type="button" title="Opções de exibição" onclick="toggleMenu(optionsDropdown, this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 128C78.3 128 64 142.3 64 160C64 177.7 78.3 192 96 192L182.7 192C195 220.3 223.2 240 256 240C288.8 240 317 220.3 329.3 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L329.3 128C317 99.7 288.8 80 256 80C223.2 80 195 99.7 182.7 128L96 128zM96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L342.7 352C355 380.3 383.2 400 416 400C448.8 400 477 380.3 489.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L489.3 288C477 259.7 448.8 240 416 240C383.2 240 355 259.7 342.7 288L96 288zM96 448C78.3 448 64 462.3 64 480C64 497.7 78.3 512 96 512L150.7 512C163 540.3 191.2 560 224 560C256.8 560 285 540.3 297.3 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L297.3 448C285 419.7 256.8 400 224 400C191.2 400 163 419.7 150.7 448L96 448z" fill="white"/></svg></button>
+					<button id="optionsBt" class="square" type="button" title="Op&#xE7;&#xF5;es de exibi&#xE7;&#xE3;o" onclick="toggleMenu(optionsDropdown, this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 128C78.3 128 64 142.3 64 160C64 177.7 78.3 192 96 192L182.7 192C195 220.3 223.2 240 256 240C288.8 240 317 220.3 329.3 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L329.3 128C317 99.7 288.8 80 256 80C223.2 80 195 99.7 182.7 128L96 128zM96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L342.7 352C355 380.3 383.2 400 416 400C448.8 400 477 380.3 489.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L489.3 288C477 259.7 448.8 240 416 240C383.2 240 355 259.7 342.7 288L96 288zM96 448C78.3 448 64 462.3 64 480C64 497.7 78.3 512 96 512L150.7 512C163 540.3 191.2 560 224 560C256.8 560 285 540.3 297.3 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L297.3 448C285 419.7 256.8 400 224 400C191.2 400 163 419.7 150.7 448L96 448z" fill="var(--labelColor)"/></svg></button>
 					<div class="options-dropdown">
-						<div><input id="strongBt" name="strongs" type="checkbox" title="Desmarque para ocultar números Strong" onchange="toggleText(this, 'no_redletter')" checked> <label for="strongs">Palavras de Jesus em vermelho</label></div>
+						<div><input id="strongBt" name="strongs" type="checkbox" title="Desmarque para ocultar n&#xFA;meros Strong" onchange="toggleText(this, &apos;no_redletter&apos;)" checked> <label for="strongs">Palavras de Jesus em vermelho</label></div>
 
-						<div><input id="translitBt" type="checkbox" title="Desmarque para ocultar transliteração" onchange="toggleText(this, 'no_greenplaces')"> <label>Locais em verde</label></div>
+						<div><input id="translitBt" type="checkbox" title="Desmarque para ocultar translitera&#xE7;&#xE3;o" onchange="toggleText(this, &apos;no_greenplaces&apos;)"> <label>Locais em verde</label></div>
 						
-						<div><input id="greekBt" type="checkbox" title="Desmarque para ocultar traduções" onchange="toggleText(this, 'no_bluecharacters')"> <label>Personagens em azul</label></div>
+						<div><input id="greekBt" type="checkbox" title="Desmarque para ocultar tradu&#xE7;&#xF5;es" onchange="toggleText(this, &apos;no_bluecharacters&apos;)"> <label>Personagens em azul</label></div>
 					</div>
 				</div>
 				
 			</div>
 			
 
+			<div class="tool-selector">
+				<div class="button-group">
+					<button class="group-button active" onclick="window.location.href=&apos;/biblia/2corintios/9&apos;">NT de Estudo</button>
+
+					<button class="group-button " onclick="window.location.href=&apos;/interlinear/2co/9&apos;">B&#xED;blia Interlinear</button>
+				</div>
+			</div>
+
 		</div>
 
 	</div>
 </div>
 
+		
 		<div class="content-wrapper">
 			<main class="main-content">
 				<div class="content" data-pagefind-body>
 
 					
-						
-
-
-
-<div id="left" style="">
-	<a href="/biblia/2coríntios/8/"
-		title="2Coríntios 8">
-		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
-			<path id="seta-esquerda" data-name="seta-esquerda"
-				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
-				transform="translate(0 24) rotate(270)" fill="#ddd" />
-		</svg>
-	</a>
-</div>
-
-<div id="right">
-	<a href="/biblia/2coríntios/10"
-		title="2Coríntios 10">
-		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24">
-			<path id="seta-direita" data-name="seta-direita"
-				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
-				transform="translate(14) rotate(90)" fill="#ddd" />
-		</svg>
-	</a>
-</div>
-
-<div id="botright">
-	<a href="#" title="Ir para o topo">
-		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="14" viewBox="0 0 24 14">
-			<path id="seta-acima" data-name="seta-acima"
-				d="M10.481,1.772a2,2,0,0,1,3.037,0L21.17,10.7A2,2,0,0,1,19.652,14H4.348A2,2,0,0,1,2.83,10.7Z"
-				transform="translate(0) rotate(0)" fill="#ddd" />
-		</svg>
-	</a>
-</div>
-
-<div class="page-header bee">
-	
-	<a 
-		href="/biblia/2coríntios/8"
-		title="2Coríntios 8">
-	◄</a>
-	
+						<div class="page-header bee">
 	<div class="page-header_title">
-		<h3>2Coríntios 9</h3>
-		<small><a href="/interlinear/2co/9">Versão interlinear</a></small>
+		<h3 data-pagefind-meta="title">2Cor&#xED;ntios 9</h3>
 	</div>
-	<a href="/biblia/2coríntios/10"
-		title="2Coríntios 10">►</a>
 </div>
-<div class="content-container">
 
 
-<h4 class="pericope title">A voluntariedade e a recompensa da generosidade<small class="pericope concordance"></small></h4><div class="pericope text"><p><span id="2co_9-1" class="verse"><span class="verse-number">1</span><span class="verse-text ">Pois, quanto ao serviço destinado aos santos, é desnecessário para mim escrever a vocês,</span></span>
-<span id="2co_9-2" class="verse"><span class="verse-number">2</span><span class="verse-text ">porque conheço a prontidão de vocês, da qual me vanglorio a favor de vocês diante dos macedônios: que a Acaia está preparada desde o ano passado; e o zelo vindo de vocês estimulou a maioria.</span></span>
-<span id="2co_9-3" class="verse"><span class="verse-number">3</span><span class="verse-text ">Mas enviei os irmãos para que nossa vanglória a favor de vocês não seja esvaziada neste aspecto, a fim de que, como eu dizia, estejam preparados;</span></span>
-<span id="2co_9-4" class="verse"><span class="verse-number">4</span><span class="verse-text ">para que, se acaso alguns macedônios forem comigo e encontrarem vocês despreparados, não sejamos nós envergonhados — para não dizermos vocês — nesta confiança da vanglória.</span></span>
-<span id="2co_9-5" class="verse"><span class="verse-number">5</span><span class="verse-text ">Portanto, considerei necessário encorajar os irmãos a irem antes até vocês e prepararem previamente esta bênção de vocês, anunciada anteriormente, para que esteja pronta como bênção, e não como avareza.</span></span></p></div>
+<h4 class="pericope title">A voluntariedade e a recompensa da generosidade<small class="pericope concordance"></small></h4><div class="pericope text"><p><span id="2co_9-1" class="verse"><span class="verse-number">1</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-1-1-p0">Pois<span id="global-original-2co-9-1-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B3;&#x1F70;&#x3C1; (gar)
+Conjun&#xE7;&#xE3;o
+G1063: pois, porque, j&#xE1; que</span></span></span>, quanto ao servi&#xE7;o destinado aos <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-1-2-p1">santos<span id="global-original-2co-9-1-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F01;&#x3B3;&#x3AF;&#x3BF;&#x3C5;&#x3C2; (hagious)
+Adjetivo - Acusativo Masculino Plural
+G40: santo, sagrado, separado</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-1-3-p2">&#xE9;<span id="global-original-2co-9-1-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F10;&#x3C3;&#x3C4;&#x3B9;&#x3BD;
+Dados desta flex&#xE3;o n&#xE3;o dispon&#xED;veis no dicion&#xE1;rio.</span></span></span> desnecess&#xE1;rio <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-1-4-p3">para<span id="global-original-2co-9-1-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em</span></span></span> mim <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-1-5-p4">escrever<span id="global-original-2co-9-1-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B3;&#x3C1;&#x3AC;&#x3C6;&#x3B5;&#x3B9;&#x3BD; (graphein)
+Verbo - Presente Infinitivo Ativa
+G1125: escrever, gravar, descrever</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-1-6-p5">a<span id="global-original-2co-9-1-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1F78; (to)
+Artigo - Acusativo Neutro Singular
+G3588: o, a, os, as</span></span></span> voc&#xEA;s,</span></span>
+<span id="2co_9-2" class="verse"><span class="verse-number">2</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-1-p0">porque<span id="global-original-2co-9-2-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
 
-<h4 class="pericope title">Deus ama quem dá com alegria<small class="pericope concordance"></small></h4><div class="pericope text"><p><span id="2co_9-6" class="verse"><span class="verse-number">6</span><span class="verse-text ">E [digo] isto: quem semeia com parcimônia, com parcimônia também colherá; e quem semeia em bênçãos, em bênçãos também colherá.</span></span>
-<span id="2co_9-7" class="verse"><span class="verse-number">7</span><span class="verse-text ">Cada um [dê] conforme decide no coração, não por tristeza ou por necessidade, pois Deus ama quem dá com alegria.</span></span>
-<span id="2co_9-8" class="verse"><span class="verse-number">8</span><span class="verse-text ">E Deus é poderoso para fazer toda graça abundar para vocês, para que, tendo sempre, em tudo, toda suficiência, abundem em toda boa obra,</span></span>
-<span id="2co_9-9" class="verse"><span class="verse-number">9</span><span class="verse-text ">assim como está escrito: “Espalhou, deu aos pobres; a justiça dele permanece para sempre”.</span></span>
-<span id="2co_9-10" class="verse"><span class="verse-number">10</span><span class="verse-text ">E aquele que fornece semente ao que semeia e pão para alimento forneça e multiplique a semente de vocês e aumente os frutos da justiça de vocês,</span></span>
-<span id="2co_9-11" class="verse"><span class="verse-number">11</span><span class="verse-text ">sendo enriquecidos em tudo para toda simplicidade, a qual produz, por meio de nós, ação de graças a Deus.</span></span>
-<span id="2co_9-12" class="verse"><span class="verse-number">12</span><span class="verse-text ">Pois o serviço desta ministração não somente está suprindo as faltas dos santos, mas também está abundando por meio de muitas ações de graças a Deus.</span></span>
-<span id="2co_9-13" class="verse"><span class="verse-number">13</span><span class="verse-text ">Por meio da prova deste serviço, [eles] glorificam a Deus pela submissão da confissão de vocês à boa nova de Cristo e pela simplicidade da comunhão para com eles e para com todos;</span></span>
-<span id="2co_9-14" class="verse"><span class="verse-number">14</span><span class="verse-text ">e, na súplica deles por vocês, [eles] sentem saudade de vocês por causa da graça de Deus que supera [toda medida] sobre vocês.</span></span>
-<span id="2co_9-15" class="verse"><span class="verse-number">15</span><span class="verse-text ">Mas graças a Deus por sua dádiva indescritível.</span></span></p></div>
-</div>
+Possibilidade 1
+&#x3B3;&#x1F70;&#x3C1; (gar)
+Conjun&#xE7;&#xE3;o
+G1063: pois, porque, j&#xE1; que
+
+Possibilidade 2
+&#x1F45;&#x3C4;&#x3B9; (hoti)
+Conjun&#xE7;&#xE3;o
+G3754: que, porque</span></span></span> conhe&#xE7;o <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-2-p1">a<span id="global-original-2co-9-2-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x1F41; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as</span></span></span> prontid&#xE3;o <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-3-p2">de voc&#xEA;s<span id="global-original-2co-9-2-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-4-p3">da<span id="global-original-2co-9-2-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as</span></span></span> qual <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-5-p4">me vanglorio<span id="global-original-2co-9-2-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x3C5;&#x3C7;&#x1FF6;&#x3BC;&#x3B1;&#x3B9; (kauch&#x14D;mai)
+Verbo - Presente Indicativo M&#xE9;dia ou Passiva - 1&#xAA; Pessoa Singular
+G2744: se vangloriar, se gloriar, exultar</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-6-p5">a<span id="global-original-2co-9-2-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x1F41; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as</span></span></span> favor <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-7-p6">de voc&#xEA;s<span id="global-original-2co-9-2-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> diante dos maced&#xF4;nios: <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-8-p7">que<span id="global-original-2co-9-2-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x1F45;&#x3C4;&#x3B9; (hoti)
+Conjun&#xE7;&#xE3;o
+G3754: que, porque</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-9-p8">a<span id="global-original-2co-9-2-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x1F41; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-10-p9">Acaia<span id="global-original-2co-9-2-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F08;&#x3C7;&#x3B1;&#x390;&#x3B1; (Achaia)
+Substantivo - Nominativo Feminino Singular
+G882: Acaia, i.e. a Gr&#xE9;cia, um territ&#xF3;rio na Europa</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-11-p10">est&#xE1; preparada<span id="global-original-2co-9-2-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3B1;&#x3C1;&#x3B5;&#x3C3;&#x3BA;&#x3B5;&#x3CD;&#x3B1;&#x3C3;&#x3C4;&#x3B1;&#x3B9; (pareskeuastai)
+Verbo - Perfeito Indicativo Passiva - 3&#xAA; Pessoa Singular
+G3903: preparar, prepare-se</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-12-p11">desde<span id="global-original-2co-9-2-12-p11" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F00;&#x3C0;&#x1F78; (apo)
+Preposi&#xE7;&#xE3;o
+G575: desde, a partir de, de</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-13-p12">o<span id="global-original-2co-9-2-13-p12" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F41; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-14-p13">ano passado<span id="global-original-2co-9-2-14-p13" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3AD;&#x3C1;&#x3C5;&#x3C3;&#x3B9; (perysi)
+Adv&#xE9;rbio
+G4070: ano passado</span></span></span>; <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-15-p14">e<span id="global-original-2co-9-2-15-p14" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-16-p15">o<span id="global-original-2co-9-2-16-p15" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F41; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-17-p16">zelo<span id="global-original-2co-9-2-17-p16" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B6;&#x1FC6;&#x3BB;&#x3BF;&#x3C2; (z&#x113;los)
+Substantivo - Nominativo Masculino Singular
+G2205: zelo, fervor, ardor, ci&#xFA;me</span></span></span> vindo <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-18-p17">de voc&#xEA;s<span id="global-original-2co-9-2-18-p17" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> estimulou <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-2-19-p18">a<span id="global-original-2co-9-2-19-p18" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x1F41; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as</span></span></span> maioria.</span></span>
+<span id="2co_9-3" class="verse"><span class="verse-number">3</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-1-p0">Mas<span id="global-original-2co-9-3-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x1F72; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-2-p1">enviei<span id="global-original-2co-9-3-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F1C;&#x3C0;&#x3B5;&#x3BC;&#x3C8;&#x3B1; (epempsa)
+Verbo - Aoristo Indicativo Ativa - 1&#xAA; Pessoa Singular
+G3992: mandar, enviar, despachar</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-3-p2">os<span id="global-original-2co-9-3-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x3BF;&#x1F7A;&#x3C2; (tous)
+Artigo - Acusativo Masculino Plural
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-4-p3">irm&#xE3;os<span id="global-original-2co-9-3-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F00;&#x3B4;&#x3B5;&#x3BB;&#x3C6;&#x3BF;&#x3CD;&#x3C2; (adelphous)
+Substantivo - Acusativo Masculino Plural
+G80: irm&#xE3;o</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-5-p4">para que<span id="global-original-2co-9-3-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F35;&#x3BD;&#x3B1; (hina)
+Conjun&#xE7;&#xE3;o
+G2443: que, para que</span></span></span> nossa <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-6-p5">vangl&#xF3;ria<span id="global-original-2co-9-3-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x3CD;&#x3C7;&#x3B7;&#x3BC;&#x3B1; (kauch&#x113;ma)
+Substantivo - Acusativo Neutro Singular
+G2745: vangl&#xF3;ria, ostenta&#xE7;&#xE3;o, algo de que se gloriar</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-7-p6">a<span id="global-original-2co-9-3-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1F78; (to)
+Artigo - Acusativo Neutro Singular
+G3588: o, a, os, as</span></span></span> favor <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-8-p7">de voc&#xEA;s<span id="global-original-2co-9-3-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-9-p8">n&#xE3;o<span id="global-original-2co-9-3-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BC;&#x1F74; (m&#x113;)
+Adv&#xE9;rbio
+G3361: n&#xE3;o, para que n&#xE3;o</span></span></span> seja esvaziada neste aspecto, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-10-p9">a<span id="global-original-2co-9-3-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1F78; (to)
+Artigo - Acusativo Neutro Singular
+G3588: o, a, os, as</span></span></span> fim de que, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-3-11-p10">como<span id="global-original-2co-9-3-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x3B8;&#x1F7C;&#x3C2; (kath&#x14D;s)
+Adv&#xE9;rbio
+G2531: assim (ou na medida em que), que</span></span></span> eu dizia, estejam preparados;</span></span>
+<span id="2co_9-4" class="verse"><span class="verse-number">4</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-1-p0">para que<span id="global-original-2co-9-4-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F35;&#x3BD;&#x3B1; (hina)
+Conjun&#xE7;&#xE3;o
+G2443: que, para que</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-2-p1">se<span id="global-original-2co-9-4-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F10;&#x1F70;&#x3BD; (ean)
+Conjun&#xE7;&#xE3;o
+G1437: se, quando, sempre que
+
+Possibilidade 2
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> acaso alguns <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-3-p2">maced&#xF4;nios<span id="global-original-2co-9-4-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x39C;&#x3B1;&#x3BA;&#x3B5;&#x3B4;&#x3CC;&#x3BD;&#x3B5;&#x3C2; (Makedones)
+Substantivo - Nominativo Masculino Plural
+G3110: maced&#xF4;nio</span></span></span> forem comigo <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-4-p3">e<span id="global-original-2co-9-4-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> encontrarem <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-5-p4">voc&#xEA;s<span id="global-original-2co-9-4-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x3B5;&#x1FD6;&#x3C2; (hymeis)
+Pronome Pessoal/Possessivo - Nominativo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-6-p5">despreparados<span id="global-original-2co-9-4-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F00;&#x3C0;&#x3B1;&#x3C1;&#x3B1;&#x3C3;&#x3BA;&#x3B5;&#x3C5;&#x3AC;&#x3C3;&#x3C4;&#x3BF;&#x3C5;&#x3C2; (aparaskeuastous)
+Adjetivo - Acusativo Masculino Plural
+G532: despreparado</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-7-p6">n&#xE3;o<span id="global-original-2co-9-4-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BC;&#x1F74; (m&#x113;)
+Adv&#xE9;rbio
+G3361: n&#xE3;o, para que n&#xE3;o</span></span></span> sejamos <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-8-p7">n&#xF3;s<span id="global-original-2co-9-4-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F21;&#x3BC;&#x3B5;&#x1FD6;&#x3C2; (h&#x113;meis)
+Pronome Pessoal/Possessivo - Nominativo 1&#xAA; Pessoa Plural
+G1473: eu, n&#xF3;s</span></span></span> envergonhados &#x2014; <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-9-p8">para<span id="global-original-2co-9-4-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-10-p9">n&#xE3;o<span id="global-original-2co-9-4-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BC;&#x1F74; (m&#x113;)
+Adv&#xE9;rbio
+G3361: n&#xE3;o, para que n&#xE3;o</span></span></span> dizermos <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-11-p10">voc&#xEA;s<span id="global-original-2co-9-4-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x3B5;&#x1FD6;&#x3C2; (hymeis)
+Pronome Pessoal/Possessivo - Nominativo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> &#x2014; nesta confian&#xE7;a <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-4-12-p11">da vangl&#xF3;ria<span id="global-original-2co-9-4-12-p11" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x3C5;&#x3C7;&#x3AE;&#x3C3;&#x3B5;&#x3C9;&#x3C2; (kauch&#x113;se&#x14D;s)
+Substantivo - Genitivo Feminino Singular
+G2746: vangl&#xF3;ria, orgulho</span></span></span>.</span></span>
+<span id="2co_9-5" class="verse"><span class="verse-number">5</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-1-p0">Portanto<span id="global-original-2co-9-5-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x3BF;&#x1F56;&#x3BD; (oun)
+Conjun&#xE7;&#xE3;o
+G3767: portanto, assim, consequentemente</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-2-p1">considerei<span id="global-original-2co-9-5-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F21;&#x3B3;&#x3B7;&#x3C3;&#x3AC;&#x3BC;&#x3B7;&#x3BD; (h&#x113;g&#x113;sam&#x113;n)
+Verbo - Aoristo Indicativo M&#xE9;dia - 1&#xAA; Pessoa Singular
+G2233: liderar, considerar, pensar</span></span></span> necess&#xE1;rio <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-3-p2">encorajar<span id="global-original-2co-9-5-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3B1;&#x3C1;&#x3B1;&#x3BA;&#x3B1;&#x3BB;&#x3AD;&#x3C3;&#x3B1;&#x3B9; (parakalesai)
+Verbo - Aoristo Infinitivo Ativa
+G3870: encorajar, exortar, confortar; lit. chamar para o lado</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-4-p3">os<span id="global-original-2co-9-5-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x3BF;&#x1F7A;&#x3C2; (tous)
+Artigo - Acusativo Masculino Plural
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-5-p4">irm&#xE3;os<span id="global-original-2co-9-5-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F00;&#x3B4;&#x3B5;&#x3BB;&#x3C6;&#x3BF;&#x3CD;&#x3C2; (adelphous)
+Substantivo - Acusativo Masculino Plural
+G80: irm&#xE3;o</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-6-p5">a<span id="global-original-2co-9-5-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as</span></span></span> irem antes at&#xE9; voc&#xEA;s <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-7-p6">e<span id="global-original-2co-9-5-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> prepararem previamente <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-8-p7">esta<span id="global-original-2co-9-5-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x3B1;&#x3CD;&#x3C4;&#x3B7;&#x3BD; (taut&#x113;n)
+Pronome Demonstrativo - Acusativo Feminino Singular
+G3778: este (m), esta (f), isto (n)</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-9-p8">b&#xEA;n&#xE7;&#xE3;o<span id="global-original-2co-9-5-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F50;&#x3BB;&#x3BF;&#x3B3;&#x3AF;&#x3B1;&#x3BD; (eulogian)
+Substantivo - Acusativo Feminino Singular
+G2129: b&#xEA;n&#xE7;&#xE3;o, louvor, elogio</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-10-p9">de voc&#xEA;s<span id="global-original-2co-9-5-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span>, anunciada anteriormente, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-11-p10">para que<span id="global-original-2co-9-5-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F61;&#x3C2; (h&#x14D;s)
+Adv&#xE9;rbio
+G5613: como, uma vez que, para que, como se, cerca de, de certo modo
+
+Possibilidade 2
+&#x1F35;&#x3BD;&#x3B1; (hina)
+Conjun&#xE7;&#xE3;o
+G2443: que, para que</span></span></span> esteja <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-12-p11">pronta<span id="global-original-2co-9-5-12-p11" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F11;&#x3C4;&#x3BF;&#x3AF;&#x3BC;&#x3B7;&#x3BD; (hetoim&#x113;n)
+Adjetivo - Acusativo Feminino Singular
+G2092: pronto, realizado, oportuno</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-13-p12">como<span id="global-original-2co-9-5-13-p12" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F61;&#x3C2; (h&#x14D;s)
+Adv&#xE9;rbio
+G5613: como, uma vez que, para que, como se, cerca de, de certo modo</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-14-p13">b&#xEA;n&#xE7;&#xE3;o<span id="global-original-2co-9-5-14-p13" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F50;&#x3BB;&#x3BF;&#x3B3;&#x3AF;&#x3B1;&#x3BD; (eulogian)
+Substantivo - Acusativo Feminino Singular
+G2129: b&#xEA;n&#xE7;&#xE3;o, louvor, elogio</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-15-p14">e<span id="global-original-2co-9-5-15-p14" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-16-p15">n&#xE3;o<span id="global-original-2co-9-5-16-p15" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BC;&#x1F74; (m&#x113;)
+Adv&#xE9;rbio
+G3361: n&#xE3;o, para que n&#xE3;o</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-5-17-p16">como<span id="global-original-2co-9-5-17-p16" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F61;&#x3C2; (h&#x14D;s)
+Adv&#xE9;rbio
+G5613: como, uma vez que, para que, como se, cerca de, de certo modo</span></span></span> avareza.</span></span></p></div>
+
+<h4 class="pericope title">Deus ama quem d&#xE1; com alegria<small class="pericope concordance"></small></h4><div class="pericope text"><p><span id="2co_9-6" class="verse"><span class="verse-number">6</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-1-p0">E<span id="global-original-2co-9-6-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x3B4;&#x3AD; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> [digo] <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-2-p1">isto<span id="global-original-2co-9-6-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3A4;&#x3BF;&#x1FE6;&#x3C4;&#x3BF; (touto)
+Pronome Demonstrativo - Acusativo Neutro Singular
+G3778: este (m), esta (f), isto (n)</span></span></span>: quem semeia <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-3-p2">com parcim&#xF4;nia<span id="global-original-2co-9-6-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C6;&#x3B5;&#x3B9;&#x3B4;&#x3BF;&#x3BC;&#x3AD;&#x3BD;&#x3C9;&#x3C2; (pheidomen&#x14D;s)
+Adv&#xE9;rbio
+G5340: poupar, abster-se, reter</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-4-p3">com parcim&#xF4;nia<span id="global-original-2co-9-6-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C6;&#x3B5;&#x3B9;&#x3B4;&#x3BF;&#x3BC;&#x3AD;&#x3BD;&#x3C9;&#x3C2; (pheidomen&#x14D;s)
+Adv&#xE9;rbio
+G5340: poupar, abster-se, reter</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-5-p4">tamb&#xE9;m<span id="global-original-2co-9-6-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-6-p5">colher&#xE1;<span id="global-original-2co-9-6-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x3C1;&#x3AF;&#x3C3;&#x3B5;&#x3B9; (therisei)
+Verbo - Futuro Indicativo Ativa - 3&#xAA; Pessoa Singular
+G2325: colher</span></span></span>; <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-7-p6">e<span id="global-original-2co-9-6-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x3B4;&#x3AD; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> quem semeia <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-8-p7">em<span id="global-original-2co-9-6-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F10;&#x3C0;&apos; (ep&apos;)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)</span></span></span> b&#xEA;n&#xE7;&#xE3;os, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-9-p8">em<span id="global-original-2co-9-6-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F10;&#x3C0;&apos; (ep&apos;)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)</span></span></span> b&#xEA;n&#xE7;&#xE3;os <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-10-p9">tamb&#xE9;m<span id="global-original-2co-9-6-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-6-11-p10">colher&#xE1;<span id="global-original-2co-9-6-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x3C1;&#x3AF;&#x3C3;&#x3B5;&#x3B9; (therisei)
+Verbo - Futuro Indicativo Ativa - 3&#xAA; Pessoa Singular
+G2325: colher</span></span></span>.</span></span>
+<span id="2co_9-7" class="verse"><span class="verse-number">7</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-7-1-p0">Cada um<span id="global-original-2co-9-7-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F1D;&#x3BA;&#x3B1;&#x3C3;&#x3C4;&#x3BF;&#x3C2; (hekastos)
+Adjetivo - Nominativo Masculino Singular
+G1538: cada, todos</span></span></span> [d&#xEA;] conforme decide no <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-7-2-p1">cora&#xE7;&#xE3;o<span id="global-original-2co-9-7-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x3C1;&#x3B4;&#x3AF;&#x1FB3; (kardia)
+Substantivo - Dativo Feminino Singular
+G2588: cora&#xE7;&#xE3;o</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-7-3-p2">n&#xE3;o<span id="global-original-2co-9-7-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BC;&#x1F74; (m&#x113;)
+Adv&#xE9;rbio
+G3361: n&#xE3;o, para que n&#xE3;o</span></span></span> por tristeza <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-7-4-p3">ou<span id="global-original-2co-9-7-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F22; (&#x113;)
+Part&#xED;cula
+G2228: ou, do que, ao inv&#xE9;s</span></span></span> por necessidade, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-7-5-p4">pois<span id="global-original-2co-9-7-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B3;&#x1F70;&#x3C1; (gar)
+Conjun&#xE7;&#xE3;o
+G1063: pois, porque, j&#xE1; que</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-7-6-p5">Deus<span id="global-original-2co-9-7-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x3CC;&#x3C2; (theos)
+Substantivo - Nominativo Masculino Singular
+G2316: deus, o Deus verdadeiro</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-7-7-p6">ama<span id="global-original-2co-9-7-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F00;&#x3B3;&#x3B1;&#x3C0;&#x1FB7; (agapa)
+Verbo - Presente Indicativo Ativa - 3&#xAA; Pessoa Singular
+G25: amar, preferir (a&#xE7;&#xE3;o, n&#xE3;o sentimento)</span></span></span> quem d&#xE1; com alegria.</span></span>
+<span id="2co_9-8" class="verse"><span class="verse-number">8</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-1-p0">E<span id="global-original-2co-9-8-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x1F72; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-2-p1">Deus<span id="global-original-2co-9-8-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x1F78;&#x3C2; (theos)
+Substantivo - Nominativo Masculino Singular
+G2316: deus, o Deus verdadeiro</span></span></span> &#xE9; poderoso <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-3-p2">para<span id="global-original-2co-9-8-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em</span></span></span> fazer <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-4-p3">toda<span id="global-original-2co-9-8-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x1FB6;&#x3C3;&#x3B1;&#x3BD; (pasan)
+Adjetivo - Acusativo Feminino Singular
+G3956: todo, qualquer</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-5-p4">gra&#xE7;a<span id="global-original-2co-9-8-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C7;&#x3AC;&#x3C1;&#x3B9;&#x3BD; (charin)
+Substantivo - Acusativo Feminino Singular
+G5485: gra&#xE7;a, favor (imerecido), bondade</span></span></span> abundar <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-6-p5">para<span id="global-original-2co-9-8-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em</span></span></span> voc&#xEA;s, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-7-p6">para que<span id="global-original-2co-9-8-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F35;&#x3BD;&#x3B1; (hina)
+Conjun&#xE7;&#xE3;o
+G2443: que, para que</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-8-p7">tendo<span id="global-original-2co-9-8-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F14;&#x3C7;&#x3BF;&#x3BD;&#x3C4;&#x3B5;&#x3C2; (echontes)
+Verbo - Presente Partic&#xED;pio Ativa - Nominativo Masculino Plural
+G2192: ter, possuir</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-9-p8">sempre<span id="global-original-2co-9-8-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3AC;&#x3BD;&#x3C4;&#x3BF;&#x3C4;&#x3B5; (pantote)
+Adv&#xE9;rbio
+G3842: sempre, em todos os momentos</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-10-p9">em<span id="global-original-2co-9-8-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em
+
+Possibilidade 2
+&#x1F10;&#x3BD; (en)
+Preposi&#xE7;&#xE3;o
+G1722: em, sobre, por, com, entre</span></span></span> tudo, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-11-p10">toda<span id="global-original-2co-9-8-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x1FB6;&#x3C3;&#x3B1;&#x3BD; (pasan)
+Adjetivo - Acusativo Feminino Singular
+G3956: todo, qualquer</span></span></span> sufici&#xEA;ncia, abundem <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-12-p11">em<span id="global-original-2co-9-8-12-p11" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em
+
+Possibilidade 2
+&#x1F10;&#x3BD; (en)
+Preposi&#xE7;&#xE3;o
+G1722: em, sobre, por, com, entre</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-13-p12">toda<span id="global-original-2co-9-8-13-p12" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x1FB6;&#x3C3;&#x3B1;&#x3BD; (pasan)
+Adjetivo - Acusativo Feminino Singular
+G3956: todo, qualquer</span></span></span> boa <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-8-14-p13">obra<span id="global-original-2co-9-8-14-p13" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F14;&#x3C1;&#x3B3;&#x3BF;&#x3BD; (ergon)
+Substantivo - Acusativo Neutro Singular
+G2041: obra, a&#xE7;&#xE3;o, feito, tarefa</span></span></span>,</span></span>
+<span id="2co_9-9" class="verse"><span class="verse-number">9</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-1-p0">assim como<span id="global-original-2co-9-9-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x3B8;&#x1F7C;&#x3C2; (kath&#x14D;s)
+Adv&#xE9;rbio
+G2531: assim (ou na medida em que), que</span></span></span> est&#xE1; escrito: &#x201C;<span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-2-p1">Espalhou<span id="global-original-2co-9-9-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F18;&#x3C3;&#x3BA;&#x3CC;&#x3C1;&#x3C0;&#x3B9;&#x3C3;&#x3B5;&#x3BD; (Eskorpisen)
+Verbo - Aoristo Indicativo Ativa - 3&#xAA; Pessoa Singular
+G4650: espalhar, dispersar</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-3-p2">deu<span id="global-original-2co-9-9-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F14;&#x3B4;&#x3C9;&#x3BA;&#x3B5;&#x3BD; (ed&#x14D;ken)
+Verbo - Aoristo Indicativo Ativa - 3&#xAA; Pessoa Singular
+G1325: dar</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-4-p3">aos pobres<span id="global-original-2co-9-9-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3AD;&#x3BD;&#x3B7;&#x3C3;&#x3B9;&#x3BD; (pen&#x113;sin)
+Substantivo - Dativo Masculino Plural
+G3993: pobre, necessitado</span></span></span>; <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-5-p4">a<span id="global-original-2co-9-9-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F21; (h&#x113;)
+Artigo - Nominativo Feminino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x3C4;&#x1F78;&#x3BD; (ton)
+Artigo - Acusativo Masculino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-6-p5">justi&#xE7;a<span id="global-original-2co-9-9-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x3B9;&#x3BA;&#x3B1;&#x3B9;&#x3BF;&#x3C3;&#x3CD;&#x3BD;&#x3B7; (dikaiosyn&#x113;)
+Substantivo - Nominativo Feminino Singular
+G1343: justi&#xE7;a, retid&#xE3;o (como caracter&#xED;stica essencial)</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-7-p6">dele<span id="global-original-2co-9-9-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B1;&#x1F50;&#x3C4;&#x3BF;&#x1FE6; (autou)
+Pronome Pessoal/Possessivo - Genitivo Masculino 3&#xAA; Pessoa Singular
+G846: ele, ela; ele pr&#xF3;prio, ela pr&#xF3;pria </span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-8-p7">permanece<span id="global-original-2co-9-9-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BC;&#x3AD;&#x3BD;&#x3B5;&#x3B9; (menei)
+Verbo - Presente Indicativo Ativa - 3&#xAA; Pessoa Singular
+G3306: permanecer, continuar, habitar, suportar</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-9-9-p8">para<span id="global-original-2co-9-9-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em</span></span></span> sempre&#x201D;.</span></span>
+<span id="2co_9-10" class="verse"><span class="verse-number">10</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-1-p0">E<span id="global-original-2co-9-10-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x3B4;&#x1F72; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-2-p1">aquele que<span id="global-original-2co-9-10-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F49; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as</span></span></span> fornece <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-3-p2">semente<span id="global-original-2co-9-10-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C3;&#x3C0;&#x3AD;&#x3C1;&#x3BC;&#x3B1; (sperma)
+Substantivo - Nominativo Neutro Singular
+G4690: semente, descend&#xEA;ncia, descendentes, posteridade
+
+Possibilidade 2
+&#x3C3;&#x3C0;&#x3CC;&#x3C1;&#x3BF;&#x3BD; (sporon)
+Substantivo - Acusativo Masculino Singular
+G4703: semente</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-4-p3">ao<span id="global-original-2co-9-10-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1FF7; (t&#x14D;)
+Artigo - Dativo Masculino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-5-p4">que<span id="global-original-2co-9-10-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> semeia <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-6-p5">e<span id="global-original-2co-9-10-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x3B4;&#x1F72; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-7-p6">p&#xE3;o<span id="global-original-2co-9-10-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F04;&#x3C1;&#x3C4;&#x3BF;&#x3BD; (arton)
+Substantivo - Acusativo Masculino Singular
+G740: p&#xE3;o</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-8-p7">para<span id="global-original-2co-9-10-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em
+
+Possibilidade 2
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> alimento <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-9-p8">forne&#xE7;a<span id="global-original-2co-9-10-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C7;&#x3BF;&#x3C1;&#x3B7;&#x3B3;&#x3AE;&#x3C3;&#x3B1;&#x3B9; (chor&#x113;g&#x113;sai)
+Verbo - Aoristo Optativo Ativa - 3&#xAA; Pessoa Singular
+G5524: fornecer</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-10-p9">e<span id="global-original-2co-9-10-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x3B4;&#x1F72; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-11-p10">multiplique<span id="global-original-2co-9-10-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3BB;&#x3B7;&#x3B8;&#x3CD;&#x3BD;&#x3B1;&#x3B9; (pl&#x113;thynai)
+Verbo - Aoristo Optativo Ativa - 3&#xAA; Pessoa Singular
+G4129: multiplicar, aumentar</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-12-p11">a<span id="global-original-2co-9-10-12-p11" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F49; (ho)
+Artigo - Nominativo Masculino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x3C4;&#x1F78;&#x3BD; (ton)
+Artigo - Acusativo Masculino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-13-p12">semente<span id="global-original-2co-9-10-13-p12" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C3;&#x3C0;&#x3AD;&#x3C1;&#x3BC;&#x3B1; (sperma)
+Substantivo - Nominativo Neutro Singular
+G4690: semente, descend&#xEA;ncia, descendentes, posteridade
+
+Possibilidade 2
+&#x3C3;&#x3C0;&#x3CC;&#x3C1;&#x3BF;&#x3BD; (sporon)
+Substantivo - Acusativo Masculino Singular
+G4703: semente</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-14-p13">de voc&#xEA;s<span id="global-original-2co-9-10-14-p13" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-15-p14">e<span id="global-original-2co-9-10-15-p14" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras
+
+Possibilidade 2
+&#x3B4;&#x1F72; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> aumente <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-16-p15">os<span id="global-original-2co-9-10-16-p15" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1F70; (ta)
+Artigo - Acusativo Neutro Plural
+G3588: o, a, os, as</span></span></span> frutos <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-17-p16">da justi&#xE7;a<span id="global-original-2co-9-10-17-p16" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x3B9;&#x3BA;&#x3B1;&#x3B9;&#x3BF;&#x3C3;&#x3CD;&#x3BD;&#x3B7;&#x3C2; (dikaiosyn&#x113;s)
+Substantivo - Genitivo Feminino Singular
+G1343: justi&#xE7;a, retid&#xE3;o (como caracter&#xED;stica essencial)</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-10-18-p17">de voc&#xEA;s<span id="global-original-2co-9-10-18-p17" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span>,</span></span>
+<span id="2co_9-11" class="verse"><span class="verse-number">11</span><span class="verse-text ">sendo enriquecidos <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-1-p0">em<span id="global-original-2co-9-11-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em
+
+Possibilidade 2
+&#x1F10;&#x3BD; (en)
+Preposi&#xE7;&#xE3;o
+G1722: em, sobre, por, com, entre</span></span></span> tudo <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-2-p1">para<span id="global-original-2co-9-11-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-3-p2">toda<span id="global-original-2co-9-11-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x1FB6;&#x3C3;&#x3B1;&#x3BD; (pasan)
+Adjetivo - Acusativo Feminino Singular
+G3956: todo, qualquer</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-4-p3">simplicidade<span id="global-original-2co-9-11-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F01;&#x3C0;&#x3BB;&#x3CC;&#x3C4;&#x3B7;&#x3C4;&#x3B1; (haplot&#x113;ta)
+Substantivo - Acusativo Feminino Singular
+G572: simplicidade, sinceridade, generosidade, liberalidade</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-5-p4">a qual<span id="global-original-2co-9-11-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F25;&#x3C4;&#x3B9;&#x3C2; (h&#x113;tis)
+Pronome Relativo - Nominativo Feminino Singular
+G3748: que, quem, onde; o(a) qual, cujo(a), quanto(a); seja o que for, aquele</span></span></span> produz, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-6-p5">por meio<span id="global-original-2co-9-11-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x3B9;&apos; (di&apos;)
+Preposi&#xE7;&#xE3;o
+G1223: por, atrav&#xE9;s de, devido a</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-7-p6">de n&#xF3;s<span id="global-original-2co-9-11-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F21;&#x3BC;&#x1FF6;&#x3BD; (h&#x113;m&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 1&#xAA; Pessoa Plural
+G1473: eu, n&#xF3;s</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-8-p7">a&#xE7;&#xE3;o de gra&#xE7;as<span id="global-original-2co-9-11-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F50;&#x3C7;&#x3B1;&#x3C1;&#x3B9;&#x3C3;&#x3C4;&#x3AF;&#x3B1;&#x3BD; (eucharistian)
+Substantivo - Acusativo Feminino Singular
+G2169: a&#xE7;&#xE3;o de gra&#xE7;as, gratid&#xE3;o</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-11-9-p8">a Deus<span id="global-original-2co-9-11-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x1FF7; (the&#x14D;)
+Substantivo - Dativo Masculino Singular
+G2316: deus, o Deus verdadeiro</span></span></span>.</span></span>
+<span id="2co_9-12" class="verse"><span class="verse-number">12</span><span class="verse-text ">Pois <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-1-p0">o<span id="global-original-2co-9-12-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F21; (h&#x113;)
+Artigo - Nominativo Feminino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-2-p1">servi&#xE7;o<span id="global-original-2co-9-12-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x3B9;&#x3B1;&#x3BA;&#x3BF;&#x3BD;&#x3AF;&#x3B1; (diakonia)
+Substantivo - Nominativo Feminino Singular
+G1248:  servi&#xE7;o, ministra&#xE7;&#xE3;o, minist&#xE9;rio (diaconia)</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-3-p2">desta<span id="global-original-2co-9-12-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x3B1;&#x3CD;&#x3C4;&#x3B7;&#x3C2; (taut&#x113;s)
+Pronome Demonstrativo - Genitivo Feminino Singular
+G3778: este (m), esta (f), isto (n)</span></span></span> ministra&#xE7;&#xE3;o <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-4-p3">n&#xE3;o<span id="global-original-2co-9-12-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BF;&#x1F50; (ou)
+Adv&#xE9;rbio
+G3756: n&#xE3;o</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-5-p4">somente<span id="global-original-2co-9-12-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BC;&#x3CC;&#x3BD;&#x3BF;&#x3BD; (monon)
+Adv&#xE9;rbio
+G3440: apenas, somente</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-6-p5">est&#xE1;<span id="global-original-2co-9-12-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F10;&#x3C3;&#x3C4;&#x1F76;&#x3BD; (estin)
+Verbo - Presente Indicativo Ativa - 3&#xAA; Pessoa Singular
+G1510: ser, estar, existir</span></span></span> suprindo as <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-7-p6">faltas<span id="global-original-2co-9-12-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3C3;&#x3C4;&#x3B5;&#x3C1;&#x3AE;&#x3BC;&#x3B1;&#x3C4;&#x3B1; (hyster&#x113;mata)
+Substantivo - Acusativo Neutro Plural
+G5303: falta, defici&#xEA;ncia, necessidade</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-8-p7">dos santos<span id="global-original-2co-9-12-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F01;&#x3B3;&#x3AF;&#x3C9;&#x3BD; (hagion)
+Adjetivo - Genitivo Masculino Plural
+G40: santo, sagrado, separado</span></span></span>, <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-9-p8">mas<span id="global-original-2co-9-12-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F00;&#x3BB;&#x3BB;&#x1F70; (alla)
+Conjun&#xE7;&#xE3;o
+G235: mas, antes, pelo contr&#xE1;rio
+
+Possibilidade 2
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-10-p9">tamb&#xE9;m<span id="global-original-2co-9-12-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-11-p10">est&#xE1;<span id="global-original-2co-9-12-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F10;&#x3C3;&#x3C4;&#x1F76;&#x3BD; (estin)
+Verbo - Presente Indicativo Ativa - 3&#xAA; Pessoa Singular
+G1510: ser, estar, existir</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-12-p11">abundando<span id="global-original-2co-9-12-12-p11" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3B5;&#x3C1;&#x3B9;&#x3C3;&#x3C3;&#x3B5;&#x3CD;&#x3BF;&#x3C5;&#x3C3;&#x3B1; (perisseuousa)
+Verbo - Presente Partic&#xED;pio Ativa - Nominativo Feminino Singular
+G4052: sobrar, abundar, transbordar, exceder</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-13-p12">por meio de<span id="global-original-2co-9-12-13-p12" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x3B9;&#x1F70; (dia)
+Preposi&#xE7;&#xE3;o
+G1223: por, atrav&#xE9;s de, devido a</span></span></span> muitas a&#xE7;&#xF5;es de gra&#xE7;as <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-12-14-p13">a Deus<span id="global-original-2co-9-12-14-p13" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x1FF7; (the&#x14D;)
+Substantivo - Dativo Masculino Singular
+G2316: deus, o Deus verdadeiro</span></span></span>.</span></span>
+<span id="2co_9-13" class="verse"><span class="verse-number">13</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-1-p0">Por<span id="global-original-2co-9-13-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B4;&#x3B9;&#x1F70; (dia)
+Preposi&#xE7;&#xE3;o
+G1223: por, atrav&#xE9;s de, devido a
+
+Possibilidade 2
+&#x1F10;&#x3C0;&#x1F76; (epi)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)</span></span></span> meio <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-2-p1">da<span id="global-original-2co-9-13-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C4;&#x1FC6;&#x3C2; (t&#x113;s)
+Artigo - Genitivo Feminino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x3C4;&#x3BF;&#x1FE6; (tou)
+Artigo - Genitivo Masculino Singular
+G3588: o, a, os, as</span></span></span> prova deste servi&#xE7;o, [eles] glorificam <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-3-p2">a<span id="global-original-2co-9-13-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C4;&#x1F78; (to)
+Artigo - Acusativo Neutro Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x3C4;&#x1F78;&#x3BD; (ton)
+Artigo - Acusativo Masculino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-4-p3">Deus<span id="global-original-2co-9-13-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B8;&#x3B5;&#x1F78;&#x3BD; (theon)
+Substantivo - Acusativo Masculino Singular
+G2316: deus, o Deus verdadeiro
+
+Possibilidade 2
+&#x3C4;&#x1F78;&#x3BD; (ton)
+Artigo - Acusativo Masculino Singular
+G3588: o, a, os, as
+
+&#x3B8;&#x3B5;&#x1F78;&#x3BD; (theon)
+Substantivo - Acusativo Masculino Singular
+G2316: deus, o Deus verdadeiro</span></span></span> pela submiss&#xE3;o <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-5-p4">da confiss&#xE3;o<span id="global-original-2co-9-13-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F41;&#x3BC;&#x3BF;&#x3BB;&#x3BF;&#x3B3;&#x3AF;&#x3B1;&#x3C2; (homologias)
+Substantivo - Genitivo Feminino Singular
+G3671: confiss&#xE3;o, profiss&#xE3;o, reconhecimento</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-6-p5">de voc&#xEA;s<span id="global-original-2co-9-13-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-7-p6">&#xE0;<span id="global-original-2co-9-13-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C4;&#x1FC7; (t&#x113;)
+Artigo - Dativo Feminino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-8-p7">boa nova<span id="global-original-2co-9-13-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B5;&#x1F50;&#x3B1;&#x3B3;&#x3B3;&#x3AD;&#x3BB;&#x3B9;&#x3BF;&#x3BD; (euangelion)
+Substantivo - Acusativo Neutro Singular
+G2098: boa nova, uma boa not&#xED;cia, o Evangelho</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-9-p8">de Cristo<span id="global-original-2co-9-13-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C7;&#x3C1;&#x3B9;&#x3C3;&#x3C4;&#x3BF;&#x1FE6; (Christou)
+Substantivo - Genitivo Masculino Singular
+G5547: Cristo, i.e. ungido, o Messias</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-10-p9">e<span id="global-original-2co-9-13-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> pela simplicidade <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-11-p10">da comunh&#xE3;o<span id="global-original-2co-9-13-11-p10" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3BF;&#x3B9;&#x3BD;&#x3C9;&#x3BD;&#x3AF;&#x3B1;&#x3C2; (koin&#x14D;nias)
+Substantivo - Genitivo Feminino Singular
+G2842: comunh&#xE3;o, parceria, partilha</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-12-p11">para<span id="global-original-2co-9-13-12-p11" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em
+
+Possibilidade 2
+&#x1F10;&#x3C0;&#x1F76; (epi)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)
+
+Possibilidade 3
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> com <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-13-p12">eles<span id="global-original-2co-9-13-13-p12" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B1;&#x1F50;&#x3C4;&#x3BF;&#x1F7A;&#x3C2; (autous)
+Pronome Pessoal/Possessivo - Acusativo Masculino 3&#xAA; Pessoa Plural
+G846: ele, ela; ele pr&#xF3;prio, ela pr&#xF3;pria </span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-14-p13">e<span id="global-original-2co-9-13-14-p13" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-15-p14">para<span id="global-original-2co-9-13-15-p14" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B5;&#x1F30;&#x3C2; (eis)
+Preposi&#xE7;&#xE3;o
+G1519: para, em
+
+Possibilidade 2
+&#x1F10;&#x3C0;&#x1F76; (epi)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)
+
+Possibilidade 3
+&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> com <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-13-16-p15">todos<span id="global-original-2co-9-13-16-p15" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C0;&#x3AC;&#x3BD;&#x3C4;&#x3B1;&#x3C2; (pantas)
+Adjetivo - Acusativo Masculino Plural
+G3956: todo, qualquer</span></span></span>;</span></span>
+<span id="2co_9-14" class="verse"><span class="verse-number">14</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-1-p0">e<span id="global-original-2co-9-14-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span>, na s&#xFA;plica <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-2-p1">deles<span id="global-original-2co-9-14-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B1;&#x1F50;&#x3C4;&#x1FF6;&#x3BD; (aut&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo Comum 3&#xAA; Pessoa Plural
+G846: ele, ela; ele pr&#xF3;prio, ela pr&#xF3;pria </span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-3-p2">por<span id="global-original-2co-9-14-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B4;&#x3B9;&#x1F70; (dia)
+Preposi&#xE7;&#xE3;o
+G1223: por, atrav&#xE9;s de, devido a
+
+Possibilidade 2
+&#x1F10;&#x3C6;&apos; (eph&apos;)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)
+
+Possibilidade 3
+&#x1F51;&#x3C0;&#x1F72;&#x3C1; (hyper)
+Preposi&#xE7;&#xE3;o
+G5228: por, em nome de, acima de, al&#xE9;m de, mais do que</span></span></span> voc&#xEA;s, [eles] sentem saudade <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-4-p3">de voc&#xEA;s<span id="global-original-2co-9-14-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F51;&#x3BC;&#x1FF6;&#x3BD; (hym&#x14D;n)
+Pronome Pessoal/Possessivo - Genitivo 2&#xAA; Pessoa Plural
+G4771: tu</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-5-p4">por<span id="global-original-2co-9-14-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3B4;&#x3B9;&#x1F70; (dia)
+Preposi&#xE7;&#xE3;o
+G1223: por, atrav&#xE9;s de, devido a
+
+Possibilidade 2
+&#x1F10;&#x3C6;&apos; (eph&apos;)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)
+
+Possibilidade 3
+&#x1F51;&#x3C0;&#x1F72;&#x3C1; (hyper)
+Preposi&#xE7;&#xE3;o
+G5228: por, em nome de, acima de, al&#xE9;m de, mais do que</span></span></span> causa <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-6-p5">da<span id="global-original-2co-9-14-6-p5" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x3C4;&#x3BF;&#x1FE6; (tou)
+Artigo - Genitivo Masculino Singular
+G3588: o, a, os, as
+
+Possibilidade 2
+&#x3C4;&#x1F74;&#x3BD; (t&#x113;n)
+Artigo - Acusativo Feminino Singular
+G3588: o, a, os, as</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-7-p6">gra&#xE7;a<span id="global-original-2co-9-14-7-p6" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3C7;&#x3AC;&#x3C1;&#x3B9;&#x3BD; (charin)
+Substantivo - Acusativo Feminino Singular
+G5485: gra&#xE7;a, favor (imerecido), bondade</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-8-p7">de Deus<span id="global-original-2co-9-14-8-p7" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x3BF;&#x1FE6; (theou)
+Substantivo - Genitivo Masculino Singular
+G2316: deus, o Deus verdadeiro</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-9-p8">que<span id="global-original-2co-9-14-9-p8" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3BA;&#x3B1;&#x1F76; (kai)
+Conjun&#xE7;&#xE3;o
+G2532: e, tamb&#xE9;m, mesmo, ent&#xE3;o, etc.; frequentemente usado em conex&#xE3;o (ou composi&#xE7;&#xE3;o) com outras part&#xED;culas ou pequenas palavras</span></span></span> supera [toda medida] <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-14-10-p9">sobre<span id="global-original-2co-9-14-10-p9" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">Alternativas lexicais presentes no vers&#xED;culo:
+
+Possibilidade 1
+&#x1F10;&#x3C6;&apos; (eph&apos;)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)
+
+Possibilidade 2
+&#x1F51;&#x3C0;&#x1F72;&#x3C1; (hyper)
+Preposi&#xE7;&#xE3;o
+G5228: por, em nome de, acima de, al&#xE9;m de, mais do que</span></span></span> voc&#xEA;s.</span></span>
+<span id="2co_9-15" class="verse"><span class="verse-number">15</span><span class="verse-text "><span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-15-1-p0">Mas<span id="global-original-2co-9-15-1-p0" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x1F72; (de)
+Conjun&#xE7;&#xE3;o
+G1161: ent&#xE3;o, por sua vez, mas</span></span></span> gra&#xE7;as <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-15-2-p1">a Deus<span id="global-original-2co-9-15-2-p1" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B8;&#x3B5;&#x1FF7; (the&#x14D;)
+Substantivo - Dativo Masculino Singular
+G2316: deus, o Deus verdadeiro</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-15-3-p2">por<span id="global-original-2co-9-15-3-p2" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x1F10;&#x3C0;&#x1F76; (epi)
+Preposi&#xE7;&#xE3;o
+G1909: para, contra (A); em, por (D); sobre, durante (G)</span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-15-4-p3">sua<span id="global-original-2co-9-15-4-p3" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B1;&#x1F50;&#x3C4;&#x3BF;&#x1FE6; (autou)
+Pronome Pessoal/Possessivo - Genitivo Masculino 3&#xAA; Pessoa Singular
+G846: ele, ela; ele pr&#xF3;prio, ela pr&#xF3;pria </span></span></span> <span class="bible-original" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="global-original-2co-9-15-5-p4">d&#xE1;diva<span id="global-original-2co-9-15-5-p4" class="bible-original-content" role="dialog" aria-label="Dados do termo original" data-pagefind-ignore hidden><button type="button" class="bible-original-close" aria-label="Fechar dados do termo original">&#xD7;</button><span class="bible-original-details">&#x3B4;&#x3C9;&#x3C1;&#x3B5;&#x1FB7; (d&#x14D;rea)
+Substantivo - Dativo Feminino Singular
+G1431: d&#xE1;diva, presente, dom gratuito</span></span></span> indescrit&#xED;vel.</span></span></p></div>
 
 					
 
-				</div>
+				</div><!-- /.content -->
+
+				
+				<footer class="nte-footer">
+					<p class="source-credit">
+						<small>Palavras entre [colchetes] n&#xE3;o existem no original, mas podem estar subentendidas ou serem necess&#xE1;rias para tornar a leitura compreens&#xED;vel. Palavras em <em>it&#xE1;lico</em> indicam termos hebraicos, aramaicos ou latinos presentes no original grego.</small>
+					</p>
+				</footer>
+				
 			</main>
 
 			
+			
+
+		</div><!-- /.content-wrapper -->
+
+  </div><!-- /#app -->
+
+	<div class="feedback-component">
+		<button type="button" onclick="toggleMenu(feedbackWindow, this)">&#x1F4E2; Feedback</button>
+
+		<div class="feedback-options">
+			<p>Queremos te ouvir!</p>
+			<button id="bugReport" type="button">&#x1F6A8; Relate um erro</button>
+			<button id="featureRequest" type="button">&#x1F31F; Sugira uma funcionalidade</button>
+			<button id="helpUs" type="button">&#x1FAF0; Apoie nosso trabalho</button>
 		</div>
-
-    <script src="/assets/js/strong-drawer.js" defer></script>
-
-  </div>
+	</div>
 
   <!-- SCRIPTS -->
+	<script src="/assets/js/strong-drawer.js" defer></script>
   <script>
     var page = document.getElementById("app");
 		
@@ -629,6 +1247,7 @@
 		const mainNav = document.querySelector('.main-nav');
 		const optionsDropdown = document.querySelector('.options-dropdown');
 		const optionsDropdown2 = document.querySelector('.options-dropdown2');
+		const feedbackWindow = document.querySelector('.feedback-options');
 		const menuControls = [
 			{ nav: mainNav, button: document.getElementById('toggleMenu') },
 			{ nav: optionsDropdown, button: document.getElementById('optionsBt') },
@@ -661,66 +1280,88 @@
 			});
 		});
 	</script>
-	<script 
-		src="/biblia/pagefind/pagefind-ui.js" 
-		onload="new PagefindUI({
-			element: '#search', 
-			showImages: false,
-			pageSize: 10,
-  		excerptLength: 12,
-			translations: { 
-				placeholder: 'Busca', 
-				zero_results: 'Não encontrei [SEARCH_TERM]', 
-				many_results: '[COUNT] resultados para [SEARCH_TERM]', 
-				one_result: '[COUNT] resultado para [SEARCH_TERM]'
-			}
-		});">
-	</script>
+	<script src="/biblia/pagefind/pagefind-ui.js" defer></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			function initPagefind(selector) {
+				const container = document.querySelector(selector);
+				if (!container || typeof PagefindUI === "undefined") return;
 
+				new PagefindUI({
+					element: selector,
+					showImages: false,
+					pageSize: 10,
+					excerptLength: 12,
+					translations: {
+						placeholder: "Busca",
+						zero_results: "Não encontrei [SEARCH_TERM]",
+						many_results: "[COUNT] resultados para [SEARCH_TERM]",
+						one_result: "[COUNT] resultado para [SEARCH_TERM]"
+					},
+					processResult: function (result) {
+						if (result.url && !result.url.startsWith("/") && !result.url.startsWith("http")) {
+							result.url = "/" + result.url;
+						}
+						return result;
+					}
+				});
+			}
+
+			// Exemplos em diferentes telas/containers da mesma estrutura
+			initPagefind("#search");
+			initPagefind("#search-modal");
+		});
+	</script>
+	<script>
+		const tema = checkbox.checked ? 'dark' : 'light';
+		document.documentElement.dataset.theme = tema;
+		localStorage.setItem('bereia-theme', tema);
+	</script>
+	
 	<div class="tooltip_templates">
 
 	
 	<span id="cristo">
-		<h4>Cristo (χριστος)</h4>
-		<p><em>Transliteração do grego <b>xριστος</b> (christos), ”ungido”, que por sua vez, traduz o hebraico <b>מָשִׁיחַ</b> (mashiach). Designa o rei Messias prometido da linhagem de Davi.</em></p>
+		<h4>Cristo (&#x3C7;&#x3C1;&#x3B9;&#x3C3;&#x3C4;&#x3BF;&#x3C2;)</h4>
+		<p><em>Translitera&#xE7;&#xE3;o do grego <b>x&#x3C1;&#x3B9;&#x3C3;&#x3C4;&#x3BF;&#x3C2;</b> (christos), &#x201D;ungido&#x201D;, que por sua vez, traduz o hebraico <b>&#x5DE;&#x5B8;&#x5E9;&#x5B4;&#x5C1;&#x5D9;&#x5D7;&#x5B7;</b> (mashiach). Designa o rei Messias prometido da linhagem de Davi.</em></p>
 	</span>
 	<span id="jesus">
-		<h4>Jesus (Ἰησοῦς)</h4>
-		<p><em>Yeshua, em aramaico. Grafia alternativa de Yehoshua (Josué), que significa "Yeho salva".</em></p>
+		<h4>Jesus (&#x1F38;&#x3B7;&#x3C3;&#x3BF;&#x1FE6;&#x3C2;)</h4>
+		<p><em>Yeshua, em aramaico. Grafia alternativa de Yehoshua (Josu&#xE9;), que significa &quot;Yeho salva&quot;.</em></p>
 	</span>
 	<span id="justo">
-		<h4>Justo (δίκαιος)</h4>
-		<p><em>Na Bíblia, "justo" é todo aquele que age dentro do padrão estabelecido por Deus, fazendo o que é correto (δίκη). Também pode ser traduzido como "reto". A retidão (δικαιοσύνη) é medida em quanto se obedece a Deus e se vive em conformidade com a sua vontade.</em></p>
+		<h4>Justo (&#x3B4;&#x3AF;&#x3BA;&#x3B1;&#x3B9;&#x3BF;&#x3C2;)</h4>
+		<p><em>Na B&#xED;blia, &quot;justo&quot; &#xE9; todo aquele que age dentro do padr&#xE3;o estabelecido por Deus, fazendo o que &#xE9; correto (&#x3B4;&#x3AF;&#x3BA;&#x3B7;). Tamb&#xE9;m pode ser traduzido como &quot;reto&quot;. A retid&#xE3;o (&#x3B4;&#x3B9;&#x3BA;&#x3B1;&#x3B9;&#x3BF;&#x3C3;&#x3CD;&#x3BD;&#x3B7;) &#xE9; medida em quanto se obedece a Deus e se vive em conformidade com a sua vontade.</em></p>
 	</span>
 	<span id="proskuneo">
-		<h4>Reverenciar (προσκυνέω)</h4>
-		<p><em>Literalmente, "curvar-se para beijar", προσκυνέω (proskuneô) tem o sentido de "prostrar-se em reverência" (beijando a mão ou ajoelhando-se). Sempre usado para demonstrar reverência e respeito a alguém de maior importância, de mestres a reis. Assume, assim, o sentido de "adorar" quando dirigido a Deus.</em></p>
+		<h4>Reverenciar (&#x3C0;&#x3C1;&#x3BF;&#x3C3;&#x3BA;&#x3C5;&#x3BD;&#x3AD;&#x3C9;)</h4>
+		<p><em>Literalmente, &quot;curvar-se para beijar&quot;, &#x3C0;&#x3C1;&#x3BF;&#x3C3;&#x3BA;&#x3C5;&#x3BD;&#x3AD;&#x3C9; (proskune&#xF4;) tem o sentido de &quot;prostrar-se em rever&#xEA;ncia&quot; (beijando a m&#xE3;o ou ajoelhando-se). Sempre usado para demonstrar rever&#xEA;ncia e respeito a algu&#xE9;m de maior import&#xE2;ncia, de mestres a reis. Assume, assim, o sentido de &quot;adorar&quot; quando dirigido a Deus.</em></p>
 	</span>
 	<span id="geena">
-		<h4>Geena (γέεννα)</h4>
-		<p><em>Do heb. Gê-Hinnon, "Vale de Hinom", o depósito de lixo de Jerusalém. No período inter-bíblico tornou-se o símbolo do lugar de punição eterna. Equivalente ao "lago de fogo e enxofre" das demais Escrituras do NT.</em></p>
+		<h4>Geena (&#x3B3;&#x3AD;&#x3B5;&#x3BD;&#x3BD;&#x3B1;)</h4>
+		<p><em>Do heb. G&#xEA;-Hinnon, &quot;Vale de Hinom&quot;, o dep&#xF3;sito de lixo de Jerusal&#xE9;m. No per&#xED;odo inter-b&#xED;blico tornou-se o s&#xED;mbolo do lugar de puni&#xE7;&#xE3;o eterna. Equivalente ao &quot;lago de fogo e enxofre&quot; das demais Escrituras do NT.</em></p>
 	</span>
 	<span id="porneia">
-		<h4>Porneía (πορνεία)</h4>
-		<p><em>Refere-se a todo tipo de comportamento sexual proibido pela Torá: prostituição, adultério, fornicação, incesto, zoofilia, etc. É a base do termo "pornografia" (conteúdo gráfico imoral).</em></p>
+		<h4>Porne&#xED;a (&#x3C0;&#x3BF;&#x3C1;&#x3BD;&#x3B5;&#x3AF;&#x3B1;)</h4>
+		<p><em>Refere-se a todo tipo de comportamento sexual proibido pela Tor&#xE1;: prostitui&#xE7;&#xE3;o, adult&#xE9;rio, fornica&#xE7;&#xE3;o, incesto, zoofilia, etc. &#xC9; a base do termo &quot;pornografia&quot; (conte&#xFA;do gr&#xE1;fico imoral).</em></p>
 	</span>
 	<span id="perfeito">
-		<h4>Perfeito (τέλειος)</h4>
-		<p><em>Tem o sentido de algo <strong>completo</strong>, <strong>íntegro</strong>, <strong>maduro</strong> e, por isso, também perfeito. Diferente da definição em português, teleios, especialmente se atribuído a pessoas, não tem o sentido de alguém que não comete falhas. Numa ilustração clássica, é como uma luneta que se estende, um estágio de cada vez, para funcionar com capacidade e eficácia totais.</em></p>
+		<h4>Perfeito (&#x3C4;&#x3AD;&#x3BB;&#x3B5;&#x3B9;&#x3BF;&#x3C2;)</h4>
+		<p><em>Tem o sentido de algo <strong>completo</strong>, <strong>&#xED;ntegro</strong>, <strong>maduro</strong> e, por isso, tamb&#xE9;m perfeito. Diferente da defini&#xE7;&#xE3;o em portugu&#xEA;s, teleios, especialmente se atribu&#xED;do a pessoas, n&#xE3;o tem o sentido de algu&#xE9;m que n&#xE3;o comete falhas. Numa ilustra&#xE7;&#xE3;o cl&#xE1;ssica, &#xE9; como uma luneta que se estende, um est&#xE1;gio de cada vez, para funcionar com capacidade e efic&#xE1;cia totais.</em></p>
 	</span>
 	<span id="sinagoga">
-		<h4>Sinagoga (συναγωγή)</h4>
-		<p><em>Palavra derivada do termo "reunião" (συνάγω), passou a ser o nome dos locais onde os judeus congregavam para estudarem as Escrituras e também cuidar de assuntos da comunidade. Ao que tudo indica, no primeiro século, quando grande parte dos cristãos ainda era composta de judeus, os locais de reuniões cristãs também eram chamados de "sinagogas" (vd Tg 2:2).</em></p>
+		<h4>Sinagoga (&#x3C3;&#x3C5;&#x3BD;&#x3B1;&#x3B3;&#x3C9;&#x3B3;&#x3AE;)</h4>
+		<p><em>Palavra derivada do termo &quot;reuni&#xE3;o&quot; (&#x3C3;&#x3C5;&#x3BD;&#x3AC;&#x3B3;&#x3C9;), passou a ser o nome dos locais onde os judeus congregavam para estudarem as Escrituras e tamb&#xE9;m cuidar de assuntos da comunidade. Ao que tudo indica, no primeiro s&#xE9;culo, quando grande parte dos crist&#xE3;os ainda era composta de judeus, os locais de reuni&#xF5;es crist&#xE3;s tamb&#xE9;m eram chamados de &quot;sinagogas&quot; (vd Tg 2:2).</em></p>
 	</span>
 	<span id="gentios">
-		<h4>Gentio (ἐθνικός)</h4>
-		<p><em>Literalmente, "quem pertence a uma nação", isto é, qualquer pessoa que não pertença a Israel. Em termos atuais, algo como "pagão".</em></p>
+		<h4>Gentio (&#x1F10;&#x3B8;&#x3BD;&#x3B9;&#x3BA;&#x3CC;&#x3C2;)</h4>
+		<p><em>Literalmente, &quot;quem pertence a uma na&#xE7;&#xE3;o&quot;, isto &#xE9;, qualquer pessoa que n&#xE3;o perten&#xE7;a a Israel. Em termos atuais, algo como &quot;pag&#xE3;o&quot;.</em></p>
 	</span>
 	<span id="ilegalidade">
-		<h4>Transgressão da Lei (ἀνομία)</h4>
-		<p><em>Literalmente, "sem lei". Refere-se à condição de não conhecer ou não praticar a Lei divina. Tradicionalmente traduzido como "iniquidade", poderia também ser usado "ilegalidade". Aqui prefiro "transgressão da Lei", por ser mais próximo do conceito original da palavra.</em></p>
+		<h4>Transgress&#xE3;o da Lei (&#x1F00;&#x3BD;&#x3BF;&#x3BC;&#x3AF;&#x3B1;)</h4>
+		<p><em>Literalmente, &quot;sem lei&quot;. Refere-se &#xE0; condi&#xE7;&#xE3;o de n&#xE3;o conhecer ou n&#xE3;o praticar a Lei divina. Tradicionalmente traduzido como &quot;iniquidade&quot;, poderia tamb&#xE9;m ser usado &quot;ilegalidade&quot;. Aqui prefiro &quot;transgress&#xE3;o da Lei&quot;, por ser mais pr&#xF3;ximo do conceito original da palavra.</em></p>
 	</span>
-	<span id="">
+	<span id>
 		<h4></h4>
 		<p><em></em></p>
 	</span>
@@ -728,56 +1369,57 @@
 	
 	<span id="quatorze">
 		<h5>Nota</h5>
-		<p><em>Muitos estudiosos acreditam que o número 14 alude ao valor numérico do nome do rei Davi (atravé da gematria), sendo usado aqui como uma prova da messianidade de Jesus.</em></p>
+		<p><em>Muitos estudiosos acreditam que o n&#xFA;mero 14 alude ao valor num&#xE9;rico do nome do rei Davi (atrav&#xE9; da gematria), sendo usado aqui como uma prova da messianidade de Jesus.</em></p>
 	</span>
 	<span id="magos">
 		<h5>Nota</h5>
-		<p><em>Há um consenso de que estes magos eram sábios vindos da Babilônia. Os magos babilônios acreditavam que as conjunções astrais anunciavam eventos como o nascimento de reis e o próprio destino dos povos.</em></p>
+		<p><em>H&#xE1; um consenso de que estes magos eram s&#xE1;bios vindos da Babil&#xF4;nia. Os magos babil&#xF4;nios acreditavam que as conjun&#xE7;&#xF5;es astrais anunciavam eventos como o nascimento de reis e o pr&#xF3;prio destino dos povos.</em></p>
 	</span>
 	<span id="estrela">
 		<h5>Nota</h5>
-		<p><em>A melhor suposição por que Mateus incluiu um relato tão estranho em seu Evangelho é a de que os magos babiônios, influenciados por Daniel ou seus amigos, teriam tomado conhecimento da profecia de Balaão quanto à Estrela de Jacó (Nm 24:17), considerada pelos judeus como apontando para o Messias. Uma suposta conjunção entre Júpiter e Saturno lhes teria dado o "sinal" de que o Rei Messias dos judeus havia nascido na terra de Israel.</em></p>
+		<p><em>A melhor suposi&#xE7;&#xE3;o por que Mateus incluiu um relato t&#xE3;o estranho em seu Evangelho &#xE9; a de que os magos babi&#xF4;nios, influenciados por Daniel ou seus amigos, teriam tomado conhecimento da profecia de Bala&#xE3;o quanto &#xE0; Estrela de Jac&#xF3; (Nm 24:17), considerada pelos judeus como apontando para o Messias. Uma suposta conjun&#xE7;&#xE3;o entre J&#xFA;piter e Saturno lhes teria dado o &quot;sinal&quot; de que o Rei Messias dos judeus havia nascido na terra de Israel.</em></p>
 	</span>
 	<span id="nazareno">
 		<h5>Nota</h5>
-		<p><em>Os termos Nazaré (נָצְרַת) e nazareno (נָצְרִי, notsri) vêm da mesma palavra-raiz "renovo" (נֵצֶר, netser), termo usado em profecias como a de Is 11:1 para se referir ao Messias.</em></p>
+		<p><em>Os termos Nazar&#xE9; (&#x5E0;&#x5B8;&#x5E6;&#x5B0;&#x5E8;&#x5B7;&#x5EA;) e nazareno (&#x5E0;&#x5B8;&#x5E6;&#x5B0;&#x5E8;&#x5B4;&#x5D9;, notsri) v&#xEA;m da mesma palavra-raiz &quot;renovo&quot; (&#x5E0;&#x5B5;&#x5E6;&#x5B6;&#x5E8;, netser), termo usado em profecias como a de Is 11:1 para se referir ao Messias.</em></p>
 	</span>
 	<span id="desobrigar">
 		<h5>Nota</h5>
-		<p><em>Lit. "desatar". No Judaísmo, tem o sentido de desobrigar o cumprimento de um mandamento.</em></p>
+		<p><em>Lit. &quot;desatar&quot;. No Juda&#xED;smo, tem o sentido de desobrigar o cumprimento de um mandamento.</em></p>
 	</span>
 	<span id="leiprofetas">
 		<h5>Nota</h5>
-		<p><em>Termo judaico significando "todas as Escrituras". Já nos dias de Jesus, a Bíblia de então era dividida em Lei (Torá), Profetas e Escritos.</em></p>
+		<p><em>Termo judaico significando &quot;todas as Escrituras&quot;. J&#xE1; nos dias de Jesus, a B&#xED;blia de ent&#xE3;o era dividida em Lei (Tor&#xE1;), Profetas e Escritos.</em></p>
 	</span>
 	<span id="yod">
 		<h5>Nota</h5>
-		<p><em>Isto é, a menor letra do alfabeto hebraico. Em grego, "iota", equivalente à nossa letra "i".</em></p>
+		<p><em>Isto &#xE9;, a menor letra do alfabeto hebraico. Em grego, &quot;iota&quot;, equivalente &#xE0; nossa letra &quot;i&quot;.</em></p>
 	</span>
 	<span id="quadrante">
 		<h5>Nota</h5>
-		<p><em>Lit. 'quadrante', a menor moeda em circulação nos dias de Jesus.</em></p>
+		<p><em>Lit. &apos;quadrante&apos;, a menor moeda em circula&#xE7;&#xE3;o nos dias de Jesus.</em></p>
 	</span>
 	<span id="lv1918">
 		<h5>Nota</h5>
-		<p><em>Jesus, aqui, não cita Levítico 19:18, mas algum dito popular da tradição dos judeus. O ódio pelos inimigos era um sentimento comum entre os israelitas, por vezes até exaltado em salmos, embora Provérbios 25:21,22 já aconselhava a demonstrar misericórdia pelo inimigo.</em></p>
+		<p><em>Jesus, aqui, n&#xE3;o cita Lev&#xED;tico 19:18, mas algum dito popular da tradi&#xE7;&#xE3;o dos judeus. O &#xF3;dio pelos inimigos era um sentimento comum entre os israelitas, por vezes at&#xE9; exaltado em salmos, embora Prov&#xE9;rbios 25:21,22 j&#xE1; aconselhava a demonstrar miseric&#xF3;rdia pelo inimigo.</em></p>
 	</span>
 	<span id="publicanos">
 		<h5>Nota</h5>
-		<p><em>Os cobradores de impostos, ou em algumas traduções, "publicanos", eram judeus que trabalhavam para os romanos coletando impostos do povo. Por causa disso, eram vistos como traidores, e utilizados como o pior exemplo de pecador.</em></p>
+		<p><em>Os cobradores de impostos, ou em algumas tradu&#xE7;&#xF5;es, &quot;publicanos&quot;, eram judeus que trabalhavam para os romanos coletando impostos do povo. Por causa disso, eram vistos como traidores, e utilizados como o pior exemplo de pecador.</em></p>
 	</span>
 	<span id="olhobom">
 		<h5>Nota</h5>
-		<p><em>Expressão idiomática da língua hebraica significando generosidade. Ter o olho bom significa ser generoso, enquanto ter o olho mau, significa ser avarento. Este sentido vem de passagens como Dt 15:9 e Pv 22:9, 23:6 e 28:22.</em></p>
+		<p><em>Express&#xE3;o idiom&#xE1;tica da l&#xED;ngua hebraica significando generosidade. Ter o olho bom significa ser generoso, enquanto ter o olho mau, significa ser avarento. Este sentido vem de passagens como Dt 15:9 e Pv 22:9, 23:6 e 28:22.</em></p>
 	</span>
 	<span id="mamon">
 		<h5>Nota</h5>
-		<p><em>Mamon (μαμωνᾶς) é a transliteração do termo aramaico "mamona", significando algo como "o que é confiável". Aparentemente, o termo aramaico passou a ser usado como o nome de um ídolo, associado ao dinheiro e às riquezas mundanas.</em></p>
+		<p><em>Mamon (&#x3BC;&#x3B1;&#x3BC;&#x3C9;&#x3BD;&#x1FB6;&#x3C2;) &#xE9; a translitera&#xE7;&#xE3;o do termo aramaico &quot;mamona&quot;, significando algo como &quot;o que &#xE9; confi&#xE1;vel&quot;. Aparentemente, o termo aramaico passou a ser usado como o nome de um &#xED;dolo, associado ao dinheiro e &#xE0;s riquezas mundanas.</em></p>
 	</span>
-	<span id="">
+	<span id>
 		<h5>Nota</h5>
 		<p><em></em></p>
 	</span>
 </div>
+	
 </body>
 </html>

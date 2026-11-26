@@ -6,8 +6,6 @@
   let request;
   let trigger;
   let revision = 0;
-  const normalizeGreek = value =>
-    value.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('el');
 
   function load() {
     if (!request) {
@@ -108,6 +106,7 @@
     const strong = link.dataset.strong.trim().replace(/^G0+(?=\d)/, 'G');
     const token = link.closest('.token');
     const word = token?.querySelector('.greek')?.textContent.trim();
+    const matchingWord = token?.dataset?.dictionaryForm || word;
     link.setAttribute('aria-controls', drawer.id);
     link.setAttribute('aria-expanded', 'true');
     title.replaceChildren(element('span', strong, 'strong-chip'));
@@ -127,9 +126,14 @@
       title.append(document.createTextNode(' ' + entry.lema));
       body.replaceChildren();
 			// Dados do array 'flexoes'
-      const forms = entry.flexoes.filter(
-				form => word && normalizeGreek(form.grego) === normalizeGreek(word)
-			);
+      // Marcas identificam flexões distintas; candidatos sem marcas não são
+      // análises da ocorrência. Preservar todas as análises literais/NFC.
+      const exactForms = entry.flexoes.filter(
+        form => matchingWord && form.grego.normalize('NFC') === matchingWord.normalize('NFC')
+      );
+      const forms = exactForms.length ? exactForms : entry.flexoes.filter(
+        form => matchingWord && form.grego.toLowerCase().normalize('NFC') === matchingWord.toLowerCase().normalize('NFC')
+      );
 
       for (const form of forms) {
 				// Forma (Transliteração)
@@ -151,7 +155,8 @@
 				// Ocorrências
 				const numNt = element('strong', form.ocorrencias);
 				const numLxx = element('strong', form.ocorrencias_lxx);
-        body.append(element('h3', 'Ocorrências da forma'));
+        if (token?.dataset?.dictionaryForm) section('Forma de referência', form.grego, 'greek-words');
+        body.append(element('h3', token?.dataset?.dictionaryForm ? 'Ocorrências da forma de referência' : 'Ocorrências da forma'));
 				const ntCount = element('p', '', 'ocorrencias');
 				ntCount.append(numNt, ' no Texto Majoritário do NT');
 				body.append(ntCount);
